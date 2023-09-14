@@ -1,2 +1,2 @@
 # SocialCommercial
-A software which connects to everyone and allows to buy and sell everything
+Software that connects to everyone and allows them to buy and sell everything
