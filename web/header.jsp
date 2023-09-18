@@ -3,7 +3,7 @@
         <div class="header-container">
             <div class="header-wrapper">
                 <div class="logoBox">
-                    <img src="static/images/facebook-logo.png" alt="logo">
+                    <h1>SOCO</h1>
                 </div>
                 <div class="searchBox">
                     <input type="search">
@@ -17,7 +17,7 @@
                     <i class="fa-solid fa-caret-down" id="dropdownButton"></i>
                     <div class="dropdown-content">
                         <a href=""><i class="fas fa-cog"></i>Settings </a>
-                        <a href=""><i class="fas fa-highlighter"></i>Change Pasword</a>
+                        <a href=""><i class="fas fa-highlighter"></i>Change Profile</a>
                         <a href=""><i class="fas fa-eye"></i>View Your Fans</a>
                         <a href=""><i class="fas fa-sign-out-alt"></i>Logout</a>
                     <!-- N?i dung xu?t hi?n sau khi b?m vào nút -->
