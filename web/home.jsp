@@ -17,7 +17,7 @@
 <body>
     
 <!--Header-->
-<%@ include file="header.jsp" %>
+<%@ include file="subhome/header.jsp" %>
 <!--Header-->
 
 <!-- home section start -->
@@ -28,7 +28,7 @@
         <div class="home-weapper">
 
             <!-- home left start here -->
-            <%@ include file="home_left.jsp" %>
+            <%@ include file="subhome/home_left.jsp" %>
             <!-- home left end here -->
 
             <!-- home center start here -->
@@ -86,7 +86,7 @@
             </div> <!-- home center end -->
 
             <!-- home right start here -->
-            <%@ include file="home_right.jsp" %>
+            <%@ include file="subhome/home_right.jsp" %>
             <!-- home right end here -->
 
 
