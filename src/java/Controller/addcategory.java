@@ -1,8 +1,11 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Controller;
 
-import DAO.UserDAO;
-import Model.User;
+import DAO.AdminDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -10,13 +13,24 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-@WebServlet (name="LoginServlet",urlPatterns={"/LoginServlet"})
+/**
+ *
+ * @author DELL
+ */
+@WebServlet (name="addcategory",urlPatterns={"/addcategory"})
 
-public class LoginServlet extends HttpServlet {
+public class addcategory extends HttpServlet {
 
-    
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -25,10 +39,10 @@ public class LoginServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");            
+            out.println("<title>Servlet addcategory</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet addcategory at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,24 +74,10 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            UserDAO dao=new UserDAO();
-        String name=request.getParameter("username");
-        String pass=request.getParameter("pass");
-        User user=new User();
-        user=dao.get(name, pass);
-        if(user!=null){
-            HttpSession session=request.getSession();
-            session.setAttribute("id", user.getId());
-            session.setAttribute("name", user.getName());
-            session.setAttribute("role", user.getRoleid());
-            response.sendRedirect("home.jsp");
-        }
-        else{
-            HttpSession session=request.getSession();
-            session.setAttribute("msg", "TEN HOAC MAT KHAU SAI !!!");
-            response.sendRedirect("login.jsp");
-        }
-    }
+   String type=request.getParameter("itemadd");
+        AdminDAO admindao=new AdminDAO();
+        admindao.addcategory(type);
+        response.sendRedirect("managecategory");    }
 
     /**
      * Returns a short description of the servlet.
