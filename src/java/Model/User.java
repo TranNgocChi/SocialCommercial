@@ -9,7 +9,7 @@ import java.util.UUID;
  */
 public class User {
     UUID id;
-    String name,password,email,number,country,province,district,town,location;
+    String name,password,email,number,country,province,district,town,location,image;
     int roleid;
 
     public User(UUID id, String name, String email, int roleid) {
@@ -34,7 +34,7 @@ public class User {
         this.roleid = roleid;
     }
 
-    public User(UUID id, String name, String email, String number, String country, String province, String district, String town, String location, int roleid) {
+    public User(UUID id, String name, String email, String number, String country, String province, String district, String town, String location, int roleid, String image) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -45,6 +45,7 @@ public class User {
         this.town = town;
         this.location = location;
         this.roleid = roleid;
+        this.image = image;
     }
 
     public User() {
@@ -139,7 +140,14 @@ public class User {
     public void setRoleid(int roleid) {
         this.roleid = roleid;
     }
+    
+    public String getImage() {
+        return image;
+    }
 
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     @Override
     public String toString() {

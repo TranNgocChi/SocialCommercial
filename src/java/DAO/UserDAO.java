@@ -90,10 +90,57 @@ public class UserDAO extends DatabaseConnection {
         return false;
 
     }
+    
+    public void EditUser(String name, String email, String number, String country
+    , String province, String district, String town, String location, String image, Object id) {
+        Connection cnt = null;
+        PreparedStatement stm = null;
+        try {
+            String sql = "UPDATE AppUser SET name = ?,"
+                    + " email = ?, number = ?,"
+                    + "country = ?, province = ?,"
+                    + "district = ?, town = ?," 
+                    + "location = ?, image = ? WHERE id = ?";
+
+            cnt = DatabaseConnection.getConnection();
+            stm = cnt.prepareStatement(sql);
+            stm.setString(1, name);
+            stm.setString(2, email);
+            stm.setString(3, number);
+            stm.setString(4, country);
+            stm.setString(5, province);
+            stm.setString(6, district);
+            stm.setString(7, town);
+            stm.setString(8, location);
+            stm.setString(9, image);
+            stm.setObject(10, id);
+
+            int rowsUpdated = stm.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Updated successfully.");
+            } else {
+                System.out.println("Not found with the provided ID.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error occurred while updating: " + e.getMessage());
+        } finally {
+            try {
+                if (stm != null) {
+                    stm.close();
+                }
+                if (cnt != null) {
+                    cnt.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     public static void main(String[] args) {
         UserDAO userdao = new UserDAO();
-        Boolean user = userdao.register("vinh", "vinh","ádas");
+        userdao.EditUser("asd", "", "", "", "", "", 
+                "", "", "", "3393C2BB-1630-4184-AD67-9A789CF770DE");
         System.out.println(user);
     }
 }
