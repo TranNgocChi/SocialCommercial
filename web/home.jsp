@@ -2,103 +2,103 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="static/images/favicon.ico" type="image/x-icon">
-    <title>facebook.com</title>
-    <!-- style css link -->
-    <link rel="stylesheet" href="static/css/style.css">
-    <!-- fontawesome css link -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="static/images/favicon.ico" type="image/x-icon">
+        <title>SOCO</title>
+        <!-- style css link -->
+        <link rel="stylesheet" href="static/css/style.css">
+        <!-- fontawesome css link -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-</head>
-<body>
-    
-<!--Header-->
-<%@ include file="subhome/header.jsp" %>
-<!--Header-->
+    </head>
+    <body>
 
-<!-- home section start -->
+        <!--Header-->
+        <%@ include file="subhome/header.jsp" %>
+        <!--Header-->
+
+        <!-- home section start -->
 
 
-<div class="home">
-    <div class="container">
-        <div class="home-weapper">
+        <div class="home">
+            <div class="container">
+                <div class="home-weapper">
 
-            <!-- home left start here -->
-            <%@ include file="subhome/home_left.jsp" %>
-            <!-- home left end here -->
+                    <!-- home left start here -->
+                    <%@ include file="subhome/home_left.jsp" %>
+                    <!-- home left end here -->
 
-            <!-- home center start here -->
+                    <!-- home center start here -->
 
-            <div class="home-center">
-                <div class="home-center-wrapper">
+                    <div class="home-center">
+                        <div class="home-center-wrapper">
 
-                   
-                    <div class="fb-post1">
-                        <div class="fb-post1-container">
-                            <div class="fb-post1-header">
-                                <ul>
-                                    <li class="active">popular</li>
-                                    <li>following</li>
-                                </ul>
-                            </div>
-                            <div class="fb-p1-main">
-                                <div class="post-title">
-                                    <img src="static/images/user2.jpg" alt="user picture">
-                                    <ul>
-                                        <li><h3>Arham Kabir <span> . 2 hours ago</span></h3></li>
-                                        <li><span>02 march at 12:55 PM</span></li>
-                                    </ul>
-                                    <p>Hello Everyone Thanks for Watching Please SUBSCRIBE My Channel - Like Comments and Share
-                                        <a href="https://www.youtube.com/channel/UCHhGX-DD7A8jq7J_NPGN6gA">https://www.youtube.com/channel/UCHhGX-DD7A8jq7J_NPGN6gA</a>
-                                    </p>
-                                </div>
 
-                                <div class="post-images">
-                                    <div class="post-images1">
-                                        <img src="static/images/pp.jpg" alt="post images 01">
-                                        <img src="static/images/pp2.jpg" alt="post images 02">
-                                        <img src="static/images/pp3.jpg" alt="post images 03">
+                            <div class="fb-post1">
+                                <div class="fb-post1-container">
+                                    <div class="fb-post1-header">
+                                        <ul>
+                                            <li class="active">popular</li>
+                                            <li>following</li>
+                                        </ul>
                                     </div>
-                                    <div class="post-images2">
-                                        <img src="static/images/pp4.jpg" alt="post images 04">
+                                    <div class="fb-p1-main">
+                                        <div class="post-title">
+                                            <img src="static/images/user2.jpg" alt="user picture">
+                                            <ul>
+                                                <li><h3>Arham Kabir <span> . 2 hours ago</span></h3></li>
+                                                <li><span>02 march at 12:55 PM</span></li>
+                                            </ul>
+                                            <p>Hello Everyone Thanks for Watching Please SUBSCRIBE My Channel - Like Comments and Share
+                                                <a href="https://www.youtube.com/channel/UCHhGX-DD7A8jq7J_NPGN6gA">https://www.youtube.com/channel/UCHhGX-DD7A8jq7J_NPGN6gA</a>
+                                            </p>
+                                        </div>
+
+                                        <div class="post-images">
+                                            <div class="post-images1">
+                                                <img src="static/images/pp.jpg" alt="post images 01">
+                                                <img src="static/images/pp2.jpg" alt="post images 02">
+                                                <img src="static/images/pp3.jpg" alt="post images 03">
+                                            </div>
+                                            <div class="post-images2">
+                                                <img src="static/images/pp4.jpg" alt="post images 04">
+                                            </div>
+                                        </div>
+
+                                        <div class="like-comment">
+                                            <ul>
+                                                <li>
+                                                    <img src="static/images/love.png" alt="love">
+                                                    <img src="static/images/like.png" alt="like">
+                                                    <span>22k like</span>
+                                                </li>
+                                                <li><i class="fa-regular fa-comment-dots"></i> <span>555 comments</span></li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div class="like-comment">
-                                    <ul>
-                                        <li>
-                                            <img src="static/images/love.png" alt="love">
-                                            <img src="static/images/like.png" alt="like">
-                                            <span>22k like</span>
-                                        </li>
-                                        <li><i class="fa-regular fa-comment-dots"></i> <span>555 comments</span></li>
-                                    </ul>
-                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                </div> <!-- home center wrapper end -->
-            </div> <!-- home center end -->
+                        </div> <!-- home center wrapper end -->
+                    </div> <!-- home center end -->
 
-            <!-- home right start here -->
-            <%@ include file="subhome/home_right.jsp" %>
-            <!-- home right end here -->
+                    <!-- home right start here -->
+                    <%@ include file="subhome/home_right.jsp" %>
+                    <!-- home right end here -->
 
 
 
 
 
 
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-</body>
+    </body>
 </html>
 
 <script src="static/js/js.js"></script>
