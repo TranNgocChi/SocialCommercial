@@ -34,15 +34,15 @@ public class EditUserProfile extends HttpServlet {
             HttpSession session=request.getSession();
             Object user_id = session.getAttribute("id");
             
-            String name = request.getParameter("name");
-            String email = request.getParameter("email");
-            String phone = request.getParameter("phone");
-            String country = request.getParameter("country");
-            String province = request.getParameter("province");
-            String district = request.getParameter("district");
-            String town = request.getParameter("town");
-            String location = request.getParameter("location");
+            String number = request.getParameter("number");
             Part imagePart = request.getPart("image");
+            String fullname = request.getParameter("fullName");
+            String gender = request.getParameter("gender");
+            String statusnow = request.getParameter("statusNow");
+            String school = request.getParameter("school");
+            String favour = request.getParameter("favour");
+            String bio = request.getParameter("bio");
+            
         
             String realPath = request.getServletContext().getRealPath("/SavedImages");
             String filename = Path.of(imagePart.getSubmittedFileName()).getFileName().toString();
@@ -56,7 +56,7 @@ public class EditUserProfile extends HttpServlet {
                 imagePart.write(image);
 
                 UserDAO edituser = new UserDAO();
-                edituser.EditUser(name, email, phone, country, province, district, town, location, image, null);
+                edituser.EditUser(number, image, fullname, gender, statusnow, school, favour, bio, null);
 
                 request.getRequestDispatcher("user_profile.jsp").forward(request, response);
             } else {

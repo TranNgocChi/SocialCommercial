@@ -8,7 +8,7 @@
         <link rel="shortcut icon" href="static/images/favicon.ico" type="image/x-icon">
         <title>facebook.com</title>
         <!-- style css link -->
-        <link rel="stylesheet" href="static/css/style_1.css">
+        <link rel="stylesheet" href="static/css/style_edit_profile.css">
         <!-- fontawesome css link -->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -33,15 +33,22 @@
 
                                 <form class="form" action="EditUserProfile" method="POST" enctype="multipart/form-data">
                                     <h2 style="color: #3a78ffec;">Edit Profile</h2>
-                                    <h3 style="color: #3a78ffec;">Name: <input type="text" class="input-field" placeholder="Name" name="name"></h3>
-                                    <h3 style="color: #3a78ffec;">Email: <input type="email" class="input-field" placeholder="Email" name="email"></h3>
-                                    <h3 style="color: #3a78ffec;">Phone number: <input type="tel" class="input-field" placeholder="Phone Number" name="phone"></h3>
-                                    <h3 style="color: #3a78ffec;">Country: <input type="text" class="input-field" placeholder="Country" name="name"></h3>
-                                    <h3 style="color: #3a78ffec;">Province: <input type="text" class="input-field" placeholder="Province" name="name"></h3>
-                                    <h3 style="color: #3a78ffec;">District: <input type="text" class="input-field" placeholder="District" name="name"></h3>
-                                    <h3 style="color: #3a78ffec;">Town: <input type="text" class="input-field" placeholder="Town" name="name"></h3>
-                                    <h3 style="color: #3a78ffec;">Location: <input type="text" class="input-field" placeholder="Location" name="name"></h3>
+
                                     <h3 style="color: #3a78ffec;">Image: <input type="file" class="input-field" id="image" name="image"></h3>
+                                    <h3 style="color: #3a78ffec;">Full name: <input type="text" class="input-field" placeholder="Full name" name="fullname"></h3>
+                                    <h3 style="color: #3a78ffec;">Phone number: <input type="tel" class="input-field" placeholder="Phone Number" name="phone"></h3>
+                                    <h3 style="color: #3a78ffec;">Gender <input type="text" class="input-field" placeholder="Gender" name="name"></h3>
+                                    <h3 style="color: #3a78ffec;">Status now <input type="text" class="input-field" placeholder="Status" name="name"></h3>
+                                    <h3 style="color: #3a78ffec;">School: <input type="text" class="input-field" placeholder="School" name="name"></h3>
+                                    <h3 style="color: #3a78ffec;">Favourite: <input type="text" class="input-field" placeholder="Favourite" name="name"></h3>
+                                    <h3 style="color: #3a78ffec;">Bio: <input type="text" class="input-field" placeholder="Bio" name="name"></h3>
+<!--                                    <select class="input-field" id="luachon" name="luachon">
+                                        <option value="lua1">Lựa chọn 1</option>
+                                        <option value="lua2">Lựa chọn 2</option>
+                                        <option value="lua3">Lựa chọn 3</option>
+                                        <option value="lua4">Lựa chọn 4</option>
+                                    </select>-->
+
                                     <button>Save Profile</button>
                                 </form>
 

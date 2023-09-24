@@ -91,29 +91,28 @@ public class UserDAO extends DatabaseConnection {
 
     }
     
-    public void EditUser(String name, String email, String number, String country
-    , String province, String district, String town, String location, String image, Object id) {
+    public void EditUser( String number, String image, String fullName,String gender
+    , String statusNow, String school, String favour, String bio, Object id) {
         Connection cnt = null;
         PreparedStatement stm = null;
         try {
-            String sql = "UPDATE AppUser SET name = ?,"
-                    + " email = ?, number = ?,"
-                    + "country = ?, province = ?,"
-                    + "district = ?, town = ?," 
-                    + "location = ?, image = ? WHERE id = ?";
+            String sql = "UPDATE AppUser SET number = ?,"
+                    + " image = ?, fullName = ?,"
+                    + "gender = ?, statusNow = ?,"
+                    + "school = ?, favour = ?," 
+                    + "bio = ? WHERE id = ?";
 
             cnt = DatabaseConnection.getConnection();
             stm = cnt.prepareStatement(sql);
-            stm.setString(1, name);
-            stm.setString(2, email);
-            stm.setString(3, number);
-            stm.setString(4, country);
-            stm.setString(5, province);
-            stm.setString(6, district);
-            stm.setString(7, town);
-            stm.setString(8, location);
-            stm.setString(9, image);
-            stm.setObject(10, id);
+            stm.setString(1, number);
+            stm.setString(2, image);
+            stm.setString(3, fullName);
+            stm.setString(4, gender);
+            stm.setString(5, statusNow);
+            stm.setString(6, school);
+            stm.setString(7, favour);
+            stm.setString(8, bio);
+            stm.setObject(9, id);
 
             int rowsUpdated = stm.executeUpdate();
             if (rowsUpdated > 0) {
@@ -139,8 +138,7 @@ public class UserDAO extends DatabaseConnection {
 
     public static void main(String[] args) {
         UserDAO userdao = new UserDAO();
-        userdao.EditUser("asd", "", "", "", "", "", 
-                "", "", "", "3393C2BB-1630-4184-AD67-9A789CF770DE");
+        userdao.EditUser(user, pass, driverName, user, user, url, url, url, "3393C2BB-1630-4184-AD67-9A789CF770DE");
         System.out.println(user);
     }
 }
