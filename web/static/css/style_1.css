@@ -802,8 +802,8 @@ header{
     box-shadow: 0 4px 6px 0 var(--shadow);
 }
 .messenger ul li b{
-   color: var(--black);
-   font-size: 14px; 
+    color: var(--black);
+    font-size: 14px;
 }
 .messenger ul li b span{
     display: block;
@@ -845,40 +845,163 @@ header{
 }
 /* Ẩn nội dung của dropdown ban đầu */
 .dropdown-content {
-  display: none;
-  position:fixed;
-  background-color: #4575b3;
-  border: 1px solid #4575b3;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  border-radius: 5px;
-  margin-top: 65px;
-  margin-left: 5px;
+    display: none;
+    position:fixed;
+    background-color: #4575b3;
+    border: 1px solid #4575b3;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+    margin-top: 65px;
+    margin-left: 5px;
 }
 
 /* Hiển thị dropdown khi nút được bấm */
 .dropdown-content.active {
-  display: block;
+    display: block;
 }
 
 /* Các mục trong dropdown */
 .dropdown-content a {
-  padding: 10px;
-  text-decoration: none;
-  color: black;
-  display: block;
-  transition: background-color 0.2s;
-  font-weight: bold; /* In đậm cho các mục */
-  border-bottom: 1px solid #174075; /* Đường kẻ dưới giữa các mục */
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    display: block;
+    transition: background-color 0.2s;
+    font-weight: bold; /* In đậm cho các mục */
+    border-bottom: 1px solid #174075; /* Đường kẻ dưới giữa các mục */
 }
 
 /* Hiệu ứng hover */
 .dropdown-content a:hover {
     color: white;
     border-radius: 10px;
-  background-color: #4575b3; /* Màu nền khi hover */
+    background-color: #4575b3; /* Màu nền khi hover */
 }
 
 
 /* home right end */
+
+
+/*        body {
+            background: #59ABE3;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }*/
+
+.form {
+    width: 100%;
+    /*background: var(--foreground);*/
+    background: white;
+    border-radius: 8px;
+    /*box-shadow: 0 0 40px -10px #000;*/
+    padding: 20px 30px;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h2 {
+    margin: 0 0 20px;
+    color: #78788c;
+    text-align: center;
+}
+
+.form p {
+    margin: 0 0 15px;
+}
+
+
+/*.form input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    background: none;
+    outline: none;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    transition: border-bottom .3s;
+    border-bottom: 2px solid #bebed2;
+}
+
+.form input:focus {
+    border-bottom: 2px solid #78788c;
+}*/
+
+button {
+    width: 40%;
+    padding: 10px;
+    margin-top: 20px;
+    font-family: 'Montserrat', sans-serif;
+    border: 2px solid #78788c;
+    background: #3a78ffec;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    transition: background .3s, color .3s;
+    border-radius: 8px;
+}
+
+button:hover {
+    background: #2a51a7ec;
+    color: var(--foreground);
+}
+
+.info {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #5a5a5a;
+}
+
+.info:before {
+    content: attr(type);
+    display: block;
+}
+/* CSS cho input fields */
+.input-field {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    transition: border 0.3s ease-in-out;
+}
+
+/* Hover state */
+.input-field:hover {
+    border: 2px solid #555;
+}
+
+/* Focus state */
+.input-field:focus {
+    border: 2px solid #3a78ff;
+    outline: none;
+    box-shadow: 0px 0px 5px rgba(58, 120, 255, 0.5);
+}
+.change-photo-button {
+    background-color: #3a78ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Hiệu ứng hover */
+.change-photo-button:hover {
+    background-color: #2a51a7;
+}
+

@@ -37,6 +37,11 @@ public class EditUserProfile extends HttpServlet {
             String name = request.getParameter("name");
             String email = request.getParameter("email");
             String phone = request.getParameter("phone");
+            String country = request.getParameter("country");
+            String province = request.getParameter("province");
+            String district = request.getParameter("district");
+            String town = request.getParameter("town");
+            String location = request.getParameter("location");
             Part imagePart = request.getPart("image");
         
             String realPath = request.getServletContext().getRealPath("/SavedImages");
@@ -45,13 +50,13 @@ public class EditUserProfile extends HttpServlet {
         
             if(!Files.exists(Path.of(realPath))){
                 Files.createDirectory(Path.of(realPath));
+            } else {
             }
             if (isImageFile(image)) {
                 imagePart.write(image);
 
                 UserDAO edituser = new UserDAO();
-                edituser.EditUser(name, email, phone, null,
-                null, null, null, null, image, user_id);
+                edituser.EditUser(name, email, phone, country, province, district, town, location, image, null);
 
                 request.getRequestDispatcher("user_profile.jsp").forward(request, response);
             } else {
