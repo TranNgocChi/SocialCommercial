@@ -1,6 +1,6 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,62 +23,18 @@
 
     <body>
         <div class="container">
-            <div class="box login">
-                <div class="content">
-                    <h4 style="color: blue">
-                        Nhập mã OTP đã gửi về email:${email} của bạn để kích hoạt tài khoản đăng nhập vào hệ thống của SOCO !!!
-                    </h4>
 
-
-
-                    <form action="otp" method="POST" id="form">
-                        <c:if test="${sessionScope.account == null}">
-                            <h3 style="color: red">${requestScope.ms}</h3>
-                        </c:if>
-                        <c:if test="${sessionScope.account != null}">
-                            <h3 style="color: red">${requestScope.error}</h3>
-                        </c:if>
-
-                        <div class="form_input">
-                            <input type="text" name="otpuser" id="name" required>
-                            <label for="name">OTP</label>
-                        </div>
-                       <input type="hidden" name="name" value="${username}">
-                       <input type="hidden" name="pass"  value="${pass}">
-                       <input type="hidden" name="email"  value="${email}">
-                        <button class="btn submit">
-                            GỬI
-                        </button>
-                        <h2 style="color:red;margin-top:10px">${mesotp}</h2>
-                        <c:set var="mesotp" value="${null}"></c:set>
-                        <h4 style="color:red;margin-top:10px">Lưu ý: mã OTP chỉ tồn tại trong 2 phút</h4>
-                        <a href="foget.jsp" style="color: white; text-decoration: none;">Forgot Password?</a>
-                    </form>
-
-                </div>
-            </div>
 
             <div class="box navigation">
                 <div class="content">
                     <div class="nav navigation_signIn">
                         <p>
-                              Nếu bạn chưa có tài khoản, vui lòng đăng kí. 
-                        </p>
-
-                           
-                        <button class="btn layer log">
-
-                            Đăng kí
-                        </button>
-                    </div>
-
-                    <div class="nav navigation_signUp">
-                        <p>
                             Nếu bạn đã có tài khoản, vui lòng đăng nhập.
-
                         </p>
 
-                        <button class="btn layer out" id="loginButton">
+
+                        <button class="btn layer" id="loginButton">
+
                             Đăng nhập
                         </button>
                     </div>
@@ -125,9 +81,10 @@
 
         <script>
             document.getElementById("loginButton").addEventListener("click", function () {
-                window.location.href = "login"; // Redirect to register.jsp
+                window.location.href = "login";
             });
         </script>
+
     </body>
 
 </html>
