@@ -1,7 +1,10 @@
+<%@page import="Model.User"%>
+<%@page import="DAO.UserDAO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <link rel="stylesheet" href="static/css/style.css">
 
 <header>
+ 
     <div class="header-container">
         <div class="header-wrapper">
             <div class="logoBox">
@@ -16,7 +19,7 @@
                     <i class="fas fa-user-friends"></i>
                     <i class="fa-solid fa-cart-shopping"></i>
                     <i class="fa-solid fa-bell"></i>
-                    <label><img src="static/images/user4.jpg" alt="user"></label>
+                    <label><img src="<%= session.getAttribute("image") %>" alt="user"></label>
                     <i class="fa-solid fa-caret-down" id="dropdownButton"></i>
 
 

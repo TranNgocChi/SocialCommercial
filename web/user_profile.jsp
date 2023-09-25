@@ -1,23 +1,54 @@
- <%@page import="java.util.Collections"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.Collections"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.UserPost"%>
+<%@page import="Model.User"%>
 <%@page import="DAO.UserPostDAO"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="DAO.UserDAO"%>
+
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
   integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
   crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<%  int count = 0;
+<%  boolean check = false;
+    String link_image="";
+    String fullName="";
+    String phone="";
+    String gender="";
+    String statusNow="";
+    String school="";
+    String favourite="";
+    String bio="";
+    int count = 0;
     Object id = session.getAttribute("id");
+    
+    UserDAO manageUser = new UserDAO();
+    for(User user : manageUser.getAllUsers()){
+        if(user.getId().toString().toLowerCase().equals(id.toString().toLowerCase())){
+            link_image = user.getImage();
+            session.setAttribute("image", link_image);
+            fullName = user.getFullname();
+            phone = user.getNumber();
+            gender = user.getGender();
+            statusNow = user.getStatusNow();
+            school = user.getSchool();
+            favourite = user.getFavour();
+            bio = user.getBio();
+            check = true;
+            break;
+        }
+    }
+
+    
     UserPostDAO managePost = new UserPostDAO();
     List<UserPost> userPosts = managePost.getUserPosts();
     Collections.sort(userPosts, (post1, post2) -> post2.getPost_date().compareTo(post1.getPost_date()));
     
     List<String> listImage = new ArrayList<>();
-    for(UserPost post : managePost.getUserPosts()){
+    for(UserPost post : userPosts){
         if(post.getUser_id().toString().toLowerCase().equals(id.toString().toLowerCase())){
         listImage.add(post.getPost_image());
         count++;
@@ -33,15 +64,16 @@
 
                     <div class="profile-image">
 
-                    <img src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces" width="220px"  alt="">
+                    <img src="<%= link_image %>" width="280px" height="300px" alt="">
                     </div>
                     <div class="profile-user-settings">
 
-                            <h1 class="profile-user-name" style="font-weight: 800;">CAPCAP</h1>
-
+                            <h1 class="profile-user-name" style="font-weight: 800;"><%= fullName %></h1>
+    <% if(check){ %>
     <a href="edit_userprofile.jsp" style="color: black;">
         <button class="btn profile-edit-btn" style="background-color: #3a78ffec"><i class="fas fa-edit"></i>Edit Profile</button>
     </a>
+    <% } %>
     <a style="color: black;">
         <button class="btn profile-edit-btn" style="background-color: grey"><i class="fas fa-user-plus"></i>Follow</button>
     </a>
@@ -58,13 +90,12 @@
                     </div>
 
                     <div class="profile-bio">
-                        <p style="font-size:20px;">️<i class="fas fa-info-circle"></i> Trần Gâu - Nam<br>
-                       <i class="fas fa-heart"></i> Độc thân<br>
-                       <i class="fas fa-school"></i> Trường Đại Học FPT
-                        <br><i class="fas fa-thumbs-up"></i> Chơi bóng đá
-                        <br><span style="font-weight:600">Bio: </span>
-                        Tôi là Gâu rất vui được làm quen với mọi người mong
-                        mọi người cho tôi xin 1 fl
+                        <p><i class="fas fa-info-circle"></i> <%=fullName %> - <%= gender %></p>
+                        <p><i class="fas fa-heart"></i> <%= statusNow %></p>
+                        <p><i class="fas fa-school"></i> <%= school %></p>
+                        <p><i class="fas fa-thumbs-up"></i> <%= favourite %></p>
+                        <p><span style="font-weight:600">Bio: </span>
+                        <%= bio %>
                         </p>️
 
                     </div>
@@ -73,33 +104,39 @@
             <!-- End of profile section -->
 
     </div>
+    <% if(listImage != null && listImage.size() > 0){ %>
+    
     <div class="container">
+        <div class="gallery">
+            <% for(String image : listImage){
+                %>
+                <div class="gallery-item" tabindex="0">
+                    <img src="<%= image %>"  class="gallery-image" alt="">
 
-            <div class="gallery">
-                        <% 
-                        for(String image : listImage){
-                        %>
-                    <div class="gallery-item" tabindex="0">
-                        <img src="<%= image %>"  class="gallery-image" alt="">
+                    <div class="gallery-item-info">
 
-                            <div class="gallery-item-info">
-
-                                    <ul>
-                                            <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 56</li>
-                                            <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
-                                    </ul>
-
-                            </div>
-
+                            <ul>
+                                    <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 56</li>
+                                    <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
+                            </ul>
                     </div>
+                </div>
                 <% } %>
 
-
-            </div>
+        </div>
             <!-- End of gallery -->
-
-
     </div>
+        <% }else{ %>
+    <p style="color:black;
+    margin: 50px 300px;
+    font-size: 50px;
+    font-weight: 700;
+    ">You don't have any posts<i class="fas fa-address-card" style="color: grey;"></i>
+        Click <a href="create_post.jsp"><i class="fas fa-plus-square"></i></a> to create your first post
+    </p>
+  
+
+<% }%>  
 	<!-- End of container -->
 
 </main>

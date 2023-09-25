@@ -1,11 +1,13 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <link rel="stylesheet" href="static/css/style.css">
+        
 
+    
 <div class="home-left">
 
     <div class="profile">
-        <img src="static/images/user4.jpg" alt="user">
+        <img src="<%= session.getAttribute("image") %>" alt="user">
         <h3>${name}</h3>
         <c:if test="${name==null}">
             <h3>Guest</h3>
