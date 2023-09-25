@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        <link rel="stylesheet" href="static/css/style.css">
 
 <header>
     <div class="header-container">
@@ -21,7 +22,6 @@
 
 
                     <div class="dropdown-content">
-                        <a href="edit_userprofile.jsp"><i class="fas fa-cog"></i>Settings </a>
                         <a href=""><i class="fas fa-highlighter"></i>Change Pasword</a>
                         <a href=""><i class="fas fa-eye"></i>View Your Fans</a>
                         <a href="user_profile.jsp"><i class="fas fa-eye"></i>View Profile</a>

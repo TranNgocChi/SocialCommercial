@@ -52,9 +52,9 @@ public class CreatePost extends HttpServlet {
                 imagePart.write(image);
 
                 UserPostDAO userpost = new UserPostDAO();
-                userpost.addUserPost(user_id, title, content, image, post_date);
-
-                request.getRequestDispatcher("home.jsp").forward(request, response);
+                userpost.addUserPost(user_id, title, content, "SavedImages/"+filename, post_date);
+                
+                request.getRequestDispatcher("user_profile.jsp").forward(request, response);
             } else {
                 // Handle invalid file type
                 response.setContentType("text/plain");

@@ -1,5 +1,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        <link rel="stylesheet" href="static/css/style.css">
+
 <div class="home-left">
 
     <div class="profile">
@@ -14,7 +16,7 @@
         <c:if test="${role==1}">
             <a href="admin.jsp"><i class="fa-solid fa-house"></i> Admin</a>
         </c:if>
-        <a href="#"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="home.jsp"><i class="fa-solid fa-house"></i> Home</a>
         <a href="shopping.jsp"><i class="fa-brands fa-shopify"></i> Shopping</a>
         <a href="#"><i class="fa-brands fa-facebook-messenger"></i> Messenger</a>
         <a href="create_post.jsp"><i class="fa-solid fa-circle-plus"></i> Create Post</a>
