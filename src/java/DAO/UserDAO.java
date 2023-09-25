@@ -1,4 +1,3 @@
-
 package DAO;
 
 import connectSQLServer.DatabaseConnection;
@@ -23,6 +22,7 @@ public class UserDAO extends DatabaseConnection {
     public UserDAO() {
         connection = DatabaseConnection.getConnection();
     }
+
     public User get(String name, String pass) {
         try {
             String sql = "SELECT * FROM [SWP391].[dbo].[AppUser] WHERE name=? AND password=?";
@@ -39,6 +39,27 @@ public class UserDAO extends DatabaseConnection {
                 int roleId = rs.getInt(11);
 
                 User user = new User(id, name, pass, email, roleId);
+                return user;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null; // Trả về null nếu không tìm thấy user hoặc xảy ra lỗi
+    }
+
+    public User getbyemail(String email) {
+        try {
+            String sql = "SELECT * FROM [SWP391].[dbo].[AppUser] WHERE email=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                UUID id = UUID.fromString(rs.getString(1));
+                String userName = rs.getString("name");
+                int roleId = rs.getInt(11);
+
+                User user = new User(id, userName, email, roleId);
                 return user;
             }
         } catch (SQLException ex) {
@@ -69,6 +90,7 @@ public class UserDAO extends DatabaseConnection {
         }
         return null; // Trả về null nếu không tìm thấy user hoặc xảy ra lỗi
     }
+
     public User checkdupemail(String name) {
         try {
             String sql = "SELECT * FROM [SWP391].[dbo].[AppUser] WHERE email=? ";
@@ -90,6 +112,23 @@ public class UserDAO extends DatabaseConnection {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null; // Trả về null nếu không tìm thấy user hoặc xảy ra lỗi
+    }
+
+    public void setpassbyname(String name,String pass) {
+        try {
+            String sql = "Update AppUser\n"
+                    + "SET password=? "
+                    + "WHERE name=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+             ps.setString(1, pass);
+            ps.setString(2, name);
+            
+             ps.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+        
     }
 
     public boolean register(String name, String pass, String email) {
@@ -115,7 +154,6 @@ public class UserDAO extends DatabaseConnection {
 
     public static void main(String[] args) {
         UserDAO userdao = new UserDAO();
-        Boolean user = userdao.register("vinh", "vinh","ádas");
-        System.out.println(user);
+        userdao.setpassbyname("vinh", "vinh");
     }
 }
