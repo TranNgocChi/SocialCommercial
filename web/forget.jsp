@@ -1,5 +1,6 @@
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,13 +25,13 @@
         <div class="container">
             <div class="box login">
                 <div class="content">
-                    <h3 class="title">
-                        Login
-                    </h3>
+                    <h4 style="color: blue">
+                        Nhập email của bạn để chúng tôi có thể giúp bạn lấy lại mật khẩu
+                    </h4>
 
 
 
-                    <form action="LoginServlet" method="POST" id="form">
+                    <form action="quenmk" method="get" id="form">
                         <c:if test="${sessionScope.account == null}">
                             <h3 style="color: red">${requestScope.ms}</h3>
                         </c:if>
@@ -39,18 +40,16 @@
                         </c:if>
 
                         <div class="form_input">
-                            <input type="text" name="username" id="name" required>
-                            <label for="name">Username</label>
+                            <input type="text" name="email" id="name" required>
+                            <label for="name">Email</label>
                         </div>
-                        <div class="form_input">
-                            <input type="password" name="pass" id="password" required>
-                            <label for="password">Password</label>
-                        </div>
+                    
                         <button class="btn submit">
-                            Login
+                            GỬI
                         </button>
-                        <h2 style="color:red">${msg}</h2>
-                        <a href="forget.jsp" style="color: black; text-decoration: none;">Forgot Password?</a>
+                        <h2 style="color:red;margin-top:10px">${msg}</h2>
+                       
+                        <a href="foget.jsp" style="color: white; text-decoration: none;">Forgot Password?</a>
                     </form>
 
                 </div>
