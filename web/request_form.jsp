@@ -12,10 +12,9 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Bootstrap demo</title>
+        <title>SOCO - Seller</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
-        <title>SOCO - Seller</title>
         <!-- style css link -->
         <link rel="stylesheet" href="setofshop/css/styleonboarding.css">
         <!-- fontawesome css link -->
@@ -47,10 +46,6 @@
         <div class="home">
             <div class="container">
                 <form action="RequestSetRoleServlet" method="post">
-                    <div class="form-group row">
-                        <label for="userId" class="col">User ID:</label>
-                        <input type="text" id="email" name="userId" class="form-control col" placeholder="User ID" required>
-                    </div>
                     <div class="form-group row">
                         <label for="email" class="col">Email:</label>
                         <input type="text" id="email" name="email" class="form-control col" placeholder="Email" required>
