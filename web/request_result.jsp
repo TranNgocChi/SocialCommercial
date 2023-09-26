@@ -31,10 +31,10 @@
                 <div class="header-wrapper">
                     <div class="logoBox">
                         <div class="logo-soco">
-                            <h2>SOCO</h2>
+                            <a href="shopping.jsp"><h2>SOCO</h2></a>
                         </div>
                         <div class="content">
-                            <h5>Sign up to become a SOCO Seller</h5>
+                            <h5>Đăng ký bán hàng trên SOCO</h5>
                         </div>
                     </div>
                     <div class="iconBox2">
@@ -51,7 +51,7 @@
 
 
         <div class="home">
-            <div class="container">
+            <div class="containerr">
                 <h1>Request Result</h1>
                 <c:choose>
                     <c:when test="${insertResult}">

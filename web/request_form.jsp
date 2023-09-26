@@ -30,10 +30,10 @@
                 <div class="header-wrapper">
                     <div class="logoBox">
                         <div class="logo-soco">
-                            <h2>SOCO</h2>
+                            <a href="shopping.jsp"><h2>SOCO</h2></a>
                         </div>
                         <div class="content">
-                            <h5>Sign up to become a SOCO Seller</h5>
+                            <h5>Đăng ký bán hàng trên SOCO</h5>
                         </div>
                     </div>
                     <div class="iconBox2">
@@ -44,7 +44,7 @@
             </div>
         </header>
         <div class="home">
-            <div class="container">
+            <div class="containerr">
                 <form action="RequestSetRoleServlet" method="post">
                     <div class="form-group row">
                         <label for="email" class="col">Email:</label>
@@ -65,7 +65,7 @@
                         <label for="commoditiesSector" class="col">Commodities sector:</label>
                         <select name="commoditiesSector" id="sector" class="form-control col">
                             <option selected>Choose...</option>
-                            <option value="department">Online department store</option>
+                            <option value="department">Bách hoá online</option>
                             <option value="men">Men's Fashion</option>
                             <option value="women">Women's Fashion</option>
                             <option value="phone">Phone&Accessory</option>

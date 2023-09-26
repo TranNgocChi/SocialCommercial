@@ -91,8 +91,10 @@ header{
     width: 25%;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     padding: 0 35px;
     position: relative;
+    
 }
 
 .iconBox2 i{
@@ -102,6 +104,7 @@ header{
     border-radius: 10px;
     color: #769bcb;
     transition: .4s;
+    margin-left: 10px;
 }
 .iconBox2 i:hover{
     background: #1877f2;
@@ -113,6 +116,7 @@ header{
     height: 45px;
     overflow: hidden;
     border-radius: 50px;
+    position: relative;
 }
 .iconBox2 label img{
     width: 100%;
@@ -121,11 +125,75 @@ header{
     position: absolute;
     right: 0;
     font-size: 16px;
-    top: 7px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 .iconBox2 .fa-caret-down:hover{
     background: transparent;
 }
+.iconBox2 .arrow_carrot-down {
+    font-size: 16px;
+    font-weight: bold;
+    color: #769bcb;
+    background: #fff; /* Màu nền của hình tròn */
+    border-radius: 50%; /* Tạo hình tròn */
+    padding: 5px; /* Tăng độ rộng và chiều cao của hình tròn */
+    transition: .4s;
+}
+
+.iconBox2 .arrow_carrot-down:hover {
+    background: #5c91c6; /* Màu nền khi hover */
+    color: #d1deec;
+}
+
+/* CSS cho class "header-dropdown" */
+.header-dropdown {
+    position: absolute;
+    top: 100px;
+    right: 100px; /* Đặt lớp nằm bên phải của màn hình */
+    display: inline-block; /* Để dropdown nằm trên cùng một dòng với nút */
+}
+
+/* CSS cho dropdown content */
+.header-dropdown .dropdown-content {
+    display: none;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    /* Thêm các thuộc tính để điều chỉnh vị trí theo yêu cầu */
+    position: absolute;
+    top: 100%;
+    right: 0; /* Đặt dropdown nằm bên phải */
+}
+
+/* CSS cho các tùy chọn trong dropdown */
+.header-dropdown .dropdown-content a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    color: #333;
+}
+
+/* CSS khi hover chuột trên các tùy chọn */
+.header-dropdown .dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+
+/* CSS cho các tùy chọn trong dropdown */
+.dropdown-content a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    color: #333;
+}
+
+/* CSS khi hover chuột trên các tùy chọn */
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
 
 
 /* header section style end here */
@@ -136,7 +204,7 @@ header{
     display: flex;
     justify-content: center;
 }
-.container{
+.containerr{
     width: 95%;
     background-color: white;
     overflow: hidden;
@@ -148,17 +216,17 @@ header{
     justify-content: center;
     min-height: 75vh;
 }
-.container h1{
+.containerr h1{
     font-size: 36px;
     margin-bottom: 20px;
     color: #333;
 }
-.container p{
+.containerr p{
     font-size: 18px;
     margin-bottom: 20px;
     color: #666;
 }
-.container a{
+.containerr a{
     display: inline-block;
     padding: 10px 20px;
     background-color: #007bff;
@@ -173,6 +241,7 @@ header{
     display: flex;
     flex-direction: row;
     align-items: center;
+    padding-bottom: 20px;
 }
 
 .form-group label {
@@ -196,7 +265,7 @@ input[type="tel"] {
 }
 
 @media (min-width: 768px) {
-    .container form {
+    .containerr form {
         margin-top: 20px;
         margin-bottom: 20px;
     }

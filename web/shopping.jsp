@@ -24,12 +24,15 @@
         <link rel="stylesheet" href="setofshop/css/slicknav.min.css" type="text/css">
         <link rel="stylesheet" href="setofshop/css/style.css" type="text/css">
 
+
         <title>SOCO Shopping</title>
     </head>
     <body>
 
         <!-- Header Section Begin -->
         <%@ include file="shop/header_shop.jsp" %>
+        
+        
         <!-- Header Section End -->
 
         <!-- Hero Section Begin -->
@@ -250,5 +253,7 @@
         <script src="setofshop/js/mixitup.min.js"></script>
         <script src="setofshop/js/owl.carousel.min.js"></script>
         <script src="setofshop/js/main.js"></script>
+        <script src="setofshop/js/dropdown-content.js"></script>
+
     </body>
 </html>
