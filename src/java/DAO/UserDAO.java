@@ -36,7 +36,7 @@ public class UserDAO extends DatabaseConnection {
                 String userName = rs.getString(2);
                 String userPass = rs.getString(3);
                 String email = rs.getString(4);
-                int roleId = rs.getInt(11);
+                int roleId = rs.getInt(6);
 
                 User user = new User(id, name, pass, email, roleId);
                 return user;
@@ -57,7 +57,7 @@ public class UserDAO extends DatabaseConnection {
             if (rs.next()) {
                 UUID id = UUID.fromString(rs.getString(1));
                 String userName = rs.getString("name");
-                int roleId = rs.getInt(11);
+                int roleId = rs.getInt(6);
 
                 User user = new User(id, userName, email, roleId);
                 return user;
@@ -80,7 +80,7 @@ public class UserDAO extends DatabaseConnection {
                 String userName = rs.getString(2);
                 String userPass = rs.getString(3);
                 String email = rs.getString(4);
-                int roleId = rs.getInt(11);
+                int roleId = rs.getInt(6);
 
                 User user = new User(id, name, email, roleId);
                 return user;
@@ -103,7 +103,7 @@ public class UserDAO extends DatabaseConnection {
                 String userName = rs.getString(2);
                 String userPass = rs.getString(3);
                 String email = rs.getString(4);
-                int roleId = rs.getInt(11);
+                int roleId = rs.getInt(6);
 
                 User user = new User(id, name, email, roleId);
                 return user;
@@ -154,6 +154,7 @@ public class UserDAO extends DatabaseConnection {
 
     public static void main(String[] args) {
         UserDAO userdao = new UserDAO();
-        userdao.setpassbyname("vinh", "vinh");
+        User user=userdao.get("admin", "admin");
+        System.out.println(user);
     }
 }
