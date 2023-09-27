@@ -237,11 +237,37 @@ header{
     transition: background-color 0.3s ease-in-out;
 }
 
+.darkTheme{
+    width: 40px;
+    height: 24px;
+    background: #4575b3;
+    margin-right: 12px;
+    border-radius: 50px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.darkTheme span{
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: white;
+    border-radius: 50px;
+    left: 4px;
+    transition: .5s;
+}
+
+
 .form-group {
     display: flex;
     flex-direction: row;
     align-items: center;
+<<<<<<< HEAD
     padding-bottom: 20px;
+=======
+    margin-bottom: 20px;
+>>>>>>> main
 }
 
 .form-group label {
@@ -264,9 +290,12 @@ input[type="tel"] {
     transition: border-color 0.3s ease-in-out;
 }
 
+<<<<<<< HEAD
 @media (min-width: 768px) {
     .containerr form {
         margin-top: 20px;
         margin-bottom: 20px;
     }
 }
+=======
+>>>>>>> main
