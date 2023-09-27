@@ -58,13 +58,9 @@
                                         </div>
 
                                         <div class="post-images">
-                                            <div class="post-images1">
-                                                <img src="static/images/pp.jpg" alt="post images 01">
-                                                <img src="static/images/pp2.jpg" alt="post images 02">
-                                                <img src="static/images/pp3.jpg" alt="post images 03">
-                                            </div>
-                                            <div class="post-images2">
-                                                <img src="static/images/pp4.jpg" alt="post images 04">
+                                            <div class="post-images1" style="width: 100%; overflow: hidden;">
+                                                <img src="static/images/pp.jpg" alt="post images 01" style="height: 100%;">
+                                                
                                             </div>
                                         </div>
 
