@@ -14,10 +14,10 @@
             </div>
             <div class="iconBox2">
                 <c:if test="${name!=null}">
+                    <i class="fa-solid fa-house"></i>
                     <i class="fas fa-user-friends"></i>
-                    <i class="fa-solid fa-cart-shopping"></i>
                     <i class="fa-solid fa-bell"></i>
-                    <label><img src="static/images/user4.jpg" alt="user"></label>
+                    <label><img src="https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg" alt="user"></label>
                     <i class="fa-solid fa-caret-down" id="dropdownButton"></i>
 
 
@@ -25,7 +25,6 @@
                     <div class="dropdown-content">
                         <a href="user_profile.jsp"><i class="fas fa-eye"></i>Trang cá nhân</a>
                         <a href=""><i class="fas fa-highlighter"></i>Đổi mật khẩu</a>
-                        <a href=""><i class="fas fa-eye"></i>View Your Fans</a>
                         <a href="logout"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a>
                         <!-- N?i dung xu?t hi?n sau khi b?m vào nút -->
                     </div>
