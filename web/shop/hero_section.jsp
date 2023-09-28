@@ -40,3 +40,14 @@
         </div>
     </div>
 </section>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="setofshop/js/bootstrap.min.js"></script>
+<script src="setofshop/js/jquery.nice-select.min.js"></script>
+<script src="setofshop/js/jquery-ui.min.js"></script>
+<script src="setofshop/js/jquery.slicknav.js"></script>
+<script src="setofshop/js/mixitup.min.js"></script>
+<script src="setofshop/js/owl.carousel.min.js"></script>
+<script src="setofshop/js/main.js"></script>
+<script src="setofshop/js/dropdown-content.js"></script>
