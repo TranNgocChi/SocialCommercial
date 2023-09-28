@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.ResultSet;
-import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,7 +31,7 @@ public class UserDAO extends DatabaseConnection {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                UUID id = UUID.fromString(rs.getString(1));
+                Object id = rs.getObject(1);
                 String userName = rs.getString(2);
                 String userPass = rs.getString(3);
                 String email = rs.getString(4);
@@ -55,7 +54,7 @@ public class UserDAO extends DatabaseConnection {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                UUID id = UUID.fromString(rs.getString(1));
+                Object id = rs.getObject(1);
                 String userName = rs.getString("name");
                 int roleId = rs.getInt(6);
 
@@ -76,7 +75,7 @@ public class UserDAO extends DatabaseConnection {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                UUID id = UUID.fromString(rs.getString(1));
+                Object id = rs.getObject(1);
                 String userName = rs.getString(2);
                 String userPass = rs.getString(3);
                 String email = rs.getString(4);
@@ -99,7 +98,7 @@ public class UserDAO extends DatabaseConnection {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                UUID id = UUID.fromString(rs.getString(1));
+                Object id = rs.getObject(1);
                 String userName = rs.getString(2);
                 String userPass = rs.getString(3);
                 String email = rs.getString(4);

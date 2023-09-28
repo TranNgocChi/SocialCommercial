@@ -1,25 +1,24 @@
 
 package Model;
 
-import java.util.UUID;
 
 /**
  *
  * @author DELL
  */
 public class User {
-    UUID id;
+    Object id;
     String name,password,email,number,country,province,district,town,location,image;
     int roleid;
 
-    public User(UUID id, String name, String email, int roleid) {
+    public User(Object id, String name, String email, int roleid) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.roleid = roleid;
     }
 
-    public User(UUID id, String name, String password, String email, int roleid) {
+    public User(Object id, String name, String password, String email, int roleid) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -34,7 +33,7 @@ public class User {
         this.roleid = roleid;
     }
 
-    public User(UUID id, String name, String email, String number, String country, String province, String district, String town, String location, int roleid, String image) {
+    public User(Object id, String name, String email, String number, String country, String province, String district, String town, String location, int roleid, String image) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -51,11 +50,11 @@ public class User {
     public User() {
     }
 
-    public UUID getId() {
+    public Object getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Object id) {
         this.id = id;
     }
 
