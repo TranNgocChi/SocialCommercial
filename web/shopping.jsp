@@ -31,8 +31,6 @@
 
         <!-- Header Section Begin -->
         <%@ include file="shop/header_shop.jsp" %>
-        
-        
         <!-- Header Section End -->
 
         <!-- Hero Section Begin -->

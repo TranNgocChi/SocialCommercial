@@ -11,7 +11,7 @@
         <div class="header-wrapper">
             <div class="logoBox">
                 <div class="logo-soco">
-                    <h2>SOCO</h2>
+                    <a href="shopping.jsp"><h2>SOCO</h2></a>
                 </div>
                 <div class="content">
                     <a href="onboarding.jsp"><h5>Đăng ký bán hàng trên SOCO</h5></a>
@@ -20,7 +20,7 @@
             <c:choose>
                 <c:when test="${name != null}">
                     <div class="iconBox2" style="padding: 0 10px;">
-                        <a href="#" style="margin-right: 10px;"><i class="fa fa-shopping-cart"></i></a>
+                        <a href="cart.jsp" style="margin-right: 10px;"><i class="fa fa-shopping-cart"></i></a>
                         <label><img src="static/images/user.jpg" alt="user"></label>
                         <span class="arrow_carrot-down"></span>
                     </div>
