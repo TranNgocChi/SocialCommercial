@@ -27,7 +27,7 @@
                     <div class="header-dropdown">
                         <div class="dropdown-content">
                             <a href="edit_userprofile.jsp">Hồ sơ của bạn</a>
-                            <a href="#">Đơn mua</a>
+                            <a href="purchase.jsp">Đơn mua</a>
                             <a href="logout">Đăng xuất</a>
                         </div>
                     </div>
