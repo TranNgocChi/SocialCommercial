@@ -23,7 +23,6 @@
 
         <!-- header section start -->
 
-
         <header>
             <div class="header-container">
 
@@ -31,44 +30,31 @@
                 <div class="header-wrapper">
                     <div class="logoBox">
                         <div class="logo-soco">
-                            <h2>SOCO</h2>
+                            <a href="shopping.jsp"><h2>SOCO</h2></a>
                         </div>
                         <div class="content">
-                            <h5>Sign up to become a SOCO Seller</h5>
+                            <h5>Đăng ký bán hàng trên SOCO</h5>
                         </div>
                     </div>
                     <div class="iconBox2">
                         <label><img src="static/images/user.jpg" alt="user"></label>
-                        <i class="fa-solid fa-caret-down"></i>
+                        <i class="fa-solid fa-caret-down "></i>
                     </div>
                 </div>
             </div>
         </header>
 
-
         <!-- header section end -->
+        
         <!-- home section start -->
-
-
         <div class="home">
-            <div class="container">
-                <h1>Welcome to SOCO</h1>
-                <p>To register to sell on SOCO, you need to provide some basic information.</p>
-                <a href="request_form.jsp">Start registration</a>
+            <div class="containerr">
+                <h1>Chào mừng đến với SOCO</h1>
+                <p>Để đăng ký bán hàng trên SOCO, bạn cần cung cấp một số thông tin cơ bản.</p>
+                <a href="request_form.jsp">Bắt đầu</a>
             </div>
         </div>
-
-
-
-        <script>
-            var darkButton = document.querySelector(".darkTheme");
-
-            darkButton.onclick = function () {
-                darkButton.classList.toggle("button-Active");
-                document.body.classList.toggle("dark-color")
-            }
-
-        </script>
+        <!-- home section end -->
 
     </body>
 </html>

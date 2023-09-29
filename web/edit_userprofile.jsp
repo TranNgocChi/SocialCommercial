@@ -1,3 +1,5 @@
+<%@page import="Model.User"%>
+<%@page import="DAO.UserDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">

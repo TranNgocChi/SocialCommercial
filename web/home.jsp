@@ -6,7 +6,6 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="static/images/favicon.ico" type="image/x-icon">
         <title>SOCO</title>
         <!-- style css link -->
         <link rel="stylesheet" href="static/css/style.css">
@@ -58,13 +57,9 @@
                                         </div>
 
                                         <div class="post-images">
-                                            <div class="post-images1">
-                                                <img src="static/images/pp.jpg" alt="post images 01">
-                                                <img src="static/images/pp2.jpg" alt="post images 02">
-                                                <img src="static/images/pp3.jpg" alt="post images 03">
-                                            </div>
-                                            <div class="post-images2">
-                                                <img src="static/images/pp4.jpg" alt="post images 04">
+                                            <div class="post-images1" style="width: 100%; overflow: hidden;">
+                                                <img src="static/images/pp.jpg" alt="post images 01" style="height: 100%;">
+                                                
                                             </div>
                                         </div>
 

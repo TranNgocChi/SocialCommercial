@@ -23,12 +23,12 @@ public class UserDAO extends DatabaseConnection {
     public UserDAO() {
         connection = DatabaseConnection.getConnection();
     }
-    public User get(String name, String pass) {
+    public User get(String name, String password) {
         try {
             String sql = "SELECT * FROM [SWP391].[dbo].[AppUser] WHERE name=? AND password=?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, name);
-            ps.setString(2, pass);
+            ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
@@ -36,7 +36,7 @@ public class UserDAO extends DatabaseConnection {
                 String userName = rs.getString(2);
                 String userPass = rs.getString(3);
                 String email = rs.getString(4);
-                int roleId = rs.getInt(11);
+                int roleId = rs.getInt(6);
 
                 User user = new User(id, name, pass, email, roleId);
                 return user;
@@ -59,7 +59,7 @@ public class UserDAO extends DatabaseConnection {
                 String userName = rs.getString(2);
                 String userPass = rs.getString(3);
                 String email = rs.getString(4);
-                int roleId = rs.getInt(11);
+                int roleId = rs.getInt(6);
 
                 User user = new User(id, name, email, roleId);
                 return user;
@@ -208,9 +208,10 @@ public class UserDAO extends DatabaseConnection {
         }
         return null;
     }
-
+    
     public static void main(String[] args) {
         UserDAO userdao = new UserDAO();
-        System.out.println(userdao.get("Gau", "password123"));
+        
+        System.out.println(user);
     }
 }
