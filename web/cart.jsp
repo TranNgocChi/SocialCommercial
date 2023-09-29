@@ -202,7 +202,12 @@
         </div>
     </section>
     <!-- Shoping Cart Section End -->
-         
+         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="setofshop/js/jquery-ui.min.js"></script>
+        <script src="setofshop/js/jquery.slicknav.js"></script>
+        <script src="setofshop/js/mixitup.min.js"></script>
+        <script src="setofshop/js/owl.carousel.min.js"></script>
+        <script src="setofshop/js/main.js"></script>
     </body>
     <script>
     // Thêm JavaScript để xử lý chọn sản phẩm và chọn tất cả sản phẩm của shop
@@ -219,5 +224,6 @@
         });
     });
 </script>
+
    
 </html>

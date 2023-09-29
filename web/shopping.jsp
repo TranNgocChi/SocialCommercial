@@ -251,7 +251,6 @@
         <script src="setofshop/js/mixitup.min.js"></script>
         <script src="setofshop/js/owl.carousel.min.js"></script>
         <script src="setofshop/js/main.js"></script>
-        <script src="setofshop/js/dropdown-content.js"></script>
 
     </body>
 </html>
