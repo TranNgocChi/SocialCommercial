@@ -147,5 +147,7 @@
             </div>
         </section>
         <!-- Featured Section End -->
+                <script src="setofshop/js/dropdown-content.js"></script>
+
     </body>
 </html>
