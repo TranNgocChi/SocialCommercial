@@ -55,7 +55,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("id", user.getId());
             session.setAttribute("name", user.getName());
             session.setAttribute("role", user.getRoleid());
-            response.sendRedirect("http://localhost:8080/SocialCommercial");
+            response.sendRedirect("home.jsp");
         }
         else{
             HttpSession session=request.getSession();
