@@ -55,6 +55,7 @@ public class EditUserProfile extends HttpServlet {
 
             if (isImageFile(image)) {
                 imagePart.write(image);
+                session.setAttribute("img", "SavedImages/"+filename);
                 UserDAO edituser = new UserDAO();
                 edituser.EditUser(number, "SavedImages/"+filename, fullname, gender, statusnow, school, favour, bio, user_id);
                 request.getRequestDispatcher("user_profile.jsp").forward(request, response);

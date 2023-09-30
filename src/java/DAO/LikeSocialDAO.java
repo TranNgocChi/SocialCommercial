@@ -121,7 +121,7 @@ public class LikeSocialDAO {
         PreparedStatement stm = null;
         ResultSet res = null;
          try{
-            String sql = "delete from SocialLike where id = ?";
+            String sql = "delete from SocialLike where post_id = ? and liker_id = ?";
             cnt = DatabaseConnection.getConnection();
             cnt.setAutoCommit(false);
             stm = cnt.prepareStatement(sql);
@@ -153,7 +153,7 @@ public class LikeSocialDAO {
     
     public static void main(String[] args) {
         LikeSocialDAO like = new LikeSocialDAO();
-        like.addLikePost("CC201DC1-E0B6-4552-894A-36195B4A277A", "41EAB62F-A954-4AAB-B7C4-6F11D301D2D0");
+        like.removeLikePost("CC201DC1-E0B6-4552-894A-36195B4A277A", "41EAB62F-A954-4AAB-B7C4-6F11D301D2D0");
     }
     
 }
