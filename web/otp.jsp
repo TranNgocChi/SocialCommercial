@@ -46,9 +46,7 @@
                        <input type="hidden" name="name" value="${username}">
                        <input type="hidden" name="pass"  value="${pass}">
                        <input type="hidden" name="email"  value="${email}">
-                        <button class="btn submit">
-                            GỬI
-                        </button>
+                        <button class="btn submit"> GỬI</button>
                         <h2 style="color:red;margin-top:10px">${mesotp}</h2>
                         <c:set var="mesotp" value="${null}"></c:set>
                         <h4 style="color:red;margin-top:10px">Lưu ý: mã OTP chỉ tồn tại trong 2 phút</h4>

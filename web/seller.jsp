@@ -10,6 +10,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SOCO Seller</title>
+<<<<<<< HEAD
+=======
+        <meta name="keywords" content="Ogani, unica, creative, html">
+>>>>>>> main
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
 

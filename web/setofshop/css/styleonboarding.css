@@ -92,7 +92,11 @@ header{
     display: flex;
     justify-content: flex-end;
     align-items: center;
+<<<<<<< HEAD
     padding: 0 25px;
+=======
+    padding: 0 35px;
+>>>>>>> main
     position: relative;
     
 }
@@ -145,9 +149,12 @@ header{
     background: #5c91c6; /* Màu nền khi hover */
     color: #d1deec;
 }
+<<<<<<< HEAD
 .iconBox2 a {
     margin-right: 20px; /* Add a margin to the right of the shopping cart icon */
 }
+=======
+>>>>>>> main
 
 /* CSS cho class "header-dropdown" */
 .header-dropdown {

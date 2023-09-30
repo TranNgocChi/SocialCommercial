@@ -34,10 +34,14 @@ public class EditUserProfile extends HttpServlet {
             HttpSession session=request.getSession();
             Object user_id = session.getAttribute("id");
             
-            String name = request.getParameter("name");
-            String email = request.getParameter("email");
-            String phone = request.getParameter("phone");
+            String number = request.getParameter("number");
             Part imagePart = request.getPart("image");
+            String fullname = request.getParameter("fullName");
+            String gender = request.getParameter("gender");
+            String statusnow = request.getParameter("statusNow");
+            String school = request.getParameter("school");
+            String favour = request.getParameter("favour");
+            String bio = request.getParameter("bio");
         
             String realPath = request.getServletContext().getRealPath("/SavedImages");
             String filename = Path.of(imagePart.getSubmittedFileName()).getFileName().toString();
@@ -46,22 +50,27 @@ public class EditUserProfile extends HttpServlet {
             if(!Files.exists(Path.of(realPath))){
                 Files.createDirectory(Path.of(realPath));
             }
+            
+            if (imagePart != null && imagePart.getSize() > 0) {
+
             if (isImageFile(image)) {
                 imagePart.write(image);
-
+                session.setAttribute("img", "SavedImages/"+filename);
                 UserDAO edituser = new UserDAO();
-                edituser.EditUser(name, email, phone, null,
-                null, null, null, null, image, user_id);
-
+                edituser.EditUser(number, "SavedImages/"+filename, fullname, gender, statusnow, school, favour, bio, user_id);
                 request.getRequestDispatcher("user_profile.jsp").forward(request, response);
             } else {
-                // Handle invalid file type
                 response.setContentType("text/plain");
                 response.getWriter().write("Invalid file type. Please upload an image.");
             }
+        } else {
+            UserDAO edituser = new UserDAO();
+            edituser.EditUserSubstractImage(number, fullname, gender, statusnow, school, favour, bio, user_id);
+            request.getRequestDispatcher("user_profile.jsp").forward(request, response);
+        }
         
         }catch(Exception e){
-            System.out.println(e);
+            response.getWriter().write("Error");
         }
     }
 }

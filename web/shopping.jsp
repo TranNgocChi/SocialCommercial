@@ -31,6 +31,11 @@
 
         <!-- Header Section Begin -->
         <%@ include file="shop/header_shop.jsp" %>
+<<<<<<< HEAD
+=======
+        
+        
+>>>>>>> main
         <!-- Header Section End -->
 
         <!-- Hero Section Begin -->
@@ -251,6 +256,10 @@
         <script src="setofshop/js/mixitup.min.js"></script>
         <script src="setofshop/js/owl.carousel.min.js"></script>
         <script src="setofshop/js/main.js"></script>
+<<<<<<< HEAD
+=======
+        <script src="setofshop/js/dropdown-content.js"></script>
+>>>>>>> main
 
     </body>
 </html>

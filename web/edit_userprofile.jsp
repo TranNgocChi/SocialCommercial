@@ -1,3 +1,5 @@
+<%@page import="Model.User"%>
+<%@page import="DAO.UserDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +17,34 @@
 
     </head>
     <body>
+        
+        <%
+            String link_image="";
+    String fullName="";
+    String phone="";
+    String gender="";
+    String statusNow="";
+    String school="";
+    String favourite="";
+    String bio="";
+    int count = 0;
+    Object id = session.getAttribute("id");
+    
+    UserDAO manageUser = new UserDAO();
+    for(User user : manageUser.getAllUsers()){
+        if(user.getId().toString().toLowerCase().equals(id.toString().toLowerCase())){
+            link_image = user.getImage();
+            fullName = user.getFullname();
+            phone = user.getNumber();
+            gender = user.getGender();
+            statusNow = user.getStatusNow();
+            school = user.getSchool();
+            favourite = user.getFavour();
+            bio = user.getBio();
+            break;
+        }
+    }
+        %>
 
         <!--Header-->
         <%@ include file="subhome/header.jsp" %>
@@ -33,21 +63,16 @@
 
                                 <form class="form" action="EditUserProfile" method="POST" enctype="multipart/form-data">
                                     <h2 style="color: #3a78ffec;">Edit Profile</h2>
-
-                                    <h3 style="color: #3a78ffec;">Image: <input type="file" class="input-field" id="image" name="image"></h3>
-                                    <h3 style="color: #3a78ffec;">Full name: <input type="text" class="input-field" placeholder="Full name" name="fullname"></h3>
-                                    <h3 style="color: #3a78ffec;">Phone number: <input type="tel" class="input-field" placeholder="Phone Number" name="phone"></h3>
-                                    <h3 style="color: #3a78ffec;">Gender <input type="text" class="input-field" placeholder="Gender" name="name"></h3>
-                                    <h3 style="color: #3a78ffec;">Status now <input type="text" class="input-field" placeholder="Status" name="name"></h3>
-                                    <h3 style="color: #3a78ffec;">School: <input type="text" class="input-field" placeholder="School" name="name"></h3>
-                                    <h3 style="color: #3a78ffec;">Favourite: <input type="text" class="input-field" placeholder="Favourite" name="name"></h3>
-                                    <h3 style="color: #3a78ffec;">Bio: <input type="text" class="input-field" placeholder="Bio" name="name"></h3>
-<!--                                    <select class="input-field" id="luachon" name="luachon">
-                                        <option value="lua1">Lựa chọn 1</option>
-                                        <option value="lua2">Lựa chọn 2</option>
-                                        <option value="lua3">Lựa chọn 3</option>
-                                        <option value="lua4">Lựa chọn 4</option>
-                                    </select>-->
+                                    <h3 style="color: #3a78ffec;">Current Image:</h3>
+                                    <img src="<%= link_image %>" width="100px" alt="Current Image">
+                                    <h3 style="color: #3a78ffec;">Update Image:</h3>
+                                    <input type="file" class="input-field" id="image" name="image">                                    <h3 style="color: #3a78ffec;">Full name: <input type="text" class="input-field" placeholder="Full name" name="fullName" value="<%= fullName %> "></h3>
+                                    <h3 style="color: #3a78ffec;">Phone number: <input type="tel" class="input-field" placeholder="Phone Number" name="number" value="<%= phone %>"></h3>
+                                    <h3 style="color: #3a78ffec;">Gender <input type="text" class="input-field" placeholder="Gender" name="gender" value="<%= gender %>"></h3>
+                                    <h3 style="color: #3a78ffec;">Status now <input type="text" class="input-field" placeholder="Status" name="statusNow" value="<%= statusNow %>"></h3>
+                                    <h3 style="color: #3a78ffec;">School: <input type="text" class="input-field" placeholder="School" name="school" value="<%= school%>"></h3>
+                                    <h3 style="color: #3a78ffec;">Favourite: <input type="text" class="input-field" placeholder="Favourite" name="favour" value="<%= favourite %>"></h3>
+                                    <h3 style="color: #3a78ffec;">Bio: <input type="text" class="input-field" placeholder="Bio" name="bio" value="<%= bio %>"></h3>
 
                                     <button>Save Profile</button>
                                 </form>
