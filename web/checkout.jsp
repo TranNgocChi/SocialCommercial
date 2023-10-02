@@ -19,6 +19,7 @@
         <!-- Css Styles -->
 
         <link rel="stylesheet" href="setofshop/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="setofshop/css/styleonboarding.css">
         <link rel="stylesheet" href="setofshop/css/font-awesome.min.css" type="text/css">
         <link rel="stylesheet" href="setofshop/css/elegant-icons.css" type="text/css">
         <link rel="stylesheet" href="setofshop/css/nice-select.css" type="text/css">
@@ -34,7 +35,33 @@
         <!-- Header Section End -->
 
         <!-- Hero Section Begin -->
-        <%@ include file="shop/hero_section.jsp" %>
+        <section class="hero hero-normal">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="hero__categories">
+                            <div class="hero__categories__all">
+                                <i class="fa fa-bars"></i>
+                                <span>Danh mục</span>
+                            </div>
+                            <ul>
+                                <li><a href="#">Bách hoá Online</a></li>
+                                <li><a href="#">Thời trang nam</a></li>
+                                <li><a href="#">Thời trang nữ</a></li>
+                                <li><a href="#">Điện thoại & Phụ kiện</a></li>
+                                <li><a href="#">Điện tử</a></li>
+                                <li><a href="#">Máy tính & Laptop</a></li>
+                                <li><a href="#">Mỹ phẩm</a></li>
+                                <li><a href="#">Đồ chơi</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <%@ include file="shop/hero_search.jsp" %>
+                    </div>
+                </div>
+            </div>
+        </section>
         <!-- Hero Section End -->
 
         <!-- Shoping Cart Section Begin -->

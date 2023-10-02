@@ -19,6 +19,7 @@
         <!-- Css Styles -->
 
         <link rel="stylesheet" href="setofshop/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="setofshop/css/styleonboarding.css">
         <link rel="stylesheet" href="setofshop/css/font-awesome.min.css" type="text/css">
         <link rel="stylesheet" href="setofshop/css/elegant-icons.css" type="text/css">
         <link rel="stylesheet" href="setofshop/css/nice-select.css" type="text/css">
@@ -56,14 +57,7 @@
                         </div>
                     </div>
                     <div class="col-lg-9">
-                        <div class="hero__search">
-                            <div class="hero__search__form">
-                                <form action="#">
-                                    <input type="text" placeholder="FLASH SALE NỬA ĐÊM">
-                                    <button type="submit" class="site-btn">TÌM KIẾM</button>
-                                </form>
-                            </div>
-                        </div>
+                        <%@ include file="shop/hero_search.jsp" %>
                     </div>
                 </div>
             </div>

@@ -3,9 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Java_Web/SWP391/SocialCommercial/web/seller.jsp</file>
+            <file>file:/D:/Java_Web/SWP391/SocialCommercial/web/shopping.jsp</file>
+            <file>file:/D:/Java_Web/SWP391/SocialCommercial/src/java/Model/Product.java</file>
+            <file>file:/D:/Java_Web/SWP391/SocialCommercial/web/product_detail.jsp</file>
+            <file>file:/D:/Java_Web/SWP391/SocialCommercial/web/categorytype.jsp</file>
+            <file>file:/D:/Java_Web/SWP391/SocialCommercial/web/shop/hero__categories.jsp</file>
             <file>file:/D:/Java_Web/SWP391/SocialCommercial/web/shop/header_shop.jsp</file>
-            <file>file:/D:/Java_Web/SWP391/SocialCommercial/web/purchase.jsp</file>
+            <file>file:/D:/Java_Web/SWP391/SocialCommercial/web/shop/hero_search.jsp</file>
         </group>
     </open-files>
 </project-private>

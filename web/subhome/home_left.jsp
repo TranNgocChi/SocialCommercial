@@ -17,7 +17,7 @@
             <a href="admin.jsp"><i class="fa-solid fa-house"></i> Admin</a>
         </c:if>
         <a href="home.jsp"><i class="fa-solid fa-house"></i> Trang chủ</a>
-        <a href="shopping.jsp"><i class="fa-brands fa-shopify"></i> Shopping</a>
+        <a href="shopping"><i class="fa-brands fa-shopify"></i> Shopping</a>
         <a href="#"><i class="fa-brands fa-facebook-messenger"></i> Messenger</a>
         <a href="create_post.jsp"><i class="fa-solid fa-circle-plus"></i> Tạo bài viết</a>
         <a href="#"><i class="fa-solid fa-bookmark"></i> Lưu bài viết</a>

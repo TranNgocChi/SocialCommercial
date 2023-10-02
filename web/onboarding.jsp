@@ -30,14 +30,14 @@
                 <div class="header-wrapper">
                     <div class="logoBox">
                         <div class="logo-soco">
-                            <a href="shopping.jsp"><h2>SOCO</h2></a>
+                            <a href="shopping"><h2>SOCO</h2></a>
                         </div>
                         <div class="content">
                             <h5>Đăng ký bán hàng trên SOCO</h5>
                         </div>
                     </div>
                     <div class="iconBox2">
-                        <label><img src="static/images/user.jpg" alt="user"></label>
+                        <label><img src="https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg" alt="user"></label>
                         <i class="fa-solid fa-caret-down "></i>
                     </div>
                 </div>

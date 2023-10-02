@@ -1728,8 +1728,8 @@ ol {
 }
 
 .product__details__quantity {
-    display: inline-block;
-    margin-right: 6px;
+    display: inline-block !important;
+    margin-right: 6px !important;
 }
 
 .pro-qty {
