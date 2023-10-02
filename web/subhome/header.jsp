@@ -17,7 +17,11 @@
                     <i class="fa-solid fa-house"></i>
                     <i class="fas fa-user-friends"></i>
                     <i class="fa-solid fa-bell"></i>
+                    <% if(session.getAttribute("img") != null){ %>
+                    <label><img src="<%= session.getAttribute("img") %>" alt="user"></label>
+                    <% }else{ %>
                     <label><img src="https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg" alt="user"></label>
+                    <% } %>
                     <i class="fa-solid fa-caret-down" id="dropdownButton"></i>
 
 

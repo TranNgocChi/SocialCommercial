@@ -33,8 +33,6 @@
 
                                 <form class="form" action="CreatePost" method="POST" enctype="multipart/form-data">
                                     <h2 style="color: #3a78ffec;">Create Post</h2>
-
-                                    <h3 style="color: #3a78ffec;">Tille <input type="text" class="input-field" placeholder="Write your title here" id="title" name="title"></h3>
                                     <h3 style="color: #3a78ffec;">Content: <input type="text" class="input-field" placeholder="Write your content here" name="content"></h3>
                                     <h3 style="color: #3a78ffec;">Image: <input type="file" class="input-field" placeholder="Image" name="image"></h3>
 

@@ -5,7 +5,13 @@
 <div class="home-left">
 
     <div class="profile">
-        <img src="https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg" alt="user">
+        <% if (session.getAttribute("img") == null){ %>
+        <a href="user_profile.jsp">
+            <img src="https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg" alt="user">
+        </a>
+        <% }else{ %>
+        <img src="${img}" alt="user">
+        <% } %>
         <h3>${name}</h3>
         <c:if test="${name==null}">
             <h3>Khách</h3>
