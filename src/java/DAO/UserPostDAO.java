@@ -33,8 +33,10 @@ public class UserPostDAO {
                 Object user_id = res.getObject("user_id");
                 String post_title = res.getString("post_title");
                 String post_content = res.getString("post_content");
+                String image = res.getString("post_image");
                 Date post_date = res.getDate("post_date");
-                UserPost userPost = new UserPost(id, user_id, post_title, post_content, post_date);
+                
+                UserPost userPost = new UserPost(id, user_id, post_title, post_content, image,post_date);
                 listOfUserPosts.add(userPost);
             }
             
