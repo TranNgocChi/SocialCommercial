@@ -1,23 +1,35 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Controller;
 
-import DAO.UserDAO;
-import Model.User;
+import DAO.ProductDAO;
+import Model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-@WebServlet (name="LoginServlet",urlPatterns={"/login"})
+/**
+ *
+ * @author ADMIN
+ */
+public class CategoryControl extends HttpServlet {
 
-public class LoginServlet extends HttpServlet {
-
-    
-   
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -31,7 +43,15 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        Object cateID = request.getParameter("cid");
+        
+        ProductDAO dao = new ProductDAO(); 
+        List<Product> products = dao.getAllProducts();
+        List<Product> list = dao.getProductsbyCID(cateID);
+        request.setAttribute("listP", products);
+        request.setAttribute("listP", list);
+        request.getRequestDispatcher("categorytype.jsp").forward(request, response);
     }
 
     /**
@@ -45,31 +65,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            UserDAO dao=new UserDAO();
-        String name=request.getParameter("username");
-        String pass=request.getParameter("pass");
-        String img = "";
-        User user=new User();
-        user=dao.get(name, pass);
-        for(User cus : dao.getAllUsers()){
-            if(cus.getId().equals(user.getId())){
-                img = cus.getImage();
-                break;
-            }
-        }
-        if(user!=null){
-            HttpSession session=request.getSession();
-            session.setAttribute("id", user.getId());
-            session.setAttribute("name", user.getName());
-            session.setAttribute("role", user.getRoleid());
-            session.setAttribute("img", img);
-            response.sendRedirect("http://localhost:8080/SocialCommercial");
-        }
-        else{
-            HttpSession session=request.getSession();
-            session.setAttribute("msg", "TEN HOAC MAT KHAU SAI !!!");
-            response.sendRedirect("login");
-        }
+        //processRequest(request, response);
     }
 
     /**

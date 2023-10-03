@@ -43,56 +43,56 @@
                             <input type="text" name="otpuser" id="name" required>
                             <label for="name">OTP</label>
                         </div>
-                       <input type="hidden" name="name" value="${username}">
-                       <input type="hidden" name="pass"  value="${pass}">
-                       <input type="hidden" name="email"  value="${email}">
+                        <input type="hidden" name="name" value="${username}">
+                        <input type="hidden" name="pass"  value="${pass}">
+                        <input type="hidden" name="email"  value="${email}">
                         <button class="btn submit"> GỬI</button>
                         <h2 style="color:red;margin-top:10px">${mesotp}</h2>
                         <c:set var="mesotp" value="${null}"></c:set>
-                        <h4 style="color:red;margin-top:10px">Lưu ý: mã OTP chỉ tồn tại trong 2 phút</h4>
-                        <a href="foget.jsp" style="color: white; text-decoration: none;">Forgot Password?</a>
-                    </form>
+                            <h4 style="color:red;margin-top:10px">Lưu ý: mã OTP chỉ tồn tại trong 2 phút</h4>
+                            <a href="foget.jsp" style="color: white; text-decoration: none;">Forgot Password?</a>
+                        </form>
 
-                </div>
-            </div>
-
-            <div class="box navigation">
-                <div class="content">
-                    <div class="nav navigation_signIn">
-                        <p>
-                              Nếu bạn chưa có tài khoản, vui lòng đăng kí. 
-                        </p>
-
-                           
-                        <button class="btn layer log">
-
-                            Đăng kí
-                        </button>
-                    </div>
-
-                    <div class="nav navigation_signUp">
-                        <p>
-                            Nếu bạn đã có tài khoản, vui lòng đăng nhập.
-
-                        </p>
-
-                        <button class="btn layer out" id="loginButton">
-                            Đăng nhập
-                        </button>
                     </div>
                 </div>
-            </div>
 
-            <div class="box register">
-                <div class="content">
-                    <h3 class="title">
-                        Đăng ký
-                    </h3>
+                <div class="box navigation">
+                    <div class="content">
+                        <div class="nav navigation_signIn">
+                            <p>
+                                Nếu bạn chưa có tài khoản, vui lòng đăng kí. 
+                            </p>
 
 
-                    <form action="signup" method="post" id="form">
-                        <div class="form_input">
-                            <input type="text" name="username" id="name" required value="${not empty usernameValue ? usernameValue : ''}">
+                            <button class="btn layer log">
+
+                                Đăng kí
+                            </button>
+                        </div>
+
+                        <div class="nav navigation_signUp">
+                            <p>
+                                Nếu bạn đã có tài khoản, vui lòng đăng nhập.
+
+                            </p>
+
+                            <button class="btn layer out" id="loginButton">
+                                Đăng nhập
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box register">
+                    <div class="content">
+                        <h3 class="title">
+                            Đăng ký
+                        </h3>
+
+
+                        <form action="signup" method="post" id="form">
+                            <div class="form_input">
+                                <input type="text" name="username" id="name" required value="${not empty usernameValue ? usernameValue : ''}">
                             <label for="name">Tên đăng nhập</label>
                         </div>
                         <div class="form_input">

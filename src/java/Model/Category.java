@@ -11,24 +11,23 @@ import java.util.UUID;
  * @author DELL
  */
 public class Category {
-    private UUID id;
+    private Object cid;
     private String type;
 
-    public Category(String type) {
+    public Category() {
+    }
+
+    public Category(Object cid, String type) {
+        this.cid = cid;
         this.type = type;
     }
 
-    public Category(UUID id, String type) {
-        this.id = id;
-        this.type = type;
+    public Object getCid() {
+        return cid;
     }
 
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
+    public void setCid(Object cid) {
+        this.cid = cid;
     }
 
     public String getType() {
@@ -41,8 +40,11 @@ public class Category {
 
     @Override
     public String toString() {
-        return "Category{" + "id=" + id + ", type=" + type + '}';
+        return "Category{" + "cid=" + cid + ", type=" + type + '}';
     }
+
+    
+    
     
             
 }
