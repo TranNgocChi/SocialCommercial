@@ -2,29 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/src/java/Controller/EditUserProfile.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/web/user_profile.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/src/java/Model/User.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/src/java/Controller/removePost.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/web/edit_userprofile.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/src/java/DAO/LikeSocialDAO.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/web/post_detail.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/src/java/Controller/CreatePost.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/src/java/Model/UserPost.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/src/java/DAO/CommentSocialDAO.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/src/java/Controller/LikePost.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/src/java/Model/CommentSocial.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/src/java/connectSQLServer/DatabaseInfor.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/web/otp.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/web/login.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/src/java/DAO/UserPostDAO.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/src/java/connectSQLServer/DatabaseConnection.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/src/java/Model/LikeSocial.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/web/create_post.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/web/subhome/header.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/src/java/Model/Category.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/src/java/DAO/UserDAO.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

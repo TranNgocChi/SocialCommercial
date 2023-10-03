@@ -48,8 +48,15 @@ public class LoginServlet extends HttpServlet {
             UserDAO dao=new UserDAO();
         String name=request.getParameter("username");
         String pass=request.getParameter("pass");
+        String img = "";
         User user=new User();
         user=dao.get(name, pass);
+        for(User cus : dao.getAllUsers()){
+            if(cus.getId().equals(user.getId())){
+                img = cus.getImage();
+                break;
+            }
+        }
         if(user!=null){
             HttpSession session=request.getSession();
             session.setAttribute("id", user.getId());

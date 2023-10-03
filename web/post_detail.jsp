@@ -56,7 +56,11 @@
                 <div class="like-comment" style="font-size: 26px; ">
                     <ul>
                         <li><a href="LikePost?post_id=<%= post_id %>&fullName=<%= request.getParameter("fullName") %>">
-                            ${like_icon}</a> 22k</li>
+                                <% if(request.getAttribute("like_icon") == null){ %>
+                                <i class="far fa-heart"></i>
+                                <% }else{%> <%= request.getAttribute("like_icon") %>
+                                <%}%>
+                        </a> 22k</li>
                         <li><i class="fa-regular fa-comment-dots"></i> 555</li>
                         <% if(post_userId.toString().toLowerCase().equals(user_now.toString().toLowerCase())){ %>
                         <li><a href="removePost?post_id=<%= post_id %>"><i class="fas fa-trash-alt"></i></a> Delete</li>
