@@ -40,7 +40,7 @@ public class OTPServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet otp</title>");            
+            out.println("<title>Servlet otp</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet otp at " + request.getContextPath() + "</h1>");
@@ -62,7 +62,7 @@ public class OTPServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
+
     }
 
     /**
@@ -76,34 +76,29 @@ public class OTPServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
 
-           String name = request.getParameter("name");
+        String name = request.getParameter("name");
         String pass = request.getParameter("pass");
         String email = request.getParameter("email");
-        String otpuser=request.getParameter("otpuser");
+        String otpuser = request.getParameter("otpuser");
         PrintWriter out = response.getWriter();
 //        out.print(otpuser);
-         HttpSession session=request.getSession();
-        Object otp =session.getAttribute("otp");
-         UserDAO userdao=new UserDAO();
+        HttpSession session = request.getSession();
+        Object otp = session.getAttribute("otp");
+        UserDAO userdao = new UserDAO();
         if (otp != null && otpuser.equals(otp.toString())) {
             userdao.register(name, pass, email);
             request.setAttribute("msg", "ĐĂNG KÍ THÀNH CÔNG, MỜI BẠN ĐĂNG NHẬP");
             request.getRequestDispatcher("login.jsp").forward(request, response);
-} else {
+        } else {
             request.setAttribute("username", name);
-                request.setAttribute("pass", pass);
-                request.setAttribute("email", email);
+            request.setAttribute("pass", pass);
+            request.setAttribute("email", email);
             session.setAttribute("mesotp", "SAI MÃ OTP, VUI LÒNG NHẬP LẠI !!!");
-   request.getRequestDispatcher("otp.jsp").forward(request, response);
-}
+            request.getRequestDispatcher("otp.jsp").forward(request, response);
+        }
 
-
-                
-        
-                
-       
     }
 
     /**
