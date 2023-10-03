@@ -41,8 +41,8 @@ public class AdminDAO extends DatabaseConnection {
                 String town = rs.getString(9);
                 String location = rs.getString(10);
                 int roleid = rs.getInt(11);
-
-                User user = new User(id, name, email, phone, country, province, district, town, location, roleid);
+                String image = rs.getString(11);
+                User user = new User(id, name, email, phone, country, province, district, town, location, roleid, image);
                 list.add(user);
             }
             return list;

@@ -60,6 +60,7 @@ public class SignUpServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
          String username=request.getParameter("username");
+    
         String pass=request.getParameter("pass");
         String pass1=request.getParameter("pass1");
         String email=request.getParameter("email");

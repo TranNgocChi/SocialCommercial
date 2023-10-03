@@ -95,6 +95,7 @@
                             <input type="text" name="username" id="name" required>
                             <label for="name">Username</label>
                         </div>
+                        
                         <div class="form_input">
                             <input type="email" name="email" id="email" required>
                             <label for="email">Email</label>
