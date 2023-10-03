@@ -64,7 +64,7 @@
                             </p>
 
 
-                            <button class="btn layer log">
+                            <button class="btn layer log" id="loginButton"> 
 
                                 Đăng kí
                             </button>

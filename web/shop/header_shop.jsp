@@ -22,7 +22,6 @@
                         <a href="cart.jsp" style="margin-right: 10px;"><i class="fa fa-shopping-cart"></i></a>
                         <label><img src="https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg" alt="user"></label>
 
-                    
                         <span class="arrow_carrot-down"></span>
                     </div>
                     <div class="header-dropdown">
