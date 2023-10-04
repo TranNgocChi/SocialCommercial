@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author DELL
  */
-@WebServlet (name="logout",urlPatterns={"/logout"})
+@WebServlet(name = "logout", urlPatterns = {"/logout"})
 
 public class logout extends HttpServlet {
 
@@ -39,7 +39,7 @@ public class logout extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet logout</title>");            
+            out.println("<title>Servlet logout</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet logout at " + request.getContextPath() + "</h1>");
@@ -60,12 +60,12 @@ public class logout extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-           HttpSession session=request.getSession();
+        HttpSession session = request.getSession();
         session.removeAttribute("id");
-         session.removeAttribute("name");
-         session.removeAttribute("role");
-      
-        response.sendRedirect("home.jsp");
+        session.removeAttribute("name");
+        session.removeAttribute("role");
+        session.removeAttribute("img");
+        response.sendRedirect(request.getContextPath());
     }
 
     /**

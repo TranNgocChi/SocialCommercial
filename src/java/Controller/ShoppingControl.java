@@ -1,19 +1,28 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Controller;
 
-import DAO.UserDAO;
-import Model.User;
+import DAO.ProductDAO;
+import Model.Category;
+import Model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
+/**
+ *
+ * @author ADMIN
+ */
+public class ShoppingControl extends HttpServlet {
 
-public class LoginServlet extends HttpServlet {
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -27,7 +36,14 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+        ProductDAO dao = new ProductDAO(); 
+        List<Product> products = dao.getAllProducts();
+        List<Category> list = dao.getAllCategory();
+        request.setAttribute("listP", products);
+        request.setAttribute("listC", list);
+        request.getRequestDispatcher("shopping.jsp").forward(request, response);
+        //response.sendRedirect("categorytype.jsp");
+        //request.getRequestDispatcher("categorytype.jsp").forward(request, response);
     }
 
     /**
@@ -41,34 +57,11 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        UserDAO dao = new UserDAO();
-        String name = request.getParameter("username");
-        String pass = request.getParameter("pass");
-        String img = "";
-        User user = new User();
-        user = dao.get(name, pass);
-            
-        if (user != null) {
-            for (User cus : dao.getAllUsers()) {
-                if (cus.getId().equals(user.getId())) {
-                    img = cus.getImage();
-                    break;
-                }
-            }
-            HttpSession session = request.getSession();
-            session.setAttribute("id", user.getId());
-            session.setAttribute("name", user.getName());
-            session.setAttribute("role", user.getRoleid());
-            session.setAttribute("img", img);
-            response.sendRedirect(request.getContextPath());
-
-
-        } else {
-            HttpSession session = request.getSession();
-            session.setAttribute("msg", "Tên đăng nhập hoặc mật khẩu sai.");
-            response.sendRedirect("login");
-        }
-
+        ProductDAO dao = new ProductDAO(); 
+        List<Product> products = dao.getAllProducts();
+        
+        request.setAttribute("listP", products);
+        request.getRequestDispatcher("shopping.jsp").forward(request, response);
     }
 
     /**

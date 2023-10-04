@@ -247,7 +247,7 @@ public class UserDAO extends DatabaseConnection {
     
     public static void main(String[] args) {
         UserDAO userdao = new UserDAO();
-        
+        User user=userdao.getbyemail("vinh1");
         System.out.println(user);
     }
 }

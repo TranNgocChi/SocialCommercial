@@ -70,7 +70,7 @@
                         <c:forEach var="item" items="${listcontent}">
                             <c:if test="${item.senderid.toString().equals(id.toString())}">
                             <li class="clearfix">
-                            <div class="message-data text-right" style="margin-left:950px">
+                            <div class="message-data text-right" style="margin-left:600px">
                                 <span class="message-data-time">${item.date}</span>
                             </div>
                             <div class="message other-message float-right"> ${item.content} </div>

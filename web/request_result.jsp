@@ -31,14 +31,14 @@
                 <div class="header-wrapper">
                     <div class="logoBox">
                         <div class="logo-soco">
-                            <a href="shopping.jsp"><h2>SOCO</h2></a>
+                            <a href="shopping"><h2>SOCO</h2></a>
                         </div>
                         <div class="content">
                             <h5>Đăng ký bán hàng trên SOCO</h5>
                         </div>
                     </div>
                     <div class="iconBox2">
-                        <label><img src="static/images/user.jpg" alt="user"></label>
+                        <label><img src="https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg" alt="user"></label>
                         <i class="fa-solid fa-caret-down"></i>
                     </div>
                 </div>
@@ -55,10 +55,10 @@
                 <h1>Request Result</h1>
                 <c:choose>
                     <c:when test="${insertResult}">
-                        <p>Your request was successfully submitted. You will be contacted by the admin soon.</p>
+                        <p>Yêu cầu của bạn đã được gửi thành công. Bạn sẽ được quản trị viên liên hệ sớm.</p>
                     </c:when>
                 </c:choose>
-                <a href="home.jsp">Back to Home</a>
+                <a href="shopping">Quay lại trang SOCO Shopping</a>
             </div>
         </div>
 

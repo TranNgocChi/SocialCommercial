@@ -1,12 +1,15 @@
-
+<%-- 
+    Document   : catetype
+    Created on : Oct 2, 2023, 12:47:06 AM
+    Author     : ADMIN
+--%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta name="description" content="Ogani Template">
-        <meta name="keywords" content="Ogani, unica, creative, html">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>SOCO Shopping</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
@@ -24,9 +27,6 @@
         <link rel="stylesheet" href="setofshop/css/owl.carousel.min.css" type="text/css">
         <link rel="stylesheet" href="setofshop/css/slicknav.min.css" type="text/css">
         <link rel="stylesheet" href="setofshop/css/style.css" type="text/css">
-
-
-        <title>SOCO Shopping</title>
     </head>
     <body>
 
@@ -35,15 +35,12 @@
         <!-- Header Section End -->
 
         <!-- Hero Section Begin -->
-        <section class="hero">
+        <section class="hero hero-normal">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3">
-                        <%@ include file="shop/hero__categories.jsp" %>
-                    </div>
-                    <div class="col-lg-9">
+                    <div class="col-lg-12">
                         <%@ include file="shop/hero_search.jsp" %>
-                        <div id="header-carousel" class="carousel slide" data-ride="carousel">
+                        <div id="header-carousel" class="carousel slide" data-ride="carousel" style="margin-top: 30px;">
                             <div class="carousel-inner">
                                 <div class="carousel-item active" style="height: 410px;">
                                     <img class="img-fluid" src="setofshop/img/carousel-1.jpg" alt="Image">
@@ -83,38 +80,63 @@
         </section>
         <!-- Hero Section End -->
 
-        <section class="featured spad">
+
+
+        <!-- Product Section Begin -->
+        <section class="product spad">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title">
-                            <h2>Gợi ý hôm nay</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row featured__filter">
-                    <c:forEach items="${listP}" var="o">
-                        <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-                            <div class="featured__item">
-                                <div class="featured__item__pic set-bg" data-setbg="${o.productImage}">
-                                    <ul class="featured__item__pic__hover">
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="featured__item__text">
-                                    <h6><a href="detail?pid=${o.productId}">${o.productName}</a></h6>
-                                    <h5>${o.productPrice}</h5>
+                    <div class="col-lg-12 col-md-7">
+
+                        <div class="filter__item">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-5">
+                                    <div class="filter__sort">
+                                        <span>Sắp xếp theo</span>
+                                        <select>
+                                            <option value="0">Phổ biến</option>
+                                            <option value="0">Mới nhất</option>
+                                            <option value="0">Giá từ thấp đến cao</option>
+                                            <option value="0">Giá từ cao đến thấp</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </c:forEach>
+                        <div class="row">
+                            <c:forEach items="${listP}" var="o">
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="product__item">
+                                        <div class="product__item__pic set-bg" data-setbg="${o.productImage}">
+                                            <ul class="product__item__pic__hover">
+                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="product__item__text">
+                                            <h6><a href="detail?pid=${o.productId}">${o.productName}</a></h6>
+                                            <h5>${o.productPrice}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
+                        <div class="product__pagination">
+                            <a href="#">1</a>
+                            <a href="#">2</a>
+                            <a href="#">3</a>
+                            <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <a href="shopping" style="color: #5c91c6;">Quay lại</a>
+                    </div>
                 </div>
             </div>
         </section>
-        <!-- Featured Section End -->
-        <!-- Flash Section End -->
+        <!-- Product Section End -->
+
         <!-- JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
@@ -126,6 +148,5 @@
         <script src="setofshop/js/mixitup.min.js"></script>
         <script src="setofshop/js/owl.carousel.min.js"></script>
         <script src="setofshop/js/main.js"></script>
-
     </body>
 </html>

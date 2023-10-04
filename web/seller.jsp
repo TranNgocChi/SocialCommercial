@@ -10,7 +10,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SOCO Seller</title>
-        <meta name="keywords" content="Ogani, unica, creative, html">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
@@ -20,6 +19,7 @@
         <!-- Css Styles -->
 
         <link rel="stylesheet" href="setofshop/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="setofshop/css/styleonboarding.css">
         <link rel="stylesheet" href="setofshop/css/font-awesome.min.css" type="text/css">
         <link rel="stylesheet" href="setofshop/css/elegant-icons.css" type="text/css">
         <link rel="stylesheet" href="setofshop/css/nice-select.css" type="text/css">
@@ -57,14 +57,7 @@
                         </div>
                     </div>
                     <div class="col-lg-9">
-                        <div class="hero__search">
-                            <div class="hero__search__form">
-                                <form action="#">
-                                    <input type="text" placeholder="FLASH SALE NỬA ĐÊM">
-                                    <button type="submit" class="site-btn">TÌM KIẾM</button>
-                                </form>
-                            </div>
-                        </div>
+                        <%@ include file="shop/hero_search.jsp" %>
                     </div>
                 </div>
             </div>
@@ -95,36 +88,6 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-5">
                         <div class="sidebar">
-                            <div class="sidebar__item">
-                                <h4>Danh mục</h4>
-                                <ul>
-                                    <li><a href="#">Bách hoá Online</a></li>
-                                    <li><a href="#">Thời trang nam</a></li>
-                                    <li><a href="#">Thời trang nữ</a></li>
-                                    <li><a href="#">Điện thoại & Phụ kiện</a></li>
-                                    <li><a href="#">Điện tử</a></li>
-                                    <li><a href="#">Máy tính & Laptop</a></li>
-                                    <li><a href="#">Mỹ phẩm</a></li>
-                                    <li><a href="#">Đồ chơi</a></li>
-                                </ul>
-                            </div>
-                            <div class="sidebar__item">
-                                <h4>Price</h4>
-                                <div class="price-range-wrap">
-                                    <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                                         data-min="10" data-max="540">
-                                        <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
-                                        <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                                        <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                                    </div>
-                                    <div class="range-slider">
-                                        <div class="price-input">
-                                            <input type="text" id="minamount">
-                                            <input type="text" id="maxamount">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="sidebar__item">
                                 <div class="latest-product__text">
                                     <h4>Sản phẩm mới nhất</h4>
