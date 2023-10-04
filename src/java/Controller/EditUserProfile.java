@@ -42,7 +42,6 @@ public class EditUserProfile extends HttpServlet {
             String school = request.getParameter("school");
             String favour = request.getParameter("favour");
             String bio = request.getParameter("bio");
-            
         
             String realPath = request.getServletContext().getRealPath("/SavedImages");
             String filename = Path.of(imagePart.getSubmittedFileName()).getFileName().toString();
@@ -50,23 +49,28 @@ public class EditUserProfile extends HttpServlet {
         
             if(!Files.exists(Path.of(realPath))){
                 Files.createDirectory(Path.of(realPath));
-            } else {
             }
+            
+            if (imagePart != null && imagePart.getSize() > 0) {
+
             if (isImageFile(image)) {
                 imagePart.write(image);
-
+                session.setAttribute("img", "SavedImages/"+filename);
                 UserDAO edituser = new UserDAO();
-                edituser.EditUser(number, image, fullname, gender, statusnow, school, favour, bio, null);
-
+                edituser.EditUser(number, "SavedImages/"+filename, fullname, gender, statusnow, school, favour, bio, user_id);
                 request.getRequestDispatcher("user_profile.jsp").forward(request, response);
             } else {
-                // Handle invalid file type
                 response.setContentType("text/plain");
                 response.getWriter().write("Invalid file type. Please upload an image.");
             }
+        } else {
+            UserDAO edituser = new UserDAO();
+            edituser.EditUserSubstractImage(number, fullname, gender, statusnow, school, favour, bio, user_id);
+            request.getRequestDispatcher("user_profile.jsp").forward(request, response);
+        }
         
         }catch(Exception e){
-            System.out.println(e);
+            response.getWriter().write("Error");
         }
     }
 }

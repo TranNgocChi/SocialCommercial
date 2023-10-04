@@ -65,7 +65,7 @@ public class logout extends HttpServlet {
          session.removeAttribute("name");
          session.removeAttribute("role");
       
-        response.sendRedirect("home.jsp");
+        response.sendRedirect("http://localhost:8080/SocialCommercial");
     }
 
     /**

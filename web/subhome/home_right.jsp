@@ -1,3 +1,5 @@
+        <link rel="stylesheet" href="static/css/style.css">
+
 <div class="home-right">
                 <div class="home-right-wrapper">
 
