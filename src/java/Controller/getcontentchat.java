@@ -5,22 +5,25 @@
  */
 package Controller;
 
+import DAO.ChatDAO;
+import Model.Messenger;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author DELL
  */
-@WebServlet(name = "logout", urlPatterns = {"/logout"})
+@WebServlet(name = "getcontentchat", urlPatterns = {"/getcontentchat"})
 
-public class logout extends HttpServlet {
+public class getcontentchat extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +42,10 @@ public class logout extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet logout</title>");
+            out.println("<title>Servlet getcontentchat</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet logout at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet getcontentchat at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,12 +63,7 @@ public class logout extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        session.removeAttribute("id");
-        session.removeAttribute("name");
-        session.removeAttribute("role");
-        session.removeAttribute("img");
-        response.sendRedirect(request.getContextPath());
+        doPost(request, response);
     }
 
     /**
@@ -79,7 +77,30 @@ public class logout extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+                response.setContentType("text/html;charset=UTF-8");
+
+        Object id1 = request.getAttribute("id1");
+        ChatDAO chatdao = new ChatDAO();
+        HttpSession session = request.getSession();
+        Object id = session.getAttribute("id");
+
+        if (id1 != null) {
+            ArrayList<Messenger> listcontent = chatdao.gettinnhan(id, id1);
+            request.setAttribute("id1", id1);
+            request.setAttribute("listcontent", listcontent);
+            request.getRequestDispatcher("chat").forward(request, response);
+
+        }
+        if(id1==null){
+        Object nguoinhantin = request.getParameter("nguoinhantin");
+        Object id2 = chatdao.getidbyname(nguoinhantin);
+        ArrayList<Messenger> listcontent = chatdao.gettinnhan(id, id2);
+        request.setAttribute("nguoinhan", nguoinhantin);
+        request.setAttribute("id1", id2);
+        request.setAttribute("listcontent", listcontent);
+        request.getRequestDispatcher("chat").forward(request, response);
+        }
+
     }
 
     /**

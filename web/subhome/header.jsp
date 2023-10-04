@@ -6,7 +6,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="logoBox">
-                <a href="http://localhost:8080/SocialCommercial"><h1>SOCO</h1></a>
+                <a href="/SocialCommercial"><h1>SOCO</h1></a>
             </div>
             <div class="searchBox">
                 <input type="search">
@@ -40,4 +40,3 @@
         </div>
     </div>
 </header>
-
