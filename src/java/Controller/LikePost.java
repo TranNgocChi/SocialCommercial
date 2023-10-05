@@ -20,17 +20,26 @@ public class LikePost extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session=request.getSession();
         
+        Boolean check = false;
         LikeSocialDAO like = new LikeSocialDAO();
-        String like_icon = "<i class=\"far fa-heart\"></i>";
         Object fullName = request.getParameter("fullName");
         Object post_id = request.getParameter("post_id");
         Object liker_id = session.getAttribute("id");
+        
+        for(LikeSocial post  : like.getLikeSocials()){
+            if(post_id.toString().toLowerCase().equals(post.getPost_id().toString().toLowerCase())
+               && liker_id.toString().toLowerCase().equals(post.getLiker_id().toString().toLowerCase())){
+                check = true;
+                like.removeLikePost(post_id, liker_id);
+                break;
+            }
+        }
+        
+        if(check != true){
+            like.addLikePost(post_id, liker_id);
+        }
 
-        like.addLikePost(post_id, liker_id);
-
-
-        request.setAttribute("like_icon", like_icon);
-        request.getRequestDispatcher("post_detail.jsp?post_id="+post_id+ "&fullName="+fullName).forward(request, response);;
+        response.sendRedirect("PostDetail?post_id="+post_id+ "&fullName="+fullName); 
         
     }
 

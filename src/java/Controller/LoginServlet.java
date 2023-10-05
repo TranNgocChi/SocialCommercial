@@ -1,4 +1,3 @@
-
 package Controller;
 
 import DAO.UserDAO;
@@ -12,12 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet (name="LoginServlet",urlPatterns={"/login"})
+@WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 
 public class LoginServlet extends HttpServlet {
-
-    
-   
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -45,31 +41,34 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            UserDAO dao=new UserDAO();
-        String name=request.getParameter("username");
-        String pass=request.getParameter("pass");
+        UserDAO dao = new UserDAO();
+        String name = request.getParameter("username");
+        String pass = request.getParameter("pass");
         String img = "";
-        User user=new User();
-        user=dao.get(name, pass);
-        for(User cus : dao.getAllUsers()){
-            if(cus.getId().equals(user.getId())){
-                img = cus.getImage();
-                break;
+        User user = new User();
+        user = dao.get(name, pass);
+            
+        if (user != null) {
+            for (User cus : dao.getAllUsers()) {
+                if (cus.getId().equals(user.getId())) {
+                    img = cus.getImage();
+                    break;
+                }
             }
-        }
-        if(user!=null){
-            HttpSession session=request.getSession();
+            HttpSession session = request.getSession();
             session.setAttribute("id", user.getId());
             session.setAttribute("name", user.getName());
             session.setAttribute("role", user.getRoleid());
             session.setAttribute("img", img);
-            response.sendRedirect("http://localhost:8080/SocialCommercial");
-        }
-        else{
-            HttpSession session=request.getSession();
-            session.setAttribute("msg", "TEN HOAC MAT KHAU SAI !!!");
+            response.sendRedirect(request.getContextPath());
+
+
+        } else {
+            HttpSession session = request.getSession();
+            session.setAttribute("msg", "Tên đăng nhập hoặc mật khẩu sai.");
             response.sendRedirect("login");
         }
+
     }
 
     /**

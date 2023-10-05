@@ -92,7 +92,7 @@ header{
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 0 35px;
+    padding: 0 25px;
     position: relative;
     
 }
@@ -144,6 +144,9 @@ header{
 .iconBox2 .arrow_carrot-down:hover {
     background: #5c91c6; /* Màu nền khi hover */
     color: #d1deec;
+}
+.iconBox2 a {
+    margin-right: 20px; /* Add a margin to the right of the shopping cart icon */
 }
 
 /* CSS cho class "header-dropdown" */

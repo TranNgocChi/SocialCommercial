@@ -6,7 +6,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="logoBox">
-                <a href="home.jsp"><h1>SOCO</h1></a>
+                <a href="/SocialCommercial"><h1>SOCO</h1></a>
             </div>
             <div class="searchBox">
                 <input type="search">
@@ -27,7 +27,7 @@
 
 
                     <div class="dropdown-content">
-                        <a href="user_profile.jsp"><i class="fas fa-eye"></i>Trang cá nhân</a>
+                        <a href="UserProfileSocial"><i class="fas fa-eye"></i>Trang cá nhân</a>
                         <a href=""><i class="fas fa-highlighter"></i>Đổi mật khẩu</a>
                         <a href="logout"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a>
                         <!-- N?i dung xu?t hi?n sau khi b?m vào nút -->
@@ -40,4 +40,3 @@
         </div>
     </div>
 </header>
-

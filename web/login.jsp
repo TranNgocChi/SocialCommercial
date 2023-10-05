@@ -51,7 +51,7 @@
                             Đăng nhập
                         </button>
                         <h2 style="color:red">${msg}</h2>
-                        <a href="foget.jsp" style="color: white; text-decoration: none;">Forgot Password?</a>
+                        <a href="forget.jsp" style="color: black; text-decoration: none;">Forgot Password?</a>
                     </form>
 
                 </div>
