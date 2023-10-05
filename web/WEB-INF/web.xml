@@ -12,6 +12,22 @@
         <servlet-name>DetailControl</servlet-name>
         <servlet-class>Controller.DetailControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RequestSetRole</servlet-name>
+        <servlet-class>Controller.RequestSetRole</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>seller</servlet-name>
+        <servlet-class>Controller.seller</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>themsanpham</servlet-name>
+        <servlet-class>Controller.themsanpham</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deletesanpham</servlet-name>
+        <servlet-class>Controller.deletesanpham</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ShoppingControl</servlet-name>
         <url-pattern>/shopping</url-pattern>
@@ -23,6 +39,22 @@
     <servlet-mapping>
         <servlet-name>DetailControl</servlet-name>
         <url-pattern>/detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestSetRole</servlet-name>
+        <url-pattern>/RequestSetRole</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>seller</servlet-name>
+        <url-pattern>/seller</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>themsanpham</servlet-name>
+        <url-pattern>/themsanpham</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deletesanpham</servlet-name>
+        <url-pattern>/deletesanpham</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

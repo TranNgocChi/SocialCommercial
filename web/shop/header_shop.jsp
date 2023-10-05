@@ -11,9 +11,18 @@
                 <div class="logo-soco">
                     <a href="shopping"><h2>SOCO</h2></a>
                 </div>
+                <c:if test="${role!=3 && role!=null}">
                 <div class="content">
                     <a href="onboarding.jsp"><h5>Đăng ký bán hàng trên SOCO</h5></a>
                 </div>
+                </c:if>
+                 <c:if test="${role==3}">
+                <div class="content">
+      <form action="seller" method="post">
+    <button type="submit"><h5>Shop của bạn</h5></button>
+      </form>
+                </div>
+                </c:if>
             </div>
             <c:choose>
                 <c:when test="${name != null}">

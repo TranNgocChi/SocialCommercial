@@ -1,5 +1,6 @@
 package Controller;
 
+import DAO.ChatDAO;
 import DAO.UserDAO;
 import Model.User;
 import java.io.IOException;
@@ -56,6 +57,8 @@ public class LoginServlet extends HttpServlet {
                 }
             }
             HttpSession session = request.getSession();
+            String emailuser=dao.getEmailbyID(user.getId());
+             session.setAttribute("emailuser", emailuser);
             session.setAttribute("id", user.getId());
             session.setAttribute("name", user.getName());
             session.setAttribute("role", user.getRoleid());

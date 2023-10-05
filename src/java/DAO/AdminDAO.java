@@ -104,6 +104,18 @@ public class AdminDAO extends DatabaseConnection {
             Logger.getLogger(AdminDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void setSeller(Object userid,String status) {
+        try {
+            String sql = "Update requestSetRole SET status=? WHERE user_id=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setObject(2, userid);
+            ps.setString(1, status);
+            ps.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public static void main(String[] args) {
         AdminDAO userdao = new AdminDAO();
