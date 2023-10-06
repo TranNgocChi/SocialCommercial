@@ -105,6 +105,27 @@ public class UserDAO extends DatabaseConnection {
         }
         return null; // Trả về null nếu không tìm thấy user hoặc xảy ra lỗi
     }
+     public User checkdupemail(String name) {
+        try {
+            String sql = "SELECT * FROM [SWP391].[dbo].[AppUser] WHERE email=? ";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                Object id = rs.getObject(1);
+                String userName = rs.getString(2);
+                String userPass = rs.getString(3);
+                String email = rs.getString(4);
+                int roleId = rs.getInt(6);
+                User user = new User(id, name, email, roleId);
+                return user;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null; // Trả về null nếu không tìm thấy user hoặc xảy ra lỗi
+    }
 
     public boolean register(String name, String pass, String email) {
         try {
@@ -285,7 +306,7 @@ public class UserDAO extends DatabaseConnection {
     
     public static void main(String[] args) {
         UserDAO userdao = new UserDAO();
-        User user=userdao.getbyemail("vinh1");
+        User user=userdao.checkdupemail("vinhdqde170663@fpt.edu.vn");
         System.out.println(user);
     }
 }
