@@ -4,6 +4,11 @@
 <!-- header section start -->
 <header>
     <div class="header-container">
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> origin/Hung
         <div class="header-wrapper">
             <div class="logoBox">
                 <div class="logo-soco">
@@ -16,6 +21,7 @@
             <c:choose>
                 <c:when test="${name != null}">
                     <div class="iconBox2" style="padding: 0 10px;">
+<<<<<<< HEAD
                         <a href="${pageContext.request.contextPath}"  style="margin-right: 0;"><i class="fa fa-home"></i></a>
                         <a href="cart.jsp" style="margin-right: 10px;"><i class="fa fa-shopping-cart"></i></a>
                             <% if (session.getAttribute("img") != null) {%>
@@ -24,13 +30,23 @@
                         <label><img src="https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg" alt="user"></label>
                             <% }%>
 
+=======
+                        <a href="home.jsp" style="margin-right: 0;"><i class="fa fa-home"></i></a>
+                        <a href="cart.jsp" style="margin-right: 10px;"><i class="fa fa-shopping-cart"></i></a>
+                        <label><img src="https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg" alt="user"></label>
+
+                    
+>>>>>>> origin/Hung
                         <span class="arrow_carrot-down"></span>
                     </div>
                     <div class="header-dropdown">
                         <div class="dropdown-content">
+<<<<<<< HEAD
                             <c:if test="${role==3}">
                                 <a href="#"><i class="fa-solid fa-house"></i> Thống kê</a>
                             </c:if>
+=======
+>>>>>>> origin/Hung
                             <a href="edit_userprofile.jsp">Hồ sơ của bạn</a>
                             <a href="purchase.jsp">Đơn mua</a>
                             <a href="logout">Đăng xuất</a>
@@ -49,8 +65,14 @@
     </div>
 
 </header>
+<<<<<<< HEAD
 <input type="hidden" name="source" value="shopping.jsp">
 <script src="setofshop/js/dropdown-content.js"></script>
 <!-- header section end -->
 
 
+=======
+        <script src="setofshop/js/dropdown-content.js"></script>
+<!-- header section end -->
+
+>>>>>>> origin/Hung
