@@ -6,7 +6,6 @@
 package Controller;
 
 import DAO.ProductDAO;
-import Model.Category;
 import Model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,9 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ADMIN
  */
-public class ShoppingControl extends HttpServlet {
-
-    
+public class LoadMoreControl extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -36,14 +33,29 @@ public class ShoppingControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ProductDAO dao = new ProductDAO(); 
-        List<Product> products = dao.getTop8();
-        List<Category> list = dao.getAllCategory();
-        request.setAttribute("listP", products);
-        request.setAttribute("listC", list);
-        request.getRequestDispatcher("shopping.jsp").forward(request, response);
-        //response.sendRedirect("categorytype.jsp");
-        //request.getRequestDispatcher("categorytype.jsp").forward(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        String amount = request.getParameter("exits");
+        int iamount = Integer.parseInt(amount);       
+        ProductDAO dao = new ProductDAO();
+        List<Product> products = dao.getNext8Products(iamount);
+        PrintWriter out = response.getWriter();
+        for (Product product : products) {
+            out.println("<div class=\"productt col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat\">\n"
+                    + "    <div class=\"featured__item\">\n"
+                    + "        <div class=\"featured__item__pic\" style=\"background-image: url(" + product.getProductImage() + "); background-size: cover;\">\n"
+                    + "            <ul class=\"featured__item__pic__hover\">\n"
+                    + "                <li><a href=\"#\"><i class=\"fa fa-heart\"></i></a></li>\n"
+                    + "                <li><a href=\"#\"><i class=\"fa fa-retweet\"></i></a></li>\n"
+                    + "                <li><a href=\"#\"><i class=\"fa fa-shopping-cart\"></i></a></li>\n"
+                    + "            </ul>\n"
+                    + "        </div>\n"
+                    + "        <div class=\"featured__item__text\">\n"
+                    + "            <h6><a href=\"detail?pid=" + product.getProductId() + "\">" + product.getProductName() + "</a></h6>\n"
+                    + "            <h5>" + product.getProductPrice() + "</h5>\n"
+                    + "        </div>\n"
+                    + "    </div>\n"
+                    + "</div>");
+        }
     }
 
     /**
@@ -57,6 +69,7 @@ public class ShoppingControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //processRequest(request, response);
     }
 
     /**

@@ -92,9 +92,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="row featured__filter">
+                <div id="content" class="row featured__filter">
                     <c:forEach items="${listP}" var="o">
-                        <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                        <div class="productt col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
                             <div class="featured__item">
                                 <div class="featured__item__pic set-bg" data-setbg="${o.productImage}">
                                     <ul class="featured__item__pic__hover">
@@ -111,6 +111,7 @@
                         </div>
                     </c:forEach>
                 </div>
+                <button onclick="loadMore()" class="btn btn-primary" style="background-color: #5c91c6; border: 0;">Xem thêm</button>
             </div>
         </section>
         <!-- Featured Section End -->
@@ -126,6 +127,22 @@
         <script src="setofshop/js/mixitup.min.js"></script>
         <script src="setofshop/js/owl.carousel.min.js"></script>
         <script src="setofshop/js/main.js"></script>
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script>
+                    function loadMore() {
+                        var amount = document.getElementsByClassName("productt").length;
+                        $.ajax({
+                            url: "/SocialCommercial/load",
+                            method: "GET",
+                            data: {
+                                exits: amount
+                            },
+                            success: function (data) {
+                                var row = document.getElementById("content");
+                                row.innerHTML += data;
+                            }
+                        });
+                    }
+        </script>
     </body>
 </html>

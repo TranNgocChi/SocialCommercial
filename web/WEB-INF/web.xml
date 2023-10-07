@@ -12,6 +12,10 @@
         <servlet-name>DetailControl</servlet-name>
         <servlet-class>Controller.DetailControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadMoreControl</servlet-name>
+        <servlet-class>Controller.LoadMoreControl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ShoppingControl</servlet-name>
         <url-pattern>/shopping</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>DetailControl</servlet-name>
         <url-pattern>/detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadMoreControl</servlet-name>
+        <url-pattern>/load</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
