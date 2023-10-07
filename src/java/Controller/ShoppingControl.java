@@ -57,6 +57,11 @@ public class ShoppingControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        ProductDAO dao = new ProductDAO(); 
+        List<Product> products = dao.getAllProducts();
+        
+        request.setAttribute("listP", products);
+        request.getRequestDispatcher("shopping.jsp").forward(request, response);
     }
 
     /**

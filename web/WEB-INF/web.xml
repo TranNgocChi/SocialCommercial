@@ -16,6 +16,10 @@
         <servlet-name>LoadMoreControl</servlet-name>
         <servlet-class>Controller.LoadMoreControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>managecategory</servlet-name>
+        <servlet-class>Controller.managecategory</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ShoppingControl</servlet-name>
         <url-pattern>/shopping</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>LoadMoreControl</servlet-name>
         <url-pattern>/load</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>managecategory</servlet-name>
+        <url-pattern>/managecategory</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
