@@ -2,8 +2,12 @@
 package Controller;
 
 import DAO.FollowUserDAO;
+import DAO.NotificationDAO;
+import DAO.UserDAO;
 import Model.FollowUser;
+import Model.User;
 import java.io.IOException;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,6 +28,19 @@ public class FollowFriend extends HttpServlet {
         Object my_id = session.getAttribute("id");
         Object friend_id = request.getParameter("friend_id");
         
+        NotificationDAO notify = new NotificationDAO();
+        UserDAO controlUser = new UserDAO();
+        String NotiName = "";
+        String image_reacter = "";
+        
+        for(User us:controlUser.getAllUsers()){
+            if(my_id.toString().toLowerCase().equals(us.getId().toString().toLowerCase())){
+                NotiName=us.getFullname();
+                image_reacter = us.getImage();
+                break;
+            }
+        }
+        
         FollowUserDAO manageFl = new FollowUserDAO();
         for(FollowUser follow : manageFl.getFollowUsers()){
             if(my_id.toString().toLowerCase().equals(follow.getFollower().toString().toLowerCase()) &&
@@ -35,6 +52,11 @@ public class FollowFriend extends HttpServlet {
         }
         if(check == false){
             manageFl.addFollowUser(my_id, friend_id);
+            Date currentDate = new Date();
+            notify.addNotification(friend_id,
+            NotiName+" đã theo dõi bạn ngày hôm nay", currentDate,
+            "UserProfileSocial?user_id="+my_id, image_reacter);
+
         }
         
         response.sendRedirect("UserProfileSocial?user_id="+friend_id); 

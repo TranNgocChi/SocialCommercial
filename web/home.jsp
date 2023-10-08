@@ -18,7 +18,7 @@
         <!--Header-->
         <%@ include file="subhome/header.jsp" %>
         <!--Header-->
-
+        
         <!-- home section start -->
 
 
@@ -64,13 +64,13 @@
                                         </div>
 
                                         <div class="like-comment">
-                                            <ul>
-                                                <li>
-                                                    <img src="static/images/love.png" alt="love">
-                                                    <img src="static/images/like.png" alt="like">
-                                                    <span>22k like</span>
+                                            <ul style="font-size: 25px;">
+                                                <li >
+                                                    <a href=""><i class="far fa-heart"></i><span style="font-size: 20px;">22k </span></a>
+                                                    
                                                 </li>
-                                                <li><i class="fa-regular fa-comment-dots"></i> <span>555 comments</span></li>
+                                                <li style="margin-left: 70px;"><i class="fa-regular fa-comment-dots"></i> <span>555 comments</span></li>
+                                                <li style="margin-left: 70px;"><a href="removePost?post_id=${post_id}"><i class="fas fa-trash-alt"></i></a> Delete</li>
                                             </ul>
                                         </div>
                                     </div>

@@ -247,7 +247,8 @@ public class UserDAO extends DatabaseConnection {
     
     public static void main(String[] args) {
         UserDAO userdao = new UserDAO();
-        User user=userdao.getbyemail("vinh1");
+        userdao.EditUser("","","Cạp","",
+                 "","","","","9C2C5A44-2F57-4F1D-8A4C-BF4EC0615113");
         System.out.println(user);
     }
 }

@@ -23,8 +23,6 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "PostDetail", urlPatterns = {"/PostDetail"})
 public class PostDetail extends HttpServlet {
 
-
-   
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -33,7 +31,8 @@ public class PostDetail extends HttpServlet {
         Object user_now = session.getAttribute("id");
         Object post_userId = "";
         Object post_id = request.getParameter("post_id"); 
-        String post_title = "";    
+        String post_title = "";  
+        String user_image = "";
         String post_content = "";
         String post_image = "";
         Date post_date = null;
@@ -43,8 +42,16 @@ public class PostDetail extends HttpServlet {
         }catch(Exception e){
             System.out.println(e);
         }
+        UserDAO manageAllUsers = new UserDAO();
+        for(User usr : manageAllUsers.getAllUsers()){
+            if(user_id.toString().toLowerCase().equals(usr.getId().toString().toLowerCase())){
+                user_image=usr.getImage();
+                break;
+            }
+        }
         
         UserPostDAO manageUserPost = new UserPostDAO();
+        
         for(UserPost post : manageUserPost.getUserPosts()){
             if(post.getId().equals(post_id)){
                 post_userId = post.getUser_id();
@@ -87,9 +94,10 @@ public class PostDetail extends HttpServlet {
             listComment.add(comments);
         }}
         listComment.sort((comment1, comment2) -> comment1.getComment_date().compareTo(comment2.getComment_date()));
-        UserDAO manageAllUsers = new UserDAO();
+        
         ArrayList<User> listAllOfUsers = manageAllUsers.getAllUsers();
         
+        request.setAttribute("user_image", user_image);
         request.setAttribute("user_id", user_id);
         request.setAttribute("post_date", post_date);
         request.setAttribute("post_content", post_content);

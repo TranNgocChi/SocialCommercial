@@ -1,20 +1,22 @@
-
-<%@page import="java.util.List"%>
 <%@page import="Model.UserPost"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-
-
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-       
-     </head>
-     
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOCO</title>
+    <!-- style css link -->
+    <link rel="stylesheet" href="static/css/style.css">
+    <!-- fontawesome css link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <!-- Header -->
+    <%@ include file="subhome/header.jsp" %>
+    <!-- Header -->
+
     <div class="container">
             <div class="profile">
                 <div class="profile-image">
@@ -65,7 +67,7 @@
                     <p><i class="fas fa-thumbs-up"></i> ${favourite}</p>
                     <p><span style="font-weight:600">Bio: </span>
                     ${bio}
-                    </p>️
+                    </p>?
 
                 </div>
 
@@ -76,7 +78,7 @@
     <% if(request.getAttribute("check_listUserPost") != null){ %>                
         <h1 style="font-size: 30px;
             font-weight: 700;
-            margin-left: 500px;">Danh sách bài viết đã đăng tải</h1>
+            margin-left: 500px;">Danh s�ch b�i vi?t ?� ??ng t?i</h1>
             <br><br>
         <div class="container">
             <div class="gallery">
@@ -116,8 +118,10 @@
         </p>
         <% } %>
     <% } %>
-	<!-- End of container -->
-    </body>
+
+    <!-- JavaScript -->
+    <script src="static/js/js.js"></script>
+</body>
 </html>
 <style>
     
@@ -131,13 +135,6 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: "Open Sans", Arial, sans-serif;
-    min-height: 100vh;
-    background-color: #fafafa;
-    color: #262626;
-    padding-bottom: 3rem;
-}
 
 img {
     display: block;
@@ -419,14 +416,6 @@ img {
         transform: rotate(360deg);
     }
 }
-
-/*
-
-The following code will only run if your browser supports CSS grid.
-
-Remove or comment-out the code block below to see how the browser will fall-back to flexbox & floated styling. 
-
-*/
 
 @supports (display: grid) {
     .profile {

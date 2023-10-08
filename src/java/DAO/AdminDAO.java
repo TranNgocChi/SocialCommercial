@@ -120,7 +120,7 @@ public class AdminDAO extends DatabaseConnection {
             User randomUser = allUsers.get(randomIndex);
 
             // Kiểm tra xem ID của người dùng ngẫu nhiên đã tồn tại trong sessionUserId chưa
-            if (sessionUserId != randomUser.getId()) {
+            if (!sessionUserId.toString().toLowerCase().equals(randomUser.getId().toString().toLowerCase())) {
                 fiveUsers.add(randomUser);
             }
 

@@ -31,7 +31,11 @@
         <div class="fb-post1" >
             <div class="fb-post1-container">
                 <div class="post-title" >
-                    <img src="static/images/user2.jpg" alt="user picture">
+                    <% if(request.getAttribute("user_id") != null && !request.getAttribute("user_id").toString().equals("null")){%>
+                    <img src="${user_image}" alt="user picture">
+                    <% }else{ %>
+                    <img src="<%= session.getAttribute("img") %>" alt="user picture">
+                    <%}%>
                     <ul>
                         <li><h3><%= request.getParameter("fullName") %> </h3></li> 
                         <li><span>${post_date}</span></li> 
@@ -51,7 +55,7 @@
                 <div class="like-comment" style="font-size: 26px; ">
                     <ul>
                     <li>
-                        <a href="LikePost?post_id=${post_id}&fullName=<%= request.getParameter("fullName") %>">
+                        <a href="LikePost?post_id=${post_id}&fullName=<%= request.getParameter("fullName") %>&user_id=<%= request.getAttribute("user_id") %>">
                             <% if (request.getAttribute("check") != null) { %>
                                 <i class="fas fa-heart"></i>
                             <% } else { %>
@@ -81,13 +85,13 @@
                             </div>
                                 <% if(comment.getCommentor_id().toString().toLowerCase().equals(session.getAttribute("id").toString().toLowerCase())
                                 || request.getAttribute("post_userId").toString().toLowerCase().equals(session.getAttribute("id").toString().toLowerCase())){%>
-                            <a href="RemoveCommentSocial?id=<%= comment.getId() %>&post_id=${post_id}&fullName=<%= request.getParameter("fullName") %>" style="color: grey;">
+                            <a href="RemoveCommentSocial?id=<%= comment.getId() %>&post_id=${post_id}&fullName=<%= request.getParameter("fullName") %>&user_id=<%= request.getAttribute("user_id") %>" style="color: grey;">
                                 <i class="fas fa-minus-circle"></i>
                             </a>
                              <% } %>
                         </div>
                         <%}}}%>
-                        <form method="POST" action="CommentPost?post_id=${post_id}&fullName=<%= request.getParameter("fullName") %>">
+                        <form method="POST" action="CommentPost?post_id=${post_id}&fullName=<%= request.getParameter("fullName") %>&user_id=<%= request.getAttribute("user_id") %>">
                           <div class="comment-box">
                             <input type="text" placeholder="Post a comment" name="comment" />
                             <button type="submit">Post</button>

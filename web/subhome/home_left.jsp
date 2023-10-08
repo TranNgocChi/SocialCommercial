@@ -6,11 +6,11 @@
 
     <div class="profile">
         <% if (session.getAttribute("img") != null) {%>
-        <label><img src="<%= session.getAttribute("img")%>" alt="user"></label>
+        <label><a href="UserProfileSocial"><img src="<%= session.getAttribute("img")%>" alt="user"></a></label>
         <% } else { %>
         <label><img src="https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg" alt="user"></label>
         <% }%>
-        <h3>${name}</h3>
+        <a href="UserProfileSocial"><h3>${name}</h3></a>
         <c:if test="${name==null}">
             <h3>Khách</h3>
         </c:if>

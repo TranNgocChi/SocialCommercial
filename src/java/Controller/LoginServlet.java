@@ -1,9 +1,13 @@
 package Controller;
 
+import DAO.NotificationDAO;
 import DAO.UserDAO;
+import Model.Notification;
 import Model.User;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -54,12 +58,29 @@ public class LoginServlet extends HttpServlet {
                     img = cus.getImage();
                     break;
                 }
+            }            
+            
+            NotificationDAO noti = new NotificationDAO();
+            List<Notification> listNotificationUser = new ArrayList<>();
+            
+            for(Notification notify : noti.getAllNotifications()){
+                if(notify.getUser_id().toString().toLowerCase().equals(user.getId().toString().toLowerCase())){
+                    listNotificationUser.add(notify);
+                }
             }
+            Collections.sort(listNotificationUser, (notification1, notification2)
+            -> notification1.getNotification_date().compareTo(notification2.getNotification_date()));
+
+            int countNotify = 0;
+            countNotify=listNotificationUser.size();
+            
             HttpSession session = request.getSession();
             session.setAttribute("id", user.getId());
             session.setAttribute("name", user.getName());
             session.setAttribute("role", user.getRoleid());
             session.setAttribute("img", img);
+            session.setAttribute("listNotificationUser", listNotificationUser);
+            request.setAttribute("countNotify", countNotify);
             response.sendRedirect(request.getContextPath());
 
 

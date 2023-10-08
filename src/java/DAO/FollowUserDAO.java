@@ -161,31 +161,10 @@ public class FollowUserDAO {
         return check;
     }
     
-    public int getFollower(Object follower){
-        int count = 0;
-        for(FollowUser followers : listOfFollowUsers){
-            if(follower.toString().toLowerCase().equals(followers.getFollower().toString().toLowerCase())){
-                count ++;
-            }
-        }
-        return count;
-    }
-    
-    public int getFollowing(Object following){
-        int count = 0;
-        for(FollowUser followings : listOfFollowUsers){
-            if(followings.toString().toLowerCase().equals(followings.getFollowing().toString().toLowerCase())){
-                count ++;
-            }
-        }
-        return count;
-    }
-    
+  
     public static void main(String[] args) {
         FollowUserDAO fl = new FollowUserDAO();
-        for(FollowUser follow : fl.getFollowUsers()){
-            System.out.println(follow.toString());
-        }
+      
 //        fl.removeFollow("41EAB62F-A954-4AAB-B7C4-6F11D301D2D0", "3393C2BB-1630-4184-AD67-9A789CF770DE");
     }
 }

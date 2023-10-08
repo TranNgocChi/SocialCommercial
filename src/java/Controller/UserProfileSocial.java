@@ -37,10 +37,11 @@ public class UserProfileSocial extends HttpServlet {
         String favourite="";
         String bio="";
         int count = 0;
+        int countFollowing = 0;
+        int countFollower = 0;
         Object id ="";
         Object idSession = session.getAttribute("id");
         Object post_id = "";
-        String path="user_profile.jsp";
         FollowUserDAO manageFl = new FollowUserDAO();
         try{
             Object user_id = request.getParameter("user_id");
@@ -82,12 +83,19 @@ public class UserProfileSocial extends HttpServlet {
         }
 //        ----------------------------------
         String check_follow = null;
+        boolean conditionFound = false;
         FollowUserDAO manageFollow = new FollowUserDAO();
         for(FollowUser fol : manageFollow.getFollowUsers()){
-            if(session.getAttribute("id").toString().toLowerCase().equals(fol.getFollower().toString().toLowerCase())
-            && id.toString().toLowerCase().equals(fol.getFollowing().toString().toLowerCase())){
+            if (!conditionFound && session.getAttribute("id").toString().toLowerCase().equals(fol.getFollower().toString().toLowerCase()) && 
+                id.toString().toLowerCase().equals(fol.getFollowing().toString().toLowerCase())) {
                 check_follow = "notnull";
-                break;
+                conditionFound = true; 
+            }
+            if(id.toString().toLowerCase().equals(fol.getFollower().toString().toLowerCase())){
+                countFollowing = countFollowing+1;
+            }
+            if(id.toString().toLowerCase().equals(fol.getFollowing().toString().toLowerCase())){
+                countFollower = countFollower+1;
             }
         }
         
@@ -122,18 +130,11 @@ public class UserProfileSocial extends HttpServlet {
         request.setAttribute("bio", bio);
         request.setAttribute("listUserPost", listUserPost);
         request.setAttribute("check_listUserPost", check_listUserPost);
-        request.setAttribute("follower", manageFl.getFollower(id));
-        request.setAttribute("following", manageFl.getFollowing(id));
+        request.setAttribute("follower", countFollower);
+        request.setAttribute("following", countFollowing);
         
         
         request.getRequestDispatcher("user_profile.jsp").forward(request, response);
-    }
-
-   
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
     }
 
   
