@@ -136,7 +136,7 @@
                             <div class="section-title product__discount__title">
                                 <h2>Sản phẩm</h2>
                             </div>
-                            <div class="row">
+                            -<div class="row">
                                 <div class="product__discount__slider owl-carousel">
                                     <div class="col-lg-4">
                                         <div class="product__discount__item">
@@ -247,7 +247,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                           - </div>
                         </div>
                         <div class="filter__item">
                             <div class="row">
