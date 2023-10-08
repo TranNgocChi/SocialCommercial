@@ -43,7 +43,7 @@ public class UserDAO extends DatabaseConnection {
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null; // Trả về null nếu không tìm thấy user hoặc xảy ra lỗi
+        return null; // Tr? v? null n?u kh�ng t�m th?y user ho?c x?y ra l?i
     }
        public void setpassbyname(String name,String pass) {
         try {
@@ -79,7 +79,7 @@ public class UserDAO extends DatabaseConnection {
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null; // Trả về null nếu không tìm thấy user hoặc xảy ra lỗi
+        return null; // Trả v�? null nếu không tìm thấy user hoặc xảy ra lỗi
     }
 
 
@@ -103,7 +103,7 @@ public class UserDAO extends DatabaseConnection {
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null; // Trả về null nếu không tìm thấy user hoặc xảy ra lỗi
+        return null; // Tr? v? null n?u kh�ng t�m th?y user ho?c x?y ra l?i
     }
 
     public boolean register(String name, String pass, String email) {

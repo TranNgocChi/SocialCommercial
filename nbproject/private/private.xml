@@ -2,6 +2,24 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/SocialCommercial/src/java/Controller/ShoppingControl.java</file>
+            <file>file:/D:/SocialCommercial/web/forget.jsp</file>
+            <file>file:/D:/SocialCommercial/src/java/Model/Product.java</file>
+            <file>file:/D:/SocialCommercial/src/java/Controller/SignUpServlet.java</file>
+            <file>file:/D:/SocialCommercial/web/admin.jsp</file>
+            <file>file:/D:/SocialCommercial/src/java/Model/User.java</file>
+            <file>file:/D:/SocialCommercial/src/java/DAO/ProductDAO.java</file>
+            <file>file:/D:/SocialCommercial/src/java/Controller/EditUserProfile.java</file>
+            <file>file:/D:/SocialCommercial/web/nhapmkmoiforget.jsp</file>
+            <file>file:/D:/SocialCommercial/src/java/DAO/AdminDAO.java</file>
+            <file>file:/D:/SocialCommercial/web/viewmember.jsp</file>
+            <file>file:/D:/SocialCommercial/src/java/DAO/ChatDAO.java</file>
+            <file>file:/D:/SocialCommercial/src/java/Controller/getListUser.java</file>
+            <file>file:/D:/SocialCommercial/src/java/Controller/deletemember.java</file>
+            <file>file:/D:/SocialCommercial/src/java/DAO/UserDAO.java</file>
+            <file>file:/D:/SocialCommercial/nbproject/build-impl.xml</file>
+            <file>file:/D:/SocialCommercial/web/seller.jsp</file>
+        </group>
     </open-files>
 </project-private>

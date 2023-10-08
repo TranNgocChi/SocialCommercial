@@ -16,21 +16,25 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
+<<<<<<< HEAD (1965d3d) - Resolved conflicts in b
                     <file>${file.reference.sqljdbc42.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
                     <file>${file.reference.gson-1.4.jar}</file>
 
+=======
+                    <file>${file.reference.sqljdbc42.jar-1}</file>
+>>>>>>> origin/main (4c87fec) -
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>
             <web-module-additional-libraries/>
             <source-roots>
-                <root id="src.dir"/>
+                <root id="src.java.dir" name="Source Packages"/>
             </source-roots>
             <test-roots>
-                <root id="test.src.dir"/>
+                <root id="test.test.dir" name="Test Packages"/>
             </test-roots>
         </data>
     </configuration>
