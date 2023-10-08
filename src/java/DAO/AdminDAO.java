@@ -119,6 +119,8 @@ public class AdminDAO extends DatabaseConnection {
 
     public static void main(String[] args) {
         AdminDAO userdao = new AdminDAO();
-        userdao.delete("3D561143-E8C6-44D1-A859-E8796498A5A8");
+        ArrayList<User> list=new ArrayList<>();
+        list=userdao.getAll();
+        System.out.println(list);
     }
 }
