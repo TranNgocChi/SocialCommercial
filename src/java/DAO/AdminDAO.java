@@ -53,18 +53,18 @@ public class AdminDAO extends DatabaseConnection {
         return null;
     }
 
-    public void delete(Object id) {
-        try {
-            String sql = "DELETE FROM AppUser WHERE id=?;\n" +
-"DELETE FROM UserMessage WHERE receiver_id=? \n" +
-"OR sender_id=?;
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setObject(1, id);ps.setObject(2, id);ps.setObject(3, id);
-            ps.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(AdminDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+//    public void delete(Object id) {
+//        try {
+//            String sql = "DELETE FROM AppUser WHERE id=?;\n" +
+//"DELETE FROM UserMessage WHERE receiver_id=? \n" +
+//"OR sender_id=?;
+//            PreparedStatement ps = connection.prepareStatement(sql);
+//            ps.setObject(1, id);ps.setObject(2, id);ps.setObject(3, id);
+//            ps.execute();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(AdminDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 
     public ArrayList<Category> getAllCategory() {
         try {
