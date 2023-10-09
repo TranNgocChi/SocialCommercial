@@ -103,8 +103,9 @@ public class LoginServlet extends HttpServlet {
         } else {
             HttpSession session = request.getSession();
             session.setAttribute("msg", "Tên đăng nhập hoặc mật khẩu sai.");
-            response.sendRedirect("login");
+            response.sendRedirect("http://localhost:8080/SocialCommercial");
         }
+
 
     }
 

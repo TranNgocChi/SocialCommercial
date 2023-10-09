@@ -62,6 +62,7 @@
                 </div>
             </div>
         </section>
+        <%@ include file="shop/hero_section.jsp" %>
         <!-- Hero Section End -->
 
         <!-- Shoping Cart Section Begin -->
