@@ -64,7 +64,6 @@
                 </div>
             </div>
         </section>
-        <%@ include file="shop/hero_section.jsp" %>
         <!-- Hero Section End -->
 
         <!-- Featured Section Begin -->
@@ -185,8 +184,6 @@
         <script src="setofshop/js/owl.carousel.min.js"></script>
         <script src="setofshop/js/main.js"></script>
         
-        <!-- Featured Section End -->
-                <script src="setofshop/js/dropdown-content.js"></script>
 
     </body>
 </html>

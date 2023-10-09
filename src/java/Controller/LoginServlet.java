@@ -5,8 +5,6 @@ import DAO.NotificationDAO;
 import DAO.UserDAO;
 import DAO.UserPostDAO;
 import Model.LikeSocial;
-import DAO.NotificationDAO;
-import DAO.UserDAO;
 import Model.Notification;
 import Model.User;
 import Model.UserPost;
@@ -16,7 +14,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,7 +25,7 @@ import javax.servlet.http.HttpSession;
 
 public class LoginServlet extends HttpServlet {
 
-
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -89,7 +86,7 @@ public class LoginServlet extends HttpServlet {
                     }
                 }
             }
-
+            
             HttpSession session = request.getSession();
             session.setAttribute("id", user.getId());
             session.setAttribute("name", user.getName());
@@ -103,9 +100,8 @@ public class LoginServlet extends HttpServlet {
         } else {
             HttpSession session = request.getSession();
             session.setAttribute("msg", "Tên đăng nhập hoặc mật khẩu sai.");
-            response.sendRedirect("http://localhost:8080/SocialCommercial");
+            response.sendRedirect("login");
         }
-
 
     }
 

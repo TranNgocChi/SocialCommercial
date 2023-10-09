@@ -8,7 +8,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="logoBox">
-                <a href="http://localhost:8080/SocialCommercial"><h1>SOCO</h1></a>
+                <a href="home.jsp"><h1>SOCO</h1></a>
             </div>
             <div class="searchBox">
                 <input type="search">
@@ -43,9 +43,6 @@
                         <% } %>
                         
                     </div>
-                    <i class="fa-solid fa-bell"></i>
-                    <label><img src="https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg" alt="user"></label>
-
                     <% if(session.getAttribute("img") != null){ %>
                     <label><img src="<%= session.getAttribute("img") %>" alt="user"></label>
                     <% }else{ %>
@@ -67,6 +64,8 @@
     </div>
     
 </header>
+
+
 
 <script>
   const notificationIcon = document.getElementById("notificationIcon");
