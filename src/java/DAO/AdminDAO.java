@@ -35,15 +35,15 @@ public class AdminDAO extends DatabaseConnection {
                 String name = rs.getString(2);
                 String email = rs.getString(4);
                 String phone = rs.getString(5);
-                String country = rs.getString(6);
-                String province = rs.getString(7);
-                String district = rs.getString(8);
-                String town = rs.getString(9);
-                String location = rs.getString(10);
-                int roleid = rs.getInt(11);
-                String image = rs.getString(11);
-                User user = new User(id, name, email, phone, country, province, district, town, location, roleid, image);
-                list.add(user);
+//                String country = rs.getString(6);
+//                String province = rs.getString(7);
+//                String district = rs.getString(8);
+//                String town = rs.getString(9);
+//                String location = rs.getString(10);
+                int roleid = rs.getInt(6);
+                String image = rs.getString(7);
+                User user1 = new User(id, name, email, phone, image, roleid);
+                list.add(user1);
             }
             return list;
         } catch (SQLException ex) {

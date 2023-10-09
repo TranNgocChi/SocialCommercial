@@ -51,6 +51,7 @@
                             Đăng nhập
                         </button>
                         <h2 style="color:red">${msg}</h2>
+                        <c:set var="msg" value="${null}"></c:set>
                         <a href="forget.jsp" style="color: black; text-decoration: none;">Forgot Password?</a>
                     </form>
 

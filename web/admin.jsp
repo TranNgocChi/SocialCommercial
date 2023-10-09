@@ -1,25 +1,31 @@
+<%-- 
+    Document   : admin1
+    Created on : Oct 7, 2023, 7:36:26 PM
+    Author     : ADMIN
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
 
+    <head>
+        <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-        <title>Dashboard - NiceAdmin Bootstrap Template</title>
-        <meta content="" name="description">
-        <meta content="" name="keywords">
-
-        <!-- Favicons -->
-        <link href="assetsofadmin/img/favicon.png" rel="icon">
-        <link href="assetsofadmin/img/apple-touch-icon.png" rel="apple-touch-icon">
+        <title>Admin - Quản trị</title>
 
         <!-- Google Fonts -->
         <link href="https://fonts.gstatic.com" rel="preconnect">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+        <!-- fontawesome css link -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <!-- Vendor CSS Files -->
         <link href="assetsofadmin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="static/css/style.css">
         <link href="assetsofadmin/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
         <link href="assetsofadmin/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+
         <link href="assetsofadmin/vendor/quill/quill.snow.css" rel="stylesheet">
         <link href="assetsofadmin/vendor/quill/quill.bubble.css" rel="stylesheet">
         <link href="assetsofadmin/vendor/remixicon/remixicon.css" rel="stylesheet">
@@ -27,224 +33,154 @@
 
         <!-- Template Main CSS File -->
         <link href="assetsofadmin/css/style.css" rel="stylesheet">
-
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="static/images/favicon.ico" type="image/x-icon">
-        <title>SOCO</title>
-        <link rel="stylesheet" href="static/css/style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="shortcut icon" href="static/images/favicon.ico" type="image/x-icon">
-        <!-- style css link -->
-        <link rel="stylesheet" href="assetsofadmin/css/style.css">
-        <!-- fontawesome css link -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
     </head>
+
     <body>
 
-        <!-- header section start -->
-        <div style="margin-top:-18px;margin-left:-20px">
-            <%@include file="subhome/header.jsp" %>
-        </div>
+        <!-- ======= Header ======= -->
+        <%@ include file="subhome/header.jsp" %>
+        <!-- ======= Sidebar ======= -->
+        <aside id="sidebar" class="sidebar">
 
-        <aside id="sidebar" class="sidebar" style="margin-top:70px;margin-left:15px">
+    <ul class="sidebar-nav" id="sidebar-nav">
 
-            <ul class="sidebar-nav" id="sidebar-nav">
+        <li class="nav-item">
+            <a class="nav-link " href="admin.jsp">
+                <i class="bi bi-grid"></i>
+                <span>Dashboard</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
 
-                <li class="nav-item">
-                    <a class="nav-link " href="home.jsp">
-                        <i class="bi bi-grid"></i>
-                        <span>Dashboard</span>
+        <!-- Start Management Member Nav -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#member-tables-nav" data-bs-toggle="collapse" href="#member-tables-nav">
+                <i class="bi bi-person-fill"></i><span>Quản lý thành viên</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="member-tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="list_member.jsp">
+                        <i class="bi bi-circle"></i><span>Danh sách thành viên</span>
                     </a>
-                </li><!-- End Dashboard Nav -->
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                        <i class="bi bi-menu-button-wide"></i><span>Manage Member</span><i class="bi bi-chevron-down ms-auto"></i>
-                    </a>
-                    <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                        <li>
-                            <a href="components-alerts.html">
-                                <i class="bi bi-circle"></i><span>Role Managements</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="getListUser">
-                                <i class="bi bi-circle"></i><span>View Member List</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="components-badges.html">
-                                <i class="bi bi-circle"></i><span>Add Shipper</span>
-                            </a>
-                        </li>
-
-                    </ul>
-                </li><!-- End Components Nav -->
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed " href="managecategory"">
-                        <i class="bi bi-grid"></i>
-                        <span>Manage Category</span>
-                    </a>
-                </li><!-- End Charts Nav -->
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-                        <i class="bi bi-journal-text"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
-                    </a>
-                    <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                        <li>
-                            <a href="forms-elements.html">
-                                <i class="bi bi-circle"></i><span>Form Elements</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="forms-layouts.html">
-                                <i class="bi bi-circle"></i><span>Form Layouts</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="forms-editors.html">
-                                <i class="bi bi-circle"></i><span>Form Editors</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="forms-validation.html">
-                                <i class="bi bi-circle"></i><span>Form Validation</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li><!-- End Forms Nav -->
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-                        <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i class="bi bi-chevron-down ms-auto"></i>
-                    </a>
-                    <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                        <li>
-                            <a href="tables-general.html">
-                                <i class="bi bi-circle"></i><span>General Tables</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="tables-data.html">
-                                <i class="bi bi-circle"></i><span>Data Tables</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li><!-- End Tables Nav -->
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-                        <i class="bi bi-bar-chart"></i><span>Charts</span><i class="bi bi-chevron-down ms-auto"></i>
-                    </a>
-                    <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                        <li>
-                            <a href="charts-chartjs.html">
-                                <i class="bi bi-circle"></i><span>Chart.js</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="charts-apexcharts.html">
-                                <i class="bi bi-circle"></i><span>ApexCharts</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="charts-echarts.html">
-                                <i class="bi bi-circle"></i><span>ECharts</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li><!-- End Charts Nav -->
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-                        <i class="bi bi-gem"></i><span>Icons</span><i class="bi bi-chevron-down ms-auto"></i>
-                    </a>
-                    <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                        <li>
-                            <a href="icons-bootstrap.html">
-                                <i class="bi bi-circle"></i><span>Bootstrap Icons</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="icons-remix.html">
-                                <i class="bi bi-circle"></i><span>Remix Icons</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="icons-boxicons.html">
-                                <i class="bi bi-circle"></i><span>Boxicons</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li><!-- End Icons Nav -->
-
-                <li class="nav-heading">Pages</li>
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="users-profile.html">
-                        <i class="bi bi-person"></i>
-                        <span>Profile</span>
-                    </a>
-                </li><!-- End Profile Page Nav -->
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="pages-faq.html">
-                        <i class="bi bi-question-circle"></i>
-                        <span>F.A.Q</span>
-                    </a>
-                </li><!-- End F.A.Q Page Nav -->
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="pages-contact.html">
-                        <i class="bi bi-envelope"></i>
-                        <span>Contact</span>
-                    </a>
-                </li><!-- End Contact Page Nav -->
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="pages-register.html">
-                        <i class="bi bi-card-list"></i>
-                        <span>Register</span>
-                    </a>
-                </li><!-- End Register Page Nav -->
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="pages-login.html">
-                        <i class="bi bi-box-arrow-in-right"></i>
-                        <span>Login</span>
-                    </a>
-                </li><!-- End Login Page Nav -->
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="pages-error-404.html">
-                        <i class="bi bi-dash-circle"></i>
-                        <span>Error 404</span>
-                    </a>
-                </li><!-- End Error 404 Page Nav -->
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="pages-blank.html">
-                        <i class="bi bi-file-earmark"></i>
-                        <span>Blank</span>
-                    </a>
-                </li><!-- End Blank Page Nav -->
-
+                </li>
             </ul>
+        </li>
+        <!-- End Management Member Nav -->
 
-        </aside><!-- End Sidebar-->
+
+        <!-- Start Role Management Nav -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#role-tables-nav" data-bs-toggle="collapse" href="#role-tables-nav">
+                <i class="bi bi-key"></i><span>Quản lý vai trò</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="role-tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="list_shipper.jsp">
+                        <i class="bi bi-circle"></i><span>Danh sách tài khoản bên vận chuyển</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="seller_status.jsp">
+                        <i class="bi bi-circle"></i><span>Nâng cấp vai trò</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <!-- End Role Management Nav -->
+
+        <!-- Start Category Management Nav -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#category-tables-nav" data-bs-toggle="collapse" href="#category-tables-nav">
+                <i class="bi bi-pen"></i><span>Quản lý danh mục sản phẩm</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="category-tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="list_category.jsp">
+                        <i class="bi bi-circle"></i><span>Danh mục sản phẩm</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <!-- End Category Management Nav -->
+        
+        <!-- Start Product Management Nav -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#product-tables-nav" data-bs-toggle="collapse" href="#product-tables-nav">
+                <i class="bi bi-basket2"></i><span>Quản lý sản phẩm</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="product-tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="list_product.jsp">
+                        <i class="bi bi-circle"></i><span>Danh sách sản phẩm</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <!-- End Product Management Nav -->
+
+        
+
+<!--        <li class="nav-heading">Pages</li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="users-profile.html">
+                <i class="bi bi-person"></i>
+                <span>Profile</span>
+            </a>
+        </li> End Profile Page Nav 
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="pages-faq.html">
+                <i class="bi bi-question-circle"></i>
+                <span>F.A.Q</span>
+            </a>
+        </li> End F.A.Q Page Nav 
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="pages-contact.html">
+                <i class="bi bi-envelope"></i>
+                <span>Contact</span>
+            </a>
+        </li> End Contact Page Nav 
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="pages-register.html">
+                <i class="bi bi-card-list"></i>
+                <span>Register</span>
+            </a>
+        </li> End Register Page Nav 
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="pages-login.html">
+                <i class="bi bi-box-arrow-in-right"></i>
+                <span>Login</span>
+            </a>
+        </li> End Login Page Nav 
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="pages-error-404.html">
+                <i class="bi bi-dash-circle"></i>
+                <span>Error 404</span>
+            </a>
+        </li> End Error 404 Page Nav 
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="pages-blank.html">
+                <i class="bi bi-file-earmark"></i>
+                <span>Blank</span>
+            </a>
+        </li> End Blank Page Nav 
+
+    </ul>-->
+
+</aside><!-- End Sidebar-->
+        <!-- End Sidebar-->
 
         <main id="main" class="main">
-
-            <div class="pagetitle" >
+            <div class="pagetitle">
                 <h1>Dashboard</h1>
                 <nav>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="home.jsp">Home</a></li>
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                         <li class="breadcrumb-item active">Dashboard</li>
                     </ol>
                 </nav>
@@ -914,31 +850,7 @@
 
         <!-- Template Main JS File -->
         <script src="assetsofadmin/js/main.js"></script>
-    </body>
-    <html>
-
-
-        <!-- header section end -->
-        <!-- home section start -->
-
-
-
-
-
-
-
-
-        <!-- home section end -->
-
-        <script>
-                                    var darkButton = document.querySelector(".darkTheme");
-
-                                    darkButton.onclick = function () {
-                                        darkButton.classList.toggle("button-Active");
-                                        document.body.classList.toggle("dark-color")
-                                    }
-
-        </script>
 
     </body>
+
 </html>
