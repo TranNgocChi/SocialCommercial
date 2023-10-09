@@ -3,6 +3,7 @@
     Created on : Oct 7, 2023, 9:03:46 PM
     Author     : ADMIN
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,7 +12,7 @@
     <head>
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
+      
         <title>Tables / Data - NiceAdmin Bootstrap Template</title>
         <meta content="" name="description">
         <meta content="" name="keywords">
@@ -76,55 +77,30 @@
                                 <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p>
 
                                 <!-- Table with stripped rows -->
-                                <table class="table datatable">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Position</th>
-                                            <th scope="col">Age</th>
-                                            <th scope="col">Start Date</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Brandon Jacob</td>
-                                            <td>Designer</td>
-                                            <td>28</td>
-                                            <td>2016-05-25</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Bridie Kessler</td>
-                                            <td>Developer</td>
-                                            <td>35</td>
-                                            <td>2014-12-05</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Ashleigh Langosh</td>
-                                            <td>Finance</td>
-                                            <td>45</td>
-                                            <td>2011-08-12</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">4</th>
-                                            <td>Angus Grady</td>
-                                            <td>HR</td>
-                                            <td>34</td>
-                                            <td>2012-06-11</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">5</th>
-                                            <td>Raheem Lehner</td>
-                                            <td>Dynamic Division Officer</td>
-                                            <td>47</td>
-                                            <td>2011-04-19</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <!-- End Table with stripped rows -->
+                              <!-- Thêm lớp table và table-striped để định dạng bảng -->
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="width: 20%;">Thông tin</th>
+            <th style="width: 20%;">Shop Name</th>
+            <th style="width: 20%;">Phone</th>
+            <th style="width: 20%;">Name Cate</th> <!-- Đặt độ rộng cho cột này -->
+            <th style="width: 20%;">Trạng thái</th>
+        </tr>
+    </thead>
+    <tbody>
+        <c:forEach var="member" items="${listreq}">
+            <tr>
+                <td>${member.fullName}</td>
+                <td>${member.shopName}</td>
+                <td>${member.phone}</td>
+                <td>${member.namecate}</td> <!-- Cột này có độ rộng đã được đặt -->
+                <td>${member.status}</td>
+            </tr>
+        </c:forEach>
+    </tbody>
+</table>
+
 
                             </div>
                         </div>

@@ -44,11 +44,12 @@
             </div>
         </header>
         <div class="home">
+           
             <div class="containerr">
-                <form action="RequestSetRoleServlet" method="post">
+                <form action="RequestSetRole" method="post">
                     <div class="form-group row">
                         <label for="email" class="col">Email:</label>
-                        <input type="text" id="email" name="email" class="form-control col" placeholder="Email" required>
+                        <input type="text" value="${emailuser}" id="email" name="email" class="form-control col" placeholder="Email" readonly>
                     </div>
                     <div class="form-group row">
                         <label for="fullName" class="col">Full Name:</label>
@@ -65,14 +66,15 @@
                         <label for="commoditiesSector" class="col">Commodities sector:</label>
                         <select name="commoditiesSector" id="sector" class="form-control col">
                             <option selected>Choose...</option>
-                            <option value="department">Bách hoá online</option>
-                            <option value="men">Men's Fashion</option>
-                            <option value="women">Women's Fashion</option>
-                            <option value="phone">Phone&Accessory</option>
-                            <option value="elec">Electronics</option>
-                            <option value="lap">Computer&Laptop</option>
-                            <option value="cos">Cosmetics</option>
-                            <option value="toy">Toy</option>
+                            <option value="32DE7141-E052-4591-A103-2F5F544E01E0">Bách hoá online</option>
+                            <option value="467E803A-426E-441D-8DB8-669AE23A3469">Điện thoại & Phụ kiện</option>
+                            <option value="EECBD3F1-134E-43B0-A3E1-700EDB72A6A4">Mỹ phẩm</option>
+                            <option value="9BD9C078-7E46-4BA0-BE56-7223EE26608B">Máy ảnh & Máy quay phim</option>
+                            <option value="C9C33AEB-38F4-44A0-89B5-860BA5AE8C23">Máy tính & Laptop</option>
+                            
+                            <option value="1818E9A8-52CD-4538-9512-AD9234BD1EEA">Thời trang nam</option>
+                            <option value="063C4EA1-948F-48ED-87DA-D8C9E326F01A">Thời trang nữ</option>
+                            <option value="2EA22AA1-2368-4742-8D96-994337ED92DE">Đồ chơi</option>
                         </select>
                     </div>
                     <div class="form-group row">

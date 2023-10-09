@@ -27,10 +27,15 @@ public class DetailControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         Object id = request.getParameter("pid");
+
         ProductDAO dao = new ProductDAO();
+        Object cid = dao.getProductbyCId(id);
         Product p = dao.getProductsbyID(id);
         List<Category> list = dao.getAllCategory();
+
+        List<Product> related = dao.getProductsbyCID(cid);
         request.setAttribute("listC", list);
+        request.setAttribute("related", related);
         request.setAttribute("detail", p);
         request.getRequestDispatcher("product_detail.jsp").forward(request, response);
     }
@@ -46,7 +51,7 @@ public class DetailControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     /**

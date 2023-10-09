@@ -68,7 +68,7 @@ public class LoginServlet extends HttpServlet {
 
         } else {
             HttpSession session = request.getSession();
-            session.setAttribute("msg", "T�n ??ng nh?p ho?c m?t kh?u sai.");
+            session.setAttribute("msg", "Tên đăng nhập hoặc mật khẩu sai.");
             response.sendRedirect("login");
         }
 

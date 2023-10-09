@@ -31,6 +31,7 @@ public class Product {
         this.productDescription = productDescription;
     }
 
+
     public Product(Object productId, String productName, String productImage, double productPrice, String productDescription) {
         this.productId = productId;
         this.productName = productName;
@@ -40,7 +41,7 @@ public class Product {
     }
     
     
-
+    
     public Product(Object productId, String productName, String productImage, int productAvailable, int productSales, double productPrice, double productVoucher, String productDescription) {
         this.productId = productId;
         this.productName = productName;
@@ -120,6 +121,8 @@ public class Product {
     public String toString() {
         return "Product{" + "productId=" + productId + ", productName=" + productName + ", productImage=" + productImage + ", productAvailable=" + productAvailable + ", productSales=" + productSales + ", productPrice=" + productPrice + ", productVoucher=" + productVoucher + ", productDescription=" + productDescription + '}';
     }
+
+    
     
     
     

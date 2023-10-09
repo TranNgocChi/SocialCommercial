@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +22,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ADMIN
  */
+
+@WebServlet(name = "ShoppingControl", urlPatterns = {"/shopping"})
+
+
 public class ShoppingControl extends HttpServlet {
 
     
@@ -37,7 +43,10 @@ public class ShoppingControl extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ProductDAO dao = new ProductDAO(); 
+
+
         List<Product> products = dao.getTop8();
+
         List<Category> list = dao.getAllCategory();
         request.setAttribute("listP", products);
         request.setAttribute("listC", list);
@@ -75,3 +84,5 @@ public class ShoppingControl extends HttpServlet {
     }// </editor-fold>
 
 }
+
+

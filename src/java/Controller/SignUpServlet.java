@@ -53,7 +53,7 @@ public class SignUpServlet extends HttpServlet {
 //        out.print(username+" "+"Pass:"+ pass +"Pass1:"+pass1+"email:" +email);
             User user = new User(username, pass, email, 2);
             UserDAO userdao = new UserDAO();
-            if (userdao.checkdup(username) == null) {
+            if (userdao.checkdup(username) == null && userdao.checkdupemail(email) == null ) {
 // userdao.checkdupemail(email)==null
                 request.setAttribute("username", username);
                 request.setAttribute("pass", pass);
@@ -83,6 +83,10 @@ public class SignUpServlet extends HttpServlet {
 //            request.getRequestDispatcher("login.jsp").forward(request, response);
             } else if (userdao.checkdup(username) != null) {
                 session.setAttribute("msg", "Tên đăng nhập đã tồn tại. Vui lòng nhập tên đăng nhập khác!");
+                response.sendRedirect("signup");
+            }
+            else if (userdao.checkdupemail(email) != null) {
+               session.setAttribute("msg", "TRÙNG EMAIL ĐÃ CÓ TRONG HỆ THỐNG!!! VUI LÒNG ĐĂNG KÍ BẰNG ĐỊA CHỈ EMAIL KHÁC");
                 response.sendRedirect("signup");
             }
 //        else if(userdao.checkdupemail(username)==null){

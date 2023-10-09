@@ -25,7 +25,7 @@
             </a>
             <ul id="member-tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="list_member.jsp">
+                    <a href="getListUser">
                         <i class="bi bi-circle"></i><span>Danh sách thành viên</span>
                     </a>
                 </li>
@@ -46,7 +46,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="seller_status.jsp">
+                    <a href="getRequestRole">
                         <i class="bi bi-circle"></i><span>Nâng cấp vai trò</span>
                     </a>
                 </li>

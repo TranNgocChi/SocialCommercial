@@ -43,7 +43,7 @@ public class UserDAO extends DatabaseConnection {
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null; // Tr? v? null n?u kh�ng t�m th?y user ho?c x?y ra l?i
+        return null; // Tr? v? null n?u kh�ng t�m th?y user ho?c x?y ra l?i
     }
        public void setpassbyname(String name,String pass) {
         try {
@@ -79,7 +79,7 @@ public class UserDAO extends DatabaseConnection {
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null; // Tr? v? null n?u kh�ng t�m th?y user ho?c x?y ra l?i
+        return null; // Trả v�? null nếu không tìm thấy user hoặc xảy ra lỗi
     }
 
 
@@ -103,7 +103,7 @@ public class UserDAO extends DatabaseConnection {
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null; // Tr? v? null n?u kh�ng t�m th?y user ho?c x?y ra l?i
+        return null; // Tr? v? null n?u kh�ng t�m th?y user ho?c x?y ra l?i
     }
      public User checkdupemail(String name) {
         try {
@@ -124,7 +124,7 @@ public class UserDAO extends DatabaseConnection {
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null; // Tr? v? null n?u kh�ng t�m th?y user ho?c x?y ra l?i
+        return null; // Trả về null nếu không tìm thấy user hoặc xảy ra lỗi
     }
 
     public boolean register(String name, String pass, String email) {
@@ -307,6 +307,7 @@ public class UserDAO extends DatabaseConnection {
     public static void main(String[] args) {
         UserDAO userdao = new UserDAO();
         User user=userdao.checkdupemail("vinhdqde170663@fpt.edu.vn");
+
         System.out.println(user);
     }
 }

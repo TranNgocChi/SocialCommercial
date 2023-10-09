@@ -1,6 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <link rel="stylesheet" href="static/css/style.css">
+
 
 <header>
     <div class="header-container">
@@ -40,4 +42,5 @@
         </div>
     </div>
 </header>
+
 <script src="static/js/js.js"></script>

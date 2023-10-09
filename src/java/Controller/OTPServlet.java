@@ -89,13 +89,13 @@ public class OTPServlet extends HttpServlet {
         UserDAO userdao = new UserDAO();
         if (otp != null && otpuser.equals(otp.toString())) {
             userdao.register(name, pass, email);
-            request.setAttribute("msg", "??NG K� TH�NH C�NG, M?I B?N ??NG NH?P");
+            request.setAttribute("msg", "ĐĂNG KÍ THÀNH CÔNG, MỜI BẠN ĐĂNG NHẬP");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
             request.setAttribute("username", name);
             request.setAttribute("pass", pass);
             request.setAttribute("email", email);
-            session.setAttribute("mesotp", "SAI M� OTP, VUI L�NG NH?P L?I !!!");
+            session.setAttribute("mesotp", "SAI MÃ OTP, VUI LÒNG NHẬP LẠI !!!");
             request.getRequestDispatcher("otp.jsp").forward(request, response);
         }
 
