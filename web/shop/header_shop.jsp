@@ -29,7 +29,7 @@
                     <div class="header-dropdown">
                         <div class="dropdown-content">
                             <c:if test="${role==3}">
-                                <a href="#"><i class="fa-solid fa-house"></i> Thống kê</a>
+                                <a href="mkt_management.jsp"> Thống kê</a>
                             </c:if>
                             <a href="edit_userprofile.jsp">Hồ sơ của bạn</a>
                             <a href="purchase.jsp">Đơn mua</a>
