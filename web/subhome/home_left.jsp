@@ -20,7 +20,7 @@
         <c:if test="${role==1}">
             <a href="admin.jsp"><i class="fa-solid fa-house"></i> Admin</a>
         </c:if>
-        <a href="home.jsp"><i class="fa-solid fa-house"></i> Trang chủ</a>
+        <a href="/SocialCommercial"><i class="fa-solid fa-house"></i> Trang chủ</a>
         <a href="shopping"><i class="fa-brands fa-shopify"></i> Shopping</a>
         <a href="chat"><i class="fa-brands fa-facebook-messenger"></i> Messenger</a>
         <a href="create_post.jsp"><i class="fa-solid fa-circle-plus"></i> Tạo bài viết</a>

@@ -22,6 +22,15 @@ public class Product {
     public Product() {
     }
 
+    public Product(Object productId, String productName, String productImage, int productAvailable, double productPrice, String productDescription) {
+        this.productId = productId;
+        this.productName = productName;
+        this.productImage = productImage;
+        this.productAvailable = productAvailable;
+        this.productPrice = productPrice;
+        this.productDescription = productDescription;
+    }
+
     public Product(Object productId, String productName, String productImage, double productPrice, String productDescription) {
         this.productId = productId;
         this.productName = productName;
@@ -31,7 +40,7 @@ public class Product {
     }
     
     
-    
+
     public Product(Object productId, String productName, String productImage, int productAvailable, int productSales, double productPrice, double productVoucher, String productDescription) {
         this.productId = productId;
         this.productName = productName;

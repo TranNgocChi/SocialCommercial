@@ -66,7 +66,7 @@ public class getusernames extends HttpServlet {
 
         ArrayList<String> usernames = chat.getallnameuser();
 
-        // Chuyển danh sách tên người dùng thành chuỗi JSON
+        // Chuy?n danh s�ch t�n ng??i d�ng th�nh chu?i JSON
         Gson gson = new Gson();
         String jsonUsernames = gson.toJson(usernames);
 

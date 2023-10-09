@@ -16,7 +16,7 @@
             <c:choose>
                 <c:when test="${name != null}">
                     <div class="iconBox2" style="padding: 0 10px;">
-                        <a href="${pageContext.request.contextPath}"  style="margin-right: 0;"><i class="fa fa-home"></i></a>
+                        <a href="/SocialCommercial"  style="margin-right: 0;"><i class="fa fa-home"></i></a>
                         <a href="cart.jsp" style="margin-right: 10px;"><i class="fa fa-shopping-cart"></i></a>
                             <% if (session.getAttribute("img") != null) {%>
                         <label><img src="<%= session.getAttribute("img")%>" alt="user"></label>
