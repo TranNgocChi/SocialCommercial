@@ -2,6 +2,7 @@ package Controller;
 
 
 import DAO.UserPostDAO;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import javax.servlet.ServletException;
@@ -34,15 +35,15 @@ public class CreatePost extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try{
-            HttpSession session=request.getSession();
+        HttpSession session=request.getSession();
         Object user_id = session.getAttribute("id");
         String title = request.getParameter("title");
         String content = request.getParameter("content");
-        Part imagePart = request.getPart("image");
         Date post_date = new Date();
-        
+        Part imagePart = request.getPart("image");
+
         String realPath = request.getServletContext().getRealPath("/SavedImages");
-        String filename = Path.of(imagePart.getSubmittedFileName()).getFileName().toString();
+        String filename = imagePart.getSubmittedFileName();
         String image = realPath + "/" + filename;
         
             if(!Files.exists(Path.of(realPath))){
@@ -54,7 +55,7 @@ public class CreatePost extends HttpServlet {
                 UserPostDAO userpost = new UserPostDAO();
                 userpost.addUserPost(user_id, title, content, "SavedImages/"+filename, post_date);
                 
-                request.getRequestDispatcher("user_profile.jsp").forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/UserProfileSocial");
             } else {
                 // Handle invalid file type
                 response.setContentType("text/plain");

@@ -1,4 +1,12 @@
 
+<%@page import="java.util.List"%>
+<%@page import="DAO.UserDAO"%>
+<%@page import="Model.User"%>
+<%@page import="Model.LikeSocial"%>
+<%@page import="DAO.LikeSocialDAO"%>
+<%@page import="DAO.CommentSocialDAO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Model.CommentSocial"%>
 <%@page import="java.util.Date"%>
 <%@page import="Model.UserPost"%>
 <%@page import="DAO.UserPostDAO"%>
@@ -18,67 +26,78 @@
 
     </head>
     <body>
-        <%  
-            Object user_now = session.getAttribute("id");
-            Object post_userId = null;
-            Object post_id = request.getParameter("post_id"); 
-            String post_title = "";    
-            String post_content = "";
-            String post_image = "";
-            Date post_date = null;
-            UserPostDAO manageUserPost = new UserPostDAO();
-            for(UserPost post : manageUserPost.getUserPosts()){
-                if(post.getId().equals(post_id)){
-                    post_userId = post.getUser_id();
-                    post_title = post.getPost_title();
-                    post_content = post.getPost_content();
-                    post_image = post.getPost_image();
-                    post_date = post.getPost_date();
-                    break;
-                }
-            }
-        %>
+
         <!-- home section start -->
         <div class="fb-post1" >
             <div class="fb-post1-container">
                 <div class="post-title" >
-                    <img src="static/images/user2.jpg" alt="user picture">
+                    <% if(request.getAttribute("user_id") != null && !request.getAttribute("user_id").toString().equals("null")){%>
+                    <img src="${user_image}" alt="user picture">
+                    <% }else{ %>
+                    <img src="<%= session.getAttribute("img") %>" alt="user picture">
+                    <%}%>
                     <ul>
                         <li><h3><%= request.getParameter("fullName") %> </h3></li> 
-                        <li><span><%= post_date %></span></li> 
+                        <li><span>${post_date}</span></li> 
                     </ul>
-                    <a href="user_profile.jsp" style="font-size: 40px; margin-bottom: 20px; color: black;">
+                        <% if(request.getAttribute("user_id") != null && !request.getAttribute("user_id").toString().equals("null")){%>
+                    <a href="UserProfileSocial?user_id=<%= request.getAttribute("user_id") %>" style="font-size: 40px; margin-bottom: 20px; color: black;">
                         <i class="far fa-times-circle"></i>
                     </a>
-                    <p><%= post_content %></p>
-                    <a href="<%= post_image %>"><img src="<%= post_image %>" width="700px" height="660px"  alt="post images 01" ></a>
+                    <% }else{ %>
+                    <a href="UserProfileSocial" style="font-size: 40px; margin-bottom: 20px; color: black;">
+                        <i class="far fa-times-circle"></i>
+                    </a>
+                    <% } %>
+                    <p>${post_content}</p>
+                    <a href="${post_image}"><img src="${post_image}" width="700px" height="660px"  alt="post images 01" ></a>
                 </div>
                 <div class="like-comment" style="font-size: 26px; ">
                     <ul>
-                        <li><a href="LikePost?post_id=<%= post_id %>&fullName=<%= request.getParameter("fullName") %>">
-                                <% if(request.getAttribute("like_icon") == null){ %>
+                    <li>
+                        <a href="LikePost?post_id=${post_id}&fullName=<%= request.getParameter("fullName") %>&user_id=<%= request.getAttribute("user_id") %>">
+                            <% if (request.getAttribute("check") != null) { %>
+                                <i class="fas fa-heart"></i>
+                            <% } else { %>
                                 <i class="far fa-heart"></i>
-                                <% }else{%> <%= request.getAttribute("like_icon") %>
-                                <%}%>
-                        </a> 22k</li>
-                        <li><i class="fa-regular fa-comment-dots"></i> 555</li>
-                        <% if(post_userId.toString().toLowerCase().equals(user_now.toString().toLowerCase())){ %>
-                        <li><a href="removePost?post_id=<%= post_id %>"><i class="fas fa-trash-alt"></i></a> Delete</li>
+                            <% } %>
+                        </a>
+                        ${listLikesSize}
+                    </li>
+                        <li><i class="fa-regular fa-comment-dots"></i> ${listCommentSize} </li>
+               
+                        <% if(request.getAttribute("checkToRemovePost") != null){%>
+                        <li><a href="removePost?post_id=${post_id}"><i class="fas fa-trash-alt"></i></a> Delete</li>
                         <% } %>
                     </ul>
-                    <div class="comment">
-                        <img src="SavedImages/Screenshot 2023-08-01 182140.png" alt="user">
-                        <div class="comment-content">
-                          <span class="comment-username">Tên người comment</span>
-                          <p>Đây là nội dung comment của người dùng.</p>
+                        <% for(User customer : (List<User>) request.getAttribute("listAllOfUsers")){
+                            for(CommentSocial comment : (List<CommentSocial>) request.getAttribute("listComment")){
+                            if(comment.getCommentor_id() != null && customer.getId() != null &&
+                            comment.getCommentor_id().toString().toLowerCase().equals(customer.getId().toString().toLowerCase())){
+                        %>
+                        
+                        <div class="comment">
+                            <img src="<%= customer.getImage() %>" alt="user">
+                            <div class="comment-content">
+                                <span class="comment-username"><%= customer.getFullname() %></span>
+                                <span style="color: grey; margin-left: 7px; font-size: 15px;"><%= comment.getComment_date() %></span>
+                                <p><%= comment.getComment_content() %></p>
+                            </div>
+                                <% if(comment.getCommentor_id().toString().toLowerCase().equals(session.getAttribute("id").toString().toLowerCase())
+                                || request.getAttribute("post_userId").toString().toLowerCase().equals(session.getAttribute("id").toString().toLowerCase())){%>
+                            <a href="RemoveCommentSocial?id=<%= comment.getId() %>&post_id=${post_id}&fullName=<%= request.getParameter("fullName") %>&user_id=<%= request.getAttribute("user_id") %>" style="color: grey;">
+                                <i class="fas fa-minus-circle"></i>
+                            </a>
+                             <% } %>
                         </div>
-                      </div>
-                      <form>
-                        <div class="comment-box">
-                          <input type="text" placeholder="Post a comment" name="comment" />
-                          <button type="submit">Post</button>
-                        </div>
-                      </form>
+                        <%}}}%>
+                        <form method="POST" action="CommentPost?post_id=${post_id}&fullName=<%= request.getParameter("fullName") %>&user_id=<%= request.getAttribute("user_id") %>">
+                          <div class="comment-box">
+                            <input type="text" placeholder="Post a comment" name="comment" />
+                            <button type="submit">Post</button>
+                          </div>
+                        </form>
+                    
                 </div>
             </div>
 

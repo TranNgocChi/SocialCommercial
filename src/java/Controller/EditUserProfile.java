@@ -44,29 +44,29 @@ public class EditUserProfile extends HttpServlet {
             String bio = request.getParameter("bio");
         
             String realPath = request.getServletContext().getRealPath("/SavedImages");
-            String filename = Path.of(imagePart.getSubmittedFileName()).getFileName().toString();
+            String filename = imagePart.getSubmittedFileName();
             String image = realPath + "/" + filename;
         
             if(!Files.exists(Path.of(realPath))){
                 Files.createDirectory(Path.of(realPath));
             }
             
-            if (imagePart != null && imagePart.getSize() > 0) {
+            if (imagePart.getSize() > 0) {
 
             if (isImageFile(image)) {
                 imagePart.write(image);
                 session.setAttribute("img", "SavedImages/"+filename);
                 UserDAO edituser = new UserDAO();
                 edituser.EditUser(number, "SavedImages/"+filename, fullname, gender, statusnow, school, favour, bio, user_id);
-                request.getRequestDispatcher("user_profile.jsp").forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/UserProfileSocial");
             } else {
                 response.setContentType("text/plain");
-                response.getWriter().write("Invalid file type. Please upload an image.");
+                response.sendRedirect(request.getContextPath() + "/UserProfileSocial");
             }
         } else {
             UserDAO edituser = new UserDAO();
             edituser.EditUserSubstractImage(number, fullname, gender, statusnow, school, favour, bio, user_id);
-            request.getRequestDispatcher("user_profile.jsp").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/UserProfileSocial");
         }
         
         }catch(Exception e){

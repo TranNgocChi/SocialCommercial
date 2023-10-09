@@ -3,29 +3,43 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/src/java/Controller/EditUserProfile.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/web/user_profile.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/src/java/Model/User.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/src/java/Controller/removePost.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/web/edit_userprofile.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/src/java/DAO/LikeSocialDAO.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/web/post_detail.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/src/java/Controller/CreatePost.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/src/java/Model/UserPost.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/web/META-INF/context.xml</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/src/java/DAO/CommentSocialDAO.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/src/java/Controller/LikePost.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/src/java/Model/CommentSocial.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/src/java/connectSQLServer/DatabaseInfor.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/web/otp.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/web/login.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/src/java/DAO/UserPostDAO.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/src/java/connectSQLServer/DatabaseConnection.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/src/java/Model/LikeSocial.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/web/create_post.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/web/subhome/header.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/src/java/Model/Category.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Java/SocialCommercial-HanNi/src/java/DAO/UserDAO.java</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/src/java/connectSQLServer/DatabaseInfor.java</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/src/java/Controller/LoginServlet.java</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/web/create_post.jsp</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/src/java/Controller/RemoveCommentSocial.java</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/src/java/DAO/LikeSocialDAO.java</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/src/java/Controller/PostDetail.java</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/src/java/Controller/EditUserProfile.java</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/src/java/DAO/NotificationDAO.java</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/src/java/Controller/UserProfile.java</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/web/subhome/header.jsp</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/src/java/Controller/FollowFriend.java</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/src/java/DAO/FollowUserDAO.java</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/src/java/Controller/RemoveNotificationSocial.java</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/web/static/css/style.css</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/web/UserProfile.jsp</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/src/java/Model/LikeSocial.java</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/src/java/DAO/AdminDAO.java</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/src/java/DAO/CommentSocialDAO.java</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/web/login.jsp</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/src/java/Model/Notification.java</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/src/java/Controller/CreatePost.java</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/src/java/Controller/removePost.java</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/web/subhome/home_left.jsp</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/src/java/Controller/UserProfileSocial.java</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/web/post_detail.jsp</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/web/edit_userprofile.jsp</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/src/java/Controller/deletecategory.java</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/web/check.jsp</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/web/subhome/home_right.jsp</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/src/java/Controller/OTPServlet.java</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/src/java/Controller/LikePost.java</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/web/home.jsp</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/web/user_profile.jsp</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/src/java/Controller/CommentPost.java</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/src/java/Model/FollowUser.java</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/src/java/Controller/DisplayEditUserProfile.java</file>
+            <file>file:/C:/Users/Admin/Downloads/SocialCommercial-QuangVinh/src/java/DAO/UserDAO.java</file>
         </group>
     </open-files>
 </project-private>

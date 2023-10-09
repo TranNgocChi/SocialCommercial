@@ -8,7 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.ResultSet;
-import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,7 +31,7 @@ public class UserDAO extends DatabaseConnection {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                UUID id = UUID.fromString(rs.getString(1));
+                Object id = rs.getObject(1);
                 String userName = rs.getString(2);
                 String userPass = rs.getString(3);
                 String email = rs.getString(4);
@@ -46,6 +45,43 @@ public class UserDAO extends DatabaseConnection {
         }
         return null; // Trả về null nếu không tìm thấy user hoặc xảy ra lỗi
     }
+       public void setpassbyname(String name,String pass) {
+        try {
+            String sql = "Update AppUser\n"
+                    + "SET password=? "
+                    + "WHERE name=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+             ps.setString(1, pass);
+            ps.setString(2, name);
+            
+             ps.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+        
+    }
+    public User getbyemail(String email) {
+        try {
+            String sql = "SELECT * FROM [SWP391].[dbo].[AppUser] WHERE email=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                Object id = rs.getObject(1);
+                String userName = rs.getString("name");
+                int roleId = rs.getInt(6);
+
+                User user = new User(id, userName, email, roleId);
+                return user;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null; // Trả về null nếu không tìm thấy user hoặc xảy ra lỗi
+    }
+
 
     public User checkdup(String name) {
         try {
@@ -55,7 +91,7 @@ public class UserDAO extends DatabaseConnection {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                UUID id = UUID.fromString(rs.getString(1));
+                Object id = rs.getObject(1);
                 String userName = rs.getString(2);
                 String userPass = rs.getString(3);
                 String email = rs.getString(4);
@@ -187,7 +223,7 @@ public class UserDAO extends DatabaseConnection {
             ResultSet rs = ps.executeQuery();
             ArrayList<User> list = new ArrayList<>();
             while (rs.next()) {
-                UUID id = UUID.fromString(rs.getString(1));
+                Object id = rs.getObject(1);
                 String phone = rs.getString(5);
                 int roleid = rs.getInt(6);
                 String image = rs.getString(7);
@@ -211,7 +247,8 @@ public class UserDAO extends DatabaseConnection {
     
     public static void main(String[] args) {
         UserDAO userdao = new UserDAO();
-        
+        userdao.EditUser("","","Cạp","",
+                 "","","","","9C2C5A44-2F57-4F1D-8A4C-BF4EC0615113");
         System.out.println(user);
     }
 }
