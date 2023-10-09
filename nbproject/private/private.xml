@@ -11,6 +11,7 @@
             <file>file:/D:/SocialCommercial/src/java/Controller/CreatePost.java</file>
             <file>file:/D:/SocialCommercial/src/java/Controller/seller.java</file>
             <file>file:/D:/SocialCommercial/web/WEB-INF/web.xml</file>
+            <file>file:/D:/SocialCommercial/src/java/Controller/updatesanpham.java</file>
             <file>file:/D:/SocialCommercial/web/list_category.jsp</file>
             <file>file:/D:/SocialCommercial/web/static/css/user_profile.css</file>
             <file>file:/D:/SocialCommercial/web/home.jsp</file>
@@ -29,10 +30,13 @@
             <file>file:/D:/SocialCommercial/web/signup.jsp</file>
             <file>file:/D:/SocialCommercial/src/java/DAO/ChatDAO.java</file>
             <file>file:/D:/SocialCommercial/src/java/Controller/logout.java</file>
+            <file>file:/D:/SocialCommercial/src/java/Model/Category.java</file>
+            <file>file:/D:/SocialCommercial/src/java/Model/Notification.java</file>
             <file>file:/D:/SocialCommercial/src/java/Controller/DetailControl.java</file>
             <file>file:/D:/SocialCommercial/src/java/Controller/themsanpham.java</file>
             <file>file:/D:/SocialCommercial/web/nhapmkmoiforget.jsp</file>
             <file>file:/D:/SocialCommercial/src/java/DAO/AdminDAO.java</file>
+            <file>file:/D:/SocialCommercial/web/updateproduct.jsp</file>
             <file>file:/D:/SocialCommercial/src/java/Controller/getusernames.java</file>
             <file>file:/D:/SocialCommercial/src/java/connectSQLServer/test.java</file>
             <file>file:/D:/SocialCommercial/src/java/Controller/getRequestRole.java</file>
@@ -55,6 +59,7 @@
             <file>file:/D:/SocialCommercial/src/java/Controller/RequestSetRole.java</file>
             <file>file:/D:/SocialCommercial/src/java/Controller/LikePost.java</file>
             <file>file:/D:/SocialCommercial/src/java/Model/requestOfUser.java</file>
+            <file>file:/D:/SocialCommercial/web/request_form.jsp</file>
             <file>file:/D:/SocialCommercial/web/list_shipper.jsp</file>
             <file>file:/D:/SocialCommercial/src/java/DAO/ProductDAO.java</file>
             <file>file:/D:/SocialCommercial/web/subhome/header.jsp</file>
