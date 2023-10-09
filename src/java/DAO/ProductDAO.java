@@ -233,13 +233,15 @@ public class ProductDAO extends DatabaseConnection{
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
+
                 Object productId = resultSet.getObject(1);
                 String productName = resultSet.getString(4);
                 String productImage = resultSet.getString(5);
                 double productPrice = resultSet.getDouble(8);
+                int productAvaiable=resultSet.getInt(6);
                 String productDescription = resultSet.getString(10);
 
-                return new Product(productId, productName, productImage, productPrice, productDescription);
+                return new Product(productId, productName, productImage,productAvaiable, productPrice, productDescription);
                 
             }
             resultSet.close();
@@ -284,6 +286,32 @@ public class ProductDAO extends DatabaseConnection{
             ps.setInt(5,  productavai);
              ps.setDouble(6, price);
             ps.setString(7, des);
+          ps.execute();
+                  
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+     public void updatesanpham(String productname,String productimg,
+             int productavai,double price, String des,Object id) {
+        try {
+            String sql ="UPDATE  ProductInfo\n" +
+"  SET\n" +
+"product_name =?,\n" +
+"product_image =?,\n" +
+"product_available=?,\n" +
+"product_price=?,\n" +
+"product_description=?\n" +
+"WHERE product_id=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+          
+            ps.setString(1, productname);
+             ps.setString(2, productimg);
+            ps.setInt(3,  productavai);
+             ps.setDouble(4, price);
+            ps.setString(5, des);
+            ps.setObject(6, id);
           ps.execute();
                   
         } catch (SQLException ex) {

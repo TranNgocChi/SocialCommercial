@@ -213,6 +213,10 @@
                                         <input type="hidden" name="productid" value="${item.productId}">
                                         <input type="submit" value="❌">
                                     </form>
+                                        <form action="updatesanpham" method="get" style="margin-left:200px">
+                                        <input type="hidden" name="productid" value="${item.productId}">
+                                        <input type="submit" value="UPDATE">
+                                    </form>
                                 </div>
                             </div>
                             </c:forEach>
