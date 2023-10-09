@@ -19,7 +19,7 @@
                 <c:if test="${role==3}">
                     <div class="content">
                         <form action="seller" method="post">
-                            <button type="submit"><h5>Shop của bạn</h5></button>
+                            <button type="submit" class="btn btn-light"><h5>Shop của bạn</h5></button>
                         </form>
                     </div>
                 </c:if>
