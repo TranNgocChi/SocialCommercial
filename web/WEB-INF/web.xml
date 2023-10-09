@@ -24,6 +24,10 @@
         <servlet-name>SearchOfShopControl</servlet-name>
         <servlet-class>Controller.SearchOfShopControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SetRole</servlet-name>
+        <servlet-class>Controller.SetRole</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ShoppingControl</servlet-name>
         <url-pattern>/shopping</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>SearchOfShopControl</servlet-name>
         <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SetRole</servlet-name>
+        <url-pattern>/SetRole</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

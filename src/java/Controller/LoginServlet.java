@@ -63,13 +63,13 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("name", user.getName());
             session.setAttribute("role", user.getRoleid());
             session.setAttribute("img", img);
-            response.sendRedirect("home.jsp");
+            response.sendRedirect(request.getContextPath());
 
 
         } else {
             HttpSession session = request.getSession();
             session.setAttribute("msg", "Tên đăng nhập hoặc mật khẩu sai.");
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("login");
         }
 
     }

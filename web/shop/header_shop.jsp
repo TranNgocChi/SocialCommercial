@@ -55,4 +55,3 @@
 </header>
         <script src="setofshop/js/dropdown-content.js"></script>
 <!-- header section end -->
-

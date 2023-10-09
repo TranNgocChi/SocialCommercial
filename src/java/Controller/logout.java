@@ -69,6 +69,7 @@ public class logout extends HttpServlet {
          session.removeAttribute("shopName");
         session.removeAttribute("tendanhmuc");
         session.removeAttribute("danhmuc");
+
         response.sendRedirect(request.getContextPath());
     }
 

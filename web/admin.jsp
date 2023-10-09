@@ -21,158 +21,28 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <!-- Vendor CSS Files -->
-        <link href="assetsofadmin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="static/css/style.css">
-        <link href="assetsofadmin/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-        <link href="assetsofadmin/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
 
-        <link href="assetsofadmin/vendor/quill/quill.snow.css" rel="stylesheet">
-        <link href="assetsofadmin/vendor/quill/quill.bubble.css" rel="stylesheet">
-        <link href="assetsofadmin/vendor/remixicon/remixicon.css" rel="stylesheet">
-        <link href="assetsofadmin/vendor/simple-datatables/style.css" rel="stylesheet">
+        <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="static/css/style.css">
+        <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+        <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+
+        <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+        <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+        <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+        <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
         <!-- Template Main CSS File -->
-        <link href="assetsofadmin/css/style.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
     </head>
 
     <body>
 
+
         <!-- ======= Header ======= -->
         <%@ include file="subhome/header.jsp" %>
         <!-- ======= Sidebar ======= -->
-        <aside id="sidebar" class="sidebar">
-
-    <ul class="sidebar-nav" id="sidebar-nav">
-
-        <li class="nav-item">
-            <a class="nav-link " href="admin.jsp">
-                <i class="bi bi-grid"></i>
-                <span>Dashboard</span>
-            </a>
-        </li><!-- End Dashboard Nav -->
-
-        <!-- Start Management Member Nav -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#member-tables-nav" data-bs-toggle="collapse" href="#member-tables-nav">
-                <i class="bi bi-person-fill"></i><span>Quản lý thành viên</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="member-tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="list_member.jsp">
-                        <i class="bi bi-circle"></i><span>Danh sách thành viên</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <!-- End Management Member Nav -->
-
-
-        <!-- Start Role Management Nav -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#role-tables-nav" data-bs-toggle="collapse" href="#role-tables-nav">
-                <i class="bi bi-key"></i><span>Quản lý vai trò</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="role-tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="list_shipper.jsp">
-                        <i class="bi bi-circle"></i><span>Danh sách tài khoản bên vận chuyển</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="seller_status.jsp">
-                        <i class="bi bi-circle"></i><span>Nâng cấp vai trò</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <!-- End Role Management Nav -->
-
-        <!-- Start Category Management Nav -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#category-tables-nav" data-bs-toggle="collapse" href="#category-tables-nav">
-                <i class="bi bi-pen"></i><span>Quản lý danh mục sản phẩm</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="category-tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="list_category.jsp">
-                        <i class="bi bi-circle"></i><span>Danh mục sản phẩm</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <!-- End Category Management Nav -->
-        
-        <!-- Start Product Management Nav -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#product-tables-nav" data-bs-toggle="collapse" href="#product-tables-nav">
-                <i class="bi bi-basket2"></i><span>Quản lý sản phẩm</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="product-tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="list_product.jsp">
-                        <i class="bi bi-circle"></i><span>Danh sách sản phẩm</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <!-- End Product Management Nav -->
-
-        
-
-<!--        <li class="nav-heading">Pages</li>
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="users-profile.html">
-                <i class="bi bi-person"></i>
-                <span>Profile</span>
-            </a>
-        </li> End Profile Page Nav 
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-faq.html">
-                <i class="bi bi-question-circle"></i>
-                <span>F.A.Q</span>
-            </a>
-        </li> End F.A.Q Page Nav 
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-contact.html">
-                <i class="bi bi-envelope"></i>
-                <span>Contact</span>
-            </a>
-        </li> End Contact Page Nav 
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-register.html">
-                <i class="bi bi-card-list"></i>
-                <span>Register</span>
-            </a>
-        </li> End Register Page Nav 
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-login.html">
-                <i class="bi bi-box-arrow-in-right"></i>
-                <span>Login</span>
-            </a>
-        </li> End Login Page Nav 
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-error-404.html">
-                <i class="bi bi-dash-circle"></i>
-                <span>Error 404</span>
-            </a>
-        </li> End Error 404 Page Nav 
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-blank.html">
-                <i class="bi bi-file-earmark"></i>
-                <span>Blank</span>
-            </a>
-        </li> End Blank Page Nav 
-
-    </ul>-->
-
-</aside><!-- End Sidebar-->
+        <%@ include file="admin/left_admin.jsp" %>
         <!-- End Sidebar-->
 
         <main id="main" class="main">
@@ -488,14 +358,16 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <th scope="row"><a href="#"><img src="assetsofadmin/img/product-1.jpg" alt=""></a></th>
+
+                                                    <th scope="row"><a href="#"><img src="assets/img/product-1.jpg" alt=""></a></th>
                                                     <td><a href="#" class="text-primary fw-bold">Ut inventore ipsa voluptas nulla</a></td>
                                                     <td>$64</td>
                                                     <td class="fw-bold">124</td>
                                                     <td>$5,828</td>
                                                 </tr>
                                                 <tr>
-                                                    <th scope="row"><a href="#"><img src="assetsofadmin/img/product-2.jpg" alt=""></a></th>
+
+                                                    <th scope="row"><a href="#"><img src="assets/img/product-2.jpg" alt=""></a></th>
                                                     <td><a href="#" class="text-primary fw-bold">Exercitationem similique doloremque</a></td>
                                                     <td>$46</td>
                                                     <td class="fw-bold">98</td>
@@ -509,14 +381,19 @@
                                                     <td>$4,366</td>
                                                 </tr>
                                                 <tr>
+<<<<<<< HEAD
                                                     <th scope="row"><a href="#"><img src="assetsofadmin/img/product-4.jpg" alt=""></a></th>
+=======
+                                                    <th scope="row"><a href="#"><img src="assets/img/product-4.jpg" alt=""></a></th>
+>>>>>>> main
                                                     <td><a href="#" class="text-primary fw-bold">Officiis quaerat sint rerum error</a></td>
                                                     <td>$32</td>
                                                     <td class="fw-bold">63</td>
                                                     <td>$2,016</td>
                                                 </tr>
                                                 <tr>
-                                                    <th scope="row"><a href="#"><img src="assetsofadmin/img/product-5.jpg" alt=""></a></th>
+
+                                                    <th scope="row"><a href="#"><img src="assets/img/product-5.jpg" alt=""></a></th>
                                                     <td><a href="#" class="text-primary fw-bold">Sit unde debitis delectus repellendus</a></td>
                                                     <td>$79</td>
                                                     <td class="fw-bold">41</td>
@@ -781,31 +658,35 @@
 
                                 <div class="news">
                                     <div class="post-item clearfix">
-                                        <img src="assetsofadmin/img/news-1.jpg" alt="">
+
+                                        <img src="assets/img/news-1.jpg" alt="">
                                         <h4><a href="#">Nihil blanditiis at in nihil autem</a></h4>
                                         <p>Sit recusandae non aspernatur laboriosam. Quia enim eligendi sed ut harum...</p>
                                     </div>
 
                                     <div class="post-item clearfix">
-                                        <img src="assetsofadmin/img/news-2.jpg" alt="">
+                                        <img src="assets/img/news-2.jpg" alt="">
                                         <h4><a href="#">Quidem autem et impedit</a></h4>
                                         <p>Illo nemo neque maiores vitae officiis cum eum turos elan dries werona nande...</p>
                                     </div>
 
                                     <div class="post-item clearfix">
-                                        <img src="assetsofadmin/img/news-3.jpg" alt="">
+
+                                        <img src="assets/img/news-3.jpg" alt="">
                                         <h4><a href="#">Id quia et et ut maxime similique occaecati ut</a></h4>
                                         <p>Fugiat voluptas vero eaque accusantium eos. Consequuntur sed ipsam et totam...</p>
                                     </div>
 
                                     <div class="post-item clearfix">
-                                        <img src="assetsofadmin/img/news-4.jpg" alt="">
+
+                                        <img src="assets/img/news-4.jpg" alt="">
                                         <h4><a href="#">Laborum corporis quo dara net para</a></h4>
                                         <p>Qui enim quia optio. Eligendi aut asperiores enim repellendusvel rerum cuder...</p>
                                     </div>
 
                                     <div class="post-item clearfix">
-                                        <img src="assetsofadmin/img/news-5.jpg" alt="">
+
+                                        <img src="assets/img/news-5.jpg" alt="">
                                         <h4><a href="#">Et dolores corrupti quae illo quod dolor</a></h4>
                                         <p>Odit ut eveniet modi reiciendis. Atque cupiditate libero beatae dignissimos eius...</p>
                                     </div>
@@ -839,17 +720,18 @@
         <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
         <!-- Vendor JS Files -->
-        <script src="assetsofadmin/vendor/apexcharts/apexcharts.min.js"></script>
-        <script src="assetsofadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="assetsofadmin/vendor/chart.js/chart.umd.js"></script>
-        <script src="assetsofadmin/vendor/echarts/echarts.min.js"></script>
-        <script src="assetsofadmin/vendor/quill/quill.min.js"></script>
-        <script src="assetsofadmin/vendor/simple-datatables/simple-datatables.js"></script>
-        <script src="assetsofadmin/vendor/tinymce/tinymce.min.js"></script>
-        <script src="assetsofadmin/vendor/php-email-form/validate.js"></script>
+
+        <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/vendor/chart.js/chart.umd.js"></script>
+        <script src="assets/vendor/echarts/echarts.min.js"></script>
+        <script src="assets/vendor/quill/quill.min.js"></script>
+        <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+        <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+        <script src="assets/vendor/php-email-form/validate.js"></script>
 
         <!-- Template Main JS File -->
-        <script src="assetsofadmin/js/main.js"></script>
+        <script src="assets/js/main.js"></script>
 
     </body>
 

@@ -69,7 +69,7 @@ public class getListUser extends HttpServlet {
 //                out.print(x);
 //            }
             request.setAttribute("listmember", list);
-            request.getRequestDispatcher("viewmember.jsp").forward(request, response);
+            request.getRequestDispatcher("list_member.jsp").forward(request, response);
     }
 
     /**

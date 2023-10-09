@@ -31,6 +31,7 @@ public class Product {
         this.productDescription = productDescription;
     }
 
+
     public Product(Object productId, String productName, String productImage, double productPrice, String productDescription) {
         this.productId = productId;
         this.productName = productName;

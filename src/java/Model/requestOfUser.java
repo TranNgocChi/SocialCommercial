@@ -10,10 +10,26 @@ package Model;
  * @author DELL
  */
 public class requestOfUser {
-    private Object ìd,userid;
-    private String email,fullName,shopName, commoditiesSector,address,phone;
+    private Object id,userid;
+    private String email,fullName,shopName;
+            Object commoditiesSector;
+            String address,phone,namecateogry,status;
 
-    public requestOfUser(Object userid, String email, String fullName, String shopName, String commoditiesSector, String address, String phone) {
+    public requestOfUser(Object id, Object userid, String email, String fullName, String shopName, Object commoditiesSector, String address, String phone, String namecateogry, String status) {
+        this.id = id;
+        this.userid = userid;
+        this.email = email;
+        this.fullName = fullName;
+        this.shopName = shopName;
+        this.commoditiesSector = commoditiesSector;
+        this.address = address;
+        this.phone = phone;
+        this.namecateogry = namecateogry;
+        this.status = status;
+    }
+
+
+    public requestOfUser(Object userid, String email, String fullName, String shopName, Object commoditiesSector, String address, String phone) {
         this.userid = userid;
         this.email = email;
         this.fullName = fullName;
@@ -23,8 +39,8 @@ public class requestOfUser {
         this.phone = phone;
     }
 
-    public requestOfUser(Object ìd, Object userid, String email, String fullName, String shopName, String commoditiesSector, String address, String phone) {
-        this.ìd = ìd;
+    public requestOfUser(Object id, Object userid, String email, String fullName, String shopName, Object commoditiesSector, String address, String phone) {
+        this.id = id;
         this.userid = userid;
         this.email = email;
         this.fullName = fullName;
@@ -37,12 +53,12 @@ public class requestOfUser {
     public requestOfUser() {
     }
 
-    public Object getÌd() {
-        return ìd;
+    public Object getId() {
+        return id;
     }
 
-    public void setÌd(Object ìd) {
-        this.ìd = ìd;
+    public void setId(Object id) {
+        this.id = id;
     }
 
     public Object getUserid() {
@@ -77,13 +93,23 @@ public class requestOfUser {
         this.shopName = shopName;
     }
 
-    public String getCommoditiesSector() {
+    public Object getCommoditiesSector() {
         return commoditiesSector;
     }
 
-    public void setCommoditiesSector(String commoditiesSector) {
+    public void setCommoditiesSector(Object commoditiesSector) {
         this.commoditiesSector = commoditiesSector;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    
 
     public String getAddress() {
         return address;
@@ -101,9 +127,21 @@ public class requestOfUser {
         this.phone = phone;
     }
 
+    public String getNamecateogry() {
+        return namecateogry;
+    }
+
+    public void setNamecateogry(String namecateogry) {
+        this.namecateogry = namecateogry;
+    }
+
     @Override
     public String toString() {
-        return "requestOfUser{" + "\u00ecd=" + ìd + ", userid=" + userid + ", email=" + email + ", fullName=" + fullName + ", shopName=" + shopName + ", commoditiesSector=" + commoditiesSector + ", address=" + address + ", phone=" + phone + '}';
+        return "requestOfUser{" + "\u00ecd=" + id + ", userid=" + userid + ", email=" + email + ", fullName=" + fullName + ", shopName=" + shopName + ", commoditiesSector=" + commoditiesSector + ", address=" + address + ", phone=" + phone + ", namecateogry=" + namecateogry + ", status=" + status + '}';
     }
+
+  
+
+    
     
 }

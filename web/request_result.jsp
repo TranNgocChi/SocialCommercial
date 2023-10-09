@@ -53,9 +53,12 @@
         <div class="home">
             <div class="containerr">
                 <h1>Request Result</h1>
-                
-                <p style="color: red">Yêu cầu của bạn đã được gửi thành công. Bạn sẽ được quản trị viên liên hệ sớm.</p>
-                  
+
+                <c:choose>
+                    <c:when test="${insertResult}">
+                        <p>Yêu cầu của bạn đã được gửi thành công. Bạn sẽ được quản trị viên liên hệ sớm.</p>
+                    </c:when>
+                </c:choose>
                 <a href="shopping">Quay lại trang SOCO Shopping</a>
             </div>
         </div>

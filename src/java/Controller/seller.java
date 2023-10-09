@@ -80,7 +80,12 @@ public class seller extends HttpServlet {
         HttpSession session=request.getSession();
         Object iduser=session.getAttribute("id");
         ProductDAO productdao=new ProductDAO();
+        PrintWriter out = response.getWriter();
+        
         Object danhmuc=productdao.getTenDanhMuccuanguoiban(iduser);
+                
+        
+        if(danhmuc!=null){
         String tendanhmuc=productdao.getTenDanhMucBangID(danhmuc);
         String shopName=productdao.getshopnamecuanguoiban(iduser);
         ArrayList<Product> listproduct= productdao.getAllProductsofUser(iduser);
@@ -93,6 +98,10 @@ public class seller extends HttpServlet {
         session.setAttribute("tendanhmuc", tendanhmuc);
         session.setAttribute("danhmuc", danhmuc);
         request.getRequestDispatcher("seller.jsp").forward(request, response);
+        }
+        if(danhmuc==null){
+            response.sendRedirect("shopping");
+        }
     }
 
     /** 
