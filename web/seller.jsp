@@ -39,22 +39,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3">
-                        <div class="hero__categories">
-                            <div class="hero__categories__all">
-                                <i class="fa fa-bars"></i>
-                                <span>Danh mục</span>
-                            </div>
-                            <ul>
-                                <li><a href="#">Bách hoá Online</a></li>
-                                <li><a href="#">Thời trang nam</a></li>
-                                <li><a href="#">Thời trang nữ</a></li>
-                                <li><a href="#">Điện thoại & Phụ kiện</a></li>
-                                <li><a href="#">Điện tử</a></li>
-                                <li><a href="#">Máy tính & Laptop</a></li>
-                                <li><a href="#">Mỹ phẩm</a></li>
-                                <li><a href="#">Đồ chơi</a></li>
-                            </ul>
-                        </div>
+                        <%@ include file="shop/hero__categories.jsp" %>
                     </div>
                     <div class="col-lg-9">
                         <%@ include file="shop/hero_search.jsp" %>
@@ -114,7 +99,7 @@
                                             <c:forEach var="top3" items="${listtop3product}">
                                                 <a href="detail?pid=${top3.productId}" class="latest-product__item">
                                                     <div class="latest-product__item__pic">
-                                                        <img src="${top3.productImage}"" alt="">
+                                                        <img src="${top3.productImage}" alt="">
                                                     </div>
                                                     <div class="latest-product__item__text">
                                                         <h6>${top3.productName}</h6>
@@ -133,9 +118,9 @@
                     <div class="col-lg-9 col-md-7">
                         <div class="product__discount">
                             <div class="section-title product__discount__title">
-                                <h2>Sản phẩm</h2>
+                                <h2>Sản phẩm giảm giá</h2>
                             </div>
-                            -<div class="row">
+                             <div class="row">
                                 <div class="product__discount__slider owl-carousel">
 
                                     <c:forEach var="top3" items="${listtop3product}">
@@ -177,7 +162,7 @@
                                 </div>
                                 <div class="col-lg-4 col-md-4">
                                     <div class="filter__found">
-                                        <h6><span>16</span> Products found</h6>
+                                        <h6>Tổng số sản phẩm:  <span>${total}</span></h6>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-3">

@@ -21,14 +21,15 @@ import java.util.logging.Logger;
  *
  * @author ADMIN
  */
-public class ProductDAO extends DatabaseConnection{
+public class ProductDAO extends DatabaseConnection {
+
     private Connection connection;
-    
+
     public ProductDAO() {
         connection = DatabaseConnection.getConnection();
     }
-    
-    public List<Product> getAllProducts(){
+
+    public List<Product> getAllProducts() {
         List<Product> products = new ArrayList<>();
         String sql = "SELECT * FROM ProductInfo";
 
@@ -53,7 +54,8 @@ public class ProductDAO extends DatabaseConnection{
         }
         return products;
     }
-    public ArrayList<Product> getAllProductsofUser(Object id){
+
+    public ArrayList<Product> getAllProductsofUser(Object id) {
         ArrayList<Product> products = new ArrayList<>();
         String sql = "SELECT * FROM ProductInfo Where seller_id=?";
 
@@ -79,20 +81,21 @@ public class ProductDAO extends DatabaseConnection{
         }
         return products;
     }
-    public ArrayList<Product> getTop3ProductsofUser(Object id){
+
+    public ArrayList<Product> getTop3ProductsofUser(Object id) {
         ArrayList<Product> products = new ArrayList<>();
-        String sql = "SELECT TOP (3) [product_id]\n" +
-"      ,[seller_id]\n" +
-"      ,[type_id]\n" +
-"      ,[product_name]\n" +
-"      ,[product_image]\n" +
-"      ,[product_available]\n" +
-"      ,[product_sales]\n" +
-"      ,[product_price]\n" +
-"      ,[product_voucher]\n" +
-"      ,[product_description]\n" +
-"  FROM [SWP391].[dbo].[ProductInfo]\n" +
-"  WHERE seller_id=?";
+        String sql = "SELECT TOP (3) [product_id]\n"
+                + "      ,[seller_id]\n"
+                + "      ,[type_id]\n"
+                + "      ,[product_name]\n"
+                + "      ,[product_image]\n"
+                + "      ,[product_available]\n"
+                + "      ,[product_sales]\n"
+                + "      ,[product_price]\n"
+                + "      ,[product_voucher]\n"
+                + "      ,[product_description]\n"
+                + "  FROM [SWP391].[dbo].[ProductInfo]\n"
+                + "  WHERE seller_id=?";
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -116,79 +119,103 @@ public class ProductDAO extends DatabaseConnection{
         }
         return products;
     }
-    public String getTenDanhMucBangID(Object id){
+
+    public String getTenDanhMucBangID(Object id) {
         try {
-            String sql="SELECT *\n" +
-                    "  FROM [SWP391].[dbo].[ProductCategory]\n" +
-                    "  Where id=?;";
+            String sql = "SELECT *\n"
+                    + "  FROM [SWP391].[dbo].[ProductCategory]\n"
+                    + "  Where id=?;";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setObject(1, id);
             ResultSet rs = ps.executeQuery();
             rs.next();
-            String tendanhmuc=rs.getString(2);
+            String tendanhmuc = rs.getString(2);
             return tendanhmuc;
         } catch (SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
-    
-    public String getProductbyCId(Object cid){
+
+    public String getShopNameBySellerID(String sellerID) {
         try {
-            String sql="SELECT type_id FROM ProductInfo\n" +
-                    "WHERE product_id = ?";
+            String sql = "SELECT [shopName] FROM [SWP391].[dbo].[requestSetRole] WHERE user_id = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setObject(1, cid);
+            ps.setObject(1, sellerID);
             ResultSet rs = ps.executeQuery();
-            rs.next();
-            String category=rs.getString(1);
-            return category;
+
+            if (rs.next()) {
+                String shopName = rs.getString("shopName");
+                return shopName;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
-    
-     public Object getTenDanhMuccuanguoiban(Object id){
+
+    public String getTotalProduct(Object sellerId) {
+        String sql = "SELECT COUNT(product_id) FROM ProductInfo WHERE seller_id = ?";
+
         try {
-            String sql="SELECT \n" +
-"      \n" +
-"      [commoditiesSector]\n" +
-"    \n" +
-"  FROM [SWP391].[dbo].[requestSetRole]\n" +
-"  WHERE user_id=?  AND status='OK'";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setObject(1, sellerId);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                String productCount = resultSet.getString(1);
+                return productCount;
+            }
+
+            resultSet.close();
+            statement.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public Object getTenDanhMuccuanguoiban(Object id) {
+        try {
+            String sql = "SELECT \n"
+                    + "      \n"
+                    + "      [commoditiesSector]\n"
+                    + "    \n"
+                    + "  FROM [SWP391].[dbo].[requestSetRole]\n"
+                    + "  WHERE user_id=?  AND status='OK'";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setObject(1, id);
             ResultSet rs = ps.executeQuery();
             rs.next();
-            Object tendanhmuc=rs.getObject(1);
+            Object tendanhmuc = rs.getObject(1);
             return tendanhmuc;
         } catch (SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
-     public String getshopnamecuanguoiban(Object id){
+
+    public String getshopnamecuanguoiban(Object id) {
         try {
-            String sql="SELECT \n" +
-"      \n" +
-"      [shopName]\n" +
-"    \n" +
-"  FROM [SWP391].[dbo].[requestSetRole]\n" +
-"  WHERE user_id=?";
+            String sql = "SELECT \n"
+                    + "      \n"
+                    + "      [shopName]\n"
+                    + "    \n"
+                    + "  FROM [SWP391].[dbo].[requestSetRole]\n"
+                    + "  WHERE user_id=?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setObject(1, id);
             ResultSet rs = ps.executeQuery();
             rs.next();
-            String tendanhmuc=rs.getString(1);
+            String tendanhmuc = rs.getString(1);
             return tendanhmuc;
         } catch (SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
-    
-    public List<Category> getAllCategory(){
+
+    public List<Category> getAllCategory() {
         List<Category> list = new ArrayList<>();
         String sql = "SELECT * FROM ProductCategory";
 
@@ -199,7 +226,6 @@ public class ProductDAO extends DatabaseConnection{
             while (resultSet.next()) {
                 Object cid = resultSet.getObject(1);
                 String type = resultSet.getString(2);
-                
 
                 Category category = new Category(cid, type);
                 list.add(category);
@@ -211,11 +237,11 @@ public class ProductDAO extends DatabaseConnection{
         }
         return list;
     }
-    
-    public List<Product> getProductsbyCID(Object cid){
+
+    public List<Product> getProductsbyCID(Object cid) {
         List<Product> products = new ArrayList<>();
-        String sql = "SELECT * FROM ProductInfo\n" +
-                    "  WHERE type_id = ?";
+        String sql = "SELECT * FROM ProductInfo\n"
+                + "  WHERE type_id = ?";
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -239,10 +265,10 @@ public class ProductDAO extends DatabaseConnection{
         }
         return products;
     }
-    
-    public Product getProductsbyID(Object id){
-        String sql = "SELECT * FROM ProductInfo\n" +
-                    "  WHERE product_id = ?";
+
+    public Product getProductsbyID(Object id) {
+        String sql = "SELECT * FROM ProductInfo\n"
+                + "  WHERE product_id = ?";
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -255,11 +281,11 @@ public class ProductDAO extends DatabaseConnection{
                 String productName = resultSet.getString(4);
                 String productImage = resultSet.getString(5);
                 double productPrice = resultSet.getDouble(8);
-                int productAvaiable=resultSet.getInt(6);
+                int productAvaiable = resultSet.getInt(6);
                 String productDescription = resultSet.getString(10);
 
-                return new Product(productId, productName, productImage,productAvaiable, productPrice, productDescription);
-                
+                return new Product(productId, productName, productImage, productAvaiable, productPrice, productDescription);
+
             }
             resultSet.close();
             statement.close();
@@ -267,76 +293,79 @@ public class ProductDAO extends DatabaseConnection{
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
-        
+
     }
-    public void xoasanpham(Object id){
+
+    public void xoasanpham(Object id) {
         try {
-            String sql="DELETE\n" +
-                    "FROM [SWP391].[dbo].[ProductInfo]\n" +
-                    "WHERE product_id=?";
+            String sql = "DELETE\n"
+                    + "FROM [SWP391].[dbo].[ProductInfo]\n"
+                    + "WHERE product_id=?";
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setObject(1,id);
+            ps.setObject(1, id);
             ps.execute();
         } catch (SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
-        
+
     }
-     public void themsanpham(Object seller_id,Object type_id,String productname,String productimg,
-             int productavai,double price, String des) {
+
+    public void themsanpham(Object seller_id, Object type_id, String productname, String productimg,
+            int productavai, double price, String des) {
         try {
-            String sql = "INSERT INTO ProductInfo\n" +
-"      (seller_id\n" +
-"      ,type_id\n" +
-"      ,product_name\n" +
-"      ,product_image\n" +
-"      ,product_available\n" +
-"      ,product_price\n" +
-"      ,product_description)\n" +
-"Values(?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO ProductInfo\n"
+                    + "      (seller_id\n"
+                    + "      ,type_id\n"
+                    + "      ,product_name\n"
+                    + "      ,product_image\n"
+                    + "      ,product_available\n"
+                    + "      ,product_price\n"
+                    + "      ,product_description)\n"
+                    + "Values(?,?,?,?,?,?,?)";
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setObject(1,seller_id);
+            ps.setObject(1, seller_id);
             ps.setObject(2, type_id);
             ps.setString(3, productname);
-             ps.setString(4, productimg);
-            ps.setInt(5,  productavai);
-             ps.setDouble(6, price);
+            ps.setString(4, productimg);
+            ps.setInt(5, productavai);
+            ps.setDouble(6, price);
             ps.setString(7, des);
-          ps.execute();
-                  
+            ps.execute();
+
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
-     public void updatesanpham(String productname,String productimg,
-             int productavai,double price, String des,Object id) {
+
+    public void updatesanpham(String productname, String productimg,
+            int productavai, double price, String des, Object id) {
         try {
-            String sql ="UPDATE  ProductInfo\n" +
-"  SET\n" +
-"product_name =?,\n" +
-"product_image =?,\n" +
-"product_available=?,\n" +
-"product_price=?,\n" +
-"product_description=?\n" +
-"WHERE product_id=?";
+            String sql = "UPDATE  ProductInfo\n"
+                    + "  SET\n"
+                    + "product_name =?,\n"
+                    + "product_image =?,\n"
+                    + "product_available=?,\n"
+                    + "product_price=?,\n"
+                    + "product_description=?\n"
+                    + "WHERE product_id=?";
             PreparedStatement ps = connection.prepareStatement(sql);
-          
+
             ps.setString(1, productname);
-             ps.setString(2, productimg);
-            ps.setInt(3,  productavai);
-             ps.setDouble(4, price);
+            ps.setString(2, productimg);
+            ps.setInt(3, productavai);
+            ps.setDouble(4, price);
             ps.setString(5, des);
             ps.setObject(6, id);
-          ps.execute();
-                  
+            ps.execute();
+
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
-       public List<Product> getTop8() {
+
+    public List<Product> getTop8() {
         List<Product> products = new ArrayList<>();
         String sql = "SELECT Top 8 * FROM ProductInfo";
 
@@ -361,14 +390,15 @@ public class ProductDAO extends DatabaseConnection{
         }
         return products;
     }
-         public List<Product> searchByName(String txtSearch){
+
+    public List<Product> searchByName(String txtSearch) {
         List<Product> list = new ArrayList<>();
-        String sql = "SELECT * FROM ProductInfo\n" +
-                    "WHERE product_name like ?";
+        String sql = "SELECT * FROM ProductInfo\n"
+                + "WHERE product_name like ?";
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setObject(1,"%"+ txtSearch +"%");
+            statement.setObject(1, "%" + txtSearch + "%");
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -388,7 +418,8 @@ public class ProductDAO extends DatabaseConnection{
         }
         return list;
     }
-           public List<Product> getNext8Products(int amount) {
+
+    public List<Product> getNext8Products(int amount) {
         List<Product> products = new ArrayList<>();
         String sql = "SELECT * \n"
                 + "FROM ProductInfo\n"
@@ -418,11 +449,10 @@ public class ProductDAO extends DatabaseConnection{
         }
         return products;
     }
-     
-    
+
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO(); //khoi tao doi tuong dao
         dao.themsanpham("3897A0A3-0822-4464-B3E2-AD272E42E7EA", "1818E9A8-52CD-4538-9512-AD9234BD1EEA", "bàn ăn", "ss", 0, 0, "v");
-    
+
     }
 }
