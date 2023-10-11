@@ -154,26 +154,26 @@ public class ProductDAO extends DatabaseConnection {
         return null;
     }
 
-    public String getTotalProduct(Object sellerId) {
-        String sql = "SELECT COUNT(product_id) FROM ProductInfo WHERE seller_id = ?";
-
-        try {
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setObject(1, sellerId);
-            ResultSet resultSet = statement.executeQuery();
-
-            if (resultSet.next()) {
-                String productCount = resultSet.getString(1);
-                return productCount;
-            }
-
-            resultSet.close();
-            statement.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
+//    public String getTotalProduct(Object sellerId) {
+//        String sql = "SELECT COUNT(product_id) FROM ProductInfo WHERE seller_id = ?";
+//
+//        try {
+//            PreparedStatement statement = connection.prepareStatement(sql);
+//            statement.setObject(1, sellerId);
+//            ResultSet resultSet = statement.executeQuery();
+//
+//            if (resultSet.next()) {
+//                String productCount = resultSet.getString(1);
+//                return productCount;
+//            }
+//
+//            resultSet.close();
+//            statement.close();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return null;
+//    }
 
     public Object getTenDanhMuccuanguoiban(Object id) {
         try {
@@ -238,32 +238,48 @@ public class ProductDAO extends DatabaseConnection {
         return list;
     }
 
-    public List<Product> getProductsbyCID(Object cid) {
-        List<Product> products = new ArrayList<>();
-        String sql = "SELECT * FROM ProductInfo\n"
-                + "  WHERE type_id = ?";
+//    public List<Product> getProductsbyCID(Object cid) {
+//        List<Product> products = new ArrayList<>();
+//        String sql = "SELECT * FROM ProductInfo\n"
+//                + "  WHERE type_id = ?";
+//
+//        try {
+//            PreparedStatement statement = connection.prepareStatement(sql);
+//            statement.setObject(1, cid);
+//            ResultSet resultSet = statement.executeQuery();
+//
+//            while (resultSet.next()) {
+//                Object productId = resultSet.getObject(1);
+//                String productName = resultSet.getString(4);
+//                String productImage = resultSet.getString(5);
+//                double productPrice = resultSet.getDouble(8);
+//                String productDescription = resultSet.getString(10);
+//
+//                Product product = new Product(productId, productName, productImage, productPrice, productDescription);
+//                products.add(product);
+//            }
+//            resultSet.close();
+//            statement.close();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return products;
+//    }
 
+    public String getProductbyCId(Object cid) {
         try {
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setObject(1, cid);
-            ResultSet resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                Object productId = resultSet.getObject(1);
-                String productName = resultSet.getString(4);
-                String productImage = resultSet.getString(5);
-                double productPrice = resultSet.getDouble(8);
-                String productDescription = resultSet.getString(10);
-
-                Product product = new Product(productId, productName, productImage, productPrice, productDescription);
-                products.add(product);
-            }
-            resultSet.close();
-            statement.close();
+            String sql = "SELECT type_id FROM ProductInfo\n"
+                    + "WHERE product_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setObject(1, cid);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            String category = rs.getString(1);
+            return category;
         } catch (SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return products;
+        return null;
     }
 
     public Product getProductsbyID(Object id) {
@@ -430,6 +446,97 @@ public class ProductDAO extends DatabaseConnection {
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, amount);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                Object productId = resultSet.getObject(1);
+                String productName = resultSet.getString(4);
+                String productImage = resultSet.getString(5);
+                double productPrice = resultSet.getDouble(8);
+                String productDescription = resultSet.getString(10);
+
+                Product product = new Product(productId, productName, productImage, productPrice, productDescription);
+                products.add(product);
+            }
+            resultSet.close();
+            statement.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return products;
+    }
+
+    public int getTotalProductByTypeId(Object typeId) {
+        String sql = "SELECT COUNT(*) FROM ProductInfo\n"
+                + "WHERE type_id = ?";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setObject(1, typeId);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                int count = resultSet.getInt(1);
+                return count;
+            }
+
+            resultSet.close();
+            statement.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+
+    public String getTotalProductBySellerId(Object sellerId) {
+        String sql = "SELECT COUNT(product_id) FROM ProductInfo WHERE seller_id = ?";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setObject(1, sellerId);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                String productCount = resultSet.getString(1);
+                return productCount;
+            }
+
+            resultSet.close();
+            statement.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public List<Product> getAllProductsPaging(Object type_id, int pageIndex, int pageSize) {
+        List<Product> products = new ArrayList<>();
+        String sql = "  SELECT *\n"
+                + "FROM (\n"
+                + "    SELECT [product_id]\n"
+                + "        ,[seller_id]\n"
+                + "        ,[type_id]\n"
+                + "        ,[product_name]\n"
+                + "        ,[product_image]\n"
+                + "        ,[product_available]\n"
+                + "        ,[product_sales]\n"
+                + "        ,[product_price]\n"
+                + "        ,[product_voucher]\n"
+                + "        ,[product_description],\n"
+                + "        ROW_NUMBER() OVER (ORDER BY product_id ASC) AS rn\n"
+                + "    FROM [SWP391].[dbo].[ProductInfo]\n"
+                + "	WHERE type_id = ?\n"
+                + ") AS x\n"
+                + "WHERE rn BETWEEN (? - 1) * ? + 1 AND ? * ?;";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setObject(1, type_id);
+            statement.setInt(2, pageIndex);
+            statement.setInt(3, pageSize);
+            statement.setInt(4, pageIndex);
+            statement.setInt(5, pageSize);
+
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {

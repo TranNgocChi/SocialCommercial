@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -71,7 +73,7 @@
                                 <i class="fa fa-star-half-o"></i>
                                 <span>(18 reviews)</span>
                             </div>
-                            <div class="product__details__price">${detail.productPrice}</div>
+                            <div class="product__details__price"><fmt:formatNumber value="${detail.productPrice}" type="currency" currencySymbol="" minFractionDigits="0"/> VNĐ</div>
                             <p>${detail.productDescription}</p>
                             <div class="product__details__quantity">
                                 <div class="quantity">
@@ -113,7 +115,7 @@
                                 </div>
                                 <div class="product__item__text">
                                     <h6><a href="detail?pid=${related.productId}">${related.productName}</a></h6>
-                                    <h5>${related.productPrice}</h5>
+                                    <h5><fmt:formatNumber value="${related.productPrice}" type="currency" currencySymbol="" minFractionDigits="0"/> VNĐ</h5>
                                 </div>
                             </div>
                         </div>

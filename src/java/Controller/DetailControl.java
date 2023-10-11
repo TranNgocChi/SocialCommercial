@@ -65,3 +65,4 @@ public class DetailControl extends HttpServlet {
     }// </editor-fold>
 
 }
+

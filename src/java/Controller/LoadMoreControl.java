@@ -9,6 +9,7 @@ import DAO.ProductDAO;
 import Model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -32,31 +33,36 @@ public class LoadMoreControl extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        String amount = request.getParameter("exits");
-        int iamount = Integer.parseInt(amount);       
-        ProductDAO dao = new ProductDAO();
-        List<Product> products = dao.getNext8Products(iamount);
-        PrintWriter out = response.getWriter();
-        for (Product product : products) {
-            out.println("<div class=\"productt col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat\">\n"
-                    + "    <div class=\"featured__item\">\n"
-                    + "        <div class=\"featured__item__pic\" style=\"background-image: url(" + product.getProductImage() + "); background-size: cover;\">\n"
-                    + "            <ul class=\"featured__item__pic__hover\">\n"
-                    + "                <li><a href=\"#\"><i class=\"fa fa-heart\"></i></a></li>\n"
-                    + "                <li><a href=\"#\"><i class=\"fa fa-retweet\"></i></a></li>\n"
-                    + "                <li><a href=\"#\"><i class=\"fa fa-shopping-cart\"></i></a></li>\n"
-                    + "            </ul>\n"
-                    + "        </div>\n"
-                    + "        <div class=\"featured__item__text\">\n"
-                    + "            <h6><a href=\"detail?pid=" + product.getProductId() + "\">" + product.getProductName() + "</a></h6>\n"
-                    + "            <h5>" + product.getProductPrice() + "</h5>\n"
-                    + "        </div>\n"
-                    + "    </div>\n"
-                    + "</div>");
-        }
+        throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+    String amount = request.getParameter("exits");
+    int iamount = Integer.parseInt(amount);       
+    ProductDAO dao = new ProductDAO();
+    List<Product> products = dao.getNext8Products(iamount);
+    PrintWriter out = response.getWriter();
+    for (Product product : products) {
+        double productPrice = product.getProductPrice();
+        DecimalFormat df = new DecimalFormat("#,##0 VNĐ");//dinh dang gia sp va luu trong bien formattedPrice
+        String formattedPrice = df.format(productPrice);
+        
+        out.println("<div class=\"productt col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat\">\n"
+                + "    <div class=\"featured__item\">\n"
+                + "        <div class=\"featured__item__pic\" style=\"background-image: url(" + product.getProductImage() + "); background-size: cover;\">\n"
+                + "            <ul class=\"featured__item__pic__hover\">\n"
+                + "                <li><a href=\"#\"><i class=\"fa fa-heart\"></i></a></li>\n"
+                + "                <li><a href=\"#\"><i class=\"fa fa-retweet\"></i></a></li>\n"
+                + "                <li><a href=\"#\"><i class=\"fa fa-shopping-cart\"></i></a></li>\n"
+                + "            </ul>\n"
+                + "        </div>\n"
+                + "        <div class=\"featured__item__text\">\n"
+                + "            <h6><a href=\"detail?pid=" + product.getProductId() + "\">" + product.getProductName() + "</a></h6>\n"
+                + "            <h5>" + formattedPrice + "</h5>\n"        
+                + "        </div>\n"
+                + "    </div>\n"
+                + "</div>");
     }
+}
+
 
     /**
      * Handles the HTTP <code>POST</code> method.

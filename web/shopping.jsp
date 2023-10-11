@@ -1,6 +1,8 @@
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -105,7 +107,7 @@
                                 </div>
                                 <div class="featured__item__text">
                                     <h6><a href="detail?pid=${o.productId}">${o.productName}</a></h6>
-                                    <h5>${o.productPrice}</h5>
+                                    <h5><fmt:formatNumber value="${o.productPrice}" type="currency" currencySymbol="" minFractionDigits="0"/> VNĐ</h5>
                                 </div>
                             </div>
                         </div>

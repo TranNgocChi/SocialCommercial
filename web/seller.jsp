@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -90,7 +92,7 @@
                                                     </div>
                                                     <div class="latest-product__item__text">
                                                         <h6>${top3.productName}</h6>
-                                                        <span>${top3.productPrice}</span>
+                                                        <span><fmt:formatNumber value="${top3.productPrice}" type="currency" currencySymbol="" minFractionDigits="0"/> VNĐ</span>
                                                     </div>
                                                 </a>
                                             </c:forEach>
@@ -103,7 +105,7 @@
                                                     </div>
                                                     <div class="latest-product__item__text">
                                                         <h6>${top3.productName}</h6>
-                                                        <span>${top3.productPrice}</span>
+                                                        <span><fmt:formatNumber value="${top3.productPrice}" type="currency" currencySymbol="" minFractionDigits="0"/> VNĐ</span>
                                                     </div>
                                                 </a>
                                             </c:forEach>
@@ -137,7 +139,7 @@
                                                 </div>
                                                 <div class="product__discount__item__text">
                                                     <h5><a href="detail?pid=${top3.productId}">${top3.productName}</a></h5>
-                                                    <div class="product__item__price">${top3.productPrice-(top3.productPrice*30/100)} <span>${top3.productPrice}</span></div>
+                                                    <div class="product__item__price"><fmt:formatNumber value="${top3.productPrice-(top3.productPrice*30/100)}" type="currency" currencySymbol="" minFractionDigits="0"/> VNĐ <span><fmt:formatNumber value="${top3.productPrice}" type="currency" currencySymbol="" minFractionDigits="0"/> VNĐ</span></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -165,12 +167,6 @@
                                         <h6>Tổng số sản phẩm:  <span>${total}</span></h6>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-3">
-                                    <div class="filter__option">
-                                        <span class="icon_grid-2x2"></span>
-                                        <span class="icon_ul"></span>
-                                    </div>
-                                </div>
                             </div>
                         </div>
 
@@ -188,7 +184,7 @@
                                         </div>
                                         <div class="product__item__text">
                                             <h6><a href="detail?pid=${item.productId}">${item.productName}</a></h6>
-                                            <h5>${item.productPrice}</h5>
+                                            <h5><fmt:formatNumber value="${item.productPrice}" type="currency" currencySymbol="" minFractionDigits="0"/> VNĐ</h5>
                                         </div>
                                         <div class="d-flex justify-content-end align-items-center">
                                             <form action="updatesanpham" method="get">

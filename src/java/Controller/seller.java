@@ -94,7 +94,7 @@ public class seller extends HttpServlet {
             ArrayList<Product> listproduct = productdao.getAllProductsofUser(iduser);
             ArrayList<Product> listtop3product = productdao.getTop3ProductsofUser(iduser);
             request.setAttribute("listtop3product", listtop3product);
-            String totalProduct = productdao.getTotalProduct(iduser);
+            String totalProduct = productdao.getTotalProductBySellerId(iduser);
             request.setAttribute("listproduct", listproduct);
             List<Category> list = productdao.getAllCategory();
             request.setAttribute("listC", list);

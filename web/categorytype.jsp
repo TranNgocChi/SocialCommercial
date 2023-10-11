@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -86,6 +88,7 @@
         <section class="product spad">
             <div class="container">
                 <div class="row">
+
                     <div class="col-lg-12 col-md-7">
 
                         <div class="filter__item">
@@ -104,6 +107,15 @@
                             </div>
                         </div>
                         <div class="row">
+                            <div class="col-lg-12 col-md-12" style="text-align: center">
+                                <div class="mess">
+                                    <h2>${mess}</h2>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
                             <c:forEach items="${listP}" var="o">
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="product__item">
@@ -116,18 +128,35 @@
                                         </div>
                                         <div class="product__item__text">
                                             <h6><a href="detail?pid=${o.productId}">${o.productName}</a></h6>
-                                            <h5>${o.productPrice}</h5>
+                                            <h5><fmt:formatNumber value="${o.productPrice}" type="currency" currencySymbol="" minFractionDigits="0"/> VNĐ</h5>
                                         </div>
                                     </div>
                                 </div>
                             </c:forEach>
                         </div>
-                        <div class="product__pagination">
-                            <a href="#">1</a>
-                            <a href="#">2</a>
-                            <a href="#">3</a>
-                            <a href="#"><i class="fa fa-long-arrow-right"></i></a>
-                        </div>
+
+                        <c:if test="${maxPage > 1}">
+                            <div class="product__pagination">
+                                <c:if test="${backPage > 0}">
+                                    <a href="categorytype?cid=${cateID}&pageIndex=${backPage}"><i class="fa fa-long-arrow-left"></i></a>
+                                </c:if>
+                                    
+                                <c:forEach begin="1" end="${maxPage}" step="1" var="i">
+                                    <c:if test="${i == pageIndex}">
+                                        <a href="categorytype?cid=${cateID}&pageIndex=${i}">${i}</a>
+                                    </c:if>
+                                    <c:if test="${i != pageIndex}">
+                                        <a class="active-true" href="categorytype?cid=${cateID}&pageIndex=${i}">${i}</a>
+                                    </c:if>
+                                </c:forEach>
+                                        
+                                <c:if test="${nextPage < maxPage+1}">
+                                    <a class="active-false" href="categorytype?cid=${cateID}&pageIndex=${nextPage}"><i class="fa fa-long-arrow-right"></i></a>
+                                </c:if>
+                            </div>
+                        </c:if>
+
+
                     </div>
                     <div style="margin-top: 10px;">
                         <a href="shopping" style="color: #5c91c6;">Quay lại</a>
