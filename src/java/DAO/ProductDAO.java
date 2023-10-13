@@ -238,33 +238,33 @@ public class ProductDAO extends DatabaseConnection {
         return list;
     }
 
-//    public List<Product> getProductsbyCID(Object cid) {
-//        List<Product> products = new ArrayList<>();
-//        String sql = "SELECT * FROM ProductInfo\n"
-//                + "  WHERE type_id = ?";
-//
-//        try {
-//            PreparedStatement statement = connection.prepareStatement(sql);
-//            statement.setObject(1, cid);
-//            ResultSet resultSet = statement.executeQuery();
-//
-//            while (resultSet.next()) {
-//                Object productId = resultSet.getObject(1);
-//                String productName = resultSet.getString(4);
-//                String productImage = resultSet.getString(5);
-//                double productPrice = resultSet.getDouble(8);
-//                String productDescription = resultSet.getString(10);
-//
-//                Product product = new Product(productId, productName, productImage, productPrice, productDescription);
-//                products.add(product);
-//            }
-//            resultSet.close();
-//            statement.close();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return products;
-//    }
+    public List<Product> getProductsbyCID(Object cid) {
+        List<Product> products = new ArrayList<>();
+        String sql = "SELECT * FROM ProductInfo\n"
+                + "  WHERE type_id = ?";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setObject(1, cid);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                Object productId = resultSet.getObject(1);
+                String productName = resultSet.getString(4);
+                String productImage = resultSet.getString(5);
+                double productPrice = resultSet.getDouble(8);
+                String productDescription = resultSet.getString(10);
+
+                Product product = new Product(productId, productName, productImage, productPrice, productDescription);
+                products.add(product);
+            }
+            resultSet.close();
+            statement.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return products;
+    }
 
     public String getProductbyCId(Object cid) {
         try {
