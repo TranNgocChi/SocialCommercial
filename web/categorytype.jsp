@@ -122,7 +122,6 @@
                                         <div class="product__item__pic set-bg" data-setbg="${o.productImage}">
                                             <ul class="product__item__pic__hover">
                                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                                             </ul>
                                         </div>
@@ -138,20 +137,20 @@
                         <c:if test="${maxPage > 1}">
                             <div class="product__pagination">
                                 <c:if test="${backPage > 0}">
-                                    <a href="categorytype?cid=${cateID}&pageIndex=${backPage}"><i class="fa fa-long-arrow-left"></i></a>
+                                    <a class="active-false" href="categorytype?cid=${cateID}&pageIndex=${backPage}"><i class="fa fa-long-arrow-left"></i></a>
                                 </c:if>
                                     
                                 <c:forEach begin="1" end="${maxPage}" step="1" var="i">
                                     <c:if test="${i == pageIndex}">
-                                        <a href="categorytype?cid=${cateID}&pageIndex=${i}">${i}</a>
+                                        <a class="active-true" href="categorytype?cid=${cateID}&pageIndex=${i}" style="background: #5c91c6; border-color: #5c91c6;">${i}</a>
                                     </c:if>
                                     <c:if test="${i != pageIndex}">
-                                        <a class="active-true" href="categorytype?cid=${cateID}&pageIndex=${i}">${i}</a>
+                                        <a class="active-false" href="categorytype?cid=${cateID}&pageIndex=${i}">${i}</a>
                                     </c:if>
                                 </c:forEach>
                                         
                                 <c:if test="${nextPage < maxPage+1}">
-                                    <a class="active-false" href="categorytype?cid=${cateID}&pageIndex=${nextPage}"><i class="fa fa-long-arrow-right"></i></a>
+                                    <a class="active-false"  href="categorytype?cid=${cateID}&pageIndex=${nextPage}"><i class="fa fa-long-arrow-right"></i></a>
                                 </c:if>
                             </div>
                         </c:if>
@@ -179,3 +178,12 @@
         <script src="setofshop/js/main.js"></script>
     </body>
 </html>
+
+<style>
+    a.active-false:hover {
+        background: #5c91c6;
+        border-color: #5c91c6;
+        color: #ffffff;
+    }
+</style>
+

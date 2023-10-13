@@ -3,7 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Java_Web/SWP391/SocialCommercial/src/java/Controller/LoadMoreControl.java</file>
+            <file>file:/D:/Java_Web/SWP391/SocialCommercial/web/shopping.jsp</file>
+            <file>file:/D:/Java_Web/SWP391/SocialCommercial/web/categorytype.jsp</file>
+            <file>file:/D:/Java_Web/SWP391/SocialCommercial/web/shop/hero__categories.jsp</file>
+            <file>file:/D:/Java_Web/SWP391/SocialCommercial/src/java/Controller/CategoryControl.java</file>
+            <file>file:/D:/Java_Web/SWP391/SocialCommercial/src/java/Controller/ShoppingControl.java</file>
         </group>
     </open-files>
 </project-private>
