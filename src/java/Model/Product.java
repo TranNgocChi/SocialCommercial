@@ -5,6 +5,8 @@
  */
 package Model;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author ADMIN
@@ -41,7 +43,7 @@ public class Product {
     }
     
     
-
+    
     public Product(Object productId, String productName, String productImage, int productAvailable, int productSales, double productPrice, double productVoucher, String productDescription) {
         this.productId = productId;
         this.productName = productName;
@@ -93,9 +95,18 @@ public class Product {
         this.productSales = productSales;
     }
 
-    public double getProductPrice() {
-        return productPrice;
+   public double getProductPrice() {
+    // Định dạng số double thành chuỗi
+    String formattedPrice = String.valueOf(productPrice);
+
+    // Kiểm tra xem chuỗi có phần thập phân ".0" không và loại bỏ nó nếu có
+    if (formattedPrice.endsWith(".0")) {
+        formattedPrice = formattedPrice.substring(0, formattedPrice.length() - 2);
     }
+
+    // Chuyển lại thành double
+    return Double.parseDouble(formattedPrice);
+}
 
     public void setProductPrice(double productPrice) {
         this.productPrice = productPrice;

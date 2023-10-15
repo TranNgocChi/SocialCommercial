@@ -32,6 +32,31 @@
         <servlet-name>updatesanpham</servlet-name>
         <servlet-class>Controller.updatesanpham</servlet-class>
     </servlet>
+    
+    <servlet>
+        <servlet-name>addtocart</servlet-name>
+        <servlet-class>Controller.addtocart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DetailControl1</servlet-name>
+        <servlet-class>Controller.DetailControl1</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>cart</servlet-name>
+        <servlet-class>Controller.cart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>thanhtoan</servlet-name>
+        <servlet-class>Controller.thanhtoan</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>muahang</servlet-name>
+        <servlet-class>Controller.muahang</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>xemdonhang</servlet-name>
+        <servlet-class>Controller.xemdonhang</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ShoppingControl</servlet-name>
         <url-pattern>/shopping</url-pattern>
@@ -63,6 +88,32 @@
     <servlet-mapping>
         <servlet-name>updatesanpham</servlet-name>
         <url-pattern>/updatesanpham</url-pattern>
+    </servlet-mapping>
+    =
+    
+    <servlet-mapping>
+        <servlet-name>addtocart</servlet-name>
+        <url-pattern>/addtocart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetailControl1</servlet-name>
+        <url-pattern>/DetailControl1</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cart</servlet-name>
+        <url-pattern>/cart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>thanhtoan</servlet-name>
+        <url-pattern>/thanhtoan</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>muahang</servlet-name>
+        <url-pattern>/muahang</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>xemdonhang</servlet-name>
+        <url-pattern>/xemdonhang</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

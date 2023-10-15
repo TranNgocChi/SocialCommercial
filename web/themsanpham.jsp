@@ -24,49 +24,80 @@
     <body>
 
         <header>
-                   <%@ include file="shop/header_shop.jsp" %>
+            <%@ include file="shop/header_shop.jsp" %>
 
         </header>
         <div class="home">
-           
+
             <div class="containerr">
                 <form action="themsanpham" method="post">
                     <div class="form-group row">
-                        <label for="email" class="col">Danh mục:</label>
-                        <input type="text" value="${tendanhmuc}" name="tendanhmuc" class="form-control col" placeholder="Email" readonly>
+                        <label for="email" class="col-md-4 col-form-label">Ngành hàng:</label>
+                        <div class="col-md-8">
+                            <input type="text" value="${tendanhmuc}" name="tendanhmuc" class="form-control" placeholder="Ngành hàng" readonly>
+                        </div>
                     </div>
-<input type="hidden" value="${danhmuc}"  name="email" class="form-control col" placeholder="Email" readonly>
+                    <input type="hidden" value="${danhmuc}" name="email" class="form-control col-md-8 offset-md-2" placeholder="Email" readonly>
 
                     <div class="form-group row">
-                        <label for="fullName" class="col">Tên sản phẩm:</label>
-                        <input type="text" id="full-name" name="product_name" class="form-control col" placeholder="Tên sản phẩm" required>
-                        <br />
+                        <label for="fullName" class="col-md-4 col-form-label">Tên sản phẩm:</label>
+                        <div class="col-md-8">
+                            <input type="text" id="full-name" name="product_name" class="form-control" placeholder="Tên sản phẩm" required>
+                        </div>
+                    </div>
+<!--                    <div class="form-group row">
+                        <label for="image" class="col-md-4 col-form-label">Hình ảnh sản phẩm:</label>
+                        <div class="col-md-8">
+                            <input type="file" id="shop-name" name="product_image" class="form-control" placeholder="Ảnh sản phẩm" required>
+                        </div>
+                    </div>-->
+                    <div class="form-group row">
+                        <label for="image" class="col-md-4 col-form-label">Hình ảnh sản phẩm:</label>
+                        <div class="col-md-8">
+                            <input type="text" id="shop-name" name="product_image" class="form-control" placeholder="Ảnh sản phẩm" required>
+                        </div>
+                    </div>
 
+                    <div class="form-group row">
+                        <label for="address" class="col-md-4 col-form-label">Số lượng:</label>
+                        <div class="col-md-8">
+                            <input type="text" id="address" name="product_available" class="form-control" placeholder="Số lượng" required>
+                        </div>
                     </div>
                     <div class="form-group row">
-                        <label for="shopName" class="col">Ảnh sản phẩm:</label>
-                        <input type="text" id="shop-name" name="product_image" class="form-control col" placeholder="Ảnh sản phẩm" required>
-                    </div>
-                 
-                    <div class="form-group row">
-                        <label for="address" class="col">Số lượng:</label>
-                        <input type="text" id="address" name="product_available" class="form-control col" placeholder="Số lượng" required>
+                        <label for="phone" class="col-md-4 col-form-label">Giá tiền:</label>
+                        <div class="col-md-8">
+                            <input type="tel" id="phone" name="product_price" class="form-control" placeholder="Giá tiền" required>
+                        </div>
                     </div>
                     <div class="form-group row">
-                        <label for="phone" class="col">Giá tiền:</label>
-                        <input type="tel" id="phone" name="product_price" class="form-control col" placeholder="Giá tiền" required>
+                        <label for="phone" class="col-md-4 col-form-label">Mô tả sản phẩm:</label>
+                        <div class="col-md-8">
+                            <input type="tel" id="phone" name="product_description" class="form-control" placeholder="Mô tả sản phẩm" required>
+                        </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="phone" class="col">Mô tả sản phẩm:</label>
-                        <input type="tel" id="phone" name="product_description" class="form-control col" placeholder="Mô tả sản phẩm" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Thêm</button>
+
+                    <button type="submit" class="btn btn-primary">Lưu & Hiển thị</button>
+                    <button type="button" class="btn btn-outline-danger" onclick="confirmCancel()">Huỷ</button>
+
                 </form>
 
 
             </div>
         </div>
 
+        <script>
+            function confirmCancel() {
+                var confirmation = confirm("Bạn có chắc chắn muốn huỷ?"); // Hiển thị hộp thoại xác nhận
+
+                if (confirmation) {
+                    // Nếu người dùng xác nhận, chuyển hướng đến trang khác
+                    window.location.href = '/SocialCommercial/seller';
+                } else {
+                    // Người dùng đã nhấn "Hủy" trong hộp thoại xác nhận, không có hành động gì xảy ra
+                }
+            }
+        </script>
         <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>

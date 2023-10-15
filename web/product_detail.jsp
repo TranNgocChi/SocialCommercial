@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -49,6 +51,7 @@
         <!-- Hero Section End -->
 
         <!-- Product Details Section Begin -->
+        <h3 style="align-content: center">  ${msg}</h3>
         <section class="product-details spad">
             <div class="container">
                 <div class="row">
@@ -71,22 +74,30 @@
                                 <i class="fa fa-star-half-o"></i>
                                 <span>(18 reviews)</span>
                             </div>
-                            <div class="product__details__price">${detail.productPrice}</div>
+                            <div class="product__details__price"><fmt:formatNumber value="${detail.productPrice}" type="currency" currencySymbol="" minFractionDigits="0"/> VNĐ</div>
                             <p>${detail.productDescription}</p>
-                            <div class="product__details__quantity">
+                            
+                            <form action="addtocart" method="post" class="primary-btn">
+                                <input type="hidden" name="id" value="${id}">
+                                <input type="hidden" name="productid" value="${detail.productId}">
+                                <input type="hidden" name="productprice" value=""${detail.productPrice}">
+                                <input type="hidden" name="productname" value="${detail.productName}">
+                               <div class="product__details__quantity">
                                 <div class="quantity">
                                     <div class="pro-qty">
-                                        <input type="text" value="1">
+                                        <input type="text" value="1" name="quantity">
                                     </div>
                                 </div>
                             </div>
-                            <a href="#" class="primary-btn">ADD TO CARD</a>
+                         <button type="submit" class="btn btn-primary">ADD TO CART</button>
+
+                            </form>
                             <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                             <ul>
                                 <li><b>Availability</b> <span>In Stock</span></li>
                                 <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
                                 <li><b>Weight</b> <span>0.5 kg</span></li>
-                                
+
                             </ul>
                         </div>
                     </div>
@@ -101,51 +112,24 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-title related__product__title">
-                            <h2>Related Product</h2>
+                            <h2>Gợi ý cho bạn</h2>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="setofshop/img/product/product-1.jpg">
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="#">Crab Pool Security</a></h6>
-                                <h5>$30.00</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="setofshop/img/product/product-1.jpg">
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="#">Crab Pool Security</a></h6>
-                                <h5>$30.00</h5>
+                    <c:forEach var="related" items="${related}">
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="${related.productImage}">
+                                </div>
+                                <div class="product__item__text">
+                                    <h6><a href="detail?pid=${related.productId}">${related.productName}</a></h6>
+                                    <h5><fmt:formatNumber value="${related.productPrice}" type="currency" currencySymbol="" minFractionDigits="0"/> VNĐ</h5>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="setofshop/img/product/product-1.jpg">
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="#">Crab Pool Security</a></h6>
-                                <h5>$30.00</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="setofshop/img/product/product-1.jpg">
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="#">Crab Pool Security</a></h6>
-                                <h5>$30.00</h5>
-                            </div>
-                        </div>
-                    </div>
+                    </c:forEach>
+
                 </div>
             </div>
         </section>
@@ -165,4 +149,5 @@
     <script src="setofshop/js/mixitup.min.js"></script>
     <script src="setofshop/js/owl.carousel.min.js"></script>
     <script src="setofshop/js/main.js"></script>
+    
 </html>

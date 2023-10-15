@@ -378,7 +378,7 @@ header {
 
 aside.sidebar {
     /* ... */
-    z-index: 1001; /* Đảm bảo sidebar có giá trị z-index cao hơn header */
+    z-index: 1001; /* �?ảm bảo sidebar có giá trị z-index cao hơn header */
 }
 .header .search-bar {
   min-width: 360px;

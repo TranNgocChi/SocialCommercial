@@ -69,6 +69,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="shoping__cart__table">
+                            <c:set var="currentShop" value="" />
                             <table>
                                 <thead>
                                     <tr>
@@ -81,83 +82,60 @@
 
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                       <c:set var="dem" value="${0}" />
+                                <form action="thanhtoan" method="post">
+                                    <c:forEach var="item" items="${listitemincart}">
+                                                            <c:set var="dem" value="${dem+1}" />
+<c:if test="${!item.shopname.equals(currentShop)}">
+            <!-- Hiển thị tên cửa hàng nếu khác với cửa hàng trước đó -->
+            <tr>
+                <th class="shoping__product" colspan="5" style="text-align: left; padding-top: 10px">
+                    Shop: ${item.shopname}
+                </th>
+            </tr>
+            <!-- Lưu tên cửa hàng hiện tại để so sánh với các sản phẩm tiếp theo -->
+            <c:set var="currentShop" value="${item.shopname}" />
+        </c:if>
+        <tr>
+                                        <td class="shoping__cart__item">
+                                           
+                                            <input type="checkbox" class="product-checkbox" value="${item.id}" name="item${dem}">
 
-                                        <th class="shoping__product" colspan="5" style="text-align: left; padding-top: 10px">
-                                            <input type="checkbox" class="shop-checkbox" data-shop="ABC">
-                                            Shop: ABC
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <td class="shoping__cart__item">
-                                            <input type="checkbox" class="product-checkbox" data-shop="ABC">
-                                            <img src="setofshop/img/cart/cart-1.jpg" alt="">
-                                            <h5>Vegetable’s Package</h5>
+                                            <img src="${item.img}" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                            <h5>${item.productname}</h5>
+                                            
+                                            
                                         </td>
                                         <td class="shoping__cart__price">
-                                            $55.00
+                                           ${item.price}
+                                           
                                         </td>
                                         <td class="shoping__cart__quantity">
                                             <div class="quantity">
                                                 <div class="pro-qty">
-                                                    <input type="text" value="2">
+                                                    <input type="text" value="${item.quantity}" name="itemquantity${dem}">
                                                 </div>
                                             </div>
                                         </td>
+                                   
                                         <td class="shoping__cart__total">
-                                            $110.00
+                                           ${item.quantity*item.price}
                                         </td>
                                         <td class="shoping__cart__item__close">
                                             <span class="icon_close"></span>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="shoping__cart__item">
-                                            <input type="checkbox" class="product-checkbox" data-shop="ABC">
-                                            <img src="setofshop/img/cart/cart-2.jpg" alt="">
-                                            <h5>Fresh Garden Vegetable</h5>
-                                        </td>
-                                        <td class="shoping__cart__price">
-                                            $39.00
-                                        </td>
-                                        <td class="shoping__cart__quantity">
-                                            <div class="quantity">
-                                                <div class="pro-qty">
-                                                    <input type="text" value="1">
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="shoping__cart__total">
-                                            $39.99
-                                        </td>
-                                        <td class="shoping__cart__item__close">
-                                            <span class="icon_close"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="shoping__cart__item">
-                                            <input type="checkbox" class="product-checkbox" data-shop="ABC">
-                                            <img src="setofshop/img/cart/cart-3.jpg" alt="">
-                                            <h5>Organic Bananas</h5>
-                                        </td>
-                                        <td class="shoping__cart__price">
-                                            $69.00
-                                        </td>
-                                        <td class="shoping__cart__quantity">
-                                            <div class="quantity">
-                                                <div class="pro-qty">
-                                                    <input type="text" value="1">
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="shoping__cart__total">
-                                            $69.99
-                                        </td>
-                                        <td class="shoping__cart__item__close">
-                                            <span class="icon_close"></span>
-                                        </td>
-                                    </tr>
+                                  
+                                  
                                 </tbody>
+                                </c:forEach>
+                                <input type="hidden" name="dem" value="${dem}">
+                                
+                                       
+                                    <button type="submit" ">MUA NGAY</button>
+                                            </form>
+
+                               
                             </table>
                         </div>
                     </div>
@@ -189,13 +167,15 @@
                                 <li>Giảm giá sản phẩm <span>-$154.98</span></li>
                                 <li>Tổng số tiền <span>$354.00</span></li>
                             </ul>
-                            <a href="checkout.jsp" class="primary-btn">Mua ngay</a>
+                           <a id="buyNowButton" class="primary-btn">Mua ngay</a>
+
                         </div>
                     </div>
                 </div>
             </div>
         </section>
     </body>
+    
     <script>
         // Thêm JavaScript để xử lý chọn sản phẩm và chọn tất cả sản phẩm của shop
         const shopCheckboxes = document.querySelectorAll('.shop-checkbox');

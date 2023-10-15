@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -39,22 +41,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3">
-                        <div class="hero__categories">
-                            <div class="hero__categories__all">
-                                <i class="fa fa-bars"></i>
-                                <span>Danh mục</span>
-                            </div>
-                            <ul>
-                                <li><a href="#">Bách hoá Online</a></li>
-                                <li><a href="#">Thời trang nam</a></li>
-                                <li><a href="#">Thời trang nữ</a></li>
-                                <li><a href="#">Điện thoại & Phụ kiện</a></li>
-                                <li><a href="#">Điện tử</a></li>
-                                <li><a href="#">Máy tính & Laptop</a></li>
-                                <li><a href="#">Mỹ phẩm</a></li>
-                                <li><a href="#">Đồ chơi</a></li>
-                            </ul>
-                        </div>
+                        <%@ include file="shop/hero__categories.jsp" %>
                     </div>
                     <div class="col-lg-9">
                         <%@ include file="shop/hero_search.jsp" %>
@@ -63,22 +50,21 @@
             </div>
         </section>
         <!-- Hero Section End -->
-  ${msg}
-  <c:set var="msg" value="${null}"></c:set>
-        <!-- Breadcrumb Section Begin -->
-        <section class="breadcrumb-section set-bg" data-setbg="setofshop/img/breadcrumb.jpg">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <div class="breadcrumb__text">
-                            <h4 style="color:red">Danh mục của shop: ${tendanhmuc}</h4>
-                            <h2>${shopName}</h2>
+
+        <c:set var="msg" value="${null}"></c:set>
+            <!-- Breadcrumb Section Begin -->
+            <section class="breadcrumb-section set-bg" data-setbg="setofshop/img/breadcrumb.jpg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <div class="breadcrumb__text">
+                                <h2>${shopName}</h2>
                             <div class="breadcrumb__option">
-                                <a href="./seller.jsp">Home</a>
+                                <a href="./seller">Home</a>
                                 <span>Shop</span>
                             </div>
-                            <div class="breadcrumb__option">
-                                <a href="./themsanpham.jsp">Thêm sản phẩm mới</a>
+                            <div class="breadcrumb__option1" style="font-weight: 700;">
+                                <a href="./themsanpham.jsp" style="color: white">Thêm sản phẩm mới</a>
                             </div>
                         </div>
                     </div>
@@ -96,35 +82,35 @@
                             <div class="sidebar__item">
                                 <div class="latest-product__text">
                                     <h4>Sản phẩm mới nhất</h4>
-   
+
                                     <div class="latest-product__slider owl-carousel">
                                         <div class="latest-prdouct__slider__item">
                                             <c:forEach var="top3" items="${listtop3product}">
-                                            <a href="#" class="latest-product__item">
-                                                <div class="latest-product__item__pic">
-                                                    <img src="${top3.productImage}" alt="">
-                                                </div>
-                                                <div class="latest-product__item__text">
-                                                    <h6>${top3.productName}</h6>
-                                                    <span>${top3.productPrice}</span>
-                                                </div>
-                                            </a>
+                                                <a href="detail?pid=${top3.productId}" class="latest-product__item">
+                                                    <div class="latest-product__item__pic">
+                                                        <img src="${top3.productImage}" alt="">
+                                                    </div>
+                                                    <div class="latest-product__item__text">
+                                                        <h6>${top3.productName}</h6>
+                                                        <span><fmt:formatNumber value="${top3.productPrice}" type="currency" currencySymbol="" minFractionDigits="0"/> VNĐ</span>
+                                                    </div>
+                                                </a>
                                             </c:forEach>
                                         </div>
                                         <div class="latest-prdouct__slider__item">
                                             <c:forEach var="top3" items="${listtop3product}">
-                                            <a href="#" class="latest-product__item">
-                                                <div class="latest-product__item__pic">
-                                                    <img src="${top3.productImage}"" alt="">
-                                                </div>
-                                                <div class="latest-product__item__text">
-                                                    <h6>${top3.productName}</h6>
-                                                    <span>${top3.productPrice}</span>
-                                                </div>
-                                            </a>
+                                                <a href="detail?pid=${top3.productId}" class="latest-product__item">
+                                                    <div class="latest-product__item__pic">
+                                                        <img src="${top3.productImage}" alt="">
+                                                    </div>
+                                                    <div class="latest-product__item__text">
+                                                        <h6>${top3.productName}</h6>
+                                                        <span><fmt:formatNumber value="${top3.productPrice}" type="currency" currencySymbol="" minFractionDigits="0"/> VNĐ</span>
+                                                    </div>
+                                                </a>
                                             </c:forEach>
-                                           
-                                           
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -134,37 +120,36 @@
                     <div class="col-lg-9 col-md-7">
                         <div class="product__discount">
                             <div class="section-title product__discount__title">
-                                <h2>Sản phẩm</h2>
+                                <h2>Sản phẩm giảm giá</h2>
                             </div>
-                            -<div class="row">
+                             <div class="row">
                                 <div class="product__discount__slider owl-carousel">
-                                   
+
                                     <c:forEach var="top3" items="${listtop3product}">
-                                    <div class="col-lg-4">
-                                        <div class="product__discount__item">
-                                            <div class="product__discount__item__pic set-bg"
-                                                 data-setbg="${top3.productImage}">
-                                                <div class="product__discount__percent">-20%</div>
-                                                <ul class="product__item__pic__hover">
-                                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="product__discount__item__text">
-                                                <span>${top3.productName}<</span>
-                                                <h5><a href="#">${top3.productName}</a></h5>
-                                                <div class="product__item__price">${top3.productPrice-(top3.productPrice*30/100)} <span>${top3.productPrice}</span></div>
+                                        <div class="col-lg-4">
+                                            <div class="product__discount__item">
+                                                <div class="product__discount__item__pic set-bg"
+                                                     data-setbg="${top3.productImage}">
+                                                    <div class="product__discount__percent">-20%</div>
+                                                    <ul class="product__item__pic__hover">
+                                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="product__discount__item__text">
+                                                    <h5><a href="detail?pid=${top3.productId}">${top3.productName}</a></h5>
+                                                    <div class="product__item__price"><fmt:formatNumber value="${top3.productPrice-(top3.productPrice*30/100)}" type="currency" currencySymbol="" minFractionDigits="0"/> VNĐ <span><fmt:formatNumber value="${top3.productPrice}" type="currency" currencySymbol="" minFractionDigits="0"/> VNĐ</span></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
                                     </c:forEach>
-                                  
-                                    
-                                   
-                                   
+
+
+
+
                                 </div>
-                           - </div>
+                                - </div>
                         </div>
                         <div class="filter__item">
                             <div class="row">
@@ -179,49 +164,47 @@
                                 </div>
                                 <div class="col-lg-4 col-md-4">
                                     <div class="filter__found">
-                                        <h6><span>16</span> Products found</h6>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-3">
-                                    <div class="filter__option">
-                                        <span class="icon_grid-2x2"></span>
-                                        <span class="icon_ul"></span>
+                                        <h6>Tổng số sản phẩm:  <span>${total}</span></h6>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                       
+
                         <div class="row">
-                            
+
                             <c:forEach var="item" items="${listproduct}">
-                             
-                              
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="${item.productImage}">
-                                        <ul class="product__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        </ul>
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="product__item">
+                                        <div class="product__item__pic set-bg" data-setbg="${item.productImage}">
+                                            <ul class="product__item__pic__hover">
+                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="product__item__text">
+                                            <h6><a href="detail?pid=${item.productId}">${item.productName}</a></h6>
+                                            <h5><fmt:formatNumber value="${item.productPrice}" type="currency" currencySymbol="" minFractionDigits="0"/> VNĐ</h5>
+                                        </div>
+                                        <div class="d-flex justify-content-end align-items-center">
+                                            <form action="updatesanpham" method="get">
+                                                <input type="hidden" name="productid" value="${item.productId}">
+                                                <button type="submit" class="btn btn-primary btn-sm">Cập nhật</button>
+                                            </form>
+                                            
+                                            <div style="margin-left: 10px;"></div><!-- Create a 10px gap -->
+                                            <form action="deletesanpham" method="post" onsubmit="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?')">
+                                                <input type="hidden" name="productid" value="${item.productId}">
+                                                <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+                                            </form>
+                                        </div>
                                     </div>
-                                    <div class="product__item__text">
-                                        <h6><a href="#">${item.productName}</a></h6>
-                                        <h5>${item.productPrice} $</h5>
-                                    </div>
-                                    <form action="deletesanpham" method="post" style="margin-top:-50px;margin-left:200px">
-                                        <input type="hidden" name="productid" value="${item.productId}">
-                                        <input type="submit" value="❌">
-                                    </form>
-                                        <form action="updatesanpham" method="get" style="margin-left:200px">
-                                        <input type="hidden" name="productid" value="${item.productId}">
-                                        <input type="submit" value="UPDATE">
-                                    </form>
                                 </div>
-                            </div>
                             </c:forEach>
-                            
-                         
+
+
+
+
                         </div>
                         <div class="product__pagination">
                             <a href="#">1</a>
