@@ -86,90 +86,48 @@
                     </div>
                 </div>
                 <!-- Shoping Cart Section Begin -->
-                <section class="shoping-cart spad" style="padding-top: 0;">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="shoping__cart__table">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-
-                                                <th class="shoping__product" colspan="5" style="text-align: left; padding-top: 10px">
-                                                    Shop: ABC
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <td class="shoping__cart__item">
-                                                    <img src="setofshop/img/cart/cart-1.jpg" alt="">
-                                                    <h5>Vegetable’s Package</h5>
-                                                </td>
-                                                <td class="shoping__cart__price">
-                                                    $55.00
-                                                </td>
-                                                <td class="shoping__cart__quantity">
-                                                    <div class="quantity">
-                                                        <div class="pro-qty">
-                                                            <input type="text" value="2">
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="shoping__cart__total">
-                                                    $110.00
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="shoping__cart__item">
-                                                    <img src="setofshop/img/cart/cart-2.jpg" alt="">
-                                                    <h5>Fresh Garden Vegetable</h5>
-                                                </td>
-                                                <td class="shoping__cart__price">
-                                                    $39.00
-                                                </td>
-                                                <td class="shoping__cart__quantity">
-                                                    <div class="quantity">
-                                                        <div class="pro-qty">
-                                                            <input type="text" value="1">
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="shoping__cart__total">
-                                                    $39.99
-                                                </td>
-                                            </tr>
-                                            <tr>
-
-                                                <th class="shoping__product" colspan="5" style="text-align: left; padding-top: 10px">
-                                                    Shop: ABC
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <td class="shoping__cart__item">
-                                                    <img src="setofshop/img/cart/cart-1.jpg" alt="">
-                                                    <h5>Vegetable’s Package</h5>
-                                                </td>
-                                                <td class="shoping__cart__price">
-                                                    $55.00
-                                                </td>
-                                                <td class="shoping__cart__quantity">
-                                                    <div class="quantity">
-                                                        <div class="pro-qty">
-                                                            <input type="text" value="2">
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="shoping__cart__total">
-                                                    $110.00
-                                                </td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                     <section class="shoping-cart spad" style="padding-top: 0;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="shoping__cart__table">
+                    <c:set var="tong" value="${null}"></c:set> 
+                    
+                    <c:forEach items="${orderMap}" var="entry">
+                        <c:set var="orderId" value="${entry.key}" />
+                        <c:set var="donhangList" value="${entry.value}" />
+                        <c:set var="tong" value="${null}"></c:set> 
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th class="shoping__product" colspan="5" style="text-align: left; padding-top: 10px">
+                                        Order ID: ${orderId} 
+                                    </th>
+                                </tr>
+                                <c:forEach items="${donhangList}" var="donhang">
+                                    
+                                    <tr>
+                                        <td class="shoping__cart__item">
+                                            <img src="${donhang.img}" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                            <h5>${donhang.productname}</h5>
+                                            <h5>X ${donhang.quantity}</h5>
+                                            <h5>Giá: ${donhang.price}</h5>
+                                            <h5>Tổng: ${donhang.price*donhang.quantity}</h5>
+                                         Tổng đơn hàng: ${donhang.total }VND (Đã bao gồm phí ship)
+                                         
+                                        </td>
+                                    </tr>
+                                    
+                                
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </c:forEach>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
                 <!-- Shoping Cart Section End -->
             </div>
         </section>

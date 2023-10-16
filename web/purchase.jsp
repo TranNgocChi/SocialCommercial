@@ -66,8 +66,8 @@
                         <td colspan="4" style="text-align: right">
                             <h4> Tổng tiền đơn hàng: ${totalPrice} VND</h4>
                             <h4> Tổng tiền bao gồm tiền ship: ${totalPrice+35000} VND</h4>
-                            <input type="hidden" value="${totalPrice+35000}" name="total${checksodon}">
                             <c:set var="totalPriceAll" value="${totalPriceAll+totalPrice+35000} " />
+
                         </td>
                     </tr>
                 </c:if>
@@ -110,8 +110,11 @@
                     ${item.price * item.quantity}
                 </td>
             </tr>
+
             <!-- Cộng tổng tiền cho đơn hàng hiện tại -->
             <c:set var="totalPrice" value="${totalPrice + item.price * item.quantity}" />
+             <input type="hidden" value="${totalPrice+35000}" name="total${item.sellerid.toLowerCase().trim()}">
+
         </c:forEach>
         <!-- Hiển thị tổng tiền cho đơn hàng cuối cùng -->
         <c:if test="${!empty currentShop}">
@@ -130,7 +133,6 @@ Bạn đã mua đơn hàng của ${checksodon} Shop
 Tổng cộng: ${demsanpham} sản phẩm
 <br>
 Tổng giá tiền ${totalPriceAll} VND
-<input type="hidden" value="${totalPrice+35000}" name="total${checksodon}">
                                 </div>
                             </div>
                         </div>

@@ -29,7 +29,89 @@ public class Donhang {
     Object productid;
     int quantity;
     Double price;
+    String shopname;
+    String img;
+    String productname;
 
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getProductname() {
+        return productname;
+    }
+
+    public void setProductname(String productname) {
+        this.productname = productname;
+    }
+
+    public Donhang(Object id, Double total, Object iduser, Object idseller, String fullname, String phone, Date date, String town, String location, String status, Object productid, int quantity, Double price, String shopname, String img, String productname) {
+        this.id = id;
+        this.total = total;
+        this.iduser = iduser;
+        this.idseller = idseller;
+        this.fullname = fullname;
+        this.phone = phone;
+        this.date = date;
+        this.town = town;
+        this.location = location;
+        this.status = status;
+        this.productid = productid;
+        this.quantity = quantity;
+        this.price = price;
+        this.shopname = shopname;
+        this.img = img;
+        this.productname = productname;
+    }
+    
+
+    public Donhang(Object id, Double total, Object iduser, Object idseller, String fullname, String phone, Date date, String town, String location, String status, Object productid, int quantity, Double price, String shopname, String img) {
+        this.id = id;
+        this.total = total;
+        this.iduser = iduser;
+        this.idseller = idseller;
+        this.fullname = fullname;
+        this.phone = phone;
+        this.date = date;
+        this.town = town;
+        this.location = location;
+        this.status = status;
+        this.productid = productid;
+        this.quantity = quantity;
+        this.price = price;
+        this.shopname = shopname;
+        this.img = img;
+    }
+    
+    public Donhang(Object id, Double total, Object iduser, Object idseller, String fullname, String phone, Date date, String town, String location, String status, Object productid, int quantity, Double price, String shopname) {
+        this.id = id;
+        this.total = total;
+        this.iduser = iduser;
+        this.idseller = idseller;
+        this.fullname = fullname;
+        this.phone = phone;
+        this.date = date;
+        this.town = town;
+        this.location = location;
+        this.status = status;
+        this.productid = productid;
+        this.quantity = quantity;
+        this.price = price;
+        this.shopname = shopname;
+    }
+
+    public String getShopname() {
+        return shopname;
+    }
+
+    public void setShopname(String shopname) {
+        this.shopname = shopname;
+    }
+    
     public Donhang(Object id, Double total, Object iduser, Object idseller, String fullname, String phone, Date date, String town, String location, String status, Object productid, int quantity, Double price) {
         this.id = id;
         this.total = total;
@@ -152,8 +234,11 @@ public class Donhang {
 
     @Override
     public String toString() {
-        return "Donhang{" + "id=" + id + ", total=" + total + ", iduser=" + iduser + ", idseller=" + idseller + ", fullname=" + fullname + ", phone=" + phone + ", date=" + date + ", town=" + town + ", location=" + location + ", status=" + status + ", productid=" + productid + ", quantity=" + quantity + ", price=" + price + '}';
+        return "Donhang{" + "id=" + id + ", total=" + total + ", iduser=" + iduser + ", idseller=" + idseller + ", fullname=" + fullname + ", phone=" + phone + ", date=" + date + ", town=" + town + ", location=" + location + ", status=" + status + ", productid=" + productid + ", quantity=" + quantity + ", price=" + price + ", shopname=" + shopname + ", img=" + img + ", productname=" + productname + '}';
     }
+
+    
+    
             
 
     

@@ -164,32 +164,25 @@ public class muahang extends HttpServlet {
         }
         
         ArrayList<ItemInCart> listdonhang = new ArrayList<>();
-        ArrayList<Double> listtotal = new ArrayList<>();
-        for(int i=0;i<=sodon;i++){
-            String total= "total" + String.valueOf(i);
-             String totalParam = request.getParameter(total);
-            Double total1 = 0.0; // Hoặc bất kỳ giá trị mặc định nào bạn muốn
-            if (totalParam != null) {
-                try {
-                    total1 = Double.parseDouble(totalParam);
-                    listtotal.add(total1);
-                } catch (NumberFormatException e) {
-                    // Xử lý lỗi chuyển đổi nếu cần
-                }
-            }
-        }
-        int dem=0;
+
 for (Map.Entry<Object, ArrayList<ItemInCart>> entry : productsByShop.entrySet()) {
     Object sellerid1 = entry.getKey();
+//            Double total1 = 0.0; // Hoặc bất kỳ giá trị mặc định nào bạn muốn
+//            if (totalParam != null) {
+//                try {
+//                    total1 = Double.parseDouble(totalParam);
+//                } catch (NumberFormatException e) {
+//                    // Xử lý lỗi chuyển đổi nếu cần
+//                }
+//            }
+
     ArrayList<ItemInCart> shopProducts = entry.getValue();
     if (!shopProducts.isEmpty()) {
-        Object idorder=thanhtoandao.addNewOrderandGetThisOther(iduser, sellerid1, fullname, phone, listtotal.get(dem), town, location);
-//        out.println("Cửa hàng " + sellerid1 + " có sản phẩm.\n");
-//        out.println(listtotal.get(dem));
-        dem++;
+        Object idorder=thanhtoandao.addNewOrderandGetThisOther(iduser, sellerid1, fullname, phone, town, location);
         for(ItemInCart item:shopProducts){
             thanhtoandao.addNewOrderDetail(idorder, item.getProductid(), item.getQuantity(),item.getPrice());
         }
+         thanhtoandao.UpdateOrdertotal();
         // Tạo đơn hàng tại đây và lưu vào CSDL
         // Sử dụng thông tin trong shopname và shopProducts để tạo đơn hàng và chi tiết đơn hàng
 }
