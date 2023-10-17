@@ -412,7 +412,29 @@ public Object getselleridbyshopname(String shopname){
         }
 
     }
+ public boolean updatesanphamsaukhimuahang(Object id,int quantity) {
+        try {
+           int avai= getquantityProductsbyID(id);
+           if(quantity>avai){
+               return false;
+           }
+           else{
+            String sql = "UPDATE  ProductInfo\n" +
+"SET\n" +
+"product_available=?\n" +
+"WHERE product_id=?";
+            PreparedStatement ps = connection.prepareStatement(sql);   
+            ps.setInt(1, avai-quantity);        
+            ps.setObject(2, id);
+            ps.execute();
+            return true;
+           }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
 
+    }
     public List<Product> getTop8() {
         List<Product> products = new ArrayList<>();
         String sql = "SELECT Top 8 * FROM ProductInfo";
@@ -591,7 +613,7 @@ public Object getselleridbyshopname(String shopname){
 
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO(); //khoi tao doi tuong dao
-        int id=dao.getquantityProductsbyID("E803D7DF-E21B-4402-AB36-A3C0CC3FC2DA");
+        boolean id=dao.updatesanphamsaukhimuahang("E803D7DF-E21B-4402-AB36-A3C0CC3FC2DA", 5);
         System.out.println(id);
     }
 }

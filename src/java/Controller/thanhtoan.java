@@ -103,6 +103,7 @@ HttpSession session=request.getSession();
                     check=true;
                     session.setAttribute("msgcart", "Lỗi !!! Số lượng bạn muốn mua vượt quá mức mà sản phẩm có hoặc số lượng không hợp lệ");
                     response.sendRedirect("cart");
+                    break;
                 }
                 else{
                 ItemInCart item = new ItemInCart(itemValue, quantity);

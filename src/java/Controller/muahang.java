@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -83,7 +84,7 @@ public class muahang extends HttpServlet {
                 request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
+        HttpSession session=request.getSession();
         Object iduser=request.getParameter("iduser");
         String address = request.getParameter("address");
         String fullname = request.getParameter("fullName");
@@ -93,6 +94,7 @@ public class muahang extends HttpServlet {
         String phone = request.getParameter("phone");
         String sosanphamParam = request.getParameter("sosanpham");
         ThanhtoanDAO thanhtoandao=new ThanhtoanDAO();
+        ProductDAO productdao=new ProductDAO();
         Map<Object, ArrayList<ItemInCart>> productsByShop = new HashMap<>();
         int sosanpham = 0;  // Giá trị mặc định hoặc nếu không thể chuyển đổi thành số nguyên
         if (sosanphamParam != null) {
@@ -180,7 +182,15 @@ for (Map.Entry<Object, ArrayList<ItemInCart>> entry : productsByShop.entrySet())
     if (!shopProducts.isEmpty()) {
         Object idorder=thanhtoandao.addNewOrderandGetThisOther(iduser, sellerid1, fullname, phone, town, location);
         for(ItemInCart item:shopProducts){
+            boolean update=productdao.updatesanphamsaukhimuahang(item.getProductid(),item.getQuantity());
+            if(update==true){
             thanhtoandao.addNewOrderDetail(idorder, item.getProductid(), item.getQuantity(),item.getPrice());
+            }
+            if(update==false){
+                 session.setAttribute("msgcart", "Lỗi !!! Số lượng bạn muốn mua vượt quá mức mà sản phẩm có hoặc số lượng không hợp lệ");
+                    response.sendRedirect("cart");
+                    break;
+            }
         }
          thanhtoandao.UpdateOrdertotal();
         // Tạo đơn hàng tại đây và lưu vào CSDL
