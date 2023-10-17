@@ -327,6 +327,31 @@ public Object getselleridbyshopname(String shopname){
         return null;
 
     }
+     public int getquantityProductsbyID(Object id) {
+        String sql = "SELECT * FROM ProductInfo\n"
+                + "  WHERE product_id = ?";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setObject(1, id);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+
+
+                int productAvaiable = resultSet.getInt(6);
+
+                return productAvaiable;
+
+            }
+            resultSet.close();
+            statement.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+
+    }
 
     public void xoasanpham(Object id) {
         try {

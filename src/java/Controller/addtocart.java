@@ -74,14 +74,30 @@ public class addtocart extends HttpServlet {
     throws ServletException, IOException {
           Object id=request.getParameter("id");
         Object productid=request.getParameter("productid");
+        int avai=Integer.parseInt(request.getParameter("productavai"));
         int quantity=Integer.parseInt(request.getParameter("quantity"));
-       
+        if(quantity<=0){
+            request.setAttribute("msg", "Số lượng không hợp lệ");
+         request.setAttribute("pid",productid);
+        request.getRequestDispatcher("detail").forward(request, response);
+        }
+        if(quantity>avai){
+            request.setAttribute("msg", "Số lượng trong kho không đủ.Vui lòng chọn số lượng nhỏ hơn");
+         request.setAttribute("pid",productid);
+        request.getRequestDispatcher("detail").forward(request, response);
+        }
+    
 //        PrintWriter out = response.getWriter();
 //        out.println(id);
 //        out.println(productid);
 //        out.println(quantity);
+//
+
+
+
+//
         CartDAO dao=new CartDAO();
-        dao.addCart(id, productid, quantity);
+        dao.addCart(id, productid, quantity,avai);
         request.setAttribute("msg", "Thêm vào giỏ hàng thành công");
          request.setAttribute("pid",productid);
         request.getRequestDispatcher("detail").forward(request, response);

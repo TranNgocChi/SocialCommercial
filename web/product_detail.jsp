@@ -82,6 +82,7 @@
                                 <input type="hidden" name="productid" value="${detail.productId}">
                                 <input type="hidden" name="productprice" value=""${detail.productPrice}">
                                 <input type="hidden" name="productname" value="${detail.productName}">
+                                <input type="hidden" name="productavai" value="${detail.productAvailable}">
                                <div class="product__details__quantity">
                                 <div class="quantity">
                                     <div class="pro-qty">
@@ -94,7 +95,7 @@
                             </form>
                             <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                             <ul>
-                                <li><b>Availability</b> <span>In Stock</span></li>
+                                <li><b>Số lượng có sẵn</b> <span>${detail.productAvailable}</span></li>
                                 <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
                                 <li><b>Weight</b> <span>0.5 kg</span></li>
 

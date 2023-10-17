@@ -90,7 +90,7 @@ double price=rs.getDouble(10);
             Logger.getLogger(CartDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void addCart(Object userid,Object productid,int quantity){
+    public void addCart(Object userid,Object productid,int quantity,int productavai){
         Object cartid=getIdCartByUserID(userid);
         if(cartid==null){
             try {
@@ -114,13 +114,24 @@ double price=rs.getDouble(10);
             try {
                 ItemInCart itemincart=getOneProductinCart(cartid, productid);
                 if(itemincart!=null){
+                    
                 int quantityindtb=itemincart.getQuantity();
+                if(quantityindtb+quantity<=productavai){
                 String sql="UPDATE ShoppingCartItem SET item_quantity=? WHERE product_id=? AND cart_id=?   ";
                  PreparedStatement ps = connection.prepareStatement(sql);
                  ps.setObject(2, productid);
                  ps.setInt(1, (quantity+quantityindtb));
                  ps.setObject(3, cartid);
                   ps.execute();
+                }
+                if(quantityindtb+quantity>productavai){
+                String sql="UPDATE ShoppingCartItem SET item_quantity=? WHERE product_id=? AND cart_id=?   ";
+                 PreparedStatement ps = connection.prepareStatement(sql);
+                 ps.setObject(2, productid);
+                 ps.setInt(1, productavai);
+                 ps.setObject(3, cartid);
+                  ps.execute();
+                }
                         
                 }
                 else{

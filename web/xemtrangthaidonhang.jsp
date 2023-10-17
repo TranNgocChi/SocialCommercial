@@ -102,10 +102,25 @@
                                 <tr>
                                     <th class="shoping__product" colspan="5" style="text-align: left; padding-top: 10px">
                                         Order ID: ${orderId} 
+                                    
                                     </th>
                                 </tr>
+                         ;
                                 <c:forEach items="${donhangList}" var="donhang">
+                                    <c:if test="${donhang.total!=tong}">
+                                         <th class="shoping__product" colspan="5" style="text-align: left; padding-top: 10px">
+                                       Shop ${donhang.shopname}
+                                    </th>
+                                    <th class="shoping__product" colspan="5" style="text-align: left; padding-top: 10px">
+                                        Tổng đơn: ${donhang.total} VND
+                                        <c:set var="tong" value="${donhang.total}"></c:set>
+                                    </th>
+                                        <th class="shoping__product" colspan="5" style="text-align: left; padding-top: 10px">
+                                       Thông tin người nhận ${donhang.fullname} ${donhang.phone} ${donhang.town} 
+                                       ${donhang.location} ${donhang.town}
+                                    </th>
                                     
+                                    </c:if>
                                     <tr>
                                         <td class="shoping__cart__item">
                                             <img src="${donhang.img}" alt="" style="width: 100px; height: 100px; object-fit: cover;">
@@ -113,7 +128,7 @@
                                             <h5>X ${donhang.quantity}</h5>
                                             <h5>Giá: ${donhang.price}</h5>
                                             <h5>Tổng: ${donhang.price*donhang.quantity}</h5>
-                                         Tổng đơn hàng: ${donhang.total }VND (Đã bao gồm phí ship)
+                                         
                                          
                                         </td>
                                     </tr>
