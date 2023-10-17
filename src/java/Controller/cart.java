@@ -66,7 +66,6 @@ public class cart extends HttpServlet {
        Object id=session.getAttribute("id");
        CartDAO dao=new CartDAO();
        ArrayList<ItemInCart> list=dao.getAllProductinCartofUserID(id);
-       String msg=(String) request.getAttribute("msg");
        request.setAttribute("listitemincart", list);
        request.getRequestDispatcher("cart.jsp").forward(request, response);
     } 

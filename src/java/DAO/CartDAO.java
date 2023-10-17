@@ -189,6 +189,7 @@ double price=rs.getDouble(10);
     }
         public ArrayList<ItemInCart> getAllProductinCartofUserID(Object userid){
         try {
+            updatequantitytheothoigian(userid);
             String sql="SELECT ShoppingCartItem.id,ShoppingCart.user_id,ShoppingCartItem.cart_id,ShoppingCartItem.product_id,ShoppingCartItem.item_quantity,ProductInfo.seller_id,ProductInfo.product_name,ProductInfo.product_image,ProductInfo.product_available,ProductInfo.product_price,requestSetRole.shopName\n" +
 "From ShoppingCartItem\n" +
 "JOIN ProductInfo ON ProductInfo.product_id=ShoppingCartItem.product_id\n" +
@@ -223,6 +224,24 @@ double price=rs.getDouble(10);
         }
         return null;       
     }
+        public void updatequantitytheothoigian(Object userid){
+        try {
+            String sql="UPDATE ShoppingCartItem\n" +
+                    "SET item_quantity = product_available\n" +
+                    "FROM ShoppingCartItem\n" +
+                    "JOIN ProductInfo ON ProductInfo.product_id = ShoppingCartItem.product_id\n" +
+                    "JOIN ShoppingCart ON ShoppingCart.id = ShoppingCartItem.cart_id\n" +
+                    "WHERE ShoppingCart.user_id = ? AND item_quantity > product_available;";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setObject(1, userid);
+            ps.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(CartDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                    
+                    
+            
+        }
          
      
      public static void main(String[] args) {

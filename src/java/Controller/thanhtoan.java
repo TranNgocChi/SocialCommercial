@@ -6,6 +6,7 @@
 package Controller;
 
 import DAO.CartDAO;
+import DAO.ProductDAO;
 import Model.ItemInCart;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -74,16 +76,18 @@ public class thanhtoan extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
+   @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
                 response.setContentType("text/html;charset=UTF-8");
+HttpSession session=request.getSession();
 
         PrintWriter out = response.getWriter();
-
+         boolean check=false;
         int dem = Integer.parseInt(request.getParameter("dem"));
         ArrayList<ItemInCart> list = new ArrayList<>();
         CartDAO dao = new CartDAO();
+        ProductDAO productdao=new ProductDAO();
         for (int i = 1; i <= dem; i++) {
             String itemid = "item" + String.valueOf(i);
             Object itemValue = request.getParameter(itemid);
@@ -92,8 +96,18 @@ public class thanhtoan extends HttpServlet {
             if (itemValue != null) {
                 String stringquantity = "itemquantity" + String.valueOf(i);
                 int quantity = Integer.parseInt(request.getParameter(stringquantity));
+                String productid = "productid" + String.valueOf(i);
+              Object productid1= request.getParameter(productid);
+                int productavai=productdao.getquantityProductsbyID(productid1);
+                if(quantity>productavai||quantity<=0){
+                    check=true;
+                    session.setAttribute("msgcart", "Lỗi !!! Số lượng bạn muốn mua vượt quá mức mà sản phẩm có hoặc số lượng không hợp lệ");
+                    response.sendRedirect("cart");
+                }
+                else{
                 ItemInCart item = new ItemInCart(itemValue, quantity);
                 list.add(item);
+                }
             }
         }
         ArrayList<ItemInCart> listthanhtoan = new ArrayList<>();
@@ -101,8 +115,10 @@ public class thanhtoan extends HttpServlet {
             in = dao.getOneProductinCartByIdAndUpdateQuantity(in.getId(), in.getQuantity());
             listthanhtoan.add(in);
         }
+        if(check==false){
         request.setAttribute("listthanhtoan", listthanhtoan);
         request.getRequestDispatcher("purchase.jsp").forward(request, response);
+        }
 
     }
 

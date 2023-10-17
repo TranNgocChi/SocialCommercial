@@ -334,23 +334,14 @@ public Object getselleridbyshopname(String shopname){
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setObject(1, id);
-            ResultSet resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-
-
-                int productAvaiable = resultSet.getInt(6);
-
+            ResultSet rs = statement.executeQuery();
+                        rs.next();
+                int productAvaiable = rs.getInt(6);
                 return productAvaiable;
-
-            }
-            resultSet.close();
-            statement.close();
         } catch (SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return 0;
-
     }
 
     public void xoasanpham(Object id) {
@@ -600,7 +591,7 @@ public Object getselleridbyshopname(String shopname){
 
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO(); //khoi tao doi tuong dao
-        Object id=dao.getselleridbyshopname("COMPUCHA SHOP");
+        int id=dao.getquantityProductsbyID("E803D7DF-E21B-4402-AB36-A3C0CC3FC2DA");
         System.out.println(id);
     }
 }

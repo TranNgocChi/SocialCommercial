@@ -65,6 +65,9 @@
         <!-- Hero Section End -->
         <!-- Shoping Cart Section Begin -->
         <section class="shoping-cart spad">
+           <h4 style="color: red; margin-left: 30px;">${msgcart}</h4>
+
+            <c:set var="msgcart" value="${null}"></c:set>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -98,9 +101,9 @@
         </c:if>
         <tr>
                                         <td class="shoping__cart__item">
-                                           
                                             <input type="checkbox" class="product-checkbox" value="${item.id}" name="item${dem}">
-
+ <input type="hidden"  value="${item.productid}" name="productid${dem}">
+ 
                                             <img src="${item.img}" alt="" style="width: 100px; height: 100px; object-fit: cover;">
                                             <h5>${item.productname}</h5>
                                             
@@ -132,7 +135,7 @@
                                 <input type="hidden" name="dem" value="${dem}">
                                 
                                        
-                                    <button type="submit" ">MUA NGAY</button>
+                                    <button type="submit" >MUA NGAY</button>
                                             </form>
 
                                
