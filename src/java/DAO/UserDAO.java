@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.ResultSet;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -241,6 +242,17 @@ public class UserDAO extends DatabaseConnection {
             return list;
         } catch (SQLException ex) {
             Logger.getLogger(AdminDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public User findUserById(List<User> userList, Object userId) {
+        if (userId != null) {
+            for (User usr : userList) {
+                if (userId.toString().toLowerCase().equals(usr.getId().toString().toLowerCase())) {
+                    return usr;
+                }
+            }
         }
         return null;
     }

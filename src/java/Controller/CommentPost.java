@@ -56,7 +56,17 @@ public class CommentPost extends HttpServlet {
             NotiName+" đã bình luận bài viết của bạn", nowDate,
             "PostDetail?post_id="+post_id+ "&fullName="+fullName+"&user_id="+user_id, reacter);
         }
-        response.sendRedirect("PostDetail?post_id="+post_id+ "&fullName="+fullName+"&user_id="+user_id);        
+        Object checkcomhome = request.getParameter("checkcomhome");
+        Object checkcomhomefollowing = request.getParameter("checkcomhomefollowing");
+        if(checkcomhome != null){
+            response.sendRedirect("home.jsp");     
+        }else if(checkcomhomefollowing != null){
+            response.sendRedirect("HomeFollowing");  
+        }
+        else{
+            response.sendRedirect("PostDetail?post_id="+post_id+ "&fullName="+fullName+"&user_id="+user_id);     
+        }
+           
 
     }
 

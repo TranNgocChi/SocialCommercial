@@ -37,9 +37,9 @@
                     <!-- home center start here -->
                     <div class="home-center">
                         <div class="home-center-wrapper">    
-                            <%if(session.getAttribute("id")!=null &&  session.getAttribute("listPostPopular") != null){
+                            <%if( request.getAttribute("listFollowingPost") != null){
                                 UserDAO manageUser = new UserDAO();
-                                for(UserPost home_post : (List<UserPost>) session.getAttribute("listPostPopular")){
+                                for(UserPost home_post : (List<UserPost>) request.getAttribute("listFollowingPost")){
                                 for(User usr : manageUser.getAllUsers()){if(usr.getId().toString().toLowerCase()
                                 .equals(home_post.getUser_id().toString().toLowerCase())){
                                 ArrayList<LikeSocial> listLikes = new ArrayList<>();LikeSocialDAO likes = new LikeSocialDAO();
@@ -50,7 +50,7 @@
                                 }
                                 String check_like = null;
                                 for(LikeSocial heart : listLikes){
-                                    if(home_post.getId().toString().toLowerCase().equals(heart.getPost_id().toString().toLowerCase())
+                                    if(session.getAttribute("id")!=null && home_post.getId().toString().toLowerCase().equals(heart.getPost_id().toString().toLowerCase())
                                     && heart.getLiker_id().toString().toLowerCase().equals(session.getAttribute("id").toString().toLowerCase())){
                                         check_like = "notnull";
                                         break;
@@ -67,8 +67,8 @@
                             <div class="fb-post1">
                                 <div class="fb-post1-header">
                                     <ul>
-                                        <a href="home.jsp"><li class="active">popular</li></a>
-                                        <a href="HomeFollowing"><li>following</li></a>
+                                        <a href="home.jsp"><li>popular</li></a>
+                                        <a href="HomeFollowing"><li  class="active">following</li></a>
                                     </ul>
                                 </div>
                                 <div class="fb-post1-container">
@@ -92,7 +92,7 @@
                                         <div class="like-comment" style="font-size: 35px;">
                                             <ul>
                                                 <li >
-                                                    <a href="ReactPostHome?post_id=<%=home_post.getId()%>">
+                                                    <a href="ReactPostHome?post_id=<%=home_post.getId()%>&name=<%=home_post.getPost_image() %>">
                                                         <% if (check_like != null) { %>
                                                         <i class="fas fa-heart"></i>
                                                         <% } else { %>
@@ -119,7 +119,7 @@
                                             || home_post.getUser_id().toString().toLowerCase().equals(session.getAttribute("id").toString().toLowerCase())){%>
                                             <a href="RemoveCommentSocial?id=<%= comment.getId() %>&post_id=<%=home_post.getId()%>
                                             &fullName=<%=usr.getFullname()%>&user_id=<%= usr.getId() %>
-                                            &ck=<%=usr.getFullname()%>" style="color: grey;">
+                                            &cs=<%=usr.getFullname()%>" style="color: grey;">
                                                 <i class="fa-solid fa-delete-left"></i>
                                             </a>
                                             <%}%>
@@ -128,7 +128,7 @@
                                         <form method="POST" action="CommentPost?post_id=<%=home_post.getId()%>&fullName=<%=usr.getFullname()%>
                                               &user_id=<%=usr.getId() %>">
                                             <div class="comment-box">
-                                                <input type="hidden" placeholder="Post a comment" name="checkcomhome" value="CheckHome" />
+                                                <input type="hidden" name="checkcomhomefollowing" value="CheckHome" />
                                               <input type="text" placeholder="Post a comment" name="comment" />
                                               <button type="submit">Post</button>
                                             </div>

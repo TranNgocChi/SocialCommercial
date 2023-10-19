@@ -24,7 +24,7 @@
         <a href="shopping"><i class="fa-brands fa-shopify"></i> Shopping</a>
         <a href="chat"><i class="fa-brands fa-facebook-messenger"></i> Messenger</a>
         <a href="create_post.jsp"><i class="fa-solid fa-circle-plus"></i> Tạo bài viết</a>
-        <a href="#"><i class="fa-solid fa-bookmark"></i> Lưu bài viết</a>
+        <a href="LikedPost"><i class="fa-solid fa-heart"></i> Bài viết đã thích</a>
 
     </div>
 

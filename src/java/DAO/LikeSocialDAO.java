@@ -151,6 +151,19 @@ public class LikeSocialDAO {
         }
     }
     
+    public ArrayList<LikeSocial> getLikeSocialsForPost(Object postId) {
+        ArrayList<LikeSocial> likeSocialsForPost = new ArrayList<>();
+
+        for (LikeSocial likeSocial : getLikeSocials()) {
+            if (likeSocial.getPost_id().toString().equalsIgnoreCase(postId.toString())) {
+                likeSocialsForPost.add(likeSocial);
+            }
+        }
+
+        return likeSocialsForPost;
+    }
+    
+    
     public static void main(String[] args) {
         LikeSocialDAO like = new LikeSocialDAO();
         for(LikeSocial a : like.getLikeSocials()){

@@ -1,13 +1,16 @@
 package DAO;
 
 import Model.Category;
+import Model.Order;
 import connectSQLServer.DatabaseConnection;
 import Model.User;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.ResultSet;
+import java.util.Date;
 import java.util.Random;
 import java.util.UUID;
 import java.util.logging.Level;
@@ -106,35 +109,77 @@ public class AdminDAO extends DatabaseConnection {
         }
     }
     
-    public ArrayList<User> getRandomUsers(Object sessionUserId) {
-    UserDAO manageUser = new UserDAO();                
-    ArrayList<User> allUsers = manageUser.getAllUsers();
-    ArrayList<User> fiveUsers = new ArrayList<>();
+        public ArrayList<User> getRandomUsers(Object sessionUserId) {
+        UserDAO manageUser = new UserDAO();                
+        ArrayList<User> allUsers = manageUser.getAllUsers();
+        ArrayList<User> fiveUsers = new ArrayList<>();
 
-    Random rand = new Random();
+        Random rand = new Random();
 
-    if (sessionUserId instanceof Object) {
+        if (sessionUserId instanceof Object) {
 
-        for (int i = 0; i < 5 && !allUsers.isEmpty(); i++) {
-            int randomIndex = rand.nextInt(allUsers.size());
-            User randomUser = allUsers.get(randomIndex);
+            for (int i = 0; i < 5 && !allUsers.isEmpty(); i++) {
+                int randomIndex = rand.nextInt(allUsers.size());
+                User randomUser = allUsers.get(randomIndex);
 
-            // Kiểm tra xem ID của người dùng ngẫu nhiên đã tồn tại trong sessionUserId chưa
-            if (!sessionUserId.toString().toLowerCase().equals(randomUser.getId().toString().toLowerCase())) {
-                fiveUsers.add(randomUser);
+                if (!sessionUserId.toString().toLowerCase().equals(randomUser.getId().toString().toLowerCase())) {
+                    fiveUsers.add(randomUser);
+                }
+
+                allUsers.remove(randomIndex);
             }
-
-            allUsers.remove(randomIndex);
+        } else {
+            System.out.println("Error");
         }
-    } else {
-        System.out.println("Error");
-    }
 
-    return fiveUsers;
-}
+        return fiveUsers;
+    }
+    public ArrayList<Order> getAllOrders(){
+        ArrayList<Order> listOfOrders = new ArrayList<>();
+        Connection cnt = null;
+        PreparedStatement stm = null;
+        ResultSet res = null;
+        try{
+            String sql = "SELECT * FROM [SWP391].[dbo].[Order]";
+            cnt = DatabaseConnection.getConnection();
+            stm = cnt.prepareStatement(sql);    
+            res = stm.executeQuery();
+            while(res.next()){
+                Object id = res.getObject("id");
+                Object customer_id = res.getObject("customer_id");
+                Object seller_id  = res.getObject("seller_id");
+                String fullname=res.getString("fullname");
+                String phone=res.getString("phone");
+                BigDecimal order_total=res.getBigDecimal("order_total");
+                Date order_date=res.getDate("order_date");
+                String order_town=res.getString("order_town");
+                String order_location=res.getString("order_location");
+                String status=res.getString("status");
+                int stt=res.getInt("stt");
+                
+                Order order = new Order(id,customer_id,seller_id,fullname,phone,order_total,order_date,
+                order_town,order_location, status, stt);
+                listOfOrders.add(order);
+            }
+            
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }finally{
+            try {
+                cnt.close();
+                stm.close();
+                res.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CommentSocialDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return listOfOrders;
+    }
 
     public static void main(String[] args) {
         AdminDAO userdao = new AdminDAO();
-        userdao.delete("3D561143-E8C6-44D1-A859-E8796498A5A8");
+        for(Order o : userdao.getAllOrders()){
+            System.out.println(o.toString());
+        }
     }
 }

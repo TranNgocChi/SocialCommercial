@@ -8,7 +8,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="logoBox">
-                <a href="home.jsp"><h1>SOCO</h1></a>
+                <a href="home.jsp" style="font-size: 20px;"><h1>SOCO</h1></a>
             </div>
             <div class="searchBox">
                 <input type="search">
@@ -17,11 +17,15 @@
             <div class="iconBox2">
                 <c:if test="${name!=null}">
                     <a href="home.jsp"><i class="fa-solid fa-house"></i></a>
-                    <i class="fas fa-user-friends"></i>
+                    <a href="ViewFollow?my_id=<%= session.getAttribute("id") %>"><i class="fas fa-user-friends"></i></a>
                     <div id="notificationIconContainer">
                         <i id="notificationIcon" class="fa-solid fa-bell"></i>
                         <%List<Notification> listNotificationUser = (List<Notification>) session.getAttribute("listNotificationUser");%>
+                        <% if (listNotificationUser != null && listNotificationUser.size() > 0){ %>
                         <span id="notificationCount"><%= listNotificationUser.size() %></span>
+                        <%}else{%>
+                        <span id="notificationCount">0</span>
+                        <%}%>
                     </div>
                     
                     <div id="notification" class="hidden" style="margin-right:800px;">

@@ -25,6 +25,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     </head>
+     <%@ include file="subhome/header.jsp" %>
+     
     <body>
 
         <!-- home section start -->
@@ -79,7 +81,7 @@
                         <div class="comment">
                             <img src="<%= customer.getImage() %>" alt="user">
                             <div class="comment-content">
-                                <span class="comment-username"><%= customer.getFullname() %></span>
+                                <span class="comment-username" style="font-size: 25px"><%= customer.getFullname() %></span>
                                 <span style="color: grey; margin-left: 7px; font-size: 15px;"><%= comment.getComment_date() %></span>
                                 <p><%= comment.getComment_content() %></p>
                             </div>

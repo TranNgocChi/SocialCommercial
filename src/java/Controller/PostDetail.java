@@ -90,7 +90,7 @@ public class PostDetail extends HttpServlet {
         ArrayList<CommentSocial> listComment = new ArrayList<>();
         CommentSocialDAO manageComment = new CommentSocialDAO();
         for(CommentSocial comments : manageComment.getCommentSocials()){
-        if(comments.getPost_id().toString().toLowerCase().equals(post_id.toString().toLowerCase())){
+        if(comments.getPost_id() != null && comments.getPost_id().toString().toLowerCase().equals(post_id.toString().toLowerCase())){
             listComment.add(comments);
         }}
         listComment.sort((comment1, comment2) -> comment1.getComment_date().compareTo(comment2.getComment_date()));

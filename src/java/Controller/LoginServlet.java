@@ -44,18 +44,21 @@ public class LoginServlet extends HttpServlet {
         user = dao.get(name, pass);
             
         if (user != null) {
+            int role_id = 0;
             for (User cus : dao.getAllUsers()) {
                 if (cus.getId().equals(user.getId())) {
                     img = cus.getImage();
+                    role_id=cus.getRoleid();
                     break;
                 }
-            }            
+            }
             
             NotificationDAO noti = new NotificationDAO();
             List<Notification> listNotificationUser = new ArrayList<>();
             
             for(Notification notify : noti.getAllNotifications()){
-                if(notify.getUser_id().toString().toLowerCase().equals(user.getId().toString().toLowerCase())){
+                if(notify.getUser_id()!=null&&
+            notify.getUser_id().toString().toLowerCase().equals(user.getId().toString().toLowerCase())){
                     listNotificationUser.add(notify);
                 }
             }
@@ -86,7 +89,7 @@ public class LoginServlet extends HttpServlet {
                     }
                 }
             }
-            
+
             HttpSession session = request.getSession();
             session.setAttribute("id", user.getId());
             session.setAttribute("name", user.getName());
@@ -94,7 +97,12 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("img", img);
             session.setAttribute("listNotificationUser", listNotificationUser);
             session.setAttribute("listPostPopular", listPostPopular);
-            response.sendRedirect(request.getContextPath());
+            if(role_id==4){
+                response.sendRedirect("Shipper");
+            }else{
+                response.sendRedirect(request.getContextPath());
+            }
+            
 
 
         } else {

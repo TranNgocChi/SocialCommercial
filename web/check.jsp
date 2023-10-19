@@ -1,130 +1,293 @@
-<%@page import="Model.UserPost"%>
-<%@page import="java.util.List"%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOCO</title>
-    <!-- style css link -->
-    <link rel="stylesheet" href="static/css/style.css">
-    <!-- fontawesome css link -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-<body>
-    <!-- Header -->
-    <%@ include file="subhome/header.jsp" %>
-    <!-- Header -->
+<header>
 
-    <div class="container">
-            <div class="profile">
-                <div class="profile-image">
-                    <a href="${link_image}"><img src="${link_image}" width="280px" height="300px" alt=""></a>
-                
-                </div>
-                <div class="profile-user-settings">
-                    <h1 class="profile-user-name" style="font-weight: 800;">${fullName}</h1>
-                    <% if(request.getAttribute("check") != null){ %>
-                        <a href="DisplayEditUserProfile" style="color: black;">
-                            <button class="btn profile-edit-btn" style="background-color: #3a78ffec"><i class="fas fa-edit"></i> Edit Profile</button>
-                        </a>    
-                        <a href="create_post.jsp" style="color: black;">
-                            <button class="btn profile-edit-btn" style="background-color: grey"><i class="fas fa-plus-circle"></i> Create Post</button>
-                        </a>
-                    <% }else{%>
-                    <a href="FollowFriend?friend_id=<%= request.getAttribute("user_id") %>" style="color: black;">
-                        <button class="btn profile-edit-btn" style="background-color: #3a78ffec">
-                         
-                            <% if (request.getAttribute("check_follow") != null) {%>
-                        <i class="fas fa-user-check"></i> Unfollow</button>
-                        <%}else{%>
-                        <i class="fas fa-user-plus"></i> Follow</button>
-                        <%}%>
-                    </a>
-                    <a style="color: black;">
-                        <button class="btn profile-edit-btn" style="background-color: grey">
-                        <i class="fab fa-facebook-messenger"></i> Messenger</button>
-                    </a>
-                    <% } %>
-                    
-                </div>
+	<div class="container">
 
-                <div class="profile-stats">
+		<div class="profile">
 
-                        <ul>
-                            <li><span class="profile-stat-count">${count}</span> posts</li>
-                            <li><span class="profile-stat-count">${follower}</span> followers</li>
-                            <li><span class="profile-stat-count">${following}</span> following</li>
-                        </ul>
+			<div class="profile-image">
 
-                </div>
+				<img src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces" alt="">
 
-                <div class="profile-bio">
-                    <p><i class="fas fa-info-circle"></i> ${fullName} - ${gender}</p>
-                    <p><i class="fas fa-heart"></i> ${statusNow}</p>
-                    <p><i class="fas fa-school"></i> ${school}</p>
-                    <p><i class="fas fa-thumbs-up"></i> ${favourite}</p>
-                    <p><span style="font-weight:600">Bio: </span>
-                    ${bio}
-                    </p>?
+			</div>
 
-                </div>
+			<div class="profile-user-settings">
 
-            </div>
-            <!-- End of profile section -->
+				<h1 class="profile-user-name">janedoe_</h1>
 
-    </div>
-    <% if(request.getAttribute("check_listUserPost") != null){ %>                
-        <h1 style="font-size: 30px;
-            font-weight: 700;
-            margin-left: 500px;">Danh sách bài vi?t ?ã ??ng t?i</h1>
-            <br><br>
-        <div class="container">
-            <div class="gallery">
-                <% for(UserPost post_user : (List<UserPost>) request.getAttribute("listUserPost")){%>
-                <a href="PostDetail?post_id=<%= post_user.getId()%>&fullName=${fullName}&user_id=<%= request.getParameter("user_id") %> ">
-                        <div class="gallery-item" tabindex="0">
-                            <img src="<%= post_user.getPost_image() %>" class="gallery-image" alt="">
+				<button class="btn profile-edit-btn">Edit Profile</button>
 
-                            <div class="gallery-item-info">
-                               <ul>
-                                    <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 56</li>
-                                    <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </a>
-                <% } %> 
-            </div>
+				<button class="btn profile-settings-btn" aria-label="profile settings"><i class="fas fa-cog" aria-hidden="true"></i></button>
 
-                <!-- End of gallery -->
-        </div>
-    <% }else{ %>
-        <% if(request.getAttribute("check") != null){ %>
-        <p style="color:black;
-        margin: 50px 300px;
-        font-size: 35px;
-        font-weight: 700;
-        ">You don't have any posts<i class="fas fa-address-card" style="color: grey;"></i><br>
-            Click <a href="create_post.jsp"><i class="fas fa-plus-square"></i></a> to create your first post
-        </p>
-        <%}else{%>
-        <p style="color:black;
-        margin: 50px 450px;
-        font-size: 35px;
-        font-weight: 700;
-        ">Don't have any posts
-        </p>
-        <% } %>
-    <% } %>
+			</div>
 
-    <!-- JavaScript -->
-    <script src="static/js/js.js"></script>
-</body>
-</html>
+			<div class="profile-stats">
+
+				<ul>
+					<li><span class="profile-stat-count">164</span> posts</li>
+					<li><span class="profile-stat-count">188</span> followers</li>
+					<li><span class="profile-stat-count">206</span> following</li>
+				</ul>
+
+			</div>
+
+			<div class="profile-bio">
+
+				<p><span class="profile-real-name">Jane Doe</span> Lorem ipsum dolor sit, amet consectetur adipisicing elit ?????</p>
+
+			</div>
+
+		</div>
+		<!-- End of profile section -->
+
+	</div>
+	<!-- End of container -->
+
+</header>
+
+<main>
+
+	<div class="container">
+
+		<div class="gallery">
+
+			<div class="gallery-item" tabindex="0">
+
+				<img src="https://images.unsplash.com/photo-1511765224389-37f0e77cf0eb?w=500&h=500&fit=crop" class="gallery-image" alt="">
+
+				<div class="gallery-item-info">
+
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 56</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+			<div class="gallery-item" tabindex="0">
+
+				<img src="https://images.unsplash.com/photo-1497445462247-4330a224fdb1?w=500&h=500&fit=crop" class="gallery-image" alt="">
+
+				<div class="gallery-item-info">
+
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 89</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 5</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+			<div class="gallery-item" tabindex="0">
+
+				<img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=500&h=500&fit=crop" class="gallery-image" alt="">
+
+				<div class="gallery-item-type">
+
+					<span class="visually-hidden">Gallery</span><i class="fas fa-clone" aria-hidden="true"></i>
+
+				</div>
+
+				<div class="gallery-item-info">
+
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 42</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 1</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+			<div class="gallery-item" tabindex="0">
+
+				<img src="https://images.unsplash.com/photo-1502630859934-b3b41d18206c?w=500&h=500&fit=crop" class="gallery-image" alt="">
+
+				<div class="gallery-item-type">
+
+					<span class="visually-hidden">Video</span><i class="fas fa-video" aria-hidden="true"></i>
+
+				</div>
+
+				<div class="gallery-item-info">
+
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 38</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 0</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+			<div class="gallery-item" tabindex="0">
+
+				<img src="https://images.unsplash.com/photo-1498471731312-b6d2b8280c61?w=500&h=500&fit=crop" class="gallery-image" alt="">
+
+				<div class="gallery-item-type">
+
+					<span class="visually-hidden">Gallery</span><i class="fas fa-clone" aria-hidden="true"></i>
+
+				</div>
+
+				<div class="gallery-item-info">
+
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 47</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 1</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+			<div class="gallery-item" tabindex="0">
+
+				<img src="https://images.unsplash.com/photo-1515023115689-589c33041d3c?w=500&h=500&fit=crop" class="gallery-image" alt="">
+
+				<div class="gallery-item-info">
+
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 94</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 3</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+			<div class="gallery-item" tabindex="0">
+
+				<img src="https://images.unsplash.com/photo-1504214208698-ea1916a2195a?w=500&h=500&fit=crop" class="gallery-image" alt="">
+
+				<div class="gallery-item-type">
+
+					<span class="visually-hidden">Gallery</span><i class="fas fa-clone" aria-hidden="true"></i>
+
+				</div>
+
+				<div class="gallery-item-info">
+
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 52</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 4</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+			<div class="gallery-item" tabindex="0">
+
+				<img src="https://images.unsplash.com/photo-1515814472071-4d632dbc5d4a?w=500&h=500&fit=crop" class="gallery-image" alt="">
+
+				<div class="gallery-item-info">
+
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 66</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+			<div class="gallery-item" tabindex="0">
+
+				<img src="https://images.unsplash.com/photo-1511407397940-d57f68e81203?w=500&h=500&fit=crop" class="gallery-image" alt="">
+
+				<div class="gallery-item-type">
+
+					<span class="visually-hidden">Gallery</span><i class="fas fa-clone" aria-hidden="true"></i>
+
+				</div>
+
+				<div class="gallery-item-info">
+
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 45</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 0</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+			<div class="gallery-item" tabindex="0">
+
+				<img src="https://images.unsplash.com/photo-1518481612222-68bbe828ecd1?w=500&h=500&fit=crop" class="gallery-image" alt="">
+
+				<div class="gallery-item-info">
+
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 34</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 1</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+			<div class="gallery-item" tabindex="0">
+
+				<img src="https://images.unsplash.com/photo-1505058707965-09a4469a87e4?w=500&h=500&fit=crop" class="gallery-image" alt="">
+
+				<div class="gallery-item-info">
+
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 41</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 0</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+			<div class="gallery-item" tabindex="0">
+
+				<img src="https://images.unsplash.com/photo-1423012373122-fff0a5d28cc9?w=500&h=500&fit=crop" class="gallery-image" alt="">
+
+				<div class="gallery-item-type">
+
+					<span class="visually-hidden">Video</span><i class="fas fa-video" aria-hidden="true"></i>
+
+				</div>
+
+				<div class="gallery-item-info">
+
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 30</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+		</div>
+		<!-- End of gallery -->
+
+		<div class="loader"></div>
+
+	</div>
+	<!-- End of container -->
+
+</main>
 <style>
-    
+    /*
+
+All grid code is placed in a 'supports' rule (feature query) at the bottom of the CSS (Line 310). 
+        
+The 'supports' rule will only run if your browser supports CSS grid.
+
+Flexbox and floats are used as a fallback so that browsers which don't support grid will still recieve a similar layout.
+
+*/
+
+/* Base Styles */
+
 :root {
     font-size: 10px;
 }
@@ -135,6 +298,13 @@
     box-sizing: border-box;
 }
 
+body {
+    font-family: "Open Sans", Arial, sans-serif;
+    min-height: 100vh;
+    background-color: #fafafa;
+    color: #262626;
+    padding-bottom: 3rem;
+}
 
 img {
     display: block;
@@ -277,8 +447,8 @@ img {
     align-items: center;
     position: absolute;
     top: 0;
-    width: 330.5px;
-    height: 330.5px;
+    width: 100%;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.3);
 }
 
@@ -310,8 +480,8 @@ img {
 }
 
 .gallery-image {
-    width: 330.5px;
-    height: 330.5px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 
@@ -417,6 +587,14 @@ img {
     }
 }
 
+/*
+
+The following code will only run if your browser supports CSS grid.
+
+Remove or comment-out the code block below to see how the browser will fall-back to flexbox & floated styling. 
+
+*/
+
 @supports (display: grid) {
     .profile {
         display: grid;
@@ -433,7 +611,7 @@ img {
     .gallery {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
-        grid-gap: 11rem;
+        grid-gap: 2rem;
     }
 
     .profile-image,
@@ -479,4 +657,3 @@ img {
 }
 
 </style>
-

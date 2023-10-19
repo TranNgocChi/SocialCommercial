@@ -4,7 +4,6 @@ import DAO.UserDAO;
 import Model.Sendmail;
 import Model.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Random;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

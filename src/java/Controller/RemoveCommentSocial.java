@@ -47,7 +47,16 @@ public class RemoveCommentSocial extends HttpServlet {
         NotiName+" đã xoá bình luận trên bài viết của bạn", currentDate,
         "PostDetail?post_id="+post_id+ "&fullName="+fullName+"&user_id="+user_id, reacter);
         
+        Object ck= request.getParameter("ck");
+        Object cs= request.getParameter("cs");
+        if(ck != null){
+            response.sendRedirect("home.jsp");
+        }else if(cs != null){
+            response.sendRedirect("HomeFollowing");
+        }
+        else{
         response.sendRedirect("PostDetail?post_id="+post_id+ "&fullName="+fullName+"&user_id="+user_id);
+        }
     }
 
 }
