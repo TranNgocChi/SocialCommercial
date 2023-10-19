@@ -57,6 +57,22 @@
         <servlet-name>xemdonhang</servlet-name>
         <servlet-class>Controller.xemdonhang</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>quanlidonhang</servlet-name>
+        <servlet-class>Controller.quanlidonhang</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>xacnhandon</servlet-name>
+        <servlet-class>Controller.xacnhandon</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>XemDonHangDangChoVanChuyen</servlet-name>
+        <servlet-class>Controller.XemDonHangDangChoVanChuyen</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>taotaikhoanshipper</servlet-name>
+        <servlet-class>Controller.taotaikhoanshipper</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ShoppingControl</servlet-name>
         <url-pattern>/shopping</url-pattern>
@@ -114,6 +130,22 @@
     <servlet-mapping>
         <servlet-name>xemdonhang</servlet-name>
         <url-pattern>/xemdonhang</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>quanlidonhang</servlet-name>
+        <url-pattern>/quanlidonhang</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>xacnhandon</servlet-name>
+        <url-pattern>/xacnhandon</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>XemDonHangDangChoVanChuyen</servlet-name>
+        <url-pattern>/XemDonHangDangChoVanChuyen</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>taotaikhoanshipper</servlet-name>
+        <url-pattern>/taotaikhoanshipper</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -153,9 +153,18 @@ Tổng giá tiền ${totalPriceAll} VND
                     </div>
                     
                     <div class="form-group row">
-                        <label for="Town" class="col">Thành phố:</label>
-                        <input type="text" id="address" name="town" class="form-control col" placeholder="Thành phố" required>
-                    </div>
+    <label for="Town" class="col">Thành phố:</label>
+    <select id="town" name="town" class="form-control col" required>
+        <option value="" disabled selected>Chọn thành phố</option>
+        <option value="Hà Nội">Hà Nội</option>
+        <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+        <option value="Đà Nẵng">Đà Nẵng</option>
+        <option value="Gia Lai">Gia Lai</option>
+        <option value="Quy Nhơn">Quy Nhơn</option>
+        <!-- Thêm các thành phố khác bằng cách sao chép dòng trên và chỉnh sửa value và nội dung -->
+    </select>
+</div>
+
                     <div class="form-group row">
                         <label for="address" class="col">Địa chỉ:</label>
                         <input type="text" id="address" name="address" class="form-control col" placeholder="Address" required>

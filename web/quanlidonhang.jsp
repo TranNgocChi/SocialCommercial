@@ -105,11 +105,22 @@
                                     
                                     </th>
                                 </tr>
-                         ;
+                         
                                 <c:forEach items="${donhangList}" var="donhang">
+                                   
+                                        
                                     <c:if test="${donhang.total!=tong}">
                                          <th class="shoping__product" colspan="5" style="text-align: left; padding-top: 10px">
-                                       Shop ${donhang.shopname}
+                                          <c:if test="${donhang.status==null}">
+                                    <form action="xacnhandon" method="post">
+                                        <input type="hidden" value="${orderId}"name="orderid">
+                                        <input type="submit" value="OK">
+                                    </form>
+                                        </c:if>
+                                
+                                 <c:if test="${donhang.status!=null}">
+                                 <h4 style="color:green">Đã duyệt</h4>
+                                 </c:if>
                                     </th>
                                     <th class="shoping__product" colspan="5" style="text-align: left; padding-top: 10px">
                                         Tổng đơn: ${donhang.total} VND
@@ -128,7 +139,7 @@
                                             <h5>X ${donhang.quantity}</h5>
                                             <h5>Giá: ${donhang.price}</h5>
                                             <h5>Tổng: ${donhang.price*donhang.quantity}</h5>
-                                         
+                                 
                                          
                                         </td>
                                     </tr>

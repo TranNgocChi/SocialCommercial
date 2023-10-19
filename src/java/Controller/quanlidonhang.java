@@ -24,9 +24,9 @@ import javax.servlet.http.HttpSession;
  *
  * @author DELL
  */
-@WebServlet(name = "xemdonhang", urlPatterns = {"/xemdonhang"})
+@WebServlet(name = "quanlidonhang", urlPatterns = {"/quanlidonhang"})
 
-public class xemdonhang extends HttpServlet {
+public class quanlidonhang extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -43,10 +43,10 @@ public class xemdonhang extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet xemdonhang</title>");  
+            out.println("<title>Servlet quanlidonhang</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet xemdonhang at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet quanlidonhang at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -63,7 +63,18 @@ public class xemdonhang extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        doPost(request, response);
+       request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+        DonhangDAO dao=new DonhangDAO();
+        HttpSession session=request.getSession();
+        Object idseller=session.getAttribute("id");
+//        list=dao.getdonhangOfUser(iduser);
+//        PrintWriter out = response.getWriter();
+//        out.print(list);
+HashMap<Object, ArrayList<Donhang>> orderMap = dao.quanLiDonHangOfSellerhash(idseller);
+request.setAttribute("orderMap", orderMap);
+        request.getRequestDispatcher("quanlidonhang.jsp").forward(request, response);
+
     } 
 
     /** 
@@ -76,19 +87,7 @@ public class xemdonhang extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-         request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
-        DonhangDAO dao=new DonhangDAO();
-        HttpSession session=request.getSession();
-        Object iduser=session.getAttribute("id");
-//        list=dao.getdonhangOfUser(iduser);
-//        PrintWriter out = response.getWriter();
-//        out.print(list);
-HashMap<Object, ArrayList<Donhang>> orderMap = dao.getDonhangOfUserhash(iduser);
-request.setAttribute("orderMap", orderMap);
-
-
-        request.getRequestDispatcher("xemtrangthaidonhang.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /** 

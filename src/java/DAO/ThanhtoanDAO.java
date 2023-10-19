@@ -89,7 +89,20 @@ public class ThanhtoanDAO {
     return null;
 }
 
-
+ public void xacnhandonhang(Object idorder) {
+      
+        try {
+            String sql = "UPDATE [Order]\n" +
+"SET status='Cho van chuyen'\n" +
+"WHERE id=?";
+            PreparedStatement ps = connection.prepareStatement(sql);      
+            ps.setObject(1, idorder);
+            ps.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(ThanhtoanDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }
     public void addNewOrderDetail(Object idorder, Object productid, int quantity, double price) {
 
         try {

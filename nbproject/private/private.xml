@@ -6,47 +6,62 @@
             <file>file:/D:/SocialCommercial/web/shopping.jsp</file>
             <file>file:/D:/SocialCommercial/src/java/Controller/xemdonhang.java</file>
             <file>file:/D:/SocialCommercial/src/java/Model/Donhang.java</file>
-            <file>file:/D:/SocialCommercial/src/java/Model/Category.java</file>
-            <file>file:/D:/SocialCommercial/src/java/Model/Notification.java</file>
+            <file>file:/D:/SocialCommercial/src/java/Controller/setmkmoi.java</file>
             <file>file:/D:/SocialCommercial/web/xemtrangthaidonhang.jsp</file>
             <file>file:/D:/SocialCommercial/web/themsanpham.jsp</file>
-            <file>file:/D:/SocialCommercial/src/java/Model/LikeSocial.java</file>
             <file>file:/D:/SocialCommercial/src/java/Controller/CreatePost.java</file>
-            <file>file:/D:/SocialCommercial/src/java/Model/Cart.java</file>
+            <file>file:/D:/SocialCommercial/web/admin.jsp</file>
             <file>file:/D:/SocialCommercial/web/purchase.jsp</file>
             <file>file:/D:/SocialCommercial/src/java/Controller/seller.java</file>
+            <file>file:/D:/SocialCommercial/web/product_detail.jsp</file>
+            <file>file:/D:/SocialCommercial/src/java/Controller/updatesanpham.java</file>
+            <file>file:/D:/SocialCommercial/src/java/Controller/deletecategory.java</file>
+            <file>file:/D:/SocialCommercial/src/java/DAO/CartDAO.java</file>
+            <file>file:/D:/SocialCommercial/src/java/DAO/LikeSocialDAO.java</file>
+            <file>file:/D:/SocialCommercial/src/java/Controller/quanlidonhang.java</file>
+            <file>file:/D:/SocialCommercial/web/shop/header_shop.jsp</file>
+            <file>file:/D:/SocialCommercial/src/java/Controller/removePost.java</file>
+            <file>file:/D:/SocialCommercial/web/search_shop.jsp</file>
+            <file>file:/D:/SocialCommercial/src/java/DAO/CommentSocialDAO.java</file>
+            <file>file:/D:/SocialCommercial/web/quanlidonhang.jsp</file>
+            <file>file:/D:/SocialCommercial/src/java/Controller/muahang.java</file>
+            <file>file:/D:/SocialCommercial/src/java/Model/Product.java</file>
+            <file>file:/D:/SocialCommercial/src/java/Model/User.java</file>
+            <file>file:/D:/SocialCommercial/web/checkout.jsp</file>
+            <file>file:/D:/SocialCommercial/src/java/DAO/ThanhtoanDAO.java</file>
+            <file>file:/D:/SocialCommercial/web/UserProfile.jsp</file>
+            <file>file:/D:/SocialCommercial/web/signup.jsp</file>
+            <file>file:/D:/SocialCommercial/web/cart.jsp</file>
+            <file>file:/D:/SocialCommercial/src/java/Model/Category.java</file>
+            <file>file:/D:/SocialCommercial/src/java/Model/Notification.java</file>
+            <file>file:/D:/SocialCommercial/src/java/Model/LikeSocial.java</file>
+            <file>file:/D:/SocialCommercial/src/java/Model/Cart.java</file>
             <file>file:/D:/SocialCommercial/src/java/Controller/DetailControl.java</file>
             <file>file:/D:/SocialCommercial/src/java/Model/ItemInCart.java</file>
             <file>file:/D:/SocialCommercial/src/java/Controller/guitinnhan.java</file>
             <file>file:/D:/SocialCommercial/src/java/Controller/themsanpham.java</file>
             <file>file:/D:/SocialCommercial/web/post_detail.jsp</file>
-            <file>file:/D:/SocialCommercial/web/product_detail.jsp</file>
-            <file>file:/D:/SocialCommercial/src/java/Controller/deletecategory.java</file>
-            <file>file:/D:/SocialCommercial/src/java/DAO/CartDAO.java</file>
             <file>file:/D:/SocialCommercial/src/java/Controller/getusernames.java</file>
+            <file>file:/D:/SocialCommercial/src/java/Controller/XemDonHangDangChoVanChuyen.java</file>
             <file>file:/D:/SocialCommercial/web/user_profile.jsp</file>
-            <file>file:/D:/SocialCommercial/src/java/Controller/removePost.java</file>
+            <file>file:/D:/SocialCommercial/web/viewmember.jsp</file>
             <file>file:/D:/SocialCommercial/src/java/Model/Sendmail.java</file>
             <file>file:/D:/SocialCommercial/src/java/Model/Messenger.java</file>
             <file>file:/D:/SocialCommercial/src/java/Model/UserRole.java</file>
             <file>file:/D:/SocialCommercial/src/java/Controller/addtocart.java</file>
-            <file>file:/D:/SocialCommercial/web/search_shop.jsp</file>
             <file>file:/D:/SocialCommercial/src/java/Controller/managecategory.java</file>
-            <file>file:/D:/SocialCommercial/src/java/Controller/muahang.java</file>
-            <file>file:/D:/SocialCommercial/src/java/Model/Product.java</file>
+            <file>file:/D:/SocialCommercial/src/java/Controller/xacnhandon.java</file>
             <file>file:/D:/SocialCommercial/src/java/Model/requestOfUser.java</file>
             <file>file:/D:/SocialCommercial/src/java/Controller/SignUpServlet.java</file>
             <file>file:/D:/SocialCommercial/src/java/Controller/LikePost.java</file>
-            <file>file:/D:/SocialCommercial/src/java/Model/User.java</file>
+            <file>file:/D:/SocialCommercial/src/java/Controller/getcontentchat.java</file>
             <file>file:/D:/SocialCommercial/src/java/Controller/cart.java</file>
             <file>file:/D:/SocialCommercial/src/java/DAO/ProductDAO.java</file>
-            <file>file:/D:/SocialCommercial/src/java/DAO/ThanhtoanDAO.java</file>
             <file>file:/D:/SocialCommercial/web/seller_status.jsp</file>
             <file>file:/D:/SocialCommercial/src/java/Model/CommentSocial.java</file>
             <file>file:/D:/SocialCommercial/src/java/Controller/thanhtoan.java</file>
-            <file>file:/D:/SocialCommercial/web/signup.jsp</file>
             <file>file:/D:/SocialCommercial/src/java/DAO/DonhangDAO.java</file>
-            <file>file:/D:/SocialCommercial/web/cart.jsp</file>
+            <file>file:/D:/SocialCommercial/src/java/Controller/deletesanpham.java</file>
             <file>file:/D:/SocialCommercial/src/java/Model/UserPost.java</file>
             <file>file:/D:/SocialCommercial/src/java/Controller/deletemember.java</file>
             <file>file:/D:/SocialCommercial/web/seller.jsp</file>

@@ -18,6 +18,7 @@
                 </c:if>
                 
                  <a href="#" onclick="submitForm();"><h5>Xem đơn hàng</h5></a>
+                  <a href="quanlidonhang" ><h5>Quản lí đơn hàng</h5></a>
                 <c:if test="${role==3}">
                     <div class="content">
                         <form action="seller" method="post">
