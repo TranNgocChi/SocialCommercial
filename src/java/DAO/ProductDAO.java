@@ -54,6 +54,21 @@ public class ProductDAO extends DatabaseConnection {
         }
         return products;
     }
+    
+    public double getRatedProduct(Object id) {
+        String sql = "select AVG(rated_star) from Feedback where product_id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setObject(1, id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return rs.getDouble(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
 
     public ArrayList<Product> getAllProductsofUser(Object id) {
         ArrayList<Product> products = new ArrayList<>();
@@ -174,7 +189,6 @@ public class ProductDAO extends DatabaseConnection {
 //        }
 //        return null;
 //    }
-
     public Object getTenDanhMuccuanguoiban(Object id) {
         try {
             String sql = "SELECT \n"
@@ -238,10 +252,11 @@ public class ProductDAO extends DatabaseConnection {
         return list;
     }
 
-    public List<Product> getProductsbyCID(Object cid) {
+    public List<Product> getRelatedProduct(Object cid) {
         List<Product> products = new ArrayList<>();
-        String sql = "SELECT * FROM ProductInfo\n"
-                + "  WHERE type_id = ?";
+        String sql = "select top 4 * from ProductInfo\n"
+                + "where type_id = ?\n"
+                + "order by product_id desc";
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
