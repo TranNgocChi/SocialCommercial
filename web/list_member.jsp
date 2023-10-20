@@ -64,18 +64,18 @@
 
                                 <!-- Table with stripped rows -->
                                 <table class="table datatable">
-                                                   <thead>
-                  <tr>
-                   
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Phone</th>
-                    <th scope="col">Role</th>
-                   
-                    <th scope="col">Delete</th>
-                   
-                  </tr>
-                </thead>
+                                    <thead>
+                                        <tr>
+
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Phone</th>
+                                            <th scope="col">Role</th>
+
+                                            <th scope="col">Delete</th>
+
+                                        </tr>
+                                    </thead>
                                     <tbody>
                                     <c:forEach var="member" items="${listmember}">
                                         <tr>
@@ -84,12 +84,12 @@
                                             <td>${member.number}</td>
                                             <td>${member.roleid}</td>
                                             <td><form action="deletemember" style="text-align: center" method="post" >
-                            <input type="hidden" name="iddelete" value="${member.id}">
-                            <input type="submit" value="X">
-                        </form></td>
+                                                    <input type="hidden" name="iddelete" value="${member.id}">
+                                                    <input type="submit" value="X">
+                                                </form></td>
                                         </tr>
-                                        </c:forEach>
-                                       
+                                    </c:forEach>
+
                                     </tbody>
                                 </table>
                                 <!-- End Table with stripped rows -->

@@ -809,9 +809,6 @@ ol {
     opacity: 0;
 }
 
-.featured__controls ul li:last-child {
-    margin-right: 0;
-}
 
 .featured__item {
     margin-bottom: 50px;

@@ -41,8 +41,8 @@
             </a>
             <ul id="role-tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="list_shipper.jsp">
-                        <i class="bi bi-circle"></i><span>Danh sách tài khoản bên vận chuyển</span>
+                    <a href="taotaikhoanshipper.jsp">
+                        <i class="bi bi-circle"></i><span>Tạo tài khoản vận chuyển</span>
                     </a>
                 </li>
                 <li>

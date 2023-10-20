@@ -54,7 +54,7 @@ public class ProductDAO extends DatabaseConnection {
         }
         return products;
     }
-    
+
     public double getRatedProduct(Object id) {
         String sql = "select AVG(rated_star) from Feedback where product_id = ?";
         try {
@@ -327,6 +327,23 @@ public class ProductDAO extends DatabaseConnection {
 
     }
 
+    public int getquantityProductsbyID(Object id) {
+        String sql = "SELECT * FROM ProductInfo\n"
+                + "  WHERE product_id = ?";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setObject(1, id);
+            ResultSet rs = statement.executeQuery();
+            rs.next();
+            int productAvaiable = rs.getInt(6);
+            return productAvaiable;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+
     public void xoasanpham(Object id) {
         try {
             String sql = "DELETE\n"
@@ -393,6 +410,29 @@ public class ProductDAO extends DatabaseConnection {
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+    }
+
+    public boolean updatesanphamsaukhimuahang(Object id, int quantity) {
+        try {
+            int avai = getquantityProductsbyID(id);
+            if (quantity > avai) {
+                return false;
+            } else {
+                String sql = "UPDATE  ProductInfo\n"
+                        + "SET\n"
+                        + "product_available=?\n"
+                        + "WHERE product_id=?";
+                PreparedStatement ps = connection.prepareStatement(sql);
+                ps.setInt(1, avai - quantity);
+                ps.setObject(2, id);
+                ps.execute();
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
 
     }
 

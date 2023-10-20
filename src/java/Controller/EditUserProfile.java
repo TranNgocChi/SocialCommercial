@@ -5,6 +5,7 @@ import DAO.UserDAO;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -44,11 +45,11 @@ public class EditUserProfile extends HttpServlet {
             String bio = request.getParameter("bio");
         
             String realPath = request.getServletContext().getRealPath("/SavedImages");
-            String filename = Path.of(imagePart.getSubmittedFileName()).getFileName().toString();
+            String filename = Paths.get(imagePart.getSubmittedFileName()).getFileName().toString();
             String image = realPath + "/" + filename;
         
-            if(!Files.exists(Path.of(realPath))){
-                Files.createDirectory(Path.of(realPath));
+            if(!Files.exists(Paths.get(realPath))){
+                Files.createDirectory(Paths.get(realPath));
             }
             
             if (imagePart != null && imagePart.getSize() > 0) {

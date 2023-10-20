@@ -82,17 +82,25 @@
                             </div>
                             <div class="product__details__price"><fmt:formatNumber value="${detail.productPrice}" type="currency" currencySymbol="" minFractionDigits="0"/> VNĐ</div>
                             <p>${detail.productDescription}</p>
-                            <div class="product__details__quantity">
-                                <div class="quantity">
-                                    <div class="pro-qty">
-                                        <input type="text" value="1">
+                            <form action="addtocart" method="post">
+                                <input type="hidden" name="id" value="${id}">
+                                <input type="hidden" name="productid" value="${detail.productId}">
+                                <input type="hidden" name="productprice" value=""${detail.productPrice}">
+                                <input type="hidden" name="productname" value="${detail.productName}">
+                                <input type="hidden" name="productavai" value="${detail.productAvailable}">
+                                <div class="product__details__quantity">
+                                    <div class="quantity">
+                                        <div class="pro-qty">
+                                            <input type="text" value="1" name="quantity">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <a href="#" class="primary-btn">ADD TO CARD</a>
-                            <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                                <button type="submit" class="btn primary-btn">ADD TO CART</button>
+                                <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                            </form>
+                                <h3 style="color: red;">  ${msg}</h3>
                             <ul>
-                                <li><b>Availability</b> <span>In Stock</span></li>
+                                <li><b>Số lượng có sẵn</b> <span>${detail.productAvailable}</span></li>
                                 <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
                                 <li><b>Weight</b> <span>0.5 kg</span></li>
 

@@ -16,6 +16,7 @@
                         <a href="onboarding.jsp"><h5>Đăng ký bán hàng trên SOCO</h5></a>
                     </div>
                 </c:if>
+
                 <c:if test="${role==3}">
                     <div class="content">
                         <form action="seller" method="post">
@@ -27,8 +28,9 @@
             <c:choose>
                 <c:when test="${name != null}">
                     <div class="iconBox2" style="padding: 0 10px;">
+
                         <a href="/SocialCommercial"  style="margin-right: 0;"><i class="fa fa-home"></i></a>
-                        <a href="cart.jsp" style="margin-right: 10px;"><i class="fa fa-shopping-cart"></i></a>
+                        <a href="cart" id="cartLink" style="margin-right: 10px;"><i class="fa fa-shopping-cart"></i></a>
                             <% if (session.getAttribute("img") != null) {%>
                         <label><img src="<%= session.getAttribute("img")%>" alt="user"></label>
                             <% } else { %>
@@ -37,12 +39,15 @@
                         <span class="arrow_carrot-down"></span>
                     </div>
                     <div class="header-dropdown">
-                        <div class="dropdown-content">
+                        <div class="dropdown-content" style="min-width: 170px;">
                             <c:if test="${role==3}">
                                 <a href="mkt_management.jsp"> Thống kê</a>
                             </c:if>
                             <a href="edit_userprofile.jsp">Hồ sơ của bạn</a>
-                            <a href="purchase.jsp">Đơn mua</a>
+                            <c:if test="${role==3}">
+                            <a href="quanlidonhang" >Quản lí đơn hàng</a>
+                            </c:if>
+                            <a href="xemdonhang" >Đơn mua</a>
                             <a href="logout">Đăng xuất</a>
                         </div>
                     </div>
@@ -60,4 +65,21 @@
 
 </header>
 <script src="setofshop/js/dropdown-content.js"></script>
+<script>
+                    document.getElementById("cartLink").addEventListener("click", function (event) {
+                        event.preventDefault(); // Prevent the default link behavior
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("POST", "cart", true);
+                        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                        xhr.send(); // Send the POST request
+                        // Handle the response
+                        xhr.onload = function () {
+                            if (xhr.status === 200) {
+                                // Here, you can decide what to do based on the response.
+                                // For example, you can redirect to the "cart" page:
+                                window.location.href = "cart";
+                            }
+                        };
+                    });
+</script>
 <!-- header section end -->

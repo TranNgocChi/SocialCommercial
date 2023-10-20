@@ -9,46 +9,56 @@
 <html lang="en">
 
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta charset="utf-8">
+        <meta name="description" content="Ogani Template">
+        <meta name="keywords" content="Ogani, unica, creative, html">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>SOCO - Seller</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>SOCO</title>
 
-        <!-- style css link -->
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+        <!-- Css Styles -->
+
+        <link rel="stylesheet" href="setofshop/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="setofshop/css/styleonboarding.css">
-        <!-- fontawesome css link -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="setofshop/css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="setofshop/css/elegant-icons.css" type="text/css">
+        <link rel="stylesheet" href="setofshop/css/nice-select.css" type="text/css">
+        <link rel="stylesheet" href="setofshop/css/jquery-ui.min.css" type="text/css">
+        <link rel="stylesheet" href="setofshop/css/owl.carousel.min.css" type="text/css">
+        <link rel="stylesheet" href="setofshop/css/slicknav.min.css" type="text/css">
+        <link rel="stylesheet" href="setofshop/css/style.css" type="text/css">
 
     </head>
     <body>
 
         <header>
-                   <%@ include file="shop/header_shop.jsp" %>
-
+            <%@ include file="shop/header_shop.jsp" %>
         </header>
         <div class="home">
-           
+
             <div class="containerr">
                 <form action="updatesanpham" method="post">
                     <div class="form-group row">
-                        <label for="email" class="col">Danh mục:</label>
+                        <label for="email" class="col">Ngành hàng:</label>
                         <input type="text" value="${tendanhmuc}" name="tendanhmuc" class="form-control col" placeholder="Email" readonly>
                     </div>
-<input type="hidden" value="${danhmuc}"  name="email" class="form-control col" placeholder="Email" readonly>
+                    <input type="hidden" value="${danhmuc}"  name="email" class="form-control col" placeholder="Email" readonly>
 
                     <div class="form-group row">
                         <label for="fullName" class="col">Tên sản phẩm:</label>
                         <input type="text" id="full-name" name="product_name" class="form-control col"
                                placeholder="Tên sản phẩm" value="${productupdate.productName}" required>
                         <br />
-  
+
                     </div>
                     <div class="form-group row">
                         <label for="shopName" class="col">Ảnh sản phẩm:</label>
                         <input type="text" id="shop-name" value="${productupdate.productImage}"  name="product_image" class="form-control col" placeholder="Ảnh sản phẩm" required>
                     </div>
-                 
+
                     <div class="form-group row">
                         <label for="address" class="col">Số lượng:</label>
                         <input type="text" id="address"  value="${productupdate.productAvailable}"  name="product_available" class="form-control col" placeholder="Số lượng" required>
@@ -61,7 +71,7 @@
                         <label for="phone" class="col">Mô tả sản phẩm:</label>
                         <input type="tel" id="phone" name="product_description"value="${productupdate.productDescription}" class="form-control col" placeholder="Mô tả sản phẩm" required>
                     </div>
- <input type="hidden" name="id" value="${productupdate.productId}" class="form-control col" placeholder="Mô tả sản phẩm" required>
+                    <input type="hidden" name="id" value="${productupdate.productId}" class="form-control col" placeholder="Mô tả sản phẩm" required>
 
                     <button type="submit" class="btn btn-primary">Thêm</button>
                 </form>

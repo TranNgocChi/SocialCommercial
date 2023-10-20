@@ -12,7 +12,7 @@
     <head>
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
-      
+
         <title>Tables / Data - NiceAdmin Bootstrap Template</title>
         <meta content="" name="description">
         <meta content="" name="keywords">
@@ -77,29 +77,29 @@
                                 <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p>
 
                                 <!-- Table with stripped rows -->
-                              <!-- Thêm lớp table và table-striped để định dạng bảng -->
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th style="width: 20%;">Thông tin</th>
-            <th style="width: 20%;">Shop Name</th>
-            <th style="width: 20%;">Phone</th>
-            <th style="width: 20%;">Name Cate</th> <!-- Đặt độ rộng cho cột này -->
-            <th style="width: 20%;">Trạng thái</th>
-        </tr>
-    </thead>
-    <tbody>
-        <c:forEach var="member" items="${listreq}">
-            <tr>
-                <td>${member.fullName}</td>
-                <td>${member.shopName}</td>
-                <td>${member.phone}</td>
-                <td>${member.namecate}</td> <!-- Cột này có độ rộng đã được đặt -->
-                <td>${member.status}</td>
-            </tr>
-        </c:forEach>
-    </tbody>
-</table>
+                                <!-- Thêm lớp table và table-striped để định dạng bảng -->
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 20%;">Thông tin</th>
+                                            <th style="width: 20%;">Shop Name</th>
+                                            <th style="width: 20%;">Phone</th>
+                                            <th style="width: 20%;">Name Cate</th> <!-- Đặt độ rộng cho cột này -->
+                                            <th style="width: 20%;">Trạng thái</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach var="member" items="${listreq}">
+                                            <tr>
+                                                <td>${member.fullName}</td>
+                                                <td>${member.shopName}</td>
+                                                <td>${member.phone}</td>
+                                                <td>${member.namecate}</td> <!-- Cột này có độ rộng đã được đặt -->
+                                                <td>${member.status}</td>
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
 
 
                             </div>

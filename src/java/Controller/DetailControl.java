@@ -37,30 +37,58 @@ public class DetailControl extends HttpServlet {
         User u = (User) session.getAttribute("us");
 
         Object id = request.getParameter("pid");
+        Object idaddtocart = request.getAttribute("pid");
 
-        ProductDAO dao = new ProductDAO();
-        FeedbackDAO fed = new FeedbackDAO();
-        UserDAO user = new UserDAO();
+        if (id == null) {
+            ProductDAO dao = new ProductDAO();
+            FeedbackDAO fed = new FeedbackDAO();
+            UserDAO user = new UserDAO();
 
-        int Total = fed.getTotalFeedback(id);
-        Object cid = dao.getProductbyCId(id);
-        Product p = dao.getProductsbyID(id);
-        List<Category> list = dao.getAllCategory();
-        List<Product> related = dao.getRelatedProduct(cid);
-        ArrayList<User> listAllUser = user.getAllUsers();
-        List<Feedback> listfeedbackbyproduct = fed.getAllFeedbackByProductId(id);
+            int Total = fed.getTotalFeedback(idaddtocart);
+            Object cid = dao.getProductbyCId(idaddtocart);
+            Product p = dao.getProductsbyID(idaddtocart);
+            List<Category> list = dao.getAllCategory();
+            List<Product> related = dao.getRelatedProduct(cid);
+            ArrayList<User> listAllUser = user.getAllUsers();
+            List<Feedback> listfeedbackbyproduct = fed.getAllFeedbackByProductId(id);
 
-        double avg = dao.getRatedProduct(id);
+            double avg = dao.getRatedProduct(id);
 
-        request.setAttribute("listC", list);
-        request.setAttribute("related", related);
-        request.setAttribute("listfeedbackbyproduct", listfeedbackbyproduct);
-        request.setAttribute("total", Total);
-        request.setAttribute("avg", avg);
-        request.setAttribute("detail", p);
-        request.setAttribute("u", listAllUser);
-        session.setAttribute("historyUrl", "list-detail?productId=" + id + "&categoryId=" + cid);
-        request.getRequestDispatcher("product_detail.jsp").forward(request, response);
+            request.setAttribute("listC", list);
+            request.setAttribute("related", related);
+            request.setAttribute("listfeedbackbyproduct", listfeedbackbyproduct);
+            request.setAttribute("total", Total);
+            request.setAttribute("avg", avg);
+            request.setAttribute("detail", p);
+            request.setAttribute("u", listAllUser);
+            session.setAttribute("historyUrl", "list-detail?productId=" + id + "&categoryId=" + cid);
+            request.getRequestDispatcher("product_detail.jsp").forward(request, response);
+        }else{
+            ProductDAO dao = new ProductDAO();
+            FeedbackDAO fed = new FeedbackDAO();
+            UserDAO user = new UserDAO();
+
+            int Total = fed.getTotalFeedback(id);
+            Object cid = dao.getProductbyCId(id);
+            Product p = dao.getProductsbyID(id);
+            List<Category> list = dao.getAllCategory();
+            List<Product> related = dao.getRelatedProduct(cid);
+            ArrayList<User> listAllUser = user.getAllUsers();
+            List<Feedback> listfeedbackbyproduct = fed.getAllFeedbackByProductId(id);
+
+            double avg = dao.getRatedProduct(id);
+
+            request.setAttribute("listC", list);
+            request.setAttribute("related", related);
+            request.setAttribute("listfeedbackbyproduct", listfeedbackbyproduct);
+            request.setAttribute("total", Total);
+            request.setAttribute("avg", avg);
+            request.setAttribute("detail", p);
+            request.setAttribute("u", listAllUser);
+            session.setAttribute("historyUrl", "list-detail?productId=" + id + "&categoryId=" + cid);
+            request.getRequestDispatcher("product_detail.jsp").forward(request, response);
+        }
+
     }
 
     /**
@@ -74,20 +102,7 @@ public class DetailControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-
-        User u = (User) session.getAttribute("us");
-
-        Object id = request.getParameter("pid");
-        String subject = request.getParameter("subject");
-        String image = "images/feedback/" + request.getParameter("imageurl");
-        int star = Integer.parseInt(request.getParameter("star"));
-
-        FeedbackDAO fed = new FeedbackDAO();
-
-        fed.addNewFeedback(u.getFullname(), star, subject, image, 1, id, u.getId());
-        String url = (String) session.getAttribute("url");
-        response.sendRedirect(url);
+        doGet(request, response);
     }
 
     /**

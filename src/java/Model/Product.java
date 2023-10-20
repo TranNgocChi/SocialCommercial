@@ -94,7 +94,16 @@ public class Product {
     }
 
     public double getProductPrice() {
-        return productPrice;
+        // Định dạng số double thành chuỗi
+    String formattedPrice = String.valueOf(productPrice);
+
+    // Kiểm tra xem chuỗi có phần thập phân ".0" không và loại bỏ nó nếu có
+    if (formattedPrice.endsWith(".0")) {
+        formattedPrice = formattedPrice.substring(0, formattedPrice.length() - 2);
+    }
+
+    // Chuyển lại thành double
+    return Double.parseDouble(formattedPrice);
     }
 
     public void setProductPrice(double productPrice) {

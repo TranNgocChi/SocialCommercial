@@ -6,7 +6,6 @@
 
 package Controller;
 
-import DAO.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,17 +13,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpSession;
 
 
 /**
  *
  * @author DELL
  */
-@WebServlet (name="RequestSetRole",urlPatterns={"/RequestSetRole"})
+@WebServlet(name = "XemDonHangDangChoVanChuyen", urlPatterns = {"/XemDonHangDangChoVanChuyen"})
 
-
-public class RequestSetRole extends HttpServlet {
+public class XemDonHangDangChoVanChuyen extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -41,10 +38,10 @@ public class RequestSetRole extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RequestSetRoleServlet</title>");  
+            out.println("<title>Servlet XemDonHangDangChoVanChuyen</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet RequestSetRoleServlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet XemDonHangDangChoVanChuyen at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -74,21 +71,7 @@ public class RequestSetRole extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-         HttpSession session=request.getSession();
-       Object id= session.getAttribute("id");
-        String email=(String) request.getParameter("email");
-//        PrintWriter out = response.getWriter();
-//        out.print(id);
-        String fullName=(String) request.getParameter("fullName");
-        String shopName=(String) request.getParameter("shopName");
-        String commoditiesSector=(String) request.getParameter("commoditiesSector");
-        String address=(String) request.getParameter("address");
-        String phone=(String) request.getParameter("phone");
-        UserDAO userdao=new UserDAO();
-        userdao.requestSetRole(id, email, fullName, shopName, commoditiesSector, address, phone);
-        response.sendRedirect("request_result.jsp");
+        processRequest(request, response);
     }
 
     /** 
