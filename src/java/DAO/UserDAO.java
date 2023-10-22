@@ -8,14 +8,10 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.ResultSet;
-import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author DELL
- */
+
 public class UserDAO extends DatabaseConnection {
 
     private Connection connection;
@@ -32,7 +28,7 @@ public class UserDAO extends DatabaseConnection {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                UUID id = UUID.fromString(rs.getString(1));
+                Object id = rs.getObject(1);
                 String userName = rs.getString(2);
                 String userPass = rs.getString(3);
                 String email = rs.getString(4);
@@ -44,8 +40,45 @@ public class UserDAO extends DatabaseConnection {
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null; // Trả về null nếu không tìm thấy user hoặc xảy ra lỗi
+        return null; // Tr? v? null n?u kh�ng t�m th?y user ho?c x?y ra l?i
     }
+       public void setpassbyname(String name,String pass) {
+        try {
+            String sql = "Update AppUser\n"
+                    + "SET password=? "
+                    + "WHERE name=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+             ps.setString(1, pass);
+            ps.setString(2, name);
+            
+             ps.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+        
+    }
+    public User getbyemail(String email) {
+        try {
+            String sql = "SELECT * FROM [SWP391].[dbo].[AppUser] WHERE email=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                Object id = rs.getObject(1);
+                String userName = rs.getString("name");
+                int roleId = rs.getInt(6);
+
+                User user = new User(id, userName, email, roleId);
+                return user;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null; // Trả v�? null nếu không tìm thấy user hoặc xảy ra lỗi
+    }
+
 
     public User checkdup(String name) {
         try {
@@ -55,12 +88,33 @@ public class UserDAO extends DatabaseConnection {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                UUID id = UUID.fromString(rs.getString(1));
+                Object id = rs.getObject(1);
                 String userName = rs.getString(2);
                 String userPass = rs.getString(3);
                 String email = rs.getString(4);
                 int roleId = rs.getInt(6);
 
+                User user = new User(id, name, email, roleId);
+                return user;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null; // Tr? v? null n?u kh�ng t�m th?y user ho?c x?y ra l?i
+    }
+     public User checkdupemail(String name) {
+        try {
+            String sql = "SELECT * FROM [SWP391].[dbo].[AppUser] WHERE email=? ";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                Object id = rs.getObject(1);
+                String userName = rs.getString(2);
+                String userPass = rs.getString(3);
+                String email = rs.getString(4);
+                int roleId = rs.getInt(6);
                 User user = new User(id, name, email, roleId);
                 return user;
             }
@@ -179,7 +233,25 @@ public class UserDAO extends DatabaseConnection {
             }
         }
     }
-    
+    public String getEmailbyID(Object id){
+        try {
+            String sql="SELECT [email]\n" +
+                    "      \n" +
+                    "  FROM [SWP391].[dbo].[AppUser]\n" +
+                    "  WHERE id=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setObject(1, id);
+                    ResultSet rs = ps.executeQuery();
+                    rs.next();
+                    String email=rs.getString(1);
+                   return email;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ChatDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+   return null; 
+}
     public ArrayList<User> getAllUsers() {
         try {
             String sql = "  SELECT * FROM [SWP391].[dbo].[AppUser]";
@@ -187,7 +259,7 @@ public class UserDAO extends DatabaseConnection {
             ResultSet rs = ps.executeQuery();
             ArrayList<User> list = new ArrayList<>();
             while (rs.next()) {
-                UUID id = UUID.fromString(rs.getString(1));
+                Object id = rs.getObject(1);
                 String phone = rs.getString(5);
                 int roleid = rs.getInt(6);
                 String image = rs.getString(7);
@@ -208,10 +280,31 @@ public class UserDAO extends DatabaseConnection {
         }
         return null;
     }
+     public void requestSetRole(Object user_id,String email,String fullName,String shopName,
+             String commoditiesSector,String address, String phone) {
+        try {
+            String sql = "INSERT INTO requestSetRole(user_id,email,fullName,shopName, commoditiesSector,address,phone)\n" +
+"Values(?,?,?,?,?,?,?)";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setObject(1,user_id);
+            ps.setString(2, email);
+            ps.setString(3, fullName);
+             ps.setString(4, shopName);
+            ps.setString(5,  commoditiesSector);
+             ps.setString(6, address);
+            ps.setString(7, phone);
+          ps.execute();
+                  
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
     
     public static void main(String[] args) {
         UserDAO userdao = new UserDAO();
-        
+        User user=userdao.checkdupemail("vinhdqde170663@fpt.edu.vn");
+
         System.out.println(user);
     }
 }

@@ -1,26 +1,34 @@
 
 package Model;
 
-import java.util.UUID;
 
 /**
  *
  * @author DELL
  */
 public class User {
-    UUID id;
+    Object id;
     String name,password,email,number,country,province,district,town,location,image;
     int roleid;
     String fullname,gender,statusNow,school,favour,bio;
 
-    public User(UUID id, String name, String email, int roleid) {
+    public User(Object id, String name, String email, String number, String image, int roleid) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.number = number;
+        this.image = image;
+        this.roleid = roleid;
+    }
+
+    public User(Object id, String name, String email, int roleid) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.roleid = roleid;
     }
 
-    public User(UUID id, String name, String password, String email, int roleid) {
+    public User(Object id, String name, String password, String email, int roleid) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -35,7 +43,7 @@ public class User {
         this.roleid = roleid;
     }
 
-    public User(UUID id, String name, String email, String number, String country, String province, String district, String town, String location, int roleid, String image) {
+    public User(Object id, String name, String email, String number, String country, String province, String district, String town, String location, int roleid, String image) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -52,11 +60,11 @@ public class User {
     public User() {
     }
 
-    public UUID getId() {
+    public Object getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Object id) {
         this.id = id;
     }
 
@@ -159,7 +167,7 @@ public class User {
         this.bio = bio;
     }
 
-    public User(UUID id, String number, String image, int roleid, String fullname, String gender, String statusNow, String school, String favour, String bio) {
+    public User(Object id, String number, String image, int roleid, String fullname, String gender, String statusNow, String school, String favour, String bio) {
         this.id = id;
         this.number = number;
         this.image = image;

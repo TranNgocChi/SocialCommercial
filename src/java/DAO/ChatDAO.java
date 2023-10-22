@@ -17,10 +17,7 @@ import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author DELL
- */
+
 public class ChatDAO extends DatabaseConnection {
 
     private Connection connection;
@@ -135,12 +132,17 @@ public Object getidbyname(Object name){
     public static void main(String[] args) {
         ChatDAO chat=new ChatDAO();
         ArrayList<String> list=new ArrayList<>();
-       
-       
+        Object id ="91605443-D6CB-414D-8E67-224B552FAC24";
+        Object id1=chat.getidbyname("vinh1");
+                Object id2=chat.getidbyname("admin");
+
+        if(id.toString().equals(id1.toString())){
+            System.out.println("true");
+        }
         list=chat.getallnameuser();
-//        ArrayList<Messenger> list1=new ArrayList<>();
-//        list1=chat.gettinnhan("05E4BC46-C967-4582-BA1D-B338819558E5","91605443-D6CB-414D-8E67-224B552FAC24");
-        System.out.println(list);
+        ArrayList<Messenger> list1=new ArrayList<>();
+        list1=chat.gettinnhan(id2,id1);
+        System.out.println(list1);
 //Object id=chat.getidbyname("vinh");
 //        System.out.println(id);
         

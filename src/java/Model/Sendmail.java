@@ -30,7 +30,7 @@ public class Sendmail {
         // Tạo đối tượng Session để xác thực và gửi email
         Session session = Session.getInstance(props, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("vinhdqde170663@fpt.edu.vn", "yfpszkvgtwdrbdxb");
+                return new PasswordAuthentication("vinhdqde170663@fpt.edu.vn", "yjxe mrqc qtdj herx");
             }
         });
 

@@ -1,6 +1,6 @@
-
 package Controller;
 
+import DAO.ChatDAO;
 import DAO.UserDAO;
 import Model.User;
 import java.io.IOException;
@@ -12,27 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet (name="LoginServlet",urlPatterns={"/LoginServlet"})
+@WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 
 public class LoginServlet extends HttpServlet {
-
-    
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -46,7 +28,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 
     /**
@@ -60,23 +42,36 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            UserDAO dao=new UserDAO();
-        String name=request.getParameter("username");
-        String pass=request.getParameter("pass");
-        User user=new User();
-        user=dao.get(name, pass);
-        if(user!=null){
-            HttpSession session=request.getSession();
+        UserDAO dao = new UserDAO();
+        String name = request.getParameter("username");
+        String pass = request.getParameter("pass");
+        String img = "";
+        User user = new User();
+        user = dao.get(name, pass);
+            
+        if (user != null) {
+            for (User cus : dao.getAllUsers()) {
+                if (cus.getId().equals(user.getId())) {
+                    img = cus.getImage();
+                    break;
+                }
+            }
+            HttpSession session = request.getSession();
+            String emailuser=dao.getEmailbyID(user.getId());
+             session.setAttribute("emailuser", emailuser);
             session.setAttribute("id", user.getId());
             session.setAttribute("name", user.getName());
             session.setAttribute("role", user.getRoleid());
-            response.sendRedirect("home.jsp");
+            session.setAttribute("img", img);
+            response.sendRedirect(request.getContextPath());
+
+
+        } else {
+            HttpSession session = request.getSession();
+            session.setAttribute("msg", "Tên đăng nhập hoặc mật khẩu sai.");
+            response.sendRedirect("login");
         }
-        else{
-            HttpSession session=request.getSession();
-            session.setAttribute("msg", "TEN HOAC MAT KHAU SAI !!!");
-            response.sendRedirect("login.jsp");
-        }
+
     }
 
     /**

@@ -1,3 +1,4 @@
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -25,12 +26,12 @@
             <div class="box login">
                 <div class="content">
                     <h3 class="title">
-                        Login
+                        Đăng nhập
                     </h3>
 
 
 
-                    <form action="LoginServlet" method="POST" id="form">
+                    <form action="login" method="POST" id="form">
                         <c:if test="${sessionScope.account == null}">
                             <h3 style="color: red">${requestScope.ms}</h3>
                         </c:if>
@@ -40,16 +41,17 @@
 
                         <div class="form_input">
                             <input type="text" name="username" id="name" required>
-                            <label for="name">Username</label>
+                            <label for="name">Tên đăng nhập</label>
                         </div>
                         <div class="form_input">
                             <input type="password" name="pass" id="password" required>
-                            <label for="password">Password</label>
+                            <label for="password">Mật khẩu</label>
                         </div>
                         <button class="btn submit">
-                            Login
+                            Đăng nhập
                         </button>
                         <h2 style="color:red">${msg}</h2>
+                        <c:set var="msg" value="${null}"></c:set>
                         <a href="forget.jsp" style="color: black; text-decoration: none;">Forgot Password?</a>
                     </form>
 
@@ -60,70 +62,32 @@
                 <div class="content">
                     <div class="nav navigation_signIn">
                         <p>
-                              Nếu bạn chưa có tài khoản, vui lòng đăng kí. 
+                            Nếu bạn chưa có tài khoản, vui lòng đăng kí. 
                         </p>
 
-                           
-                        <button class="btn layer log">
+
+                        <button class="btn layer" id="signupButton">
 
                             Đăng kí
                         </button>
                     </div>
 
-                    <div class="nav navigation_signUp">
-                        <p>
-                            Nếu bạn đã có tài khoản, vui lòng đăng nhập.
 
-                        </p>
-
-                        <button class="btn layer out">
-                            Đăng nhập
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="box register">
-                <div class="content">
-                    <h3 class="title">
-                        Đăng kí
-                    </h3>
-
-
-                    <form action="SignUpServlet" method="post" id="form">
-                        <div class="form_input">
-                            <input type="text" name="username" id="name" required>
-                            <label for="name">Username</label>
-                        </div>
-                        
-                        <div class="form_input">
-                            <input type="email" name="email" id="email" required>
-                            <label for="email">Email</label>
-                        </div>
-                        <div class="form_input">
-                            <input type="password" name="pass" id="password" required>
-                            <label for="password">Password</label>
-                        </div>
-                        <div class="form_input">
-                            <input type="password" name="pass1" id="password" required>
-                            <label for="password">Repeat Password</label>
-                        </div>
-                        <h2 style="color:red">${msg}</h2>
-                        <c:set var="msg" value="${null}" />
-                        <button class="btn submit">
-                            Register
-                        </button>
-                    </form>
                 </div>
             </div>
 
 
-            <div class="marks">
-            </div>
+
+
         </div>
 
         <!-- link javascript -->
-        <script src="static/js/loginJS_1.js"></script>
+        <!--<script src="static/js/loginJS_1.js"></script>-->
+        <script>
+            document.getElementById("signupButton").addEventListener("click", function () {
+                window.location.href = "signup"; // Redirect to register.jsp
+            });
+        </script>
     </body>
 
 </html>
