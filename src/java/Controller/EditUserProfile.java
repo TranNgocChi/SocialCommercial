@@ -31,6 +31,7 @@ public class EditUserProfile extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         try{
             HttpSession session=request.getSession();
             Object user_id = session.getAttribute("id");
@@ -59,15 +60,15 @@ public class EditUserProfile extends HttpServlet {
                 session.setAttribute("img", "SavedImages/"+filename);
                 UserDAO edituser = new UserDAO();
                 edituser.EditUser(number, "SavedImages/"+filename, fullname, gender, statusnow, school, favour, bio, user_id);
-                request.getRequestDispatcher("user_profile.jsp").forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/UserProfileSocial");
             } else {
                 response.setContentType("text/plain");
-                response.getWriter().write("Invalid file type. Please upload an image.");
+                response.sendRedirect(request.getContextPath() + "/UserProfileSocial");
             }
         } else {
             UserDAO edituser = new UserDAO();
             edituser.EditUserSubstractImage(number, fullname, gender, statusnow, school, favour, bio, user_id);
-            request.getRequestDispatcher("user_profile.jsp").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/UserProfileSocial");
         }
         
         }catch(Exception e){

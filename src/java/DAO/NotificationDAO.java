@@ -1,8 +1,8 @@
 
 package DAO;
 
-
-import Model.CommentSocial;
+import Model.Notification;
+import Model.User;
 import connectSQLServer.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,29 +15,29 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class CommentSocialDAO {
-    List<CommentSocial> listOfCommentSocials = new ArrayList<>();
-    
-   
-    public List<CommentSocial> getCommentSocials() {
+public class NotificationDAO {
+    List<Notification> listOfNotifications = new ArrayList<>();
+
+    public List<Notification> getAllNotifications() {
         Connection cnt = null;
         PreparedStatement stm = null;
         ResultSet res = null;
         try{
-            String sql = "select * from SocialComment";
+            String sql = "select * from UserNotification";
             cnt = DatabaseConnection.getConnection();
             stm = cnt.prepareStatement(sql);    
             res = stm.executeQuery();
             while(res.next()){
                 Object id = res.getObject("id");
-                Object post_id = res.getObject("post_id");
-                Object commentor_id = res.getObject("commentor_id");
-                String comment_content = res.getString("comment_content");
-                Date comment_date = res.getDate("comment_date");
+                Object user_id = res.getObject("user_id");
+                String notification_content = res.getString("notification_content");
+                Date notification_date = res.getDate("notification_date");
+                String link_notify = res.getString("link_notify");
+                String reacter = res.getString("reacter");
                 
-                CommentSocial comment = new CommentSocial(id, post_id, commentor_id, comment_content,
-                comment_date);
-                listOfCommentSocials.add(comment);
+                Notification notify = new Notification(id, user_id, notification_content,
+                        notification_date, link_notify, reacter);
+                listOfNotifications.add(notify);
             }
             
         }catch(SQLException e){
@@ -48,26 +48,27 @@ public class CommentSocialDAO {
                 stm.close();
                 res.close();
             } catch (SQLException ex) {
-                Logger.getLogger(CommentSocialDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(NotificationDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return listOfCommentSocials;
+        return listOfNotifications;
     }
 
-    public void addCommentSocial(Object post_id, Object commentor_id, String comment_content, Date comment_date) {
+    public void addNotification(Object user_id, String notification_content, Date notification_date, String link_notify,
+            String reacter) {
         Connection conn = null;
         PreparedStatement stmt = null;
 
         try {
             conn = DatabaseConnection.getConnection();
-            String sql = "INSERT INTO SocialComment (post_id, commentor_id, comment_content, comment_date)"
-                    + "VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO UserNotification (user_id, notification_content, notification_date, link_notify, reacter)"
+                    + "VALUES (?, ?, ?, ?, ?)";
             stmt = conn.prepareStatement(sql);
-            stmt.setObject(1, post_id);
-            stmt.setObject(2, commentor_id);
-            stmt.setString(3, comment_content);
-            stmt.setObject(4, new java.sql.Date(comment_date.getTime()));
-            
+            stmt.setObject(1, user_id);
+            stmt.setString(2, notification_content);
+            stmt.setObject(3, new java.sql.Date(notification_date.getTime()));
+            stmt.setString(4, link_notify);
+            stmt.setString(5, reacter);
             stmt.executeUpdate();
             System.out.println("Inserted successfully!");
 
@@ -90,12 +91,12 @@ public class CommentSocialDAO {
     }
 
 
-    public void deleteCommentSocial(Object id) {
+    public void deleteNotification(Object id) {
         Connection cnt = null;
         PreparedStatement stm = null;
         ResultSet res = null;
          try{
-            String sql = "delete from SocialComment where id = ?";
+            String sql = "delete from UserNotification where id = ?";
             cnt = DatabaseConnection.getConnection();
             cnt.setAutoCommit(false);
             stm = cnt.prepareStatement(sql);
@@ -124,21 +125,11 @@ public class CommentSocialDAO {
         }
     }
     
-    public List<CommentSocial> getCommentsForPost(Object postId) {
-        List<CommentSocial> commentsForPost = new ArrayList<>();
-
-        for (CommentSocial comment : getCommentSocials()) {
-            if (comment.getPost_id() != null && comment.getPost_id().toString().equalsIgnoreCase(postId.toString())) {
-                commentsForPost.add(comment);
-            }
-        }
-
-        return commentsForPost;
-    }
     
     public static void main(String[] args) {
-        CommentSocialDAO comment = new CommentSocialDAO();
-        comment.deleteCommentSocial("A9FC8090-5F48-4E2C-88BB-454D516209BA");
+        UserDAO manageUser = new UserDAO();
+        NotificationDAO noti = new NotificationDAO();
+        noti.deleteNotification("55CBB99C-6806-4395-9500-4B214E17DEE9");
     }
     
 }

@@ -1,145 +1,46 @@
-
-<%@page import="java.util.Collections"%>
-<%@page import="java.util.List"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="Model.UserPost"%>
 <%@page import="Model.User"%>
-<%@page import="DAO.UserPostDAO"%>
-<%@page import="DAO.UserDAO"%>
+<%@page import="Model.UserPost"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link rel="stylesheet" href="static/css/style.css">
 
 
-
-
-<%  boolean check = false;
-    String link_image="";
-    String fullName="";
-    String phone="";
-    String gender="";
-    String statusNow="";
-    String school="";
-    String favourite="";
-    String bio="";
-    int count = 0;
-    Object id = request.getAttribute("id");
-    Object post_id = null;
+<main>
     
-    UserDAO manageUser = new UserDAO();
-    for(User user : manageUser.getAllUsers()){
-        if(user.getId().toString().toLowerCase().equals(id.toString().toLowerCase())){
-            link_image = user.getImage();
-            fullName = user.getFullname();
-            phone = user.getNumber();
-            gender = user.getGender();
-            statusNow = user.getStatusNow();
-            school = user.getSchool();
-            favourite = user.getFavour();
-            bio = user.getBio();
-            check = true;
-            break;
-        }
-    }
-
+    <%@ include file="subhome/header.jsp" %>
+    <%if(session.getAttribute("id")!=null && request.getAttribute("listLikedPostImages")!=null){%>
     
-    UserPostDAO managePost = new UserPostDAO();
-    List<UserPost> userPosts = managePost.getUserPosts();
-    
-    List<UserPost> listUserPost = new ArrayList<>();
-    for(UserPost post : userPosts){
-        if(post.getUser_id().toString().toLowerCase().equals(id.toString().toLowerCase())){
-            listUserPost.add(post);
-            Collections.sort(listUserPost, (post1, post2) -> post2.getPost_date().compareTo(post1.getPost_date()));
-            count++;
-        }   
-    }
-%>
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-     </head> 
-    <body>
-    <div class="container">
-            <div class="profile">
-                <div class="profile-image">
-
-                <img src="<%= link_image %>" width="280px" height="300px" alt="">
-                </div>
-                <div class="profile-user-settings">
-                    <h1 class="profile-user-name" style="font-weight: 800;"><%= fullName %></h1>
-                    <% if(check){ %>
-                    
-
-                    <% } %>
-                    <a style="color: black;">
-                        <button class="btn profile-edit-btn" style="background-color: grey"><i class="fas fa-user-plus"></i>Follow</button>
-                    </a>
-                </div>
-
-                <div class="profile-stats">
-
-                        <ul>
-                            <li><span class="profile-stat-count"><%= count %></span> posts</li>
-                            <li><span class="profile-stat-count">188</span> followers</li>
-                            <li><span class="profile-stat-count">206</span> following</li>
-                        </ul>
-
-                </div>
-
-                <div class="profile-bio">
-                    <p><i class="fas fa-info-circle"></i> <%=fullName %> - <%= gender %></p>
-                    <p><i class="fas fa-heart"></i> <%= statusNow %></p>
-                    <p><i class="fas fa-school"></i> <%= school %></p>
-                    <p><i class="fas fa-thumbs-up"></i> <%= favourite %></p>
-                    <p><span style="font-weight:600">Bio: </span>
-                    <%= bio %>
-                    </p>️
-
-                </div>
-
-            </div>
-            <!-- End of profile section -->
-
-    </div>
-    <% if(listUserPost != null && listUserPost.size() > 0){ %>
-    <h1 style="font-size: 30px;
-        font-weight: 700;
-        margin-left: 500px;">Danh sách bài viết đã đăng tải</h1>
-        <br><br>
     <div class="container">
         <div class="gallery">
-            <% for(UserPost post_user : listUserPost){
-            %>
-            <a href="post_detail.jsp?post_id=<%= post_user.getId() %>&fullName=<%= fullName %>">
+            <%for(UserPost posts : (List<UserPost>) request.getAttribute("listLikedPostImages")){
+            for(User us : (List<User>) request.getAttribute("AllUser") ){
+                if(us.getId().toString().toLowerCase().equals(posts.getUser_id().toString().toLowerCase())){%>
+            
+            <a href="PostDetail?post_id=<%=posts.getId() %>&fullName=<%=us.getFullname() %>
+               &user_id=<%=us.getId() %>">
                 <div class="gallery-item" tabindex="0">
-                    <img src="<%= post_user.getPost_image() %>" class="gallery-image" alt="">
 
-                    <div class="gallery-item-info">
-                        <ul>
+                <img src="<%=posts.getPost_image() %>" class="gallery-image" alt="">
+                <div class="gallery-item-info">
+                    <ul>
                             <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 56</li>
                             <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
-                        </ul>
-                    </div>
+                    </ul>
                 </div>
-            </a>
-                <% } %>
-
+            </div>
+                </a>
+            <%}}}%>
         </div>
-                
             <!-- End of gallery -->
     </div>
-        <% }else{ %>
-    
-    <% }%>  
+    <%}else{%>
+    <h1 style="color: #1877f2; font-size:45px; margin-left: 380px;">Bạn chưa thích bài viết nào</h1>
+    <%}%>
 	<!-- End of container -->
-    </body>
-</html>
+</main>
+
 <style>
-    
-:root {
+    :root {
     font-size: 10px;
 }
 
@@ -298,8 +199,8 @@ img {
     align-items: center;
     position: absolute;
     top: 0;
-    width: 330.5px;
-    height: 330.5px;
+    width: 100%;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.3);
 }
 
@@ -331,8 +232,8 @@ img {
 }
 
 .gallery-image {
-    width: 330.5px;
-    height: 330.5px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 
@@ -462,7 +363,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
     .gallery {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
-        grid-gap: 11rem;
+        grid-gap: 2rem;
     }
 
     .profile-image,

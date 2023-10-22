@@ -2,23 +2,23 @@
 package Controller;
 
 import DAO.LikeSocialDAO;
+import DAO.NotificationDAO;
+import DAO.UserDAO;
 import Model.LikeSocial;
+import Model.User;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import Model.Notification;
-import DAO.NotificationDAO;
-import DAO.UserDAO;
-import Model.User;
-import java.util.Date;
 
 
-@WebServlet(name = "LikePost", urlPatterns = {"/LikePost"})
-public class LikePost extends HttpServlet {
+@WebServlet(name = "ReactPostHome", urlPatterns = {"/ReactPostHome"})
+public class ReactPostHome extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -30,6 +30,7 @@ public class LikePost extends HttpServlet {
         String NotiName = "";
         Boolean check = false;
         LikeSocialDAO like = new LikeSocialDAO();
+        String name = request.getParameter("name");
         Object fullName = request.getParameter("fullName");
         Object post_id = request.getParameter("post_id");
         Object liker_id = session.getAttribute("id");
@@ -65,10 +66,12 @@ public class LikePost extends HttpServlet {
             "PostDetail?post_id="+post_id+ "&fullName="+fullName+"&user_id="+user_id, image_reacter);
 
         }
-
-        response.sendRedirect("PostDetail?post_id="+post_id+ "&fullName="+fullName+"&user_id="+user_id); 
+        if(name != null){
+            response.sendRedirect("HomeFollowing");
+        }else{
+            response.sendRedirect("home.jsp");
+        }
         
     }
-
 
 }

@@ -20,7 +20,7 @@ public class User {
         this.image = image;
         this.roleid = roleid;
     }
-
+        
     public User(Object id, String name, String email, int roleid) {
         this.id = id;
         this.name = name;

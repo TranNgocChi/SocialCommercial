@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.ResultSet;
+import java.util.Random;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,6 +67,33 @@ public class AdminDAO extends DatabaseConnection {
 //        }
 //    }
 
+    public ArrayList<User> getRandomUsers(Object sessionUserId) {
+        UserDAO manageUser = new UserDAO();                
+        ArrayList<User> allUsers = manageUser.getAllUsers();
+        ArrayList<User> fiveUsers = new ArrayList<>();
+
+        Random rand = new Random();
+
+        if (sessionUserId instanceof Object) {
+
+            for (int i = 0; i < 5 && !allUsers.isEmpty(); i++) {
+                int randomIndex = rand.nextInt(allUsers.size());
+                User randomUser = allUsers.get(randomIndex);
+
+                if (!sessionUserId.toString().toLowerCase().equals(randomUser.getId().toString().toLowerCase())) {
+                    fiveUsers.add(randomUser);
+                }
+
+                allUsers.remove(randomIndex);
+            }
+        } else {
+            System.out.println("Error");
+        }
+
+        return fiveUsers;
+    }
+
+    
     public ArrayList<Category> getAllCategory() {
         try {
             String sql = "SELECT * FROM [SWP391].[dbo].[ProductCategory]";

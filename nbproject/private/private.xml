@@ -14,22 +14,20 @@
         <group>
             <file>file:/D:/Java_Web/SWP391/SocialCommercial/web/edit_userprofile.jsp</file>
             <file>file:/D:/Java_Web/SWP391/SocialCommercial/src/java/Model/Product.java</file>
-            <file>file:/D:/Java_Web/SWP391/SocialCommercial/web/xemtrangthaidonhang.jsp</file>
-            <file>file:/D:/Java_Web/SWP391/SocialCommercial/web/sellerstatusdemo.jsp</file>
-            <file>file:/D:/Java_Web/SWP391/SocialCommercial/src/java/Controller/RequestSetRole.java</file>
+            <file>file:/D:/Java_Web/SWP391/SocialCommercial/src/java/Controller/SearchOfShopControl.java</file>
             <file>file:/D:/Java_Web/SWP391/SocialCommercial/src/java/Controller/thanhtoan.java</file>
-            <file>file:/D:/Java_Web/SWP391/SocialCommercial/src/java/Controller/themsanpham.java</file>
-            <file>file:/D:/Java_Web/SWP391/SocialCommercial/web/admin/left_admin.jsp</file>
             <file>file:/D:/Java_Web/SWP391/SocialCommercial/src/java/DAO/ProductDAO.java</file>
-            <file>file:/D:/Java_Web/SWP391/SocialCommercial/web/admin.jsp</file>
-            <file>file:/D:/Java_Web/SWP391/SocialCommercial/web/themsanpham.jsp</file>
-            <file>file:/D:/Java_Web/SWP391/SocialCommercial/web/purchase.jsp</file>
+            <file>file:/D:/Java_Web/SWP391/SocialCommercial/web/user_profile.jsp</file>
             <file>file:/D:/Java_Web/SWP391/SocialCommercial/src/java/Controller/cart.java</file>
             <file>file:/D:/Java_Web/SWP391/SocialCommercial/web/cart.jsp</file>
-            <file>file:/D:/Java_Web/SWP391/SocialCommercial/web/product_detail.jsp</file>
+            <file>file:/D:/Java_Web/SWP391/SocialCommercial/src/java/Controller/UserProfileSocial.java</file>
             <file>file:/D:/Java_Web/SWP391/SocialCommercial/src/java/Controller/EditUserProfile.java</file>
-            <file>file:/D:/Java_Web/SWP391/SocialCommercial/web/quanlidonhang.jsp</file>
-            <file>file:/D:/Java_Web/SWP391/SocialCommercial/src/java/Controller/DetailControl.java</file>
+            <file>file:/D:/Java_Web/SWP391/SocialCommercial/web/view_follow.jsp</file>
+            <file>file:/D:/Java_Web/SWP391/SocialCommercial/web/search_shop.jsp</file>
+            <file>file:/D:/Java_Web/SWP391/SocialCommercial/web/subhome/header.jsp</file>
+            <file>file:/D:/Java_Web/SWP391/SocialCommercial/src/java/Controller/DisplayEditUserProfile.java</file>
+            <file>file:/D:/Java_Web/SWP391/SocialCommercial/src/java/DAO/AdminDAO.java</file>
+            <file>file:/D:/Java_Web/SWP391/SocialCommercial/src/java/Controller/ViewFollow.java</file>
         </group>
     </open-files>
 </project-private>
