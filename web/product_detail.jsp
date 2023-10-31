@@ -78,7 +78,7 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star-half-o"></i>
-                                <span>(18 reviews)</span>
+                                <span>(${total} reviews)</span>
                             </div>
                             <div class="product__details__price"><fmt:formatNumber value="${detail.productPrice}" type="currency" currencySymbol="" minFractionDigits="0"/> VNĐ</div>
                             <p>${detail.productDescription}</p>
@@ -93,50 +93,30 @@
                                         <div class="pro-qty">
                                             <input type="text" value="1" name="quantity">
                                         </div>
+                                        ${detail.productAvailable} sản phẩm có sẵn
                                     </div>
                                 </div>
-                                <button type="submit" class="btn primary-btn">ADD TO CART</button>
+                                <div style="margin-top: 20px">
+                                    <button type="submit" class="btn primary-btn" style="background-color: #5c91c6;">ADD TO CART</button>
+                                <a class="btn primary-btn" style="background-color: #5c91c6;" href="muangay?productid=${detail.productId}">Mua ngay</a>
                                 <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                                </div>
                             </form>
-                                <h3 style="color: red;">  ${msg}</h3>
-                            <ul>
-                                <li><b>Số lượng có sẵn</b> <span>${detail.productAvailable}</span></li>
-                                <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
-                                <li><b>Weight</b> <span>0.5 kg</span></li>
-
-                            </ul>
+                                <h3 style="color: red; margin-top: 20px">  ${msg}</h3>
                         </div>
                     </div>
-                    <div class="col-lg-12 col-md-12">
+                        <div class="col-lg-12 col-md-12" style="margin-top: 25px">
                         <div class="col">
                             <div class="nav nav-tabs justify-content-center border-secondary mb-4">
                                 <a class="nav-item nav-link active text-dark" data-toggle="tab" href="#tab-pane-1">Description</a>
-                                <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-2">Information</a>
                                 <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Reviews (${total})</a>
                             </div>
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="tab-pane-1">
                                     <h4 class="mb-3">Product Description</h4>
-                                    <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.</p>
-                                    <p>Dolore magna est eirmod sanctus dolor, amet diam et eirmod et ipsum. Amet dolore tempor consetetur sed lorem dolor sit lorem tempor. Gubergren amet amet labore sadipscing clita clita diam clita. Sea amet et sed ipsum lorem elitr et, amet et labore voluptua sit rebum. Ea erat sed et diam takimata sed justo. Magna takimata justo et amet magna et.</p>
+                                    <p>${detail.productDescription}</p>
                                 </div>
-                                <div class="tab-pane fade" id="tab-pane-2">
-                                    <h4 class="mb-3">Additional Information</h4>
-                                    <table class="table table-striped table-bordered mb-12">
-                                        <thead>
-                                            <tr>
-                                                <th scope="row" class="w-150 dark-grey-text h6">Weight</th>
-                                                <td><em>0.3 kg</em></td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row" class="w-150 dark-grey-text h6">Dimensions</th>
-                                                <td><em>50 × 60 cm</em></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                
                                 <div class="tab-pane fade" id="tab-pane-3">
                                     <div class="row">
                                         <div class="col-md-12">

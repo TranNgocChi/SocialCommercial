@@ -6,9 +6,13 @@
 
 package Controller;
 
-import DAO.AdminDAO;
+import DAO.CartDAO;
+import DAO.ProductDAO;
+import Model.ItemInCart;
+import Model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,9 +24,9 @@ import javax.servlet.annotation.WebServlet;
  *
  * @author DELL
  */
-@WebServlet(name = "taotaikhoanshipper", urlPatterns = {"/taotaikhoanshipper"})
+@WebServlet(name = "muangay", urlPatterns = {"/muangay"})
 
-public class taotaikhoanshipper extends HttpServlet {
+public class muangay extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -39,10 +43,10 @@ public class taotaikhoanshipper extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet taotaikhoanshipper</title>");  
+            out.println("<title>Servlet muangay</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet taotaikhoanshipper at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet muangay at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,8 +63,43 @@ public class taotaikhoanshipper extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
-    } 
+        
+        boolean check = false;
+        Object productid = request.getParameter("productid");
+        ProductDAO productdao=new ProductDAO();
+        int avai=productdao.getquantityProductsbyID(productid);
+        int quantity = 1;
+        if (quantity <= 0) {
+            check = true;
+            request.setAttribute("msg", "Số lượng không hợp lệ");
+            request.setAttribute("pid", productid);
+            request.getRequestDispatcher("detail").forward(request, response);
+        }
+        if (quantity > avai) {
+            check = true;
+            request.setAttribute("msg", "Số lượng trong kho không đủ.Vui lòng chọn số lượng nhỏ hơn");
+            request.setAttribute("pid", productid);
+            request.getRequestDispatcher("detail").forward(request, response);
+        }
+
+        if (check == false) {
+  ArrayList<ItemInCart> listthanhtoan = new ArrayList<>();
+       Product product= productdao.getProductsbyID(productid);
+
+                String productname=product.getProductName();
+                String productimg=product.getProductImage();
+                double productprice=product.getProductPrice();
+                Product product1=productdao.getOneSellerAndShopByid(productid);
+                Object sellerid=product1.getSellerid();
+                String shopname=product1.getShopname();
+                 ItemInCart item=new ItemInCart(productid,sellerid, productname, productimg, productprice,shopname);
+
+        request.setAttribute("item", item);
+        request.getRequestDispatcher("muangay.jsp").forward(request, response);
+        
+    }
+    }
+     
 
     /** 
      * Handles the HTTP <code>POST</code> method.
@@ -72,13 +111,7 @@ public class taotaikhoanshipper extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-            String name=request.getParameter("name");
-        String pass=request.getParameter("pass");
-        int town=Integer.parseInt(request.getParameter("town"));
-        AdminDAO dao=new AdminDAO();
-        dao.taoacountshipper(name, pass, town);
-        request.setAttribute("msg","Tạo thài khoản shipper thành công !!!");
-        request.getRequestDispatcher("taotaikhoanshipper.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /** 

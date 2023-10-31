@@ -32,7 +32,7 @@
         <servlet-name>updatesanpham</servlet-name>
         <servlet-class>Controller.updatesanpham</servlet-class>
     </servlet>
-     <servlet>
+    <servlet>
         <servlet-name>addtocart</servlet-name>
         <servlet-class>Controller.addtocart</servlet-class>
     </servlet>
@@ -55,6 +55,22 @@
     <servlet>
         <servlet-name>xemdonhang</servlet-name>
         <servlet-class>Controller.xemdonhang</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>thongke</servlet-name>
+        <servlet-class>Controller.thongke</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>removeitemincart</servlet-name>
+        <servlet-class>Controller.removeitemincart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>muangay</servlet-name>
+        <servlet-class>Controller.muangay</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FeedbackController</servlet-name>
+        <servlet-class>Controller.FeedbackController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ShoppingControl</servlet-name>
@@ -111,6 +127,22 @@
     <servlet-mapping>
         <servlet-name>xemdonhang</servlet-name>
         <url-pattern>/xemdonhang</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>thongke</servlet-name>
+        <url-pattern>/thongke</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>removeitemincart</servlet-name>
+        <url-pattern>/removeitemincart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>muangay</servlet-name>
+        <url-pattern>/muangay</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FeedbackController</servlet-name>
+        <url-pattern>/feedback</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

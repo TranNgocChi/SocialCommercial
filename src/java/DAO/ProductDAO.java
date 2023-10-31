@@ -326,6 +326,37 @@ public class ProductDAO extends DatabaseConnection {
         return null;
 
     }
+    public Product getOneSellerAndShopByid(Object id) {
+        String sql = "SELECT  [product_id]\n" +
+"      ,[seller_id]\n" +
+"      ,[type_id]\n" +
+"      ,[product_name]\n" +
+"      ,[product_image]\n" +
+"      ,[product_price]\n" +
+"	  ,requestSetRole.shopName\n" +
+"  FROM [SWP391].[dbo].[ProductInfo]\n" +
+"  JOIN requestSetRole On requestSetRole.user_id=ProductInfo.seller_id\n" +
+"  WHERE product_id=?";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setObject(1, id);
+            ResultSet resultSet = statement.executeQuery();
+ 
+            while (resultSet.next()) {
+                 Object sellerid=resultSet.getObject(2);
+                  String shopname = resultSet.getString(7);
+                return new Product(sellerid,shopname);
+
+            }
+            resultSet.close();
+            statement.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+
+    }
 
     public int getquantityProductsbyID(Object id) {
         String sql = "SELECT * FROM ProductInfo\n"
@@ -614,7 +645,7 @@ public class ProductDAO extends DatabaseConnection {
 
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO(); //khoi tao doi tuong dao
-        dao.themsanpham("3897A0A3-0822-4464-B3E2-AD272E42E7EA", "1818E9A8-52CD-4538-9512-AD9234BD1EEA", "bàn ăn", "ss", 0, 0, "v");
-
+        Product product=dao.getOneSellerAndShopByid("093112CD-ABD1-41E7-81F9-0248396AB202");
+        System.out.println(product.getSellerid()+" "+product.getShopname());
     }
 }

@@ -6,23 +6,27 @@
 
 package Controller;
 
-import DAO.AdminDAO;
+import DAO.DonhangDAO;
+import Model.Donhang;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpSession;
 
 
 /**
  *
  * @author DELL
  */
-@WebServlet(name = "taotaikhoanshipper", urlPatterns = {"/taotaikhoanshipper"})
+@WebServlet(name = "xemdonhanghoanthanh", urlPatterns = {"/xemdonhanghoanthanh"})
 
-public class taotaikhoanshipper extends HttpServlet {
+public class xemdonhanghoanthanh extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -39,10 +43,10 @@ public class taotaikhoanshipper extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet taotaikhoanshipper</title>");  
+            out.println("<title>Servlet xemdonhanghoanthanh</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet taotaikhoanshipper at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet xemdonhanghoanthanh at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,7 +63,19 @@ public class taotaikhoanshipper extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+          request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+        DonhangDAO dao=new DonhangDAO();
+        HttpSession session=request.getSession();
+        Object iduser=session.getAttribute("id");
+//        list=dao.getdonhangOfUser(iduser);
+//        PrintWriter out = response.getWriter();
+//        out.print(list);
+HashMap<Object, ArrayList<Donhang>> orderMap = dao.getDonhangDangGiaoOrHoanthanhOfUserhash(iduser, "Hoan thanh");
+request.setAttribute("orderMap", orderMap);
+
+
+        request.getRequestDispatcher("xemtrangthaidonhang.jsp").forward(request, response);
     } 
 
     /** 
@@ -72,13 +88,7 @@ public class taotaikhoanshipper extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-            String name=request.getParameter("name");
-        String pass=request.getParameter("pass");
-        int town=Integer.parseInt(request.getParameter("town"));
-        AdminDAO dao=new AdminDAO();
-        dao.taoacountshipper(name, pass, town);
-        request.setAttribute("msg","Tạo thài khoản shipper thành công !!!");
-        request.getRequestDispatcher("taotaikhoanshipper.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /** 

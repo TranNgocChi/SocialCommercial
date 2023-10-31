@@ -107,8 +107,6 @@
                                                 <input type="hidden" value="${item.productid}" name="productid${dem}">
                                                 <img src="${item.img}" alt="" style="width: 100px; height: 100px; object-fit: cover;">
                                                 <h5>${item.productname}</h5>
-
-
                                             </td>
                                             <td class="shoping__cart__price">
                                                 <fmt:formatNumber value="${item.price}" type="currency" currencySymbol="" minFractionDigits="0"/>
@@ -126,19 +124,20 @@
                                                 <span class="item-total"><fmt:formatNumber value="${item.quantity * item.price}" type="currency" currencySymbol="" minFractionDigits="0"/></span>
                                             </td>
                                             <td class="shoping__cart__item__close">
-                                                <span class="icon_close"></span>
+
+                                            <td class="shoping__cart__item__close">
+                                                <a class="btn btn-outline-danger" href="#" onclick="xoaSanPham('${item.id}')">XÓA</a>
+                                            </td>
+
+
                                             </td>
                                         </tr>
-
 
                                         </tbody>
                                     </c:forEach>
                                     <input type="hidden" name="dem" value="${dem}">
 
-
-
                                 </form>
-
 
                             </table>
                         </div>
@@ -179,7 +178,16 @@
             </div>
         </section>
     </body>
-
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="setofshop/js/bootstrap.min.js"></script>
+    <script src="setofshop/js/jquery.nice-select.min.js"></script>
+    <script src="setofshop/js/jquery-ui.min.js"></script>
+    <script src="setofshop/js/jquery.slicknav.js"></script>
+    <script src="setofshop/js/mixitup.min.js"></script>
+    <script src="setofshop/js/owl.carousel.min.js"></script>
+    <script src="setofshop/js/main.js"></script>
     <script>
         // Lấy tham chiếu đến form và nút "MUA NGAY"
         const cartForm = document.getElementById('cart-form');
@@ -187,9 +195,9 @@
 
         // Gắn sự kiện click cho nút "MUA NGAY"
         buyButton.addEventListener('click', function () {
-            // Gửi form khi nút "MUA NGAY" được nhấn
-            cartForm.submit();
-        });
+        // Gửi form khi nút "MUA NGAY" được nhấn
+        cartForm.submit();
+       });
     </script>
     <script>
         function formatCurrency(amount) {
@@ -227,5 +235,28 @@
         });
 
     </script>
+    <script>
+        function xoaSanPham(itemId) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "removeitemincart", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            var data = "itemcanxoa=" + itemId;
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    console.log(xhr.responseText); // In kết quả lên console (để kiểm tra)
+                    // Cập nhật lại giao diện trang web nếu cần
+
+                    // Tự động làm mới trang web sau khi xóa sản phẩm
+                    location.reload(); // Làm mới trang web
+                }
+            };
+            xhr.send(data);
+        }
+
+
+
+    </script>
+
+
 
 </html>

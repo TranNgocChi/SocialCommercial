@@ -89,14 +89,15 @@ public class ThanhtoanDAO {
     return null;
 }
 
- public void xacnhandonhang(Object idorder) {
+ public void xacnhandonhang(Object idorder,String status) {
       
         try {
             String sql = "UPDATE [Order]\n" +
-"SET status='Cho van chuyen'\n" +
+"SET status=?\n" +
 "WHERE id=?";
-            PreparedStatement ps = connection.prepareStatement(sql);      
-            ps.setObject(1, idorder);
+            PreparedStatement ps = connection.prepareStatement(sql);    
+            ps.setString(1, status);
+            ps.setObject(2, idorder);
             ps.execute();
         } catch (SQLException ex) {
             Logger.getLogger(ThanhtoanDAO.class.getName()).log(Level.SEVERE, null, ex);

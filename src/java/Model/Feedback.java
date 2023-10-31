@@ -23,6 +23,15 @@ public class Feedback {
     public Feedback() {
     }
     
+    public Feedback(int rated_star, String feedback, String image, boolean status, Object product_id, Object user_id) {
+        this.rated_star = rated_star;
+        this.feedback = feedback;
+        this.image = image;
+        this.status = status;
+        this.product_id = product_id;
+        this.user_id = user_id;
+    }
+    
     public Feedback(Object id, int rated_star, String feedback, String image, boolean status, Object product_id, Object user_id, Date date) {
         this.id = id;
         this.rated_star = rated_star;

@@ -6,6 +6,7 @@
 package Controller;
 
 import DAO.CartDAO;
+import DAO.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -102,6 +103,8 @@ public class addtocart extends HttpServlet {
 //
 //
         if (check == false) {
+            UserDAO userdao=new UserDAO();
+            userdao.addGoiYNguoiDung(id, productid);
             CartDAO dao = new CartDAO();
             dao.addCart(id, productid, quantity, avai);
             request.setAttribute("msg", "Thêm vào giỏ hàng thành công");

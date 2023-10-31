@@ -48,11 +48,10 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+                                <img src="https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg" alt="avatar">
                             </a>
                             <div class="chat-about">
                                 <h4 class="m-b-0">${nguoinhan}</h4>
-                                <small>Last seen: 2 hours ago</small>
                             </div>
                         </div>
                         <div class="col-lg-6 hidden-sm text-right">

@@ -73,9 +73,27 @@ public class xacnhandon extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         Object idorder=request.getParameter("orderid");
+        String action=request.getParameter("action");
+        if(action.equals("setxacnhan")){
         ThanhtoanDAO dao=new ThanhtoanDAO();
-        dao.xacnhandonhang(idorder);
+        dao.xacnhandonhang(idorder,"Cho van chuyen");
         response.sendRedirect("quanlidonhang");
+        }
+        if(action.equals("setdanggiao")){
+        ThanhtoanDAO dao=new ThanhtoanDAO();
+        dao.xacnhandonhang(idorder,"Dang giao");
+        response.sendRedirect("Shipper");
+        }
+          if(action.equals("sethoanthanh")){
+        ThanhtoanDAO dao=new ThanhtoanDAO();
+        dao.xacnhandonhang(idorder,"Hoan thanh");
+        response.sendRedirect("ShipperComplete");
+        }
+              if(action.equals("sethuy")){
+        ThanhtoanDAO dao=new ThanhtoanDAO();
+        dao.xacnhandonhang(idorder,"Da huy by customer");
+        response.sendRedirect("xemdonhangdahuy");
+        }
     }
 
     /** 

@@ -58,19 +58,14 @@
                                     <table>
                                         <tbody>
                                         <form action="muahang" method="post">
-                                            <c:forEach var="item" items="${listthanhtoan}">
-                                                <c:if test="${!item.shopname.equals(currentShop)}">
                                                     <!-- Hiển thị tên cửa hàng nếu khác với cửa hàng trước đó -->
-                                                    <c:if test="${!empty currentShop}">
                                                         <tr>
                                                             <td colspan="4" style="text-align: right">
-                                                                <h4> Tổng tiền đơn hàng: ${totalPrice} VND</h4>
-                                                                <h4> Tổng tiền bao gồm tiền ship: ${totalPrice+35000} VND</h4>
+                                                               
                                                                 <c:set var="totalPriceAll" value="${totalPriceAll+totalPrice+35000} " />
 
                                                             </td>
                                                         </tr>
-                                                    </c:if>
 
                                                     <tr>
                                                         <th class="shoping__product" colspan="5" style="text-align: left; padding-top: 10px">
@@ -78,22 +73,18 @@
                                                         </th>
                                                     </tr>
                                                     <!-- Lưu tên cửa hàng hiện tại để so sánh với các sản phẩm tiếp theo -->
-                                                    <c:set var="currentShop" value="${item.shopname}" />
                                                     <!-- Reset biến tổng tiền cho đơn hàng mới -->
                                                     <c:set var="totalPrice" value="0" />
                                                     <c:set var="checksodon" value="${checksodon+1}" />
-                                                </c:if>
                                                 <!-- Hiển thị thông tin sản phẩm -->
                                                 <tr>
 
                                                     <td class="shoping__cart__item">
-                                                        <input type="hidden" value="${item.id}" name="itemid${demsanpham}">
                                                         <input type="hidden" value="${item.shopname}" name="shopname${demsanpham}">
                                                         <input type="hidden" value="${item.productid}"name="productid${demsanpham}">
                                                         <input type="hidden" value="${item.sellerid}"name="sellerid${demsanpham}">
-                                                        <input type="hidden" value="${item.cartid}"name="cartid${demsanpham}">
                                                         <input type="hidden" value="${item.price}"name="price${demsanpham}">
-                                                        <input type="hidden" value="${item.quantity}"name="quantity${demsanpham}">
+                                                        <input type="hidden" value="1"name="quantity${demsanpham}">
                                                         <c:set var="demsanpham" value="${demsanpham+1}" />
                                                         <img src="${item.img}" alt="" style="width: 100px; height: 100px; object-fit: cover;">
                                                         <h5>${item.productname}</h5>
@@ -103,11 +94,11 @@
                                                     </td>
                                                     <td class="shoping__cart__quantity">
                                                         <div class="quantity">
-                                                            ${item.quantity}
+                                                            1
                                                         </div>
                                                     </td>
                                                     <td class="shoping__cart__total">
-                                                        ${item.price * item.quantity}
+                                                        ${item.price *1}
                                                     </td>
                                                 </tr>
 
@@ -115,24 +106,14 @@
                                                 <c:set var="totalPrice" value="${totalPrice + item.price * item.quantity}" />
                                                 <input type="hidden" value="${totalPrice+35000}" name="total${item.sellerid.toLowerCase().trim()}">
 
-                                            </c:forEach>
-                                            <!-- Hiển thị tổng tiền cho đơn hàng cuối cùng -->
-                                            <c:if test="${!empty currentShop}">
-                                                <tr>
-                                                    <td colspan="4" style="text-align: right">
-                                                        <h4> Tổng tiền đơn hàng: ${totalPrice} VND</h4>
-                                                        <h4> Tổng tiền bao gồm tiền ship: ${totalPrice+35000} VND</h4>
-                                                        <c:set var="totalPriceAll" value="${totalPriceAll+totalPrice+35000} " />
-                                                    </td>
-                                                </tr>
-                                            </c:if>
+                                            
                                             </tbody>
                                     </table>
                                     Bạn đã mua đơn hàng của ${checksodon} Shop
                                     <br>
                                     Tổng cộng: ${demsanpham} sản phẩm
                                     <br>
-                                    Tổng giá tiền ${totalPriceAll} VND
+                                    Tổng giá tiền ${item.price+35000} VND
                                 </div>
                             </div>
                         </div>

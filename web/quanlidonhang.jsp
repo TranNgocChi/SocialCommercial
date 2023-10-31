@@ -74,15 +74,11 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-title">
-                            <h2>Đơn mua</h2>
+                            <h2>Quản lí đơn hàng của shop</h2>
                         </div>
                         <div class="featured__controls">
                             <ul>
-                                <a href="xemdonhang"> <li class="active">Chờ xác nhận</li></a>
-                                <a href="xemdonchovanchuyen">  <li>Chờ vận chuyển</li></a>
-                                <a href="xemdondanggiao"> <li>Đang giao</li></a>
-                                <a href="xemdonhoanthanh"> <li>Hoàn thành</li></a>
-                                <a href="xemdondahuy">  <li>Đã huỷ</li></a>
+
                             </ul>
                         </div>
                     </div>
@@ -114,6 +110,7 @@
                                                         <c:if test="${donhang.status==null}">
                                                             <form action="xacnhandon" method="post">
                                                                 <input type="hidden" value="${orderId}"name="orderid">
+                                                                <input type="hidden" value="setxacnhan"name="action">
                                                                 <input type="submit" class="btn btn-success" value="Duyệt đơn">
                                                             </form>
                                                         </c:if>
@@ -121,6 +118,10 @@
                                                         <c:if test="${donhang.status!=null}">
                                                             <h4 style="color:green">Đã duyệt</h4>
                                                         </c:if>
+                                                            <c:if test="${donhang.status!=null}">
+                                                            <h4 style="color:green">Trạng thái đơn hiện tại :${donhang.status} </h4>
+                                                        </c:if>
+                                                            
                                                     </th>
 
                                                 </c:if>

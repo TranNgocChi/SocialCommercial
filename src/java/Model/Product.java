@@ -18,7 +18,30 @@ public class Product {
     private double productPrice;
     private double productVoucher;
     private String productDescription;
+    private Object sellerid;
+    private String shopname;
 
+    public Product(Object sellerid, String shopname) {
+        this.sellerid = sellerid;
+        this.shopname = shopname;
+    }
+
+    public Object getSellerid() {
+        return sellerid;
+    }
+
+    public void setSellerid(Object sellerid) {
+        this.sellerid = sellerid;
+    }
+
+    public String getShopname() {
+        return shopname;
+    }
+
+    public void setShopname(String shopname) {
+        this.shopname = shopname;
+    }
+    
     public Product() {
     }
 

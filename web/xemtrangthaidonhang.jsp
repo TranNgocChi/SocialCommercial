@@ -63,11 +63,11 @@
                         </div>
                         <div class="featured__controls">
                             <ul>
-                                <a href="xemdonhang"> <li class="active">Chờ xác nhận</li></a>
-                                <a href="xemdonchovanchuyen">  <li>Chờ vận chuyển</li></a>
-                                <a href="xemdondanggiao"> <li>Đang giao</li></a>
-                                <a href="xemdonhoanthanh"> <li>Hoàn thành</li></a>
-                                <a href="xemdondahuy">  <li>Đã huỷ</li></a>
+                                <li><a href="xemdonhang" style="color: black"> Chưa được xác nhận</a></li>
+                                <li><a href="xemdonhangchovanchuyen" style="color: black"> Chờ vận chuyển</a></li>
+                                <li><a href="xemdonhangdanggiao" style="color: black"> Đang giao</a></li>
+                                <li><a href="xemdonhanghoanthanh" style="color: black"> Hoàn thành</a></li>
+                                <li><a href="xemdonhangdahuy" style="color: black"> Đã huỷ</a></li>
                             </ul>
                         </div>
                     </div>
@@ -87,20 +87,47 @@
                                             <tbody>
                                                 <c:forEach items="${donhangList}" var="donhang" varStatus="loop">
                                                     <c:if test="${loop.first}">
+
                                                         <tr class="table-light">
+
                                                             <th colspan="5" style="text-align: left; padding-top: 10px">
-                                                                Shop: ${donhang.shopname}
+                                                                <div class="row">
+                                                                    <div class="col-md-10">
+                                                                        Shop: ${donhang.shopname}
+                                                                    </div>
+                                                                    <div class="col-md-2" style="text-align: right;">
+                                                                        <c:if test="${donhang.status==null}">
+                                                                            <form action="xacnhandon" method="post">
+                                                                                <input type="hidden" value="${orderId}"name="orderid">
+                                                                                <input type="hidden" value="sethuy" name="action">
+                                                                                <input type="submit" class="btn btn-outline-danger" value="Hủy đơn hàng">
+                                                                            </form>
+                                                                        </c:if>
+                                                                        <c:if test="${donhang.status == 'Dang giao'}">
+                                                                            <span class="badge bg-light text-dark">Đang giao</span>
+                                                                        </c:if>
+                                                                        <c:if test="${donhang.status == 'Hoan thanh'}">
+                                                                            <span class="badge bg-success">Hoàn thành</span>
+                                                                        </c:if>
+                                                                        <c:if test="${donhang.status == 'Da huy by customer'}">
+                                                                                <span class="badge bg-danger">Đã huỷ</span>
+                                                                        </c:if>
+                                                                    </div>
+                                                                </div>
+
+
                                                             </th>
+
                                                         </tr>
                                                     </c:if>
                                                     <tr>
                                                         <td class="shoping__cart__item table-light">
                                                             <div class="row">
                                                                 <div class="col-md-2" style="text-align: right">
-                                                                    <img src="${donhang.img}" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                                                    <a href="detail?pid=${donhang.productid}"><img src="${donhang.img}" alt="" style="width: 100px; height: 100px; object-fit: cover;"></a>
                                                                 </div>
                                                                 <div class="col-md-10">
-                                                                    <h5>${donhang.productname}</h5>
+                                                                    <a href="detail?pid=${donhang.productid}"><h5>${donhang.productname}</h5></a>
                                                                     <div class="row">
                                                                         <div class="col-md-9">
                                                                             <h5>X ${donhang.quantity}</h5>
@@ -108,6 +135,61 @@
                                                                         <div class="col-md-3" style="text-align: right;">
                                                                             <h5 class="text-info" style="padding-right: 10px">Giá:<fmt:formatNumber value="${donhang.price}" type="currency" currencySymbol="" minFractionDigits="0"/> VND</h5>
                                                                         </div>
+                                                                        <div class="col-md-12" style="text-align: right; margin-top: 10px">
+                                                                            
+                                                                            
+                                                                            <c:if test="${donhang.status == 'Hoan thanh'}">
+                                                                                <a href="#addFeebackModal" class="btn btn-outline-danger" data-toggle="modal">Viết đánh giá</a>
+                                                                            </c:if>
+                                                                            <div id="addFeebackModal" class="modal fade">
+                                                                                <div class="modal-dialog">
+                                                                                    <div class="modal-content" style="border-radius: 10px; margin-top: 60px;">
+                                                                                        <div class="modal-header">
+                                                                                            <h2 style="margin-left: 35%">Đánh giá sản phẩm</h2>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+                                                                                            <form action="feedback" method="post" enctype="multipart/form-data">
+                                                                                                <input type="hidden" name="productId" value="${donhang.productid}"/>
+                                                                                                <div class="form-group">
+                                                                                                    <b>Viết đánh giá:</b>
+                                                                                                </div>
+                                                                                                <div class="form-group" style="text-align: left;">
+                                                                                                    <textarea name="subject" placeholder="Viết bình luận.." style="height:200px; width: 460px"></textarea>
+                                                                                                </div>
+                                                                                                <div class="form-group">
+                                                                                                    <b>Ảnh phản hồi:</b>
+                                                                                                </div>
+                                                                                                <div class="form-group" style="text-align: left;">
+                                                                                                    <input name="imageurl" type="file" class="form-control" style="border-radius: 100px;">
+                                                                                                </div>
+                                                                                                <div class="form-group">
+                                                                                                    <b>Đánh giá:</b>
+                                                                                                </div>
+                                                                                                <div class="form-group" style="text-align: left;">
+                                                                                                    <select name="star" style="border-radius: 100px;" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                                                                                                        <option selected>Chọn số sao</option>
+                                                                                                        <option value="1">1</option>
+                                                                                                        <option value="2">2</option>
+                                                                                                        <option value="3">3</option>
+                                                                                                        <option value="4">4</option>
+                                                                                                        <option value="5">5</option>
+                                                                                                    </select>
+                                                                                                </div>
+                                                                                                <br>
+                                                                                                <div class="text-right">
+                                                                                                    <button type="submit" class="btn btn-dark" style="border-radius: 100px;">Hoàn thành</button>
+                                                                                                    <button type="button" class="btn btn-dark" data-dismiss="modal" style="border-radius: 100px;">Huỷ</button>
+                                                                                                </div>
+                                                                                            </form>
+                                                                                            <br><br>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+
+                                                                        </div>
+
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -124,9 +206,9 @@
                                                                     <div class="col-md-4" style="text-align: right; font-weight: bold">
                                                                         Tổng đơn: <h4 class="text-danger"><fmt:formatNumber value="${donhang.total}" type="currency" currencySymbol="" minFractionDigits="0"/> VND </h4>
                                                                     </div>
-                                                                    
+
                                                                 </div>
-                                                                
+
                                                             </td>
                                                         </tr>
                                                     </c:if>
@@ -155,6 +237,24 @@
         <script src="setofshop/js/mixitup.min.js"></script>
         <script src="setofshop/js/owl.carousel.min.js"></script>
         <script src="setofshop/js/main.js"></script>
+        <script>
+            const listItems = document.querySelectorAll('ul li');
+
+            listItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    listItems.forEach(otherItem => otherItem.classList.remove('active'));
+                    item.classList.add('active');
+                });
+
+                // Lấy URL của trang hiện tại và so sánh với href của liên kết
+                if (window.location.href.endsWith(item.querySelector('a').getAttribute('href'))) {
+                    item.classList.add('active');
+                }
+            });
+        </script>
+
+
+
 
 
     </body>

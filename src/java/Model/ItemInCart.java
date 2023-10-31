@@ -178,7 +178,16 @@ public class ItemInCart {
         return "ItemInCart{" + "id=" + id + ", cartid=" + cartid + ", productid=" + productid + ", quantity=" + quantity + ", userid=" + userid + ", sellerid=" + sellerid + ", productname=" + productname + ", img=" + img + ", price=" + this.getPrice() + ", shopname=" + shopname + '}';
     }
 
-   
+    public ItemInCart(Object productid, Object sellerid, String productname, String img, Double price, String shopname) {
+        this.productid = productid;
+        this.sellerid = sellerid;
+        this.productname = productname;
+        this.img = img;
+        this.price = price;
+        this.shopname = shopname;
+    }
+
+
 
     
 }
