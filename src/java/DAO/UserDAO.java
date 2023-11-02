@@ -300,6 +300,30 @@ public class UserDAO extends DatabaseConnection {
         }
 
     }
+     
+    public User getCaseSensitive(String name, String password) {
+        try {
+            String sql = "SELECT * FROM [SWP391].[dbo].[AppUser] WHERE name = ? COLLATE Latin1_General_CS_AS AND password = ? COLLATE Latin1_General_CS_AS";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setString(2, password);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                Object id = rs.getObject(1);
+                String userName = rs.getString(2);
+                String userPass = rs.getString(3);
+                String email = rs.getString(4);
+                int roleId = rs.getInt(6);
+
+                User user = new User(id, userName, userPass, email, roleId);
+                return user;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null; // Return null if no user is found or an error occurs
+    }
     
     public static void main(String[] args) {
         UserDAO userdao = new UserDAO();
@@ -307,4 +331,6 @@ public class UserDAO extends DatabaseConnection {
 
         System.out.println(user);
     }
+    
+    
 }
