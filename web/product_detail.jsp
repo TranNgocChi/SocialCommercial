@@ -71,6 +71,7 @@
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="product__details__text">
+                            <a href="Shop?iduser=${detail.sellerid}">${detail.shopname}</a>
                             <h3>${detail.productName}</h3>
                             <div class="product__details__rating">
                                 <i class="fa fa-star"></i>
@@ -99,7 +100,6 @@
                                 <div style="margin-top: 20px">
                                     <button type="submit" class="btn primary-btn" style="background-color: #5c91c6;">ADD TO CART</button>
                                 <a class="btn primary-btn" style="background-color: #5c91c6;" href="muangay?productid=${detail.productId}">Mua ngay</a>
-                                <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                                 </div>
                             </form>
                                 <h3 style="color: red; margin-top: 20px">  ${msg}</h3>

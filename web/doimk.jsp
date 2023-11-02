@@ -1,6 +1,6 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,69 +25,49 @@
         <div class="container">
             <div class="box login">
                 <div class="content">
-                    <h3 class="title">
-                        Đăng nhập
-                    </h3>
+                    <h2 style="color: blue">
+                        Đổi mật khẩu mới cho tài khoản ${name}
+                    </h2>
 
 
 
-                    <form action="login" method="POST" id="form">
+                    <form action="doimatkhau" method="post" id="form">
                         <c:if test="${sessionScope.account == null}">
                             <h3 style="color: red">${requestScope.ms}</h3>
                         </c:if>
                         <c:if test="${sessionScope.account != null}">
                             <h3 style="color: red">${requestScope.error}</h3>
                         </c:if>
-
-                        <div class="form_input">
-                            <input type="text" name="username" id="name" required>
-                            <label for="name">Tên đăng nhập</label>
+                    <div class="form_input">
+                            <input type="password" name="passcurrent" id="password" required>
+                            <label for="password">Mật khẩu hiện tại</label>
                         </div>
-                        <div class="form_input">
+                       <div class="form_input">
                             <input type="password" name="pass" id="password" required>
-                            <label for="password">Mật khẩu</label>
+                            <label for="password">Mật khẩu mới</label>
                         </div>
+                        <div class="form_input">
+                            <input type="password" name="pass1" id="password" required>
+                            <label for="password">Nhập lại mật khẩu mới</label>
+                        </div>
+                            <input type="hidden" name="name" value="${name}">
+
                         <button class="btn submit">
-                            Đăng nhập
+                            GỬI
                         </button>
-                        <h2 style="color:red">${msg}</h2>
-                        <c:set var="msg" value="${null}"></c:set>
-                        <a href="forget.jsp" style="color: black; text-decoration: none;">Quên mật khẩu ?</a>
+                        <h2 style="color:red;margin-top:10px">${msg}</h2>
+                       
+                        <a href="foget.jsp" style="color: white; text-decoration: none;">Forgot Password?</a>
                     </form>
 
                 </div>
             </div>
 
-            <div class="box navigation">
-                <div class="content">
-                    <div class="nav navigation_signIn">
-                        <p>
-                            Nếu bạn chưa có tài khoản, vui lòng đăng kí. 
-                        </p>
-
-
-                        <button class="btn layer" id="signupButton">
-
-                            Đăng kí
-                        </button>
-                    </div>
-
-
-                </div>
+            <div class="marks">
             </div>
-
-
-
-
         </div>
 
         <!-- link javascript -->
-        <!--<script src="static/js/loginJS_1.js"></script>-->
-        <script>
-            document.getElementById("signupButton").addEventListener("click", function () {
-                window.location.href = "signup"; // Redirect to register.jsp
-            });
-        </script>
     </body>
 
 </html>

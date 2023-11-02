@@ -45,13 +45,15 @@ public class Product {
     public Product() {
     }
 
-    public Product(Object productId, String productName, String productImage, int productAvailable, double productPrice, String productDescription) {
+    public Product(Object productId, String productName, String productImage, int productAvailable, double productPrice, String productDescription,Object sellerid,String shopname) {
         this.productId = productId;
         this.productName = productName;
         this.productImage = productImage;
         this.productAvailable = productAvailable;
         this.productPrice = productPrice;
         this.productDescription = productDescription;
+        this.sellerid = sellerid;
+        this.shopname = shopname;
     }
 
 

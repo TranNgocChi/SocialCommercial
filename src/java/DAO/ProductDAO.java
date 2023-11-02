@@ -298,8 +298,20 @@ public class ProductDAO extends DatabaseConnection {
     }
 
     public Product getProductsbyID(Object id) {
-        String sql = "SELECT * FROM ProductInfo\n"
-                + "  WHERE product_id = ?";
+        String sql ="SELECT TOP (1000) [product_id]\n" +
+"      ,[seller_id]\n" +
+"      ,[type_id]\n" +
+"      ,[product_name]\n" +
+"      ,[product_image]\n" +
+"      ,[product_available]\n" +
+"      ,[product_sales]\n" +
+"      ,[product_price]\n" +
+"      ,[product_voucher]\n" +
+"      ,[product_description]\n" +
+"	  ,requestSetRole.shopName\n" +
+"  FROM [SWP391].[dbo].[ProductInfo]\n" +
+"  JOIN requestSetRole ON ProductInfo.seller_id=requestSetRole.user_id\n" +
+"   WHERE product_id = ?";
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -309,13 +321,15 @@ public class ProductDAO extends DatabaseConnection {
             while (resultSet.next()) {
 
                 Object productId = resultSet.getObject(1);
+                Object sellerId=resultSet.getObject(2);
                 String productName = resultSet.getString(4);
                 String productImage = resultSet.getString(5);
                 double productPrice = resultSet.getDouble(8);
                 int productAvaiable = resultSet.getInt(6);
                 String productDescription = resultSet.getString(10);
+                String shopname=resultSet.getString(11);
 
-                return new Product(productId, productName, productImage, productAvaiable, productPrice, productDescription);
+                return new Product(productId, productName, productImage, productAvaiable, productPrice, productDescription,sellerId,shopname);
 
             }
             resultSet.close();

@@ -92,6 +92,41 @@ public class UserDAO extends DatabaseConnection {
         }
         return null; // Tr? v? null n?u kh�ng t�m th?y user ho?c x?y ra l?i
     }
+        public String getImgOfUserById(Object id) {
+        try {
+            String sql = "SELECT * FROM [SWP391].[dbo].[AppUser] WHERE id=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setObject(1, id);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                String img = rs.getString(7);
+                return img;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null; // Tr? v? null n?u kh�ng t�m th?y user ho?c x?y ra l?i
+    }
+         public String getImgOfUserByUsername(String name) {
+        try {
+            String sql = "SELECT * FROM [SWP391].[dbo].[AppUser] WHERE name=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, name);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                String img = rs.getString(7);
+                return img;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null; // Tr? v? null n?u kh�ng t�m th?y user ho?c x?y ra l?i
+    }
+    
        public void setpassbyname(String name,String pass) {
         try {
             String sql = "Update AppUser\n"
@@ -382,6 +417,30 @@ public class UserDAO extends DatabaseConnection {
 
          
      }
+     
+    public User getCaseSensitive(String name, String password) {
+        try {
+            String sql = "SELECT * FROM [SWP391].[dbo].[AppUser] WHERE name = ? COLLATE Latin1_General_CS_AS AND password = ? COLLATE Latin1_General_CS_AS";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setString(2, password);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                Object id = rs.getObject(1);
+                String userName = rs.getString(2);
+                String userPass = rs.getString(3);
+                String email = rs.getString(4);
+                int roleId = rs.getInt(6);
+
+                User user = new User(id, userName, userPass, email, roleId);
+                return user;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null; // Return null if no user is found or an error occurs
+    }
     
     public static void main(String[] args) {
         UserDAO userdao = new UserDAO();

@@ -12,6 +12,11 @@ public class User {
     int roleid;
     String fullname,gender,statusNow,school,favour,bio;
 
+    public User(String name, String image) {
+        this.name = name;
+        this.image = image;
+    }
+
     public User(Object id, String name, String image) {
         this.id = id;
         this.name = name;
