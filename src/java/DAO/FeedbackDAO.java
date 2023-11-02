@@ -96,7 +96,7 @@ public class FeedbackDAO extends DatabaseConnection {
 
         return list;
     }
-    public void insertFeedback(int star, String subject, String image, int i, Object product_id, Object userId) {
+    public void insertFeedback(int star, String subject, String image, boolean i, Object product_id, Object userId) {
         String sql = "INSERT INTO [dbo].[Feedback]\n"
                 + "           ([rated_star]\n"
                 + "           ,[feedback]\n"
@@ -111,7 +111,7 @@ public class FeedbackDAO extends DatabaseConnection {
             statement.setInt(1, star);
             statement.setString(2, subject);
             statement.setString(3, image);
-            statement.setInt(4, i);
+            statement.setBoolean(4, i);
             statement.setObject(5, product_id);
             statement.setObject(6, userId);
 
@@ -120,6 +120,28 @@ public class FeedbackDAO extends DatabaseConnection {
             System.out.println(e);
         }
     }
+    
+    public boolean getFeedbackStatus(Object product_id, Object userId) {
+        boolean status = false;
+        String query = "SELECT status FROM Feedback WHERE product_id = ? AND userId = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setObject(1, product_id);
+            preparedStatement.setObject(2, userId);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    status = resultSet.getBoolean("status");
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return status;
+    }
+    
+    
 
     public static void main(String[] args) {
         FeedbackDAO feedbackDAO = new FeedbackDAO();
@@ -128,9 +150,11 @@ public class FeedbackDAO extends DatabaseConnection {
             String subject = "Sản phẩm tuyệt vời!";
             String image = "setofshop\\img\\ao.png";
             int i = 1; // Trạng thái (ví dụ: 1 cho đã duyệt, 0 cho chưa duyệt)
-            Object product_id = "9714198A-D7BB-41CF-A694-1978358DEDC6"; // ID sản phẩm
-            Object userId = "1CAF9AD4-AFEA-4EE9-BFC1-E0AFC556370F";
-            feedbackDAO.insertFeedback(star, subject, image, i, product_id, userId);
+            Object product_id = "186E746C-730E-4606-9A6B-0B7C708D574B"; // ID sản phẩm
+            Object userId = "F122C4A5-C570-46D8-9D60-61C01BC480D6";
+            //feedbackDAO.insertFeedback(star, subject, image, true, product_id, userId);
+            
+            System.out.println(feedbackDAO.getFeedbackStatus(product_id, userId));
 //        for (Feedback feedback : feedbackList) {
 //            System.out.println("ID: " + feedback.getId());
 //            System.out.println("Rated Star: " + feedback.getRated_star());

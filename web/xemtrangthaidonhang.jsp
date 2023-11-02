@@ -110,7 +110,7 @@
                                                                             <span class="badge bg-success">Hoàn thành</span>
                                                                         </c:if>
                                                                         <c:if test="${donhang.status == 'Da huy by customer'}">
-                                                                                <span class="badge bg-danger">Đã huỷ</span>
+                                                                            <span class="badge bg-danger">Đã huỷ</span>
                                                                         </c:if>
                                                                     </div>
                                                                 </div>
@@ -136,56 +136,57 @@
                                                                             <h5 class="text-info" style="padding-right: 10px">Giá:<fmt:formatNumber value="${donhang.price}" type="currency" currencySymbol="" minFractionDigits="0"/> VND</h5>
                                                                         </div>
                                                                         <div class="col-md-12" style="text-align: right; margin-top: 10px">
-                                                                            
-                                                                            
+
+
                                                                             <c:if test="${donhang.status == 'Hoan thanh'}">
-                                                                                <a href="#addFeebackModal" class="btn btn-outline-danger" data-toggle="modal">Viết đánh giá</a>
-                                                                            </c:if>
-                                                                            <div id="addFeebackModal" class="modal fade">
-                                                                                <div class="modal-dialog">
-                                                                                    <div class="modal-content" style="border-radius: 10px; margin-top: 60px;">
-                                                                                        <div class="modal-header">
-                                                                                            <h2 style="margin-left: 35%">Đánh giá sản phẩm</h2>
-                                                                                        </div>
-                                                                                        <div class="modal-body">
-                                                                                            <form action="feedback" method="post" enctype="multipart/form-data">
-                                                                                                <input type="hidden" name="productId" value="${donhang.productid}"/>
-                                                                                                <div class="form-group">
-                                                                                                    <b>Viết đánh giá:</b>
-                                                                                                </div>
-                                                                                                <div class="form-group" style="text-align: left;">
-                                                                                                    <textarea name="subject" placeholder="Viết bình luận.." style="height:200px; width: 460px"></textarea>
-                                                                                                </div>
-                                                                                                <div class="form-group">
-                                                                                                    <b>Ảnh phản hồi:</b>
-                                                                                                </div>
-                                                                                                <div class="form-group" style="text-align: left;">
-                                                                                                    <input name="imageurl" type="file" class="form-control" style="border-radius: 100px;">
-                                                                                                </div>
-                                                                                                <div class="form-group">
-                                                                                                    <b>Đánh giá:</b>
-                                                                                                </div>
-                                                                                                <div class="form-group" style="text-align: left;">
-                                                                                                    <select name="star" style="border-radius: 100px;" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                                                                                                        <option selected>Chọn số sao</option>
-                                                                                                        <option value="1">1</option>
-                                                                                                        <option value="2">2</option>
-                                                                                                        <option value="3">3</option>
-                                                                                                        <option value="4">4</option>
-                                                                                                        <option value="5">5</option>
-                                                                                                    </select>
-                                                                                                </div>
-                                                                                                <br>
-                                                                                                <div class="text-right">
-                                                                                                    <button type="submit" class="btn btn-dark" style="border-radius: 100px;">Hoàn thành</button>
-                                                                                                    <button type="button" class="btn btn-dark" data-dismiss="modal" style="border-radius: 100px;">Huỷ</button>
-                                                                                                </div>
-                                                                                            </form>
-                                                                                            <br><br>
+                                                                                <a href="#" class="btn btn-outline-danger write-feedback" data-toggle="modal" data-target="#addFeebackModal${donhang.productid}">Viết đánh giá</a>
+                                                                                <div id="addFeebackModal${donhang.productid}" class="modal fade">
+                                                                                    <div class="modal-dialog">
+                                                                                        <div class="modal-content" style="border-radius: 10px; margin-top: 60px;">
+                                                                                            <div class="modal-header">
+                                                                                                <h2 style="margin-left: 35%">Đánh giá sản phẩm</h2>
+                                                                                            </div>
+                                                                                            <div class="modal-body">
+                                                                                                <form action="feedback" method="post" enctype="multipart/form-data">
+                                                                                                    <input type="hidden" name="productId" value="${donhang.productid}"/>
+                                                                                                    <div class="form-group">
+                                                                                                        <b>Viết đánh giá:</b>
+                                                                                                    </div>
+                                                                                                    <div class="form-group" style="text-align: left;">
+                                                                                                        <textarea name="subject" placeholder="Viết bình luận.." style="height:200px; width: 460px"></textarea>
+                                                                                                    </div>
+                                                                                                    <div class="form-group">
+                                                                                                        <b>Ảnh phản hồi:</b>
+                                                                                                    </div>
+                                                                                                    <div class="form-group" style="text-align: left;">
+                                                                                                        <input name="imageurl" type="file" class="form-control" style="border-radius: 100px;">
+                                                                                                    </div>
+                                                                                                    <div class="form-group">
+                                                                                                        <b>Đánh giá:</b>
+                                                                                                    </div>
+                                                                                                    <div class="form-group" style="text-align: left;">
+                                                                                                        <select name="star" style="border-radius: 100px;" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                                                                                                            <option selected>Chọn số sao</option>
+                                                                                                            <option value="1">1</option>
+                                                                                                            <option value="2">2</option>
+                                                                                                            <option value="3">3</option>
+                                                                                                            <option value="4">4</option>
+                                                                                                            <option value="5">5</option>
+                                                                                                        </select>
+                                                                                                    </div>
+                                                                                                    <br>
+                                                                                                    <div class="text-right">
+                                                                                                        <button type="submit" class="btn btn-dark" style="border-radius: 100px;">Hoàn thành</button>
+                                                                                                        <button type="button" class="btn btn-dark" data-dismiss="modal" style="border-radius: 100px;">Huỷ</button>
+                                                                                                    </div>
+                                                                                                </form>
+                                                                                                <br><br>
+                                                                                            </div>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
-                                                                            </div>
+                                                                            </c:if>
+
 
 
                                                                         </div>
@@ -252,6 +253,16 @@
                 }
             });
         </script>
+        <script>
+    // JavaScript to open the correct modal when "Viết đánh giá" is clicked
+    document.querySelectorAll('.write-feedback').forEach(function (element) {
+        element.addEventListener('click', function () {
+            var targetModalId = element.getAttribute('data-target').substr(1); // Remove the '#' character
+            $('#' + targetModalId).modal('show');
+        });
+    });
+</script>
+
 
 
 

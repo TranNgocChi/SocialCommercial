@@ -25,6 +25,7 @@ import javax.servlet.http.Part;
  */
 @MultipartConfig
 public class FeedbackController extends HttpServlet {
+
     private boolean isImageFile(String filename) {
         // Validate if the file is an image (you can enhance this validation)
         String[] allowedExtensions = {".jpg", ".jpeg", ".png", ".gif"};
@@ -67,11 +68,13 @@ public class FeedbackController extends HttpServlet {
                 ProductDAO dao = new ProductDAO();
                 Product p = dao.getProductsbyID(product_id);
                 FeedbackDAO fdao = new FeedbackDAO();
-                fdao.insertFeedback(star, subject, "SavedImages/" + filename, 1, product_id, iduser);
+                fdao.insertFeedback(star, subject, "SavedImages/" + filename, true, product_id, iduser);
+                boolean feedbackStatus = fdao.getFeedbackStatus(product_id, iduser);
+                request.setAttribute("feedbackStatus", feedbackStatus);
                 request.setAttribute("product", p);
-                response.sendRedirect("detail?pid="+product_id);
-
+                response.sendRedirect("detail?pid=" + product_id);
                 
+
             } else {
                 // Handle invalid file type
                 response.setContentType("text/plain");
