@@ -5,8 +5,6 @@
  */
 package Model;
 
-import java.text.DecimalFormat;
-
 /**
  *
  * @author ADMIN
@@ -20,17 +18,42 @@ public class Product {
     private double productPrice;
     private double productVoucher;
     private String productDescription;
+    private Object sellerid;
+    private String shopname;
 
+    public Product(Object sellerid, String shopname) {
+        this.sellerid = sellerid;
+        this.shopname = shopname;
+    }
+
+    public Object getSellerid() {
+        return sellerid;
+    }
+
+    public void setSellerid(Object sellerid) {
+        this.sellerid = sellerid;
+    }
+
+    public String getShopname() {
+        return shopname;
+    }
+
+    public void setShopname(String shopname) {
+        this.shopname = shopname;
+    }
+    
     public Product() {
     }
 
-    public Product(Object productId, String productName, String productImage, int productAvailable, double productPrice, String productDescription) {
+    public Product(Object productId, String productName, String productImage, int productAvailable, double productPrice, String productDescription,Object sellerid,String shopname) {
         this.productId = productId;
         this.productName = productName;
         this.productImage = productImage;
         this.productAvailable = productAvailable;
         this.productPrice = productPrice;
         this.productDescription = productDescription;
+        this.sellerid = sellerid;
+        this.shopname = shopname;
     }
 
 
@@ -95,8 +118,8 @@ public class Product {
         this.productSales = productSales;
     }
 
-   public double getProductPrice() {
-    // Định dạng số double thành chuỗi
+    public double getProductPrice() {
+        // Định dạng số double thành chuỗi
     String formattedPrice = String.valueOf(productPrice);
 
     // Kiểm tra xem chuỗi có phần thập phân ".0" không và loại bỏ nó nếu có
@@ -106,7 +129,7 @@ public class Product {
 
     // Chuyển lại thành double
     return Double.parseDouble(formattedPrice);
-}
+    }
 
     public void setProductPrice(double productPrice) {
         this.productPrice = productPrice;

@@ -64,12 +64,9 @@ public class managecategory extends HttpServlet {
             throws ServletException, IOException {
                   AdminDAO userdao=new AdminDAO();
             ArrayList<Category> list = userdao.getAllCategory();
-//            PrintWriter out = response.getWriter();
-//            for(var x:list){
-//                out.print(x);
-//            }
+
             request.setAttribute("listcategory", list);
-            request.getRequestDispatcher("managecategory.jsp").forward(request, response);
+            request.getRequestDispatcher("list_category.jsp").forward(request, response);
     }
 
     /**

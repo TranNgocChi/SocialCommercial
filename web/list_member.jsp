@@ -61,35 +61,37 @@
                             <div class="card-body">
                                 <h5 class="card-title">Datatables</h5>
                                 <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p>
-
+   <h5 style="color:red">${msg} </h5>
+    <c:set var="msg" value="${null}"></c:set>
                                 <!-- Table with stripped rows -->
                                 <table class="table datatable">
-                                                   <thead>
-                  <tr>
-                   
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Phone</th>
-                    <th scope="col">Role</th>
-                   
-                    <th scope="col">Delete</th>
-                   
-                  </tr>
-                </thead>
+                                    <thead>
+                                        <tr>
+
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Pass</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Phone</th>
+                                            <th scope="col">Role</th>
+                                            <th scope="col">Delete</th>
+
+                                        </tr>
+                                    </thead>
                                     <tbody>
                                     <c:forEach var="member" items="${listmember}">
                                         <tr>
                                             <th scope="row">${member.name}</th>
+                                            <td>${member.password}</td>
                                             <td>${member.email}</td>
                                             <td>${member.number}</td>
                                             <td>${member.roleid}</td>
                                             <td><form action="deletemember" style="text-align: center" method="post" >
-                            <input type="hidden" name="iddelete" value="${member.id}">
-                            <input type="submit" value="X">
-                        </form></td>
+                                                    <input type="hidden" name="iddelete" value="${member.id}">
+                                                    <input type="submit" value="X">
+                                                </form></td>
                                         </tr>
-                                        </c:forEach>
-                                       
+                                    </c:forEach>
+
                                     </tbody>
                                 </table>
                                 <!-- End Table with stripped rows -->

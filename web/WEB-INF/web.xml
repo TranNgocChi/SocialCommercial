@@ -97,6 +97,10 @@
         <servlet-name>xemdonhangdahuy</servlet-name>
         <servlet-class>Controller.xemdonhangdahuy</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UserSearchServlet</servlet-name>
+        <servlet-class>Controller.UserSearchServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ShoppingControl</servlet-name>
         <url-pattern>/shopping</url-pattern>
@@ -194,6 +198,10 @@
     <servlet-mapping>
         <servlet-name>xemdonhangdahuy</servlet-name>
         <url-pattern>/xemdonhangdahuy</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserSearchServlet</servlet-name>
+        <url-pattern>/UserSearchServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

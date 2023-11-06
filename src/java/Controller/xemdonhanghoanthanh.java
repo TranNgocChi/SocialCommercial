@@ -71,7 +71,7 @@ public class xemdonhanghoanthanh extends HttpServlet {
 //        list=dao.getdonhangOfUser(iduser);
 //        PrintWriter out = response.getWriter();
 //        out.print(list);
-HashMap<Object, ArrayList<Donhang>> orderMap = dao.getDonhangDangGiaoOrHoanthanhOfUserhash(iduser, "Hoan thanh");
+HashMap<Object, ArrayList<Donhang>> orderMap = dao.getDonhangDangGiaoOrHoanthanhOfUserhash(iduser, "Hoàn Thành");
 request.setAttribute("orderMap", orderMap);
 
 

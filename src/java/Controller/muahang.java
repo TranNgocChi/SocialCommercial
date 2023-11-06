@@ -81,11 +81,11 @@ public class muahang extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                request.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        HttpSession session=request.getSession();
-        Object iduser=request.getParameter("iduser");
+        HttpSession session = request.getSession();
+        Object iduser = request.getParameter("iduser");
         String address = request.getParameter("address");
         String fullname = request.getParameter("fullName");
         String email = request.getParameter("email");
@@ -93,8 +93,8 @@ public class muahang extends HttpServlet {
         String location = request.getParameter("address");
         String phone = request.getParameter("phone");
         String sosanphamParam = request.getParameter("sosanpham");
-        ThanhtoanDAO thanhtoandao=new ThanhtoanDAO();
-        ProductDAO productdao=new ProductDAO();
+        ThanhtoanDAO thanhtoandao = new ThanhtoanDAO();
+        ProductDAO productdao = new ProductDAO();
         Map<Object, ArrayList<ItemInCart>> productsByShop = new HashMap<>();
         int sosanpham = 0;  // Giá trị mặc định hoặc nếu không thể chuyển đổi thành số nguyên
         if (sosanphamParam != null) {
@@ -164,11 +164,11 @@ public class muahang extends HttpServlet {
             shopProducts.add(new ItemInCart(productid1, quantity1, sellerid1, price1, shopname1));
             listsanpham.add(item);
         }
-        
+
         ArrayList<ItemInCart> listdonhang = new ArrayList<>();
 
-for (Map.Entry<Object, ArrayList<ItemInCart>> entry : productsByShop.entrySet()) {
-    Object sellerid1 = entry.getKey();
+        for (Map.Entry<Object, ArrayList<ItemInCart>> entry : productsByShop.entrySet()) {
+            Object sellerid1 = entry.getKey();
 //            Double total1 = 0.0; // Hoặc bất kỳ giá trị mặc định nào bạn muốn
 //            if (totalParam != null) {
 //                try {
@@ -178,26 +178,25 @@ for (Map.Entry<Object, ArrayList<ItemInCart>> entry : productsByShop.entrySet())
 //                }
 //            }
 
-    ArrayList<ItemInCart> shopProducts = entry.getValue();
-    if (!shopProducts.isEmpty()) {
-        Object idorder=thanhtoandao.addNewOrderandGetThisOther(iduser, sellerid1, fullname, phone, town, location);
-        for(ItemInCart item:shopProducts){
-            boolean update=productdao.updatesanphamsaukhimuahang(item.getProductid(),item.getQuantity());
-            if(update==true){
-            thanhtoandao.addNewOrderDetail(idorder, item.getProductid(), item.getQuantity(),item.getPrice());
-            }
-            if(update==false){
-                 session.setAttribute("msgcart", "Lỗi !!! Số lượng bạn muốn mua vượt quá mức mà sản phẩm có hoặc số lượng không hợp lệ");
-                    response.sendRedirect("cart");
-                    break;
+            ArrayList<ItemInCart> shopProducts = entry.getValue();
+            if (!shopProducts.isEmpty()) {
+                Object idorder = thanhtoandao.addNewOrderandGetThisOther(iduser, sellerid1, fullname, phone, town, location);
+                for (ItemInCart item : shopProducts) {
+                    boolean update = productdao.updatesanphamsaukhimuahang(item.getProductid(), item.getQuantity());
+                    if (update == true) {
+                        thanhtoandao.addNewOrderDetail(idorder, item.getProductid(), item.getQuantity(), item.getPrice());
+                    }
+                    if (update == false) {
+                        session.setAttribute("msgcart", "Lỗi !!! Số lượng bạn muốn mua vượt quá mức mà sản phẩm có hoặc số lượng không hợp lệ");
+                        response.sendRedirect("cart");
+                        break;
+                    }
+                }
+                thanhtoandao.UpdateOrdertotal();
+
             }
         }
-         thanhtoandao.UpdateOrdertotal();
-        // Tạo đơn hàng tại đây và lưu vào CSDL
-        // Sử dụng thông tin trong shopname và shopProducts để tạo đơn hàng và chi tiết đơn hàng
-}
-    }
-response.sendRedirect("request_result.jsp");
+        response.sendRedirect("request_result.jsp");
     }
 
     /**

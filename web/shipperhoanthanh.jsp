@@ -108,15 +108,15 @@
                                         
                                     <c:if test="${donhang.total!=tong}">
                                          <th class="shoping__product" colspan="5" style="text-align: left; padding-top: 10px">
-                                           <c:if test="${donhang.status eq 'Dang giao'}">
+                                           <c:if test="${donhang.status eq 'Đang Giao'}">
                                     <form action="xacnhandon" method="post">
                                         <input type="hidden" value="${orderId}"name="orderid">
                                         <input type="hidden" value="sethoanthanh"name="action">
-                                        <input type="submit" value="Hoàn thành?">
+                                        <input type="submit" value="Hoàn thành ?">
                                     </form>
                                         </c:if>
                                 
-                                <c:if test="${donhang.status eq 'Hoan thanh'}">
+                                <c:if test="${donhang.status eq 'Hoàn Thành'}">
                                  <h4 style="color:green">Hoàn thành đơn hàng</h4>
                                  </c:if>
                                     </th>
@@ -125,8 +125,10 @@
                                         <c:set var="tong" value="${donhang.total}"></c:set>
                                     </th>
                                         <th class="shoping__product" colspan="5" style="text-align: left; padding-top: 10px">
-                                       Thông tin người nhận ${donhang.fullname} ${donhang.phone} ${donhang.town} 
-                                       ${donhang.location} ${donhang.town}
+                                       Thông tin người nhận : ${donhang.fullname}<br>
+                                       Số điện thoại : ${donhang.phone}<br>
+                                       Địa Chỉ : ${donhang.location} <br>
+                                       Mã thành phố : ${donhang.town}
                                     </th>
                                     
                                     </c:if>

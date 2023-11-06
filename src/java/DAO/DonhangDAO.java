@@ -17,7 +17,10 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
+/**
+ *
+ * @author DELL
+ */
 public class DonhangDAO {
     private Connection connection;
 
@@ -172,12 +175,12 @@ public class DonhangDAO {
     try {
         String sql = "SELECT o.id, o.order_total, o.customer_id, o.seller_id, o.fullname, o.phone, o.order_date, o.order_town, o.order_location, o.status, \n" +
 "            d.id, d.product_id, d.quantity, d.price, requestSetRole.shopName, ProductInfo.product_image, ProductInfo.product_name, o.stt \n" +
-"            FROM [SWP391].[dbo].[Order] AS o\n" +
-"            JOIN OrderDetail AS d ON d.order_id=o.id\n" +
-"            JOIN requestSetRole ON o.seller_id=requestSetRole.user_id\n" +
-"            JOIN ProductInfo ON d.product_id=ProductInfo.product_id\n" +
-"            WHERE o.seller_id=? AND (o.status IS NULL OR o.status NOT LIKE'%Da huy')\n" +
-"           ORDER BY stt DESC";
+"FROM [SWP391].[dbo].[Order] AS o\n" +
+"JOIN OrderDetail AS d ON d.order_id = o.id\n" +
+"JOIN requestSetRole ON o.seller_id = requestSetRole.user_id\n" +
+"JOIN ProductInfo ON d.product_id = ProductInfo.product_id\n" +
+"WHERE o.seller_id = ? AND (o.status NOT LIKE '%Da huy%' OR o.status IS NULL)\n" +
+"ORDER BY stt DESC";
 
         HashMap<Object, ArrayList<Donhang>> orderMap = new HashMap<>();
 

@@ -21,72 +21,74 @@ public class SignUpServlet extends HttpServlet {
         request.getRequestDispatcher("signup.jsp").forward(request, response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String username = request.getParameter("username");
-        String pass = request.getParameter("pass");
-        String pass1 = request.getParameter("pass1");
-        String email = request.getParameter("email");
-        HttpSession session = request.getSession();
+@Override
+protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    String username = request.getParameter("username");
+    String pass = request.getParameter("pass");
+    String pass1 = request.getParameter("pass1");
+    String email = request.getParameter("email");
+    HttpSession session = request.getSession();
 
-        // Check if the password length is between 6 and 8 characters
-        if (pass.length() >= 6 && pass.length() <= 12) {
-            if (pass.equals(pass1)) {
-                User user = new User(username, pass, email, 2);
-                UserDAO userdao = new UserDAO();
+    // Check if the email is a Gmail address
+    if (!email.toLowerCase().endsWith("@gmail.com")) {
+        session.setAttribute("msg", "Vui lòng sử dụng địa chỉ Gmail để đăng ký.");
+        response.sendRedirect("signup");
+        return; // Exit the method
+    }
 
-                // Check for duplicate username and email
-                if (userdao.checkdup(username) == null && userdao.checkdupemail(email) == null) {
-                    // Set attributes for request
-                    request.setAttribute("username", username);
-                    request.setAttribute("pass", pass);
-                    request.setAttribute("email", email);
+    // Check if the password length is between 6 and 12 characters
+    if (pass.length() >= 6 && pass.length() <= 12) {
+        if (pass.equals(pass1)) {
+            User user = new User(username, pass, email, 2);
+            UserDAO userdao = new UserDAO();
 
-                    // Generate a random 8-digit OTP
-                    Random random = new Random();
-                    StringBuilder randomNumber = new StringBuilder();
-                    for (int i = 0; i < 8; i++) {
-                        int digit = random.nextInt(10);
-                        randomNumber.append(digit);
-                    }
+            // Check for duplicate username and email
+            if (userdao.checkdup(username) == null && userdao.checkdupemail(email) == null) {
+                // Set attributes for request
+                request.setAttribute("username", username);
+                request.setAttribute("pass", pass);
+                request.setAttribute("email", email);
 
-                    // Set the session timeout to 2 minutes (120 seconds)
-                    session.setMaxInactiveInterval(120);
-
-                    // Send an email with OTP
-                    Sendmail sendmail = new Sendmail();
-                    String text = "Mã OTP của bạn là : " + randomNumber;
-                    sendmail.send(email, "OTP XÁC THỰC ĐĂNG KÍ CỦA SOCO NETWORK", text);
-
-                    // Store the OTP in the session
-                    session.setAttribute("otp", randomNumber);
-
-                    // Forward to OTP verification page
-                    request.getRequestDispatcher("otp.jsp").forward(request, response);
-                } else if (userdao.checkdup(username) != null) {
-                    session.setAttribute("msg", "Tên đăng nhập đã tồn tại. Vui lòng nhập tên đăng nhập khác!");
-                    response.sendRedirect("signup");
-                } else if (userdao.checkdupemail(email) != null) {
-                    session.setAttribute("msg", "Trùng EMAIL đã có trong hệ thống. Vui lòng đăng kí bằng địa chỉ EMAIL khác.");
-                    response.sendRedirect("signup");
+                // Generate a random 8-digit OTP
+                Random random = new Random();
+                StringBuilder randomNumber = new StringBuilder();
+                for (int i = 0; i < 8; i++) {
+                    int digit = random.nextInt(10);
+                    randomNumber.append(digit);
                 }
-            } else {
-                session.setAttribute("msg", "Mật khẩu nhập không trùng khớp. Vui lòng nhập lại!");
-                session.setAttribute("usernameValue", username);
-                session.setAttribute("emailValue", email);
+
+                // Set the session timeout to 2 minutes (120 seconds)
+                session.setMaxInactiveInterval(120);
+
+                // Send an email with OTP
+                Sendmail sendmail = new Sendmail();
+                String text = "Mã OTP của bạn là : " + randomNumber;
+                sendmail.send(email, "OTP XÁC THỰC ĐĂNG KÍ CỦA SOCO NETWORK", text);
+
+                // Store the OTP in the session
+                session.setAttribute("otp", randomNumber);
+
+                // Forward to OTP verification page
+                request.getRequestDispatcher("otp.jsp").forward(request, response);
+            } else if (userdao.checkdup(username) != null) {
+                session.setAttribute("msg", "Tên đăng nhập đã tồn tại. Vui lòng nhập tên đăng nhập khác!");
+                response.sendRedirect("signup");
+            } else if (userdao.checkdupemail(email) != null) {
+                session.setAttribute("msg", "Trùng EMAIL đã có trong hệ thống. Vui lòng đăng kí bằng địa chỉ EMAIL khác.");
                 response.sendRedirect("signup");
             }
         } else {
-            session.setAttribute("msg", "Mật khẩu phải có độ dài từ 6 đến 12 ký tự. Vui lòng nhập lại!");
+            session.setAttribute("msg", "Mật khẩu nhập không trùng khớp. Vui lòng nhập lại!");
             session.setAttribute("usernameValue", username);
             session.setAttribute("emailValue", email);
             response.sendRedirect("signup");
         }
+    } else {
+        session.setAttribute("msg", "Mật khẩu phải có độ dài từ 6 đến 12 ký tự. Vui lòng nhập lại!");
+        session.setAttribute("usernameValue", username);
+        session.setAttribute("emailValue", email);
+        response.sendRedirect("signup");
     }
-
-    @Override
-    public String getServletInfo() {
-        return "SignUp Servlet for user registration.";
-    }
+}
 }

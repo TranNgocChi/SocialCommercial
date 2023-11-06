@@ -4,7 +4,10 @@
     Author     : ADMIN
 --%>
 
+<%@page import="DAO.FeedbackDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -41,22 +44,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3">
-                        <div class="hero__categories">
-                            <div class="hero__categories__all">
-                                <i class="fa fa-bars"></i>
-                                <span>Danh mục</span>
-                            </div>
-                            <ul>
-                                <li><a href="#">Bách hoá Online</a></li>
-                                <li><a href="#">Thời trang nam</a></li>
-                                <li><a href="#">Thời trang nữ</a></li>
-                                <li><a href="#">Điện thoại & Phụ kiện</a></li>
-                                <li><a href="#">Điện tử</a></li>
-                                <li><a href="#">Máy tính & Laptop</a></li>
-                                <li><a href="#">Mỹ phẩm</a></li>
-                                <li><a href="#">Đồ chơi</a></li>
-                            </ul>
-                        </div>
+                        <%@ include file="shop/hero__categories.jsp" %>
                     </div>
                     <div class="col-lg-9">
                         <%@ include file="shop/hero_search.jsp" %>
@@ -76,86 +64,176 @@
                         </div>
                         <div class="featured__controls">
                             <ul>
-                                <a href="xemdonhang"><li> Chưa được xác nhận</li></a>
-                                 <a href="xemdonhangchovanchuyen"><li> Chờ vận chuyển</li></a>
-                               <a href="xemdonhangdanggiao"> <li>Đang giao</li></a>
-                               <a href="xemdonhanghoanthanh"> <li>Hoàn thành</li></a>
-                              <a href="xemdonhangdahuy">  <li>Đã huỷ</li></a>
+                                <li><a href="xemdonhang" style="color: black"> Chưa được xác nhận</a></li>
+                                <li><a href="xemdonhangchovanchuyen" style="color: black"> Chờ vận chuyển</a></li>
+                                <li><a href="xemdonhangdanggiao" style="color: black"> Đang giao</a></li>
+                                <li><a href="xemdonhanghoanthanh" style="color: black"> Hoàn thành</a></li>
+                                <li><a href="xemdonhangdahuy" style="color: black"> Đã huỷ</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <!-- Shoping Cart Section Begin -->
-                     <section class="shoping-cart spad" style="padding-top: 0;">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="shoping__cart__table">
-                    <c:set var="tong" value="${null}"></c:set> 
-                    
-                    <c:forEach items="${orderMap}" var="entry">
-                        <c:set var="orderId" value="${entry.key}" />
-                        <c:set var="donhangList" value="${entry.value}" />
-                        <c:set var="tong" value="${null}"></c:set> 
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <th class="shoping__product" colspan="5" style="text-align: left; padding-top: 10px">
-                                        Order ID: ${orderId} 
-                                    
-                                    </th>
-                                </tr>
-                         
-                                <c:forEach items="${donhangList}" var="donhang">
-                                    <c:if test="${donhang.total!=tong}">
-                                        <c:if test="${donhang.status!=null}">
-                                       <th class="shoping__product" colspan="5" style="text-align: left; padding-top: 10px">
-                                       Trạng thái đơn ${donhang.status}
-                                    </th>
-                                    </c:if>
-                                    <c:if test="${donhang.status==null}">
-                                       <form action="xacnhandon" method="post">
-                                        <input type="hidden" value="${orderId}"name="orderid">
-                                        <input type="hidden" value="sethuy"name="action">
-                                        <input type="submit" value="Hủy đơn hàng?">
-                                    </form>
-                                    </th>
-                                    </c:if>
-                                         <th class="shoping__product" colspan="5" style="text-align: left; padding-top: 10px">
-                                       Shop ${donhang.shopname}
-                                    </th>
-                                    <th class="shoping__product" colspan="5" style="text-align: left; padding-top: 10px">
-                                        Tổng đơn: ${donhang.total} VND
-                                        <c:set var="tong" value="${donhang.total}"></c:set>
-                                    </th>
-                                        <th class="shoping__product" colspan="5" style="text-align: left; padding-top: 10px">
-                                       Thông tin người nhận ${donhang.fullname} ${donhang.phone} ${donhang.town} 
-                                       ${donhang.location} ${donhang.town}
-                                    </th>
-                                    
-                                    </c:if>
-                                    <tr>
-                                        <td class="shoping__cart__item">
-                                            <img src="${donhang.img}" alt="" style="width: 100px; height: 100px; object-fit: cover;">
-                                            <h5>${donhang.productname}</h5>
-                                            <h5>X ${donhang.quantity}</h5>
-                                            <h5>Giá: ${donhang.price}</h5>
-                                            <h5>Tổng: ${donhang.price*donhang.quantity}</h5>
-                                         
-                                         
-                                        </td>
-                                    </tr>
-                                    
-                                
-                                </c:forEach>
-                            </tbody>
-                        </table>
-                    </c:forEach>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+                <section class="shoping-cart spad" style="padding-top: 0;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="shoping__cart__table">
+                                    <c:set var="tong" value="${null}"></c:set> 
+
+                                    <c:forEach items="${orderMap}" var="entry">
+                                        <c:set var="orderId" value="${entry.key}" />
+                                        <c:set var="donhangList" value="${entry.value}" />
+                                        <table class="table">
+                                            <tbody>
+                                                <c:forEach items="${donhangList}" var="donhang" varStatus="loop">
+                                                    <c:if test="${loop.first}">
+
+                                                        <tr class="table-light">
+
+                                                            <th colspan="5" style="text-align: left; padding-top: 10px">
+                                                                <div class="row">
+                                                                    <div class="col-md-10">
+                                                                        Shop: ${donhang.shopname}
+                                                                    </div>
+                                                                    <div class="col-md-2" style="text-align: right;">
+                                                                        <c:if test="${donhang.status==null}">
+                                                                            <form action="xacnhandon" method="post">
+                                                                                <input type="hidden" value="${orderId}"name="orderid">
+                                                                                <input type="hidden" value="sethuy" name="action">
+                                                                                <input type="submit" class="btn btn-outline-danger" value="Hủy đơn hàng">
+                                                                            </form>
+                                                                        </c:if>
+                                                                        <c:if test="${donhang.status == 'Đang Giao'}">
+                                                                            <span class="badge bg-light text-dark">Đang giao</span>
+                                                                        </c:if>
+                                                                        <c:if test="${donhang.status == 'Hoàn Thành'}">
+                                                                            <span class="badge bg-success">Hoàn thành</span>
+                                                                        </c:if>
+                                                                        <c:if test="${donhang.status == 'Đã Hủy'}">
+                                                                            <span class="badge bg-danger">Đã huỷ</span>
+                                                                        </c:if>
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </th>
+
+                                                        </tr>
+                                                    </c:if>
+                                                    <tr>
+                                                        <td class="shoping__cart__item table-light">
+                                                            <div class="row">
+                                                                <div class="col-md-2" style="text-align: right">
+                                                                    <a href="detail?pid=${donhang.productid}"><img src="${donhang.img}" alt="" style="width: 100px; height: 100px; object-fit: cover;"></a>
+                                                                </div>
+                                                                <div class="col-md-10">
+                                                                    <a href="detail?pid=${donhang.productid}"><h5>${donhang.productname}</h5></a>
+                                                                    <div class="row">
+                                                                        <div class="col-md-9">
+                                                                            <h5>X ${donhang.quantity}</h5>
+                                                                        </div>
+                                                                        <div class="col-md-3" style="text-align: right;">
+                                                                            <h5 class="text-info" style="padding-right: 10px">Giá:<fmt:formatNumber value="${donhang.price}" type="currency" currencySymbol="" minFractionDigits="0"/> VND</h5>
+                                                                        </div>
+                                                                        <div class="col-md-12" style="text-align: right; margin-top: 10px">
+
+
+                                                                            <c:if test="${donhang.status == 'Hoàn Thành'}">
+                                                                         <% FeedbackDAO feedbackdao = new FeedbackDAO(); %>
+<c:set var="productid" value="${donhang.productid}" />
+<c:set var="id" value="${id}" />
+<c:set var="status" value="${feedbackdao.getstatusOfProDuct(productid, id)}" />
+
+
+                                                                        <c:if test="${status!=1}"  >
+                                                                                <a href="#" class="btn btn-outline-danger write-feedback" data-toggle="modal" data-target="#addFeebackModal${donhang.productid}">Viết đánh giá</a>
+                                                                                </c:if>  
+                                                                                <div id="addFeebackModal${donhang.productid}" class="modal fade">
+                                                                                    <div class="modal-dialog">
+                                                                                        <div class="modal-content" style="border-radius: 10px; margin-top: 60px;">
+                                                                                            <div class="modal-header">
+                                                                                                <h2 style="margin-left: 35%">Đánh giá sản phẩm</h2>
+                                                                                            </div>
+                                                                                            <div class="modal-body">
+                                                                                                <form action="feedback" method="post" enctype="multipart/form-data">
+                                                                                                    <input type="hidden" name="productId" value="${donhang.productid}"/>
+                                                                                                    <div class="form-group">
+                                                                                                        <b>Viết đánh giá:</b>
+                                                                                                    </div>
+                                                                                                    <div class="form-group" style="text-align: left;">
+                                                                                                        <textarea name="subject" placeholder="Viết bình luận.." style="height:200px; width: 460px"></textarea>
+                                                                                                    </div>
+                                                                                                    <div class="form-group">
+                                                                                                        <b>Ảnh phản hồi:</b>
+                                                                                                    </div>
+                                                                                                    <div class="form-group" style="text-align: left;">
+                                                                                                        <input name="imageurl" type="file" class="form-control" style="border-radius: 100px;">
+                                                                                                    </div>
+                                                                                                    <div class="form-group">
+                                                                                                        <b>Đánh giá:</b>
+                                                                                                    </div>
+                                                                                                    <div class="form-group" style="text-align: left;">
+                                                                                                        <select name="star" style="border-radius: 100px;" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                                                                                                            <option selected>Chọn số sao</option>
+                                                                                                            <option value="1">1</option>
+                                                                                                            <option value="2">2</option>
+                                                                                                            <option value="3">3</option>
+                                                                                                            <option value="4">4</option>
+                                                                                                            <option value="5">5</option>
+                                                                                                        </select>
+                                                                                                    </div>
+                                                                                                    <br>
+                                                                                                    <div class="text-right">
+                                                                                                        <button type="submit" class="btn btn-dark" style="border-radius: 100px;">Hoàn thành</button>
+                                                                                                        <button type="button" class="btn btn-dark" data-dismiss="modal" style="border-radius: 100px;">Huỷ</button>
+                                                                                                    </div>
+                                                                                                </form>
+                                                                                                <br><br>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </c:if>
+
+
+
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <c:if test="${loop.last}">
+                                                        <tr class="table-light">
+                                                            <td>
+                                                                <div class="row">
+                                                                    <div class="col-md-8" style="text-align: left; font-weight: bold">
+                                                                        Thông tin người nhận: <h5>${donhang.fullname} - ${donhang.phone}
+                                                                            - ${donhang.location} - ${donhang.town}</h5>
+                                                                    </div>
+                                                                    <div class="col-md-4" style="text-align: right; font-weight: bold">
+                                                                        Tổng đơn: <h4 class="text-danger"><fmt:formatNumber value="${donhang.total}" type="currency" currencySymbol="" minFractionDigits="0"/> VND </h4>
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </td>
+                                                        </tr>
+                                                    </c:if>
+                                                </c:forEach>
+                                            </tbody>
+                                        </table>
+                                    </c:forEach>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
                 <!-- Shoping Cart Section End -->
             </div>
         </section>
@@ -169,7 +247,35 @@
         <script src="setofshop/js/mixitup.min.js"></script>
         <script src="setofshop/js/owl.carousel.min.js"></script>
         <script src="setofshop/js/main.js"></script>
-        
+        <script>
+            const listItems = document.querySelectorAll('ul li');
+
+            listItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    listItems.forEach(otherItem => otherItem.classList.remove('active'));
+                    item.classList.add('active');
+                });
+
+                // Lấy URL của trang hiện tại và so sánh với href của liên kết
+                if (window.location.href.endsWith(item.querySelector('a').getAttribute('href'))) {
+                    item.classList.add('active');
+                }
+            });
+        </script>
+        <script>
+    // JavaScript to open the correct modal when "Viết đánh giá" is clicked
+    document.querySelectorAll('.write-feedback').forEach(function (element) {
+        element.addEventListener('click', function () {
+            var targetModalId = element.getAttribute('data-target').substr(1); // Remove the '#' character
+            $('#' + targetModalId).modal('show');
+        });
+    });
+</script>
+
+
+
+
+
 
     </body>
 </html>

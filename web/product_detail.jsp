@@ -28,6 +28,13 @@
         <link rel="stylesheet" href="setofshop/css/owl.carousel.min.css" type="text/css">
         <link rel="stylesheet" href="setofshop/css/slicknav.min.css" type="text/css">
         <link rel="stylesheet" href="setofshop/css/style.css" type="text/css">
+        <style>
+            .text-primary .fa-star:hover,
+            .text-primary .fa-star:focus,
+            .text-primary .fa-star.active {
+                color: gold;
+            }
+        </style>
     </head>
     <body>
 
@@ -51,7 +58,6 @@
         <!-- Hero Section End -->
 
         <!-- Product Details Section Begin -->
-        <h3 style="align-content: center">  ${msg}</h3>
         <section class="product-details spad">
             <div class="container">
                 <div class="row">
@@ -65,6 +71,7 @@
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="product__details__text">
+                            <a href="Shop?iduser=${detail.sellerid}">${detail.shopname}</a>
                             <h3>${detail.productName}</h3>
                             <div class="product__details__rating">
                                 <i class="fa fa-star"></i>
@@ -72,34 +79,87 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star-half-o"></i>
-                                <span>(18 reviews)</span>
+                                <span>(${total} reviews)</span>
                             </div>
                             <div class="product__details__price"><fmt:formatNumber value="${detail.productPrice}" type="currency" currencySymbol="" minFractionDigits="0"/> VNĐ</div>
                             <p>${detail.productDescription}</p>
-                            
-                            <form action="addtocart" method="post" class="primary-btn">
+                            <form action="addtocart" method="post">
                                 <input type="hidden" name="id" value="${id}">
                                 <input type="hidden" name="productid" value="${detail.productId}">
                                 <input type="hidden" name="productprice" value=""${detail.productPrice}">
                                 <input type="hidden" name="productname" value="${detail.productName}">
                                 <input type="hidden" name="productavai" value="${detail.productAvailable}">
-                               <div class="product__details__quantity">
-                                <div class="quantity">
-                                    <div class="pro-qty">
-                                        <input type="text" value="1" name="quantity">
+                                <div class="product__details__quantity">
+                                    <div class="quantity">
+                                        <div class="pro-qty">
+                                            <input type="text" value="1" name="quantity">
+                                        </div>
+                                        ${detail.productAvailable} sản phẩm có sẵn
+                                    </div>
+                                </div>
+                                <div style="margin-top: 20px">
+                                    <button type="submit" class="btn primary-btn" style="background-color: #5c91c6;">ADD TO CART</button>
+                                <a class="btn primary-btn" style="background-color: #5c91c6;" href="muangay?productid=${detail.productId}">Mua ngay</a>
+                                </div>
+                            </form>
+                                <h3 style="color: red; margin-top: 20px">  ${msg}</h3>
+                        </div>
+                    </div>
+                        <div class="col-lg-12 col-md-12" style="margin-top: 25px">
+                        <div class="col">
+                            <div class="nav nav-tabs justify-content-center border-secondary mb-4">
+                                <a class="nav-item nav-link active text-dark" data-toggle="tab" href="#tab-pane-1">Description</a>
+                                <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Reviews (${total})</a>
+                            </div>
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="tab-pane-1">
+                                    <h4 class="mb-3">Product Description</h4>
+                                    <p>${detail.productDescription}</p>
+                                </div>
+                                
+                                <div class="tab-pane fade" id="tab-pane-3">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h4 class="mb-4"><span>${total}</span> review for <span>${detail.productName}</span></h4>
+
+                                            <c:forEach items="${listfeedbackbyproduct}" var="f">
+                                                <div class="media mb-4">
+                                                    <c:forEach items="${u}" var="u">
+                                                        <c:if test="${f.user_id == u.id}">
+                                                            <img src="${u.image != null ? u.image : 'https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg'}" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                                                        </c:if>
+                                                    </c:forEach>
+
+                                                    <div class="media-body">
+                                                        <c:forEach items="${u}" var="u">
+                                                            <c:if test="${f.user_id == u.id}">
+                                                                <h6>${u.fullname}<small> - <i>${f.date}</i></small></h6>
+                                                            </c:if>
+                                                        </c:forEach>
+
+                                                        <c:forEach var="i" begin="0" end="4">
+                                                            <c:if test="${(f.rated_star - i) >= 1}">
+                                                                <div class="fa fa-star"></div> 
+                                                            </c:if>
+                                                            <c:if test="${(f.rated_star - i) < 1 && (f.rated_star - i) > 0}">
+                                                                <div class="fa fa-star-half-o"></div> 
+                                                            </c:if>
+                                                            <c:if test="${(f.rated_star - i) <= 0}">
+                                                                <div class="fa fa-star-o"></div> 
+                                                            </c:if>
+                                                        </c:forEach>
+                                                        <h6 class="marketing_feedback_margin mt-2">${f.feedback}
+                                                        </h6>
+                                                        <h6><img style="height: 100px; width: 100px" src="${f.image}"></h6>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                            </c:forEach>
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                         <button type="submit" class="btn btn-primary">ADD TO CART</button>
-
-                            </form>
-                            <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
-                            <ul>
-                                <li><b>Số lượng có sẵn</b> <span>${detail.productAvailable}</span></li>
-                                <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
-                                <li><b>Weight</b> <span>0.5 kg</span></li>
-
-                            </ul>
                         </div>
                     </div>
                 </div>
@@ -150,5 +210,4 @@
     <script src="setofshop/js/mixitup.min.js"></script>
     <script src="setofshop/js/owl.carousel.min.js"></script>
     <script src="setofshop/js/main.js"></script>
-    
 </html>

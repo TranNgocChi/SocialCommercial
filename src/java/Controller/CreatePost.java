@@ -12,6 +12,7 @@ import java.util.Date;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 
@@ -42,11 +43,11 @@ public class CreatePost extends HttpServlet {
         Date post_date = new Date();
         
         String realPath = request.getServletContext().getRealPath("/SavedImages");
-        String filename = Path.of(imagePart.getSubmittedFileName()).getFileName().toString();
+        String filename = Paths.get(imagePart.getSubmittedFileName()).getFileName().toString();
         String image = realPath + "/" + filename;
         
-            if(!Files.exists(Path.of(realPath))){
-                Files.createDirectory(Path.of(realPath));
+            if(!Files.exists(Paths.get(realPath))){
+                Files.createDirectory(Paths.get(realPath));
             }
             if (isImageFile(image)) {
                 imagePart.write(image);

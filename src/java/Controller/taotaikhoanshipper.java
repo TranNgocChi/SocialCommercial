@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpSession;
 
 
 /**
@@ -74,11 +75,12 @@ public class taotaikhoanshipper extends HttpServlet {
     throws ServletException, IOException {
             String name=request.getParameter("name");
         String pass=request.getParameter("pass");
+        HttpSession session=request.getSession();
         int town=Integer.parseInt(request.getParameter("town"));
         AdminDAO dao=new AdminDAO();
         dao.taoacountshipper(name, pass, town);
-        request.setAttribute("msg","Tạo thài khoản shipper thành công !!!");
-        request.getRequestDispatcher("taotaikhoanshipper.jsp").forward(request, response);
+        session.setAttribute("msg","Tạo thài khoản vận chuyển thành công !!!");
+        response.sendRedirect("manageshipper");
     }
 
     /** 

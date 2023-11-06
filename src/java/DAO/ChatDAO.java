@@ -17,7 +17,10 @@ import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
+/**
+ *
+ * @author DELL
+ */
 public class ChatDAO extends DatabaseConnection {
 
     private Connection connection;
@@ -43,10 +46,10 @@ public class ChatDAO extends DatabaseConnection {
         return null;
     }
 
-  public ArrayList<String> getlistnguoinhantin(Object id){
+  public ArrayList<User> getlistnguoinhantin(Object id){
     try {
-        ArrayList<String> list = new ArrayList<>();
-        String sql = "SELECT DISTINCT AppUser.name AS [Tên Người Nhắn Tin]\n" +
+        ArrayList<User> list = new ArrayList<>();
+        String sql = "SELECT DISTINCT AppUser.name AS [Tên Người Nhắn Tin],AppUser.image\n" +
                      "FROM AppUser\n" +
                      "INNER JOIN UserMessage AS mess\n" +
                      "On AppUser.id = mess.receiver_id OR AppUser.id = mess.sender_id\n" +
@@ -58,7 +61,7 @@ public class ChatDAO extends DatabaseConnection {
         ps.setObject(3, id); // Gán giá trị của id cho tham số thứ ba
         ResultSet rs = ps.executeQuery();
         while(rs.next()){
-            list.add(rs.getString(1));
+            list.add(new User(rs.getString(1),rs.getString(2)));
         }
         return list;
     } catch (SQLException ex) {

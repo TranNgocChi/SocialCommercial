@@ -74,6 +74,8 @@ public class RequestSetRole extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
          HttpSession session=request.getSession();
        Object id= session.getAttribute("id");
         String email=(String) request.getParameter("email");
@@ -81,7 +83,7 @@ public class RequestSetRole extends HttpServlet {
 //        out.print(id);
         String fullName=(String) request.getParameter("fullName");
         String shopName=(String) request.getParameter("shopName");
-        String commoditiesSector=(String) request.getParameter("commoditiesSector");
+        String commoditiesSector=(String) request.getParameter("commoditiesSector").toUpperCase();
         String address=(String) request.getParameter("address");
         String phone=(String) request.getParameter("phone");
         UserDAO userdao=new UserDAO();

@@ -19,7 +19,10 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
+/**
+ *
+ * @author DELL
+ */
 public class ThanhtoanDAO {
 
     private Connection connection;
@@ -94,6 +97,24 @@ public class ThanhtoanDAO {
 "WHERE id=?";
             PreparedStatement ps = connection.prepareStatement(sql);    
             ps.setString(1, status);
+            ps.setObject(2, idorder);
+            ps.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(ThanhtoanDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }
+ public void xoadon(Object idorder) {
+      
+        try {
+            String sql = "DELETE\n" +
+"  [SWP391].[dbo].[OrderDetail]\n" +
+"  WHERE OrderDetail.order_id=?\n" +
+"    DELETE\n" +
+"  [SWP391].[dbo].[Order]\n" +
+"  WHERE [Order].id=?";
+            PreparedStatement ps = connection.prepareStatement(sql);    
+            ps.setObject(1, idorder);
             ps.setObject(2, idorder);
             ps.execute();
         } catch (SQLException ex) {

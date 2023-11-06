@@ -17,7 +17,10 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
+/**
+ *
+ * @author DELL
+ */
 public class CartDAO extends DatabaseConnection {
 
     private Connection connection;

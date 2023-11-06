@@ -94,6 +94,11 @@ public class xacnhandon extends HttpServlet {
         dao.xacnhandonhang(idorder,"Da huy by customer");
         response.sendRedirect("xemdonhangdahuy");
         }
+               if(action.equals("sethuybyseller")){
+        ThanhtoanDAO dao=new ThanhtoanDAO();
+        dao.xoadon(idorder);
+        response.sendRedirect("quanlidonhang");
+        }
     }
 
     /** 

@@ -30,7 +30,7 @@
         <div class="home">
 
             <div class="containerr">
-                <form action="themsanpham" method="post">
+                <form action="themsanpham" method="post" enctype="multipart/form-data">
                     <div class="form-group row">
                         <label for="email" class="col-md-4 col-form-label">Ngành hàng:</label>
                         <div class="col-md-8">
@@ -45,16 +45,10 @@
                             <input type="text" id="full-name" name="product_name" class="form-control" placeholder="Tên sản phẩm" required>
                         </div>
                     </div>
-<!--                    <div class="form-group row">
-                        <label for="image" class="col-md-4 col-form-label">Hình ảnh sản phẩm:</label>
-                        <div class="col-md-8">
-                            <input type="file" id="shop-name" name="product_image" class="form-control" placeholder="Ảnh sản phẩm" required>
-                        </div>
-                    </div>-->
                     <div class="form-group row">
                         <label for="image" class="col-md-4 col-form-label">Hình ảnh sản phẩm:</label>
                         <div class="col-md-8">
-                            <input type="text" id="shop-name" name="product_image" class="form-control" placeholder="Ảnh sản phẩm" required>
+                            <input type="file" id="shop-name" name="image" class="form-control" placeholder="Ảnh sản phẩm" required>
                         </div>
                     </div>
 

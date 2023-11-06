@@ -5,10 +5,9 @@
         <group>
             <file>file:/D:/SWP391/SocialCommercial/src/java/DAO/UserDAO.java</file>
             <file>file:/D:/SWP391/SocialCommercial/src/java/Controller/SignUpServlet.java</file>
-            <file>file:/D:/SWP391/SocialCommercial/web/login.jsp</file>
-            <file>file:/D:/SWP391/SocialCommercial/src/java/Controller/addcategory.java</file>
-            <file>file:/D:/SWP391/SocialCommercial/web/forget.jsp</file>
-            <file>file:/D:/SWP391/SocialCommercial/src/java/Controller/LoginServlet.java</file>
+            <file>file:/D:/SWP391/SocialCommercial/web/signup.jsp</file>
+            <file>file:/D:/SWP391/SocialCommercial/web/subhome/header.jsp</file>
+            <file>file:/D:/SWP391/SocialCommercial/web/nhapmkmoiforget.jsp</file>
         </group>
     </open-files>
 </project-private>

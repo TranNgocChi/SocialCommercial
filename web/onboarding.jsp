@@ -8,40 +8,33 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta charset="utf-8">
+        <meta name="description" content="Ogani Template">
+        <meta name="keywords" content="Ogani, unica, creative, html">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>SOCO</title>
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
-        <title>SOCO - Seller</title>
-        <!-- style css link -->
+        <!-- Css Styles -->
+
+        <link rel="stylesheet" href="setofshop/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="setofshop/css/styleonboarding.css">
-        <!-- fontawesome css link -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+        <link rel="stylesheet" href="setofshop/css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="setofshop/css/elegant-icons.css" type="text/css">
+        <link rel="stylesheet" href="setofshop/css/nice-select.css" type="text/css">
+        <link rel="stylesheet" href="setofshop/css/jquery-ui.min.css" type="text/css">
+        <link rel="stylesheet" href="setofshop/css/owl.carousel.min.css" type="text/css">
+        <link rel="stylesheet" href="setofshop/css/slicknav.min.css" type="text/css">
+        <link rel="stylesheet" href="setofshop/css/style.css" type="text/css">
     </head>
     <body>
 
         <!-- header section start -->
 
         <header>
-            <div class="header-container">
-
-
-                <div class="header-wrapper">
-                    <div class="logoBox">
-                        <div class="logo-soco">
-                            <a href="shopping"><h2>SOCO</h2></a>
-                        </div>
-                        <div class="content">
-                            <h5>Đăng ký bán hàng trên SOCO</h5>
-                        </div>
-                    </div>
-                    <div class="iconBox2">
-                        <label><img src="https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg" alt="user"></label>
-                        <i class="fa-solid fa-caret-down "></i>
-                    </div>
-                </div>
-            </div>
+            <%@ include file="shop/header_shop.jsp" %>
         </header>
 
         <!-- header section end -->

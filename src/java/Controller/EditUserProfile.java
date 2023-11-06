@@ -5,6 +5,7 @@ import DAO.UserDAO;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -30,6 +31,7 @@ public class EditUserProfile extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         try{
             HttpSession session=request.getSession();
             Object user_id = session.getAttribute("id");
@@ -44,11 +46,11 @@ public class EditUserProfile extends HttpServlet {
             String bio = request.getParameter("bio");
         
             String realPath = request.getServletContext().getRealPath("/SavedImages");
-            String filename = Path.of(imagePart.getSubmittedFileName()).getFileName().toString();
+            String filename = Paths.get(imagePart.getSubmittedFileName()).getFileName().toString();
             String image = realPath + "/" + filename;
         
-            if(!Files.exists(Path.of(realPath))){
-                Files.createDirectory(Path.of(realPath));
+            if(!Files.exists(Paths.get(realPath))){
+                Files.createDirectory(Paths.get(realPath));
             }
             
             if (imagePart != null && imagePart.getSize() > 0) {
@@ -58,15 +60,15 @@ public class EditUserProfile extends HttpServlet {
                 session.setAttribute("img", "SavedImages/"+filename);
                 UserDAO edituser = new UserDAO();
                 edituser.EditUser(number, "SavedImages/"+filename, fullname, gender, statusnow, school, favour, bio, user_id);
-                request.getRequestDispatcher("user_profile.jsp").forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/UserProfileSocial");
             } else {
                 response.setContentType("text/plain");
-                response.getWriter().write("Invalid file type. Please upload an image.");
+                response.sendRedirect(request.getContextPath() + "/UserProfileSocial");
             }
         } else {
             UserDAO edituser = new UserDAO();
             edituser.EditUserSubstractImage(number, fullname, gender, statusnow, school, favour, bio, user_id);
-            request.getRequestDispatcher("user_profile.jsp").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/UserProfileSocial");
         }
         
         }catch(Exception e){
