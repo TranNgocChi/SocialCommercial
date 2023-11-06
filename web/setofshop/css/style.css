@@ -809,9 +809,6 @@ ol {
     opacity: 0;
 }
 
-.featured__controls ul li:last-child {
-    margin-right: 0;
-}
 
 .featured__item {
     margin-bottom: 50px;
@@ -1609,8 +1606,8 @@ ol {
 
 .product__pagination a:hover,
 .blog__pagination a:hover {
-    background: #7fad39;
-    border-color: #7fad39;
+    background: #5c91c6;
+    border-color: #5c91c6;
     color: #ffffff;
 }
 

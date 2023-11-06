@@ -1,6 +1,8 @@
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -92,25 +94,25 @@
                         </div>
                     </div>
                 </div>
-                <div class="row featured__filter">
+                <div id="content" class="row featured__filter">
                     <c:forEach items="${listP}" var="o">
-                        <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                        <div class="productt col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
                             <div class="featured__item">
-                                <div class="featured__item__pic set-bg" data-setbg="${o.productImage}">
+                                <div class="featured__item__pic set-bg" data-setbg="${o.productImage}" onclick="window.location='detail?pid=${o.productId}'">
                                     <ul class="featured__item__pic__hover">
                                         <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                        <li><a href="detail?pid=${o.productId}"><i class="fa fa-shopping-cart"></i></a></li>
                                     </ul>
                                 </div>
                                 <div class="featured__item__text">
                                     <h6><a href="detail?pid=${o.productId}">${o.productName}</a></h6>
-                                    <h5>${o.productPrice}</h5>
+                                    <h5><fmt:formatNumber value="${o.productPrice}" type="currency" currencySymbol="" minFractionDigits="0"/> VNĐ</h5>
                                 </div>
                             </div>
                         </div>
                     </c:forEach>
                 </div>
+                <button onclick="loadMore()" class="btn btn-primary" style="background-color: #5c91c6; border: 0;">Xem thêm</button>
             </div>
         </section>
         <!-- Featured Section End -->
@@ -126,6 +128,22 @@
         <script src="setofshop/js/mixitup.min.js"></script>
         <script src="setofshop/js/owl.carousel.min.js"></script>
         <script src="setofshop/js/main.js"></script>
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script>
+                    function loadMore() {
+                        var amount = document.getElementsByClassName("productt").length;
+                        $.ajax({
+                            url: "/SocialCommercial/load",
+                            method: "GET",
+                            data: {
+                                exits: amount
+                            },
+                            success: function (data) {
+                                var row = document.getElementById("content");
+                                row.innerHTML += data;
+                            }
+                        });
+                    }
+        </script>
     </body>
 </html>

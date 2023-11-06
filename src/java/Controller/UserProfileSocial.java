@@ -105,7 +105,7 @@ public class UserProfileSocial extends HttpServlet {
 
         List<UserPost> listUserPost = new ArrayList<>();
         for(UserPost post : userPosts){
-            if(post.getUser_id().toString().toLowerCase().equals(id.toString().toLowerCase())){
+            if(post.getUser_id()!= null && post.getUser_id().toString().toLowerCase().equals(id.toString().toLowerCase())){
                 listUserPost.add(post);
                 Collections.sort(listUserPost, (post1, post2) -> post2.getPost_date().compareTo(post1.getPost_date()));
                 count++;

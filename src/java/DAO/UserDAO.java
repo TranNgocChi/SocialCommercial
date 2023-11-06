@@ -1,6 +1,7 @@
 
 package DAO;
 
+import Model.Doanhthu;
 import connectSQLServer.DatabaseConnection;
 import Model.User;
 import java.sql.Connection;
@@ -23,6 +24,52 @@ public class UserDAO extends DatabaseConnection {
     public UserDAO() {
         connection = DatabaseConnection.getConnection();
     }
+       public void addGoiYNguoiDung(Object iduser, Object context) {
+        try {
+            String sql = "  Insert INTO Hint(userid,context) Values(?,?)";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setObject(2, context);
+            ps.setObject(1, iduser);
+            ps.execute();
+            }
+        catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+       public ArrayList<User> getGoiYNguoiDung(Object userid) {
+        try {
+            String sql = "SELECT TOP 5 [userid], COUNT(DISTINCT [context]) AS same_context_count,AppUser.name, AppUser.image\n" +
+"FROM [SWP391].[dbo].[Hint]\n" +
+"INNER JOIN AppUser ON AppUser.id = Hint.userid\n" +
+"WHERE [userid] != ?\n" +
+"AND [context] IN (\n" +
+"    SELECT DISTINCT [context] \n" +
+"    FROM [SWP391].[dbo].[Hint]\n" +
+"    WHERE [userid] = ?\n" +
+")\n" +
+"GROUP BY AppUser.name, AppUser.image, [userid]\n" +
+"ORDER BY same_context_count DESC;";
+            ArrayList<User> list=new ArrayList<>();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setObject(1,userid);
+            ps.setObject(2,userid);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Object useridnguoikhac = rs.getObject(1);
+                String userName = rs.getString(3);
+                String img=rs.getString(4);
+
+                User user = new User(useridnguoikhac,userName,img);
+                list.add(user);
+            }
+            return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null; // Tr? v? null n?u kh�ng t�m th?y user ho?c x?y ra l?i
+    }
+     
     public User get(String name, String password) {
         try {
             String sql = "SELECT * FROM [SWP391].[dbo].[AppUser] WHERE name=? AND password=?";
@@ -44,8 +91,43 @@ public class UserDAO extends DatabaseConnection {
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null; // Trả về null nếu không tìm thấy user hoặc xảy ra lỗi
+        return null; // Tr? v? null n?u kh�ng t�m th?y user ho?c x?y ra l?i
     }
+        public String getImgOfUserById(Object id) {
+        try {
+            String sql = "SELECT * FROM [SWP391].[dbo].[AppUser] WHERE id=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setObject(1, id);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                String img = rs.getString(7);
+                return img;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null; // Tr? v? null n?u kh�ng t�m th?y user ho?c x?y ra l?i
+    }
+         public String getImgOfUserByUsername(String name) {
+        try {
+            String sql = "SELECT * FROM [SWP391].[dbo].[AppUser] WHERE name=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, name);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                String img = rs.getString(7);
+                return img;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null; // Tr? v? null n?u kh�ng t�m th?y user ho?c x?y ra l?i
+    }
+    
        public void setpassbyname(String name,String pass) {
         try {
             String sql = "Update AppUser\n"
@@ -80,7 +162,7 @@ public class UserDAO extends DatabaseConnection {
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null; // Trả về null nếu không tìm thấy user hoặc xảy ra lỗi
+        return null; // Trả v�? null nếu không tìm thấy user hoặc xảy ra lỗi
     }
 
 
@@ -98,6 +180,27 @@ public class UserDAO extends DatabaseConnection {
                 String email = rs.getString(4);
                 int roleId = rs.getInt(6);
 
+                User user = new User(id, name, email, roleId);
+                return user;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null; // Tr? v? null n?u kh�ng t�m th?y user ho?c x?y ra l?i
+    }
+     public User checkdupemail(String name) {
+        try {
+            String sql = "SELECT * FROM [SWP391].[dbo].[AppUser] WHERE email=? ";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                Object id = rs.getObject(1);
+                String userName = rs.getString(2);
+                String userPass = rs.getString(3);
+                String email = rs.getString(4);
+                int roleId = rs.getInt(6);
                 User user = new User(id, name, email, roleId);
                 return user;
             }
@@ -216,7 +319,25 @@ public class UserDAO extends DatabaseConnection {
             }
         }
     }
-    
+    public String getEmailbyID(Object id){
+        try {
+            String sql="SELECT [email]\n" +
+                    "      \n" +
+                    "  FROM [SWP391].[dbo].[AppUser]\n" +
+                    "  WHERE id=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setObject(1, id);
+                    ResultSet rs = ps.executeQuery();
+                    rs.next();
+                    String email=rs.getString(1);
+                   return email;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ChatDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+   return null; 
+}
     public ArrayList<User> getAllUsers() {
         try {
             String sql = "  SELECT * FROM [SWP391].[dbo].[AppUser]";
@@ -245,22 +366,112 @@ public class UserDAO extends DatabaseConnection {
         }
         return null;
     }
-    
-    public User findUserById(List<User> userList, Object userId) {
-        if (userId != null) {
-            for (User usr : userList) {
-                if (userId.toString().toLowerCase().equals(usr.getId().toString().toLowerCase())) {
-                    return usr;
-                }
-            }
+     public void requestSetRole(Object user_id,String email,String fullName,String shopName,
+             String commoditiesSector,String address, String phone) {
+        try {
+            String sql = "INSERT INTO requestSetRole(user_id,email,fullName,shopName, commoditiesSector,address,phone)\n" +
+"Values(?,?,?,?,?,?,?)";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setObject(1,user_id);
+            ps.setString(2, email);
+            ps.setString(3, fullName);
+             ps.setString(4, shopName);
+            ps.setString(5,  commoditiesSector);
+             ps.setString(6, address);
+            ps.setString(7, phone);
+          ps.execute();
+                  
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+     public Doanhthu getThongkeBySellerid(Object sellerid){
+        try {
+            String sql="SELECT\n" +
+                    "    o.seller_id,\n" +
+                    "    r.shopName AS seller_name,\n" +
+                    "    COUNT(o.id) AS total_orders,\n" +
+                    "    SUM(o.order_total) AS total_doanhthu\n" +
+                    "FROM\n" +
+                    "    [SWP391].[dbo].[Order] AS o\n" +
+                    "JOIN\n" +
+                    "    requestSetRole AS r ON o.seller_id = r.user_id\n" +
+                    "WHERE\n" +
+                    "    o.status = 'Hoan thanh'  \n" +
+                    "    AND o.seller_id = ?   \n" +
+                    "GROUP BY\n" +
+                    "    o.seller_id, r.shopName\n" +
+                    "ORDER BY\n" +
+                    "    total_doanhthu DESC;";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setObject(1,sellerid);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            Doanhthu doanhthu=new Doanhthu(sellerid, rs.getString(2), rs.getInt(3), rs.getDouble(4));
+            return doanhthu;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+
+         
+     }
+     
+    public User getCaseSensitive(String name, String password) {
+        try {
+            String sql = "SELECT * FROM [SWP391].[dbo].[AppUser] WHERE name = ? COLLATE Latin1_General_CS_AS AND password = ? COLLATE Latin1_General_CS_AS";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setString(2, password);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                Object id = rs.getObject(1);
+                String userName = rs.getString(2);
+                String userPass = rs.getString(3);
+                String email = rs.getString(4);
+                int roleId = rs.getInt(6);
+
+                User user = new User(id, userName, userPass, email, roleId);
+                return user;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null; // Return null if no user is found or an error occurs
+    }
+    
+    public List<User> searchUserByName(String name) {
+        List<User> foundUser = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM [SWP391].[dbo].[AppUser] WHERE name LIKE ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, "%" + name + "%");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Object id = rs.getObject(1);
+                String username = rs.getString(2); // Use the correct column name
+                String image = rs.getString(7);
+                String fullName = rs.getString(8);
+                String bio = rs.getString(13);
+
+                foundUser.add(new User(id, username, image, fullName, bio));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return foundUser;
     }
     
     public static void main(String[] args) {
         UserDAO userdao = new UserDAO();
-        userdao.EditUser("","","Cạp","",
-                 "","","","","9C2C5A44-2F57-4F1D-8A4C-BF4EC0615113");
-        System.out.println(user);
+       
+ArrayList<User> list=userdao.getGoiYNguoiDung("F122C4A5-C570-46D8-9D60-61C01BC480D6");
+        System.out.println(list);
     }
 }

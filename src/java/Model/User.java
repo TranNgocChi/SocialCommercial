@@ -12,6 +12,35 @@ public class User {
     int roleid;
     String fullname,gender,statusNow,school,favour,bio;
 
+    public User(String name, String image) {
+        this.name = name;
+        this.image = image;
+    }
+
+    public User(Object id, String name, String image, String fullname, String bio) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.fullname = fullname;
+        this.bio = bio;
+    }    
+    
+
+    public User(Object id, String name, String image) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+    }
+
+    public User(Object id, String name, String email, String number, String image, int roleid) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.number = number;
+        this.image = image;
+        this.roleid = roleid;
+    }
+        
     public User(Object id, String name, String email, int roleid) {
         this.id = id;
         this.name = name;

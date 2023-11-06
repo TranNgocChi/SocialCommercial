@@ -111,7 +111,7 @@
                                         <div class="comment">
                                             <a href="UserProfileSocial?user_id=<%= us.getId() %>"><img src="<%= us.getImage() %>" alt="user"></a>
                                             <div class="comment-content" style="margin-left: -55px;">
-                                                <span class="comment-username" style="margin-left: -3px; font-size: 18px;"><%= us.getFullname()%> </span>
+                                                <span class="comment-username"><%= us.getFullname()%> </span>
                                                 <span style="color: grey; margin-left: 5px; font-size: 13px;"><%= comment.getComment_date() %></span>
                                                 <p><%= comment.getComment_content() %></p>
                                             </div>
@@ -161,3 +161,88 @@
 
 <script src="static/js/js.js"></script>
 
+<style>
+ /* Định dạng hộp comment */
+.comment {
+    padding: 10px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    max-width: 600px; /* Đặt chiều rộng tối đa của hộp comment */
+}
+
+.comment a {
+    text-decoration: none;
+}
+
+/* Định dạng hình ảnh người dùng */
+.comment img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Định dạng thông tin người dùng */
+.comment .comment-content {
+    flex: 1;
+}
+
+.comment .comment-username {
+    font-size: 18px;
+    margin-left: 50px; 
+    font-size: 18px; 
+    font-weight: 700;
+    color: black;
+}
+
+.comment span {
+    font-size: 13px;
+    color: grey;
+    margin-left: 5px;
+    word-wrap: break-word; /* Cho phép chia từ khi vượt quá chiều rộng */
+}
+
+.comment p {
+    margin-top: 10px;
+    margin-left: 50px;
+    word-wrap: break-word;
+}
+
+/* Định dạng nút xóa comment */
+.comment a[style="color: grey;"] {
+    text-decoration: none;
+    color: grey;
+    font-size: 16px;
+}
+
+.comment a[style="color: grey;"] i {
+    vertical-align: middle;
+}
+
+/* Định dạng hộp nhập comment */
+.comment-box {
+    margin-top: 20px;
+}
+
+.comment-box input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid black;
+}
+
+.comment-box button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.comment-box button:hover {
+    background-color: #0056b3;
+}
+
+</style>

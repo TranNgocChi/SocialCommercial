@@ -7,6 +7,7 @@ import Model.FollowUser;
 import Model.User;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,11 +29,11 @@ public class ViewFollow extends HttpServlet {
         
         List<Object> listFollowing = new ArrayList<>();
         List<Object> listFollower = new ArrayList<>();
-        List<Object> listFriend = new ArrayList<>();
+        HashSet<Object> listFriend = new HashSet<>();
         
         List<User> listFollowingDisplay = new ArrayList<>();
         List<User> listFollowerDisplay = new ArrayList<>();
-        List<User> listFriendDisplay = new ArrayList<>();
+        HashSet<User> listFriendDisplay = new HashSet<>();
         
         for(FollowUser fol : manageFollow.getFollowUsers()){
             if(my_id.toString().toLowerCase().equals(fol.getFollower().toString().toLowerCase())){
@@ -43,9 +44,13 @@ public class ViewFollow extends HttpServlet {
                 listFollower.add(fol.getFollower());
                 //follower
             }
-            if (my_id.toString().toLowerCase().equals(fol.getFollower().toString().toLowerCase()) && 
-                listFollowing.contains(fol.getFollowing())) {
-                listFriend.add(fol.getFollowing());
+        }
+        
+        for(FollowUser fols : manageFollow.getFollowUsers()){
+            for(Object flw : listFollowing){
+                if(flw.equals(fols.getFollower())){
+                    listFriend.add(flw);
+                }
             }
         }
 
@@ -70,7 +75,7 @@ public class ViewFollow extends HttpServlet {
         
         request.setAttribute("listFollowing", listFollowingDisplay);
         request.setAttribute("listFollower", listFollowerDisplay);
-        request.setAttribute("listFriend", listFriendDisplay);
+        request.setAttribute("listFriend", new ArrayList<>(listFriendDisplay));
         request.getRequestDispatcher("view_follow.jsp").forward(request, response);
     }
 

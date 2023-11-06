@@ -5,6 +5,7 @@ import DAO.UserDAO;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -30,6 +31,7 @@ public class EditUserProfile extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         try{
             HttpSession session=request.getSession();
             Object user_id = session.getAttribute("id");
@@ -44,14 +46,14 @@ public class EditUserProfile extends HttpServlet {
             String bio = request.getParameter("bio");
         
             String realPath = request.getServletContext().getRealPath("/SavedImages");
-            String filename = imagePart.getSubmittedFileName();
+            String filename = Paths.get(imagePart.getSubmittedFileName()).getFileName().toString();
             String image = realPath + "/" + filename;
         
-            if(!Files.exists(Path.of(realPath))){
-                Files.createDirectory(Path.of(realPath));
+            if(!Files.exists(Paths.get(realPath))){
+                Files.createDirectory(Paths.get(realPath));
             }
             
-            if (imagePart.getSize() > 0) {
+            if (imagePart != null && imagePart.getSize() > 0) {
 
             if (isImageFile(image)) {
                 imagePart.write(image);

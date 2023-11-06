@@ -129,7 +129,9 @@ public class NotificationDAO {
     public static void main(String[] args) {
         UserDAO manageUser = new UserDAO();
         NotificationDAO noti = new NotificationDAO();
-        noti.deleteNotification("55CBB99C-6806-4395-9500-4B214E17DEE9");
+        noti.addNotification("59B5896F-98B2-4699-82EC-1B8B99CEBCB2",
+            "A"+" đã bình luận bài viết của bạn", new Date(),
+            "PostDetail?post_i", "41EAB62F-A954-4AAB-B7C4-6F11D301D2D0");
     }
     
 }

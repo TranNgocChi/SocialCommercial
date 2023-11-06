@@ -65,11 +65,11 @@ public class getListUser extends HttpServlet {
              AdminDAO userdao=new AdminDAO();
             ArrayList<User> list = userdao.getAll();
 //            PrintWriter out = response.getWriter();
-//            for(var x:list){
+//            for(User x:list){
 //                out.print(x);
 //            }
             request.setAttribute("listmember", list);
-            request.getRequestDispatcher("viewmember.jsp").forward(request, response);
+            request.getRequestDispatcher("list_member.jsp").forward(request, response);
     }
 
     /**
@@ -83,7 +83,7 @@ public class getListUser extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        doGet(request, response);
     }
 
     /**

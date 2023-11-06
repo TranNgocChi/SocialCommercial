@@ -1,3 +1,9 @@
+<%-- 
+    Document   : purchase
+    Created on : Sep 28, 2023, 3:58:35 PM
+    Author     : ADMIN
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -30,6 +36,35 @@
         <%@ include file="shop/header_shop.jsp" %>
         <!-- Header Section End -->
 
+        <!-- Hero Section Begin -->
+        <section class="hero hero-normal">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="hero__categories">
+                            <div class="hero__categories__all">
+                                <i class="fa fa-bars"></i>
+                                <span>Danh mục</span>
+                            </div>
+                            <ul>
+                                <li><a href="#">Bách hoá Online</a></li>
+                                <li><a href="#">Thời trang nam</a></li>
+                                <li><a href="#">Thời trang nữ</a></li>
+                                <li><a href="#">Điện thoại & Phụ kiện</a></li>
+                                <li><a href="#">Điện tử</a></li>
+                                <li><a href="#">Máy tính & Laptop</a></li>
+                                <li><a href="#">Mỹ phẩm</a></li>
+                                <li><a href="#">Đồ chơi</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <%@ include file="shop/hero_search.jsp" %>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Hero Section End -->
 
         <!-- Featured Section Begin -->
         <section class="featured spad" style="padding-top: 20px">
@@ -37,56 +72,86 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-title">
-                            <h2>Đơn mua</h2>
+                            <h2>Quản lí đơn hàng</h2>
                         </div>
                         <div class="featured__controls">
                             <ul>
-                                <li class="active">Chờ vận chuyển</li>
-                                <li>Đang giao</li>
-                                <li>Hoàn thành</li>
-                                <li>Đã huỷ</li>
+                               <a href="Shipper"> <li class="active">Nhận đơn</li></a>
+                               <a href="ShipperComplete"> <li>Hoàn thành</li></a>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <!-- Shoping Cart Section Begin -->
-                <section class="shoping-cart spad" style="padding-top: 0;">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="shoping__cart__table">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <th class="shoping__product" colspan="5" style="text-align: left; padding-top: 10px">
-                                                    Shop: ABC
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <td class="shoping__cart__item">
-                                                    <img src="setofshop/img/cart/cart-2.jpg" alt="">
-                                                    <h5><a href="">94123659-7EDC-410B-9C29-D234081571BB</a></h5>
-                                                </td>
-                                                <td class="shoping__cart__price">
-                                                    $55.00
-                                                </td>
-                                                <td class="shoping__cart__quantity">
-                                                    <div class="quantity">
-                                                        <form method="POST" action="">
-                                                            <button class="custom-button">Nhận Đơn</button>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                     <section class="shoping-cart spad" style="padding-top: 0;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="shoping__cart__table">
+                    <c:set var="tong" value="${null}"></c:set> 
+                    
+                    <c:forEach items="${orderMap}" var="entry">
+                        <c:set var="orderId" value="${entry.key}" />
+                        <c:set var="donhangList" value="${entry.value}" />
+                        <c:set var="tong" value="${null}"></c:set> 
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th class="shoping__product" colspan="5" style="text-align: left; padding-top: 10px">
+                                        Order ID: ${orderId} 
+                                    
+                                    </th>
+                                </tr>
+                         
+                                <c:forEach items="${donhangList}" var="donhang">
+                                   
+                                        
+                                    <c:if test="${donhang.total!=tong}">
+                                         <th class="shoping__product" colspan="5" style="text-align: left; padding-top: 10px">
+                                          <c:if test="${donhang.status eq 'Cho van chuyen'}">
+                                    <form action="xacnhandon" method="post">
+                                        <input type="hidden" value="${orderId}"name="orderid">
+                                        <input type="hidden" value="setdanggiao"name="action">
+                                        <input type="submit" value="Nhận đơn">
+                                    </form>
+                                        </c:if>
+                                
+                                <c:if test="${donhang.status eq 'Dang giao'}">
+                                 <h4 style="color:green">Đã nhận đơn</h4>
+                                 </c:if>
+                                    </th>
+                                    <th class="shoping__product" colspan="5" style="text-align: left; padding-top: 10px">
+                                        Tổng đơn: ${donhang.total} VND
+                                        <c:set var="tong" value="${donhang.total}"></c:set>
+                                    </th>
+                                        <th class="shoping__product" colspan="5" style="text-align: left; padding-top: 10px">
+                                       Thông tin người nhận ${donhang.fullname} ${donhang.phone} ${donhang.town} 
+                                       ${donhang.location} ${donhang.town}
+                                    </th>
+                                    
+                                    </c:if>
+                                    <tr>
+                                        <td class="shoping__cart__item">
+                                            <img src="${donhang.img}" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                            <h5>${donhang.productname}</h5>
+                                            <h5>X ${donhang.quantity}</h5>
+                                            <h5>Giá: ${donhang.price}</h5>
+                                            <h5>Tổng: ${donhang.price*donhang.quantity}</h5>
+                                 
+                                         
+                                        </td>
+                                    </tr>
+                                    
+                                
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </c:forEach>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
                 <!-- Shoping Cart Section End -->
             </div>
         </section>
@@ -104,22 +169,3 @@
 
     </body>
 </html>
-<style>
-                                                            /* CSS cho nút */
-.custom-button {
-    background-color: #3498db; /* Màu nền */
-    color: #fff; /* Màu chữ */
-    border: none; /* Loại bỏ viền */
-    padding: 10px 20px; /* Kích thước nút */
-    border-radius: 5px; /* Bo tròn viền */
-    cursor: pointer; /* Hình con trỏ khi di chuột vào nút */
-    font-weight: bold; /* Đậm */
-    text-transform: uppercase; /* In hoa chữ */
-}
-
-/* Hover effect khi di chuột vào nút */
-.custom-button:hover {
-    background-color: #2980b9; /* Màu nền khi hover */
-}
-                                                        
-</style>

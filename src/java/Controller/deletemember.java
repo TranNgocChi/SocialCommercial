@@ -74,7 +74,8 @@ public class deletemember extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-               String iddelete=request.getParameter("iddelete");
+               Object iddelete=request.getParameter("iddelete").toUpperCase();
+    
         AdminDAO userdao=new AdminDAO();
         userdao.delete(iddelete);
         response.sendRedirect("getListUser");

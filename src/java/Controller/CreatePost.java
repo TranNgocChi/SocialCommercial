@@ -2,7 +2,6 @@ package Controller;
 
 
 import DAO.UserPostDAO;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import javax.servlet.ServletException;
@@ -13,6 +12,7 @@ import java.util.Date;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 
@@ -35,19 +35,19 @@ public class CreatePost extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try{
-        HttpSession session=request.getSession();
+            HttpSession session=request.getSession();
         Object user_id = session.getAttribute("id");
         String title = request.getParameter("title");
         String content = request.getParameter("content");
-        Date post_date = new Date();
         Part imagePart = request.getPart("image");
-
+        Date post_date = new Date();
+        
         String realPath = request.getServletContext().getRealPath("/SavedImages");
-        String filename = imagePart.getSubmittedFileName();
+        String filename = Paths.get(imagePart.getSubmittedFileName()).getFileName().toString();
         String image = realPath + "/" + filename;
         
-            if(!Files.exists(Path.of(realPath))){
-                Files.createDirectory(Path.of(realPath));
+            if(!Files.exists(Paths.get(realPath))){
+                Files.createDirectory(Paths.get(realPath));
             }
             if (isImageFile(image)) {
                 imagePart.write(image);
@@ -55,7 +55,7 @@ public class CreatePost extends HttpServlet {
                 UserPostDAO userpost = new UserPostDAO();
                 userpost.addUserPost(user_id, title, content, "SavedImages/"+filename, post_date);
                 
-                response.sendRedirect(request.getContextPath() + "/UserProfileSocial");
+                request.getRequestDispatcher("user_profile.jsp").forward(request, response);
             } else {
                 // Handle invalid file type
                 response.setContentType("text/plain");

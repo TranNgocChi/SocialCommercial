@@ -1,17 +1,18 @@
 package DAO;
 
 import Model.Category;
-import Model.Order;
+import Model.FollowUser;
 import connectSQLServer.DatabaseConnection;
 import Model.User;
-import java.math.BigDecimal;
+import Model.requestOfUser;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.ResultSet;
-import java.util.Date;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,19 +36,19 @@ public class AdminDAO extends DatabaseConnection {
             ResultSet rs = ps.executeQuery();
             ArrayList<User> list = new ArrayList<>();
             while (rs.next()) {
-                UUID id = UUID.fromString(rs.getString(1));
+                Object id = rs.getObject(1);
                 String name = rs.getString(2);
                 String email = rs.getString(4);
                 String phone = rs.getString(5);
-                String country = rs.getString(6);
-                String province = rs.getString(7);
-                String district = rs.getString(8);
-                String town = rs.getString(9);
-                String location = rs.getString(10);
-                int roleid = rs.getInt(11);
-                String image = rs.getString(11);
-                User user = new User(id, name, email, phone, country, province, district, town, location, roleid, image);
-                list.add(user);
+//                String country = rs.getString(6);
+//                String province = rs.getString(7);
+//                String district = rs.getString(8);
+//                String town = rs.getString(9);
+//                String location = rs.getString(10);
+                int roleid = rs.getInt(6);
+                String image = rs.getString(7);
+                User user1 = new User(id, name, email, phone, image, roleid);
+                list.add(user1);
             }
             return list;
         } catch (SQLException ex) {
@@ -56,15 +57,92 @@ public class AdminDAO extends DatabaseConnection {
         return null;
     }
 
-    public void delete(String id) {
+    public void taoacountshipper(String name, String pass, int role) {
         try {
-            String sql = "DELETE FROM AppUser WHERE id=?";
+            String sql = "INSERT INTO AppUser(name,password,role_id) Values(?,?,?)";
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, id);
+            ps.setString(1, name);
+            ps.setString(2, pass);
+            ps.setInt(3, role);
             ps.execute();
         } catch (SQLException ex) {
             Logger.getLogger(AdminDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+//    public void delete(Object id) {
+//        try {
+//            String sql = "DELETE FROM AppUser WHERE id=?;\n" +
+//"DELETE FROM UserMessage WHERE receiver_id=? \n" +
+//"OR sender_id=?;
+//            PreparedStatement ps = connection.prepareStatement(sql);
+//            ps.setObject(1, id);ps.setObject(2, id);ps.setObject(3, id);
+//            ps.execute();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(AdminDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+
+     public ArrayList<User> getRandomUsers(Object sessionUserId) {
+        UserDAO manageUser = new UserDAO();                
+        ArrayList<User> allUsers = manageUser.getAllUsers();
+        Set<User> SuggestUsers = new HashSet<>();
+
+        Random rand = new Random();
+
+        if (sessionUserId instanceof Object) {
+            for (int i = 0; i < 5 && !allUsers.isEmpty(); i++) {
+                int randomIndex = rand.nextInt(allUsers.size());
+                User randomUser = allUsers.get(randomIndex);
+
+                if (!sessionUserId.toString().toLowerCase().equals(randomUser.getId().toString().toLowerCase())) {
+                    FollowUserDAO manageFollow = new FollowUserDAO();
+                    ArrayList<Object> listFollowing = new ArrayList<>();
+                    ArrayList<Object> listFriend = new ArrayList<>();
+                    for(FollowUser fol : manageFollow.getFollowUsers()){
+                        if(sessionUserId.toString().toLowerCase().equals(fol.getFollower().toString().toLowerCase())){
+                            // following
+                            listFollowing.add(fol.getFollowing());
+                        }
+                        if (sessionUserId.toString().toLowerCase().equals(fol.getFollower().toString().toLowerCase()) && 
+                            listFollowing.contains(fol.getFollowing())) {
+                            //friend
+                            listFriend.add(fol.getFollowing());
+                        }
+                    }
+                    ArrayList<Object> listFollowingOfFriend = new ArrayList<>();
+                    ArrayList<Object> listFriendOfFriend = new ArrayList<>();   
+                    for(Object friendOfFriend : listFriend){
+                        for(FollowUser follow : manageFollow.getFollowUsers()){
+                            if(friendOfFriend.toString().toLowerCase().equals(follow.getFollower().toString().toLowerCase())){
+                                // following
+                                listFollowingOfFriend.add(follow.getFollowing());
+                            }
+                            if (friendOfFriend.toString().toLowerCase().equals(follow.getFollower().toString().toLowerCase()) && 
+                                listFollowingOfFriend.contains(follow.getFollowing())) {
+                                //friend
+                                listFriendOfFriend.add(follow.getFollowing());
+                            }
+                        }
+                    }
+                    
+                    for(User u : allUsers){
+                        for(Object following: listFriendOfFriend){
+                            for(Object fri : listFriend){
+                                if(!sessionUserId.toString().toLowerCase().equals(u.getId().toString().toLowerCase()) &&
+                                following.toString().toLowerCase().equals(u.getId().toString().toLowerCase())
+                                && !fri.toString().toLowerCase().equals(following.toString().toLowerCase())){
+                                    SuggestUsers.add(u);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            System.out.println("Error");
+        }
+        ArrayList<User> uniqueSuggestUsers = new ArrayList<>(SuggestUsers);
+        return uniqueSuggestUsers;
     }
 
     public ArrayList<Category> getAllCategory() {
@@ -108,78 +186,109 @@ public class AdminDAO extends DatabaseConnection {
             Logger.getLogger(AdminDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-        public ArrayList<User> getRandomUsers(Object sessionUserId) {
-        UserDAO manageUser = new UserDAO();                
-        ArrayList<User> allUsers = manageUser.getAllUsers();
-        ArrayList<User> fiveUsers = new ArrayList<>();
 
-        Random rand = new Random();
-
-        if (sessionUserId instanceof Object) {
-
-            for (int i = 0; i < 5 && !allUsers.isEmpty(); i++) {
-                int randomIndex = rand.nextInt(allUsers.size());
-                User randomUser = allUsers.get(randomIndex);
-
-                if (!sessionUserId.toString().toLowerCase().equals(randomUser.getId().toString().toLowerCase())) {
-                    fiveUsers.add(randomUser);
-                }
-
-                allUsers.remove(randomIndex);
-            }
-        } else {
-            System.out.println("Error");
+    public void setSeller(Object userid, String status) {
+        try {
+            String sql = "Update requestSetRole SET status=? WHERE user_id=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setObject(2, userid);
+            ps.setString(1, status);
+            ps.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        return fiveUsers;
     }
-    public ArrayList<Order> getAllOrders(){
-        ArrayList<Order> listOfOrders = new ArrayList<>();
-        Connection cnt = null;
-        PreparedStatement stm = null;
-        ResultSet res = null;
-        try{
-            String sql = "SELECT * FROM [SWP391].[dbo].[Order]";
-            cnt = DatabaseConnection.getConnection();
-            stm = cnt.prepareStatement(sql);    
-            res = stm.executeQuery();
-            while(res.next()){
-                Object id = res.getObject("id");
-                Object customer_id = res.getObject("customer_id");
-                Object seller_id  = res.getObject("seller_id");
-                String fullname=res.getString("fullname");
-                String phone=res.getString("phone");
-                BigDecimal order_total=res.getBigDecimal("order_total");
-                Date order_date=res.getDate("order_date");
-                String order_town=res.getString("order_town");
-                String order_location=res.getString("order_location");
-                String status=res.getString("status");
-                int stt=res.getInt("stt");
-                
-                Order order = new Order(id,customer_id,seller_id,fullname,phone,order_total,order_date,
-                order_town,order_location, status, stt);
-                listOfOrders.add(order);
+
+    public ArrayList<requestOfUser> getAllRequestRole() {
+        try {
+            String sql = "SELECT * FROM [SWP391].[dbo].[requestSetRole]";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            ArrayList<requestOfUser> list = new ArrayList<>();
+            while (rs.next()) {
+                Object id = rs.getObject(1);
+                Object userid = rs.getObject(2);
+                String email = rs.getString(3);
+                String fullname = rs.getString(4);
+                String shopname = rs.getString(5);
+                Object commo = rs.getObject(6);
+
+                // Debugging statement
+                String namecate = getTenDanhMucBangID(commo);
+                String address = rs.getString(7);
+                String phone = rs.getString(8);
+                String status = rs.getString(9);
+
+                requestOfUser req = new requestOfUser(id, userid, email, fullname, shopname, commo, address, phone, namecate, status);
+                list.add(req);
             }
-            
-        }catch(SQLException e){
-            System.out.println(e.getMessage());
-        }finally{
-            try {
-                cnt.close();
-                stm.close();
-                res.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(CommentSocialDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return listOfOrders;
+        return null;
+    }
+
+    public String getTenDanhMucBangID(Object id) {
+        try {
+            String sql = "SELECT *\n"
+                    + "  FROM [SWP391].[dbo].[ProductCategory]\n"
+                    + "  Where id=?;";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setObject(1, id);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            String tendanhmuc = rs.getString(2);
+            return tendanhmuc;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public void uprole(Object id, Object userid) {
+        try {
+            String sql = "UPDATE\n"
+                    + "   [SWP391].[dbo].[requestSetRole]\n"
+                    + "   SET status=?\n"
+                    + "   WHERE id=?;\n"
+                    + "   UPDATE\n"
+                    + "   [SWP391].[dbo].[AppUser]\n"
+                    + "   SET role_id=3\n"
+                    + "   WHERE id=?;";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, "OK");
+            ps.setObject(2, id);
+            ps.setObject(3, userid);
+            ps.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void rejectuprole(Object id, Object userid) {
+        try {
+            String sql = "UPDATE\n"
+                    + "   [SWP391].[dbo].[requestSetRole]\n"
+                    + "   SET status=?\n"
+                    + "   WHERE id=?;\n";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, "NOT OK");
+            ps.setObject(2, id);
+            ps.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public static void main(String[] args) {
         AdminDAO userdao = new AdminDAO();
-        for(Order o : userdao.getAllOrders()){
-            System.out.println(o.toString());
-        }
+
+        ArrayList<requestOfUser> list = new ArrayList<>();
+        list = userdao.getAllRequestRole();
+        System.out.println(list);
     }
+
 }

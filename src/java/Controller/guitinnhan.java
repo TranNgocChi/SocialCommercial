@@ -86,8 +86,7 @@ public class guitinnhan extends HttpServlet {
         request.setAttribute("id1", id1);
         request.setAttribute("nguoinhan", nguoinhan);
         request.getRequestDispatcher("getcontentchat").forward(request, response);
-                
-     
+
     }
 
     /** 

@@ -29,7 +29,7 @@ public class LikeSocialDAO {
             while(res.next()){
                 Object id = res.getObject("id");
                 Object post_id = res.getObject("post_id");
-                Object liker_id = res.getObject("liker_id");
+                String liker_id = res.getString("liker_id");
                 
                 LikeSocial likePost = new LikeSocial(id, post_id, liker_id);
                 listOfLikeSocials.add(likePost);
@@ -151,25 +151,9 @@ public class LikeSocialDAO {
         }
     }
     
-    public ArrayList<LikeSocial> getLikeSocialsForPost(Object postId) {
-        ArrayList<LikeSocial> likeSocialsForPost = new ArrayList<>();
-
-        for (LikeSocial likeSocial : getLikeSocials()) {
-            if (likeSocial.getPost_id().toString().equalsIgnoreCase(postId.toString())) {
-                likeSocialsForPost.add(likeSocial);
-            }
-        }
-
-        return likeSocialsForPost;
-    }
-    
-    
     public static void main(String[] args) {
         LikeSocialDAO like = new LikeSocialDAO();
-        for(LikeSocial a : like.getLikeSocials()){
-            System.out.println(a.toString());
-        }
-        
+        like.removeLikePost("CC201DC1-E0B6-4552-894A-36195B4A277A", "41EAB62F-A954-4AAB-B7C4-6F11D301D2D0");
     }
     
 }

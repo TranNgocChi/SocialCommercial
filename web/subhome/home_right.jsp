@@ -1,4 +1,5 @@
 <%@page import="DAO.AdminDAO"%>
+<%@page import="DAO.UserDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

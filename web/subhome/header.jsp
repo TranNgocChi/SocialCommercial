@@ -11,8 +11,10 @@
                 <a href="home.jsp" style="font-size: 20px;"><h1>SOCO</h1></a>
             </div>
             <div class="searchBox">
-                <input type="search">
-                <i class="fas fa-search"></i>
+                <form method="POST" action="FoundUser">
+                    <input type="search" placeholder="Tìm kiếm trên Soco" name="usersearch">
+                    <button><i class="fas fa-search"></i></button>
+                </form>
             </div>
             <div class="iconBox2">
                 <c:if test="${name!=null}">

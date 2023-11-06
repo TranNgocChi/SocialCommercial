@@ -41,7 +41,7 @@ public class HomeFollowing extends HttpServlet {
         
         for(UserPost post : managePost.getUserPosts()){
             for(Object following : listFollowing){
-                if(post.getUser_id().toString().toLowerCase().equals(following.toString().toLowerCase())){
+                if(post.getUser_id() != null && post.getUser_id().toString().toLowerCase().equals(following.toString().toLowerCase())){
                     listFollowingPost.add(post);
                 }
             }

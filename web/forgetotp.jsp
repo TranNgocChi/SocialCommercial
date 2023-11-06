@@ -51,7 +51,7 @@
                         </button>
                         <h2 style="color:red;margin-top:10px">${msg}</h2>
                        
-                        <a href="foget.jsp" style="color: white; text-decoration: none;">Forgot Password?</a>
+                        
                     </form>
 
                 </div>
