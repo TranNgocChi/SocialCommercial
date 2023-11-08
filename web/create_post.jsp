@@ -23,34 +23,26 @@
         <div class="home">
             <div class="container">
                 <div class="home-weapper">
-                    <!-- home left start here -->
                     <%@ include file="subhome/home_left.jsp" %>
-                    <!-- home left end here -->
-                    <!-- home center start here -->
-                    <div class="home-center">
-                        <div class="home-center-wrapper">
-                            <div class="fb-post1">
 
+                    <div class="home-center" style="width: 700px; margin-right: 100px;" >
+                        <div class="home-center-wrapper" >
+                            <div class="fb-post1" style="">
                                 <form class="form" action="CreatePost" method="POST" enctype="multipart/form-data">
-                                    <h2 style="color: #3a78ffec;">Create Post</h2>
-                                    <h3 style="color: #3a78ffec;">Content: <input type="text" class="input-field" placeholder="Write your content here" name="content"></h3>
-                                    <h3 style="color: #3a78ffec;">Image: <input type="file" class="input-field" placeholder="Image" name="image"></h3>
+                                    <h2 style="color: #3a78ffec;">Tạo Bài Viết</h2>
+                                    <h3 style="color: #3a78ffec;">Viết nội dung: 
+                                        <textarea style="height: 160px" class="input-field" placeholder="Write your content here" name="content">
+                                            
+                                        </textarea>
+                                    </h3>
+                                    <h3 style="color: #3a78ffec;">Chọn Hình Ảnh: <input type="file" class="input-field" placeholder="Image" name="image"></h3>
 
                                     <button>Post</button>
                                 </form>
 
-
-
-
-
-
                             </div>
                         </div> <!-- home center wrapper end -->
                     </div> <!-- home center end -->
-
-                    <!-- home right start here -->
-                    <%@ include file="subhome/home_right.jsp" %>
-                    <!-- home right end here -->
                 </div>
             </div>
         </div>

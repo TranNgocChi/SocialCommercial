@@ -46,9 +46,9 @@ public class ViewFollow extends HttpServlet {
             }
         }
         
-        for(FollowUser fols : manageFollow.getFollowUsers()){
+        for(Object fols : listFollower){
             for(Object flw : listFollowing){
-                if(flw.equals(fols.getFollower())){
+                if(flw.equals(fols)){
                     listFriend.add(flw);
                 }
             }

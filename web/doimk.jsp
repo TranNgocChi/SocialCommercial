@@ -54,7 +54,8 @@
 
                         <button class="btn submit">
                             GỬI
-                        </button>
+                        </button><br><br>
+                        <a href="home.jsp" style="color: #033f7f;">Return Home</a>
                         <h2 style="color:red;margin-top:10px">${msg}</h2>
                        
                         <a href="foget.jsp" style="color: white; text-decoration: none;">Forgot Password?</a>

@@ -1,5 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <filter>
+        <filter-name>AdminFilter</filter-name>
+        <filter-class>Filter.AdminFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>SellerFilter</filter-name>
+        <filter-class>Filter.SellerFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>UserFilter</filter-name>
+        <filter-class>Filter.UserFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SellerFilter</filter-name>
+        <url-pattern>/themsanpham.jsp</url-pattern>
+        <url-pattern>/seller</url-pattern>
+        <url-pattern>/updatesanpham</url-pattern>
+        <url-pattern>/thongke</url-pattern>
+        <url-pattern>/quanlidonhang</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <url-pattern>/AdminController</url-pattern>
+        <url-pattern>/admin.jsp</url-pattern>
+        <url-pattern>/list_category.jsp </url-pattern>
+        <url-pattern>/listcategory</url-pattern>
+        <url-pattern>/list_member.jsp</url-pattern>
+        <url-pattern>/getListUser</url-pattern>
+        <url-pattern>/list_post.jsp</url-pattern>
+        <url-pattern>/allposts</url-pattern>
+        <url-pattern>/list_product.jsp</url-pattern>
+        <url-pattern>/listproduct</url-pattern>
+        <url-pattern>/list_shipper.jsp</url-pattern>
+        <url-pattern>/manageshipper</url-pattern>
+        <url-pattern>/taotaikhoanshipper.jsp</url-pattern>
+        <url-pattern>/sellerstatusdemo.jsp</url-pattern>
+        <url-pattern>/getRequestRole</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>UserFilter</filter-name>
+        <url-pattern>/addtocart</url-pattern>
+        <url-pattern>/cart</url-pattern>
+        <url-pattern>/xemdonhang</url-pattern>
+        <url-pattern>/xemdonhangchovanchuyen</url-pattern>
+        <url-pattern>/xemdonhangdanggiao</url-pattern>
+        <url-pattern>/xemdonhanghoanthanh</url-pattern>
+        <url-pattern>/xemdonhangdahuy</url-pattern>
+        <url-pattern>/UserProfileSocial</url-pattern>
+        <url-pattern>/chat</url-pattern>
+        <url-pattern>/muangay</url-pattern>
+        <url-pattern>/create_post.jsp</url-pattern>
+    </filter-mapping>
     <servlet>
         <servlet-name>ShoppingControl</servlet-name>
         <servlet-class>Controller.ShoppingControl</servlet-class>
@@ -57,10 +109,6 @@
         <servlet-class>Controller.xemdonhang</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>thongke</servlet-name>
-        <servlet-class>Controller.thongke</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>removeitemincart</servlet-name>
         <servlet-class>Controller.removeitemincart</servlet-class>
     </servlet>
@@ -71,6 +119,10 @@
     <servlet>
         <servlet-name>FeedbackController</servlet-name>
         <servlet-class>Controller.FeedbackController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SellerManagementController</servlet-name>
+        <servlet-class>Controller.SellerManagementController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ShoppingControl</servlet-name>
@@ -129,10 +181,6 @@
         <url-pattern>/xemdonhang</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>thongke</servlet-name>
-        <url-pattern>/thongke</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>removeitemincart</servlet-name>
         <url-pattern>/removeitemincart</url-pattern>
     </servlet-mapping>
@@ -143,6 +191,10 @@
     <servlet-mapping>
         <servlet-name>FeedbackController</servlet-name>
         <url-pattern>/feedback</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SellerManagementController</servlet-name>
+        <url-pattern>/seller_management</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -83,7 +83,7 @@ public class RequestSetRole extends HttpServlet {
 //        out.print(id);
         String fullName=(String) request.getParameter("fullName");
         String shopName=(String) request.getParameter("shopName");
-        String commoditiesSector=(String) request.getParameter("commoditiesSector");
+        String commoditiesSector=(String) request.getParameter("commoditiesSector").toUpperCase();
         String address=(String) request.getParameter("address");
         String phone=(String) request.getParameter("phone");
         UserDAO userdao=new UserDAO();

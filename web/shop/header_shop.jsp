@@ -41,7 +41,7 @@
                     <div class="header-dropdown">
                         <div class="dropdown-content" style="min-width: 170px;">
                             <c:if test="${role==3}">
-                                <a href="thongke"> Thống kê</a>
+                                <a href="seller_management"> Thống kê</a>
                             </c:if>
                                  <c:if test="${role==4||role==5||role==6||role==7||role==8}">
                                 <a href="Shipper"> Shipper</a>

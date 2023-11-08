@@ -4,6 +4,10 @@
     Author     : ADMIN
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="Model.Category"%>
+<%@page import="Model.Category"%>
+<%@page import="DAO.AdminDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
@@ -54,19 +58,16 @@
                         <label for="shopName" class="col">Shop name:</label>
                         <input type="text" id="shop-name" name="shopName" class="form-control col" placeholder="Shop name" required>
                     </div>
-                    <div class="form-group row">
+                   <div class="form-group row">
                         <label for="commoditiesSector" class="col">Commodities sector:</label>
+                        <%AdminDAO admindao=new AdminDAO();%>
+                        <% ArrayList<Category> list =admindao.getAllCategory(); %>
                         <select name="commoditiesSector" id="sector" class="form-control col">
                             <option selected>Choose...</option>
-                            <option value="32DE7141-E052-4591-A103-2F5F544E01E0">Bách hoá online</option>
-                            <option value="467E803A-426E-441D-8DB8-669AE23A3469">Điện thoại & Phụ kiện</option>
-                            <option value="EECBD3F1-134E-43B0-A3E1-700EDB72A6A4">Mỹ phẩm</option>
-                            <option value="9BD9C078-7E46-4BA0-BE56-7223EE26608B">Máy ảnh & Máy quay phim</option>
-                            <option value="C9C33AEB-38F4-44A0-89B5-860BA5AE8C23">Máy tính & Laptop</option>
-
-                            <option value="1818E9A8-52CD-4538-9512-AD9234BD1EEA">Thời trang nam</option>
-                            <option value="063C4EA1-948F-48ED-87DA-D8C9E326F01A">Thời trang nữ</option>
-                            <option value="2EA22AA1-2368-4742-8D96-994337ED92DE">Đồ chơi</option>
+                             <% for (Category item:list) { %>
+                            <option value="<%=item.getCid()%>"><%=item.getType()%></option>
+                            <% } %>
+                            
                         </select>
                     </div>
                     <div class="form-group row">

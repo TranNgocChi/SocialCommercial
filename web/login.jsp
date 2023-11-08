@@ -51,28 +51,9 @@
                             Đăng nhập
                         </button>
                         <h2 style="color:red">${msg}</h2>
-                        <c:set var="msg" value="${null}"></c:set>
+                        <c:set var="msg" value="${null}"></c:set><br>
                         <a href="forget.jsp" style="color: black; text-decoration: none;">Quên mật khẩu ?</a>
-                        <br><br>
-                        <a href="a" class="login-button">
-                            <i class="fa-brands fa-google"></i> Đăng nhập với Google
-                        </a>
-                        <style>
-                            .login-button {
-                                background-color: red; 
-                                color: #fff; 
-                                padding: 10px 20px; 
-                                border: none;
-                                cursor: pointer;
-                                text-decoration: none; 
-                                display: inline-block; 
-                            }
-
-                            .login-button:hover {
-                                background-color: #c50707; 
-                            }
-
-                        </style>
+  
                     </form>
 
                 </div>

@@ -125,8 +125,10 @@
                                         <c:set var="tong" value="${donhang.total}"></c:set>
                                     </th>
                                         <th class="shoping__product" colspan="5" style="text-align: left; padding-top: 10px">
-                                       Thông tin người nhận ${donhang.fullname} ${donhang.phone} ${donhang.town} 
-                                       ${donhang.location} ${donhang.town}
+                                       Họ và tên người nhận : ${donhang.fullname}<br>
+                                       Số điện thoại : ${donhang.phone}<br>
+                                       Địa Chỉ : ${donhang.location} <br>
+                                       Mã thành phố : ${donhang.town}
                                     </th>
                                     
                                     </c:if>

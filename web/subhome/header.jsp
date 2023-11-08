@@ -12,8 +12,7 @@
             </div>
             <div class="searchBox">
                 <form method="POST" action="FoundUser">
-                    <input type="search" placeholder="Tìm kiếm trên Soco" name="usersearch">
-                    <button><i class="fas fa-search"></i></button>
+                    <input type="search" placeholder="Tìm kiếm trên Soco" name="usersearch"><i class="fas fa-search"></i>
                 </form>
             </div>
             <div class="iconBox2">
@@ -57,7 +56,7 @@
                     <i class="fa-solid fa-caret-down" id="dropdownButton"></i>
                     <div class="dropdown-content">
                         <a href="UserProfileSocial"><i class="fas fa-eye"></i>Trang cá nhân</a>
-                        <a href=""><i class="fas fa-highlighter"></i>Đổi mật khẩu</a>
+                        <a href="doimk.jsp"><i class="fas fa-highlighter"></i>Đổi mật khẩu</a>
                         <a href="logout"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a>
                     </div>
                 </c:if>

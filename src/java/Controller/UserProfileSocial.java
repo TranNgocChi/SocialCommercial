@@ -1,6 +1,7 @@
 
 package Controller;
 
+import DAO.AdminDAO;
 import DAO.FollowUserDAO;
 import DAO.UserDAO;
 import DAO.UserPostDAO;
@@ -42,11 +43,12 @@ public class UserProfileSocial extends HttpServlet {
         Object id ="";
         Object idSession = session.getAttribute("id");
         Object post_id = "";
+         UserDAO manageUser = new UserDAO();
         FollowUserDAO manageFl = new FollowUserDAO();
         try{
             Object user_id = request.getParameter("user_id");
 
-            UserDAO manageUser = new UserDAO();
+           
             for(User user : manageUser.getAllUsers()){
                 if(user_id != null){
                     id = user_id;
@@ -118,6 +120,7 @@ public class UserProfileSocial extends HttpServlet {
         }
         
         request.setAttribute("user_id", id);
+        request.setAttribute("user_name",manageUser.getUserNameById(id) );
         request.setAttribute("check_follow", check_follow);
         request.setAttribute("link_image", link_image);
         request.setAttribute("check", check);

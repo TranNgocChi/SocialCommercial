@@ -378,7 +378,7 @@ header {
 
 aside.sidebar {
     /* ... */
-    z-index: 1001; /* �?ảm bảo sidebar có giá trị z-index cao hơn header */
+    z-index: 1001; /* �?ảm bảo sidebar có giá trị z-index cao hơn header */
 }
 .header .search-bar {
   min-width: 360px;
@@ -601,7 +601,7 @@ aside.sidebar {
 }
 
 .dashboard .info-card h6 {
-  font-size: 28px;
+  font-size: 25px;
   color: #012970;
   font-weight: 700;
   margin: 0;

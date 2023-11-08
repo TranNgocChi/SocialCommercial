@@ -113,6 +113,11 @@
                                                                 <input type="hidden" value="setxacnhan"name="action">
                                                                 <input type="submit" class="btn btn-success" value="Duyệt đơn">
                                                             </form>
+                                                                 <form action="xacnhandon" method="post">
+                                                                <input type="hidden" value="${orderId}"name="orderid">
+                                                                <input type="hidden" value="sethuybyseller"name="action">
+                                                                <input type="submit" class="btn btn-success" value="Hủy đơn">
+                                                            </form>
                                                         </c:if>
 
                                                         <c:if test="${donhang.status!=null}">

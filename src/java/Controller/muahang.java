@@ -193,8 +193,7 @@ public class muahang extends HttpServlet {
                     }
                 }
                 thanhtoandao.UpdateOrdertotal();
-                // Tạo đơn hàng tại đây và lưu vào CSDL
-                // Sử dụng thông tin trong shopname và shopProducts để tạo đơn hàng và chi tiết đơn hàng
+
             }
         }
         response.sendRedirect("request_result.jsp");

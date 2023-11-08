@@ -41,8 +41,8 @@
             </a>
             <ul id="role-tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="taotaikhoanshipper.jsp">
-                        <i class="bi bi-circle"></i><span>Tạo tài khoản vận chuyển</span>
+                    <a href="manageshipper">
+                        <i class="bi bi-circle"></i><span>Quản lí tài khoản vận chuyển</span>
                     </a>
                 </li>
                 <li>
@@ -61,7 +61,7 @@
             </a>
             <ul id="category-tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="list_category.jsp">
+                    <a href="managecategory">
                         <i class="bi bi-circle"></i><span>Danh mục sản phẩm</span>
                     </a>
                 </li>

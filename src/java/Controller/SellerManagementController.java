@@ -5,11 +5,15 @@
  */
 package Controller;
 
-import DAO.AdminDAO;
+import DAO.ProductDAO;
+import DAO.UserDAO;
+import Model.Doanhthu;
+import Model.Product;
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,11 +21,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author DELL
+ * @author ADMIN
  */
-@WebServlet (name="addcategory",urlPatterns={"/addcategory"})
-
-public class addcategory extends HttpServlet {
+public class SellerManagementController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,18 +37,18 @@ public class addcategory extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet addcategory</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet addcategory at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+
+        // Kiểm tra xem người dùng đã đăng nhập hay chưa, nếu chưa, chuyển hướng đến trang đăng nhập
+//    HttpSession session = request.getSession();
+//    Object idseller = session.getAttribute("id");
+//    if (idseller == null) {
+//        response.sendRedirect("login.jsp");
+//        return;
+//    }
+//    ProductDAO pdao = new ProductDAO();
+//    List<Doanhthu> top5 = pdao.getTop5SellingProducts(idseller);
+//    request.setAttribute("top5", top5);
+//    request.getRequestDispatcher("seller_manager.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -61,7 +63,31 @@ public class addcategory extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
+        Object idseller = session.getAttribute("id");
+        if (idseller == null) {
+            response.sendRedirect("login.jsp");
+            return;
+        }
+        ProductDAO pdao = new ProductDAO();
+        List<Doanhthu> top5 = pdao.getTop5SellingProducts(idseller);
+        int totalProduct = pdao.getTotalProduct(idseller);
+        double totalRevenue = pdao.getTotalRevenue(idseller);
+        int totalOrder = pdao.getTotalOrder(idseller);
+        List<Integer> totalRevenueOfYear = pdao.getTotalRevenueOfYear(idseller);
+        List<Integer> totalOrderOfYear = pdao.getTotalOrderOfYear(idseller);
+        Gson gson = new Gson();
+        String json = gson.toJson(totalRevenueOfYear);
+        String json1 = gson.toJson(totalOrderOfYear);
+        request.setAttribute("top5", top5);
+        request.setAttribute("totalProduct", totalProduct);
+        request.setAttribute("totalRevenue", totalRevenue);
+        request.setAttribute("totalOrder", totalOrder);
+        request.setAttribute("totalRevenueOfYear", json);
+        request.setAttribute("totalOrderOfYear", json1);
+
+        request.getRequestDispatcher("seller_manager.jsp").forward(request, response);
     }
 
     /**
@@ -75,15 +101,8 @@ public class addcategory extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-               request.setCharacterEncoding("UTF-8");
-                            HttpSession session=request.getSession();
-
-        response.setContentType("text/html;charset=UTF-8");
-   String type=request.getParameter("tendanhmuc");
-        AdminDAO admindao=new AdminDAO();
-        admindao.addcategory(type);
-           session.setAttribute("msg", "Thêm danh mục thành công");
-        response.sendRedirect("managecategory");    }
+        processRequest(request, response);
+    }
 
     /**
      * Returns a short description of the servlet.

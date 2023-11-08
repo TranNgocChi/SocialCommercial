@@ -4,6 +4,7 @@
     Author     : ADMIN
 --%>
 
+<%@page import="DAO.FeedbackDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -139,7 +140,15 @@
 
 
                                                                             <c:if test="${donhang.status == 'Hoan thanh'}">
+                                                                         <% FeedbackDAO feedbackdao = new FeedbackDAO(); %>
+<c:set var="productid" value="${donhang.productid}" />
+<c:set var="id" value="${id}" />
+<c:set var="status" value="${feedbackdao.getstatusOfProDuct(productid, id)}" />
+
+
+                                                                        <c:if test="${status!=1}"  >
                                                                                 <a href="#" class="btn btn-outline-danger write-feedback" data-toggle="modal" data-target="#addFeebackModal${donhang.productid}">Viết đánh giá</a>
+                                                                                </c:if>  
                                                                                 <div id="addFeebackModal${donhang.productid}" class="modal fade">
                                                                                     <div class="modal-dialog">
                                                                                         <div class="modal-content" style="border-radius: 10px; margin-top: 60px;">

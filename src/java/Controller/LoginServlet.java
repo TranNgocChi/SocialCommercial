@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet {
         String pass = request.getParameter("pass");
         String img = "";
         User user = new User();
-        user = dao.get(name, pass);
+        user = dao.getCaseSensitive(name, pass);
             
         if (user != null) {
             int role_id = 0;

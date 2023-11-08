@@ -6,14 +6,9 @@
 
 package Controller;
 
-import DAO.DonhangDAO;
-import DAO.UserDAO;
-import Model.Doanhthu;
-import Model.Donhang;
+import DAO.AdminDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,9 +21,9 @@ import javax.servlet.http.HttpSession;
  *
  * @author DELL
  */
-@WebServlet(name = "thongke", urlPatterns = {"/thongke"})
+@WebServlet(name = "deleteshipper", urlPatterns = {"/deleteshipper"})
 
-public class thongke extends HttpServlet {
+public class deleteshipper extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -45,10 +40,10 @@ public class thongke extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet thongke</title>");  
+            out.println("<title>Servlet deleteshipper</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet thongke at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet deleteshipper at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -65,14 +60,7 @@ public class thongke extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-         request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
-        UserDAO dao=new UserDAO();
-        HttpSession session=request.getSession();
-        Object idseller=session.getAttribute("id");
-Doanhthu doanhthu=dao.getThongkeBySellerid(idseller);
-request.setAttribute("doanhthu", doanhthu);
-request.getRequestDispatcher("thongke.jsp").forward(request, response);
+        processRequest(request, response);
     } 
 
     /** 
@@ -83,9 +71,20 @@ request.getRequestDispatcher("thongke.jsp").forward(request, response);
      * @throws IOException if an I/O error occurs
      */
     @Override
+    @SuppressWarnings("empty-statement")
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+          String catedelete=request.getParameter("shipperdele");;
+             HttpSession session=request.getSession();
+     AdminDAO userdao=new AdminDAO();
+       boolean check= userdao.delete(catedelete);
+        if(check==true){
+            session.setAttribute("msg", "Xóa tài khoản vận chuyển thành công");
+        }
+        if(check==false){
+            session.setAttribute("msg", "Xóa tài khoản vận chuyển thất bại vì nó liên quan tới nhiều dữ liệu !!! Liên hệ IT để được hỗ trợ xóa");
+        }
+        response.sendRedirect("manageshipper");
     }
 
     /** 

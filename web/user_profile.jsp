@@ -1,4 +1,3 @@
-
 <%@page import="java.util.List"%>
 <%@page import="Model.UserPost"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -27,7 +26,7 @@
                 </div>
                 <div class="profile-user-settings row">
                     <div class="col-md-12">
-                        <h1 class="profile-user-name" style="font-weight: 800;">${fullName}</h1>
+                        <h1 class="profile-user-name" style="font-weight: 800;"><%= request.getAttribute("user_name")%></h1>
                     </div>
                     <div class="col-md-12">
                         <% if (request.getAttribute("check") != null) { %>
@@ -47,9 +46,10 @@
                             <i class="fas fa-user-plus"></i> Follow</button>
                             <%}%>
                         </a>
-                        <a style="color: black;">
+                        <a href="getcontentchat?nguoinhantin=<%= request.getAttribute("user_name")%>" style="color: black;">
                             <button class="btn profile-edit-btn" style="background-color: grey">
-                                <i class="fab fa-facebook-messenger"></i> Messenger</button>
+                                <i class="fab fa-facebook-messenger"></i> Messenger
+                            </button>
                         </a>
                         <% }%>
                     </div>
@@ -104,7 +104,7 @@
                         <div class="gallery-item-info">
                             <ul>
                                 <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> ${listLikesSize}</li>
-                                <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
+                                <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> </li>
                             </ul>
                         </div>
                     </div>
@@ -137,5 +137,3 @@
     </body>
 </html>
 <script src="static/js/js.js"></script>
-
-

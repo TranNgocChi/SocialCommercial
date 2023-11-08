@@ -110,6 +110,23 @@ public class UserDAO extends DatabaseConnection {
         }
         return null; // Tr? v? null n?u kh�ng t�m th?y user ho?c x?y ra l?i
     }
+         public String getUserNameById(Object id) {
+        try {
+            String sql = "SELECT * FROM [SWP391].[dbo].[AppUser] WHERE id=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setObject(1, id);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                String img = rs.getString(2);
+                return img;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null; // Tr? v? null n?u kh�ng t�m th?y user ho?c x?y ra l?i
+    }
          public String getImgOfUserByUsername(String name) {
         try {
             String sql = "SELECT * FROM [SWP391].[dbo].[AppUser] WHERE name=?";
@@ -386,38 +403,38 @@ public class UserDAO extends DatabaseConnection {
         }
 
     }
-     public Doanhthu getThongkeBySellerid(Object sellerid){
-        try {
-            String sql="SELECT\n" +
-                    "    o.seller_id,\n" +
-                    "    r.shopName AS seller_name,\n" +
-                    "    COUNT(o.id) AS total_orders,\n" +
-                    "    SUM(o.order_total) AS total_doanhthu\n" +
-                    "FROM\n" +
-                    "    [SWP391].[dbo].[Order] AS o\n" +
-                    "JOIN\n" +
-                    "    requestSetRole AS r ON o.seller_id = r.user_id\n" +
-                    "WHERE\n" +
-                    "    o.status = 'Hoan thanh'  \n" +
-                    "    AND o.seller_id = ?   \n" +
-                    "GROUP BY\n" +
-                    "    o.seller_id, r.shopName\n" +
-                    "ORDER BY\n" +
-                    "    total_doanhthu DESC;";
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setObject(1,sellerid);
-            ResultSet rs = ps.executeQuery();
-            rs.next();
-            Doanhthu doanhthu=new Doanhthu(sellerid, rs.getString(2), rs.getInt(3), rs.getDouble(4));
-            return doanhthu;
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-
-         
-     }
+//     public Doanhthu getThongkeBySellerid(Object sellerid){
+//        try {
+//            String sql="SELECT\n" +
+//                    "    o.seller_id,\n" +
+//                    "    r.shopName AS seller_name,\n" +
+//                    "    COUNT(o.id) AS total_orders,\n" +
+//                    "    SUM(o.order_total) AS total_doanhthu\n" +
+//                    "FROM\n" +
+//                    "    [SWP391].[dbo].[Order] AS o\n" +
+//                    "JOIN\n" +
+//                    "    requestSetRole AS r ON o.seller_id = r.user_id\n" +
+//                    "WHERE\n" +
+//                    "    o.status = 'Hoan thanh'  \n" +
+//                    "    AND o.seller_id = ?   \n" +
+//                    "GROUP BY\n" +
+//                    "    o.seller_id, r.shopName\n" +
+//                    "ORDER BY\n" +
+//                    "    total_doanhthu DESC;";
+//            PreparedStatement ps = connection.prepareStatement(sql);
+//            ps.setObject(1,sellerid);
+//            ResultSet rs = ps.executeQuery();
+//            rs.next();
+//            Doanhthu doanhthu=new Doanhthu(sellerid, rs.getString(2), rs.getInt(3), rs.getDouble(4));
+//            return doanhthu;
+//            
+//        } catch (SQLException ex) {
+//            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return null;
+//
+//         
+//     }
      
     public User getCaseSensitive(String name, String password) {
         try {
@@ -454,7 +471,7 @@ public class UserDAO extends DatabaseConnection {
 
             while (rs.next()) {
                 Object id = rs.getObject(1);
-                String username = rs.getString(2); // Use the correct column name
+                String username = rs.getString(2); 
                 String image = rs.getString(7);
                 String fullName = rs.getString(8);
                 String bio = rs.getString(13);

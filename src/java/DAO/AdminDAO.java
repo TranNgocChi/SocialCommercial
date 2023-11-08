@@ -38,16 +38,11 @@ public class AdminDAO extends DatabaseConnection {
             while (rs.next()) {
                 Object id = rs.getObject(1);
                 String name = rs.getString(2);
+                String pass=rs.getString(3);
                 String email = rs.getString(4);
                 String phone = rs.getString(5);
-//                String country = rs.getString(6);
-//                String province = rs.getString(7);
-//                String district = rs.getString(8);
-//                String town = rs.getString(9);
-//                String location = rs.getString(10);
                 int roleid = rs.getInt(6);
-                String image = rs.getString(7);
-                User user1 = new User(id, name, email, phone, image, roleid);
+                User user1 = new User(id, name, pass, email, roleid);
                 list.add(user1);
             }
             return list;
@@ -69,20 +64,21 @@ public class AdminDAO extends DatabaseConnection {
             Logger.getLogger(AdminDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-//    public void delete(Object id) {
-//        try {
-//            String sql = "DELETE FROM AppUser WHERE id=?;\n" +
-//"DELETE FROM UserMessage WHERE receiver_id=? \n" +
-//"OR sender_id=?;
-//            PreparedStatement ps = connection.prepareStatement(sql);
-//            ps.setObject(1, id);ps.setObject(2, id);ps.setObject(3, id);
-//            ps.execute();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(AdminDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
+    public boolean delete(String id) {
+        try {
+            String sql = "DELETE FROM AppUser WHERE id=?";
 
-     public ArrayList<User> getRandomUsers(Object sessionUserId) {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, id);
+            ps.execute();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    public ArrayList<User> getRandomUsers(Object sessionUserId) {
         UserDAO manageUser = new UserDAO();                
         ArrayList<User> allUsers = manageUser.getAllUsers();
         Set<User> SuggestUsers = new HashSet<>();
@@ -145,6 +141,7 @@ public class AdminDAO extends DatabaseConnection {
         return uniqueSuggestUsers;
     }
 
+    
     public ArrayList<Category> getAllCategory() {
         try {
             String sql = "SELECT * FROM [SWP391].[dbo].[ProductCategory]";
@@ -164,7 +161,37 @@ public class AdminDAO extends DatabaseConnection {
         }
         return null;
     }
+ public ArrayList<User> getAllShipper() {
+        try {
+            String sql = "SELECT  AppUser.id\n" +
+"      ,[name]\n" +
+"      ,[password]\n" +
+"      ,[email]\n" +
+"\n" +
+"      ,[role_id]\n" +
+"	  , UserRole.role\n" +
+"     FROM [SWP391].[dbo].[AppUser]\n" +
+"  JOIN UserRole ON UserRole.id=AppUser.role_id\n" +
+"  WHERE role_id!=1 AND role_id!=2 AND role_id!=3";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            ArrayList<User> listcate = new ArrayList<>();
+            while (rs.next()) {
+                UUID id = UUID.fromString(rs.getString(1));
+                String name=rs.getString(2);
+                String pass=rs.getString(3);
+                int role=rs.getInt(5);
+                String type=rs.getString(6);
 
+                User user=new User(id, name, pass, role, type);
+                listcate.add(user);
+            }
+            return listcate;
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
     public void addcategory(String type) {
         try {
             String sql = "INSERT INTO ProductCategory(type) Values(?)";
@@ -176,15 +203,17 @@ public class AdminDAO extends DatabaseConnection {
         }
     }
 
-    public void deletecategory(String id) {
+    public boolean deletecategory(String id) {
         try {
             String sql = "DELETE FROM ProductCategory WHERE id=?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, id);
             ps.execute();
+            return true;
         } catch (SQLException ex) {
             Logger.getLogger(AdminDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return false;
     }
 
     public void setSeller(Object userid, String status) {

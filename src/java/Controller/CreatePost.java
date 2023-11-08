@@ -55,7 +55,7 @@ public class CreatePost extends HttpServlet {
                 UserPostDAO userpost = new UserPostDAO();
                 userpost.addUserPost(user_id, title, content, "SavedImages/"+filename, post_date);
                 
-                request.getRequestDispatcher("user_profile.jsp").forward(request, response);
+                response.sendRedirect("UserProfileSocial");
             } else {
                 // Handle invalid file type
                 response.setContentType("text/plain");
