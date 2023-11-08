@@ -19,7 +19,7 @@ public class removePost extends HttpServlet {
         Object post_id = request.getParameter("post_id");
         UserPostDAO manageUserPost = new UserPostDAO();
         manageUserPost.deleteUserPost(post_id);
-        response.sendRedirect("user_profile.jsp");
+        response.sendRedirect("UserProfileSocial");
     }
 
 }

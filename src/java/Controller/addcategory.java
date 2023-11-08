@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -74,9 +75,14 @@ public class addcategory extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-   String type=request.getParameter("itemadd");
+               request.setCharacterEncoding("UTF-8");
+                            HttpSession session=request.getSession();
+
+        response.setContentType("text/html;charset=UTF-8");
+   String type=request.getParameter("tendanhmuc");
         AdminDAO admindao=new AdminDAO();
         admindao.addcategory(type);
+           session.setAttribute("msg", "Thêm danh mục thành công");
         response.sendRedirect("managecategory");    }
 
     /**

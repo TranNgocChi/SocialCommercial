@@ -123,6 +123,19 @@ public class CommentSocialDAO {
             }
         }
     }
+    
+    public List<CommentSocial> getCommentsForPost(Object postId) {
+        List<CommentSocial> commentsForPost = new ArrayList<>();
+
+        for (CommentSocial comment : getCommentSocials()) {
+            if (comment.getPost_id() != null && comment.getPost_id().toString().equalsIgnoreCase(postId.toString())) {
+                commentsForPost.add(comment);
+            }
+        }
+
+        return commentsForPost;
+    }
+    
     public static void main(String[] args) {
         CommentSocialDAO comment = new CommentSocialDAO();
         comment.deleteCommentSocial("A9FC8090-5F48-4E2C-88BB-454D516209BA");

@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -74,9 +75,16 @@ public class deletemember extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-               String iddelete=request.getParameter("iddelete");
-        AdminDAO userdao=new AdminDAO();
-        userdao.delete(iddelete);
+             String catedelete=request.getParameter("iddelete");;
+             HttpSession session=request.getSession();
+     AdminDAO userdao=new AdminDAO();
+       boolean check= userdao.delete(catedelete);
+        if(check==true){
+            session.setAttribute("msg", "Xóa tài khoản thành công");
+        }
+        if(check==false){
+            session.setAttribute("msg", "Xóa tài khoản thất bại vì nó liên quan tới nhiều dữ liệu !!! Liên hệ IT để được hỗ trợ xóa");
+        }
         response.sendRedirect("getListUser");
     }
 

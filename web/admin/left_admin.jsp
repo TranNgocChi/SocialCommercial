@@ -25,7 +25,7 @@
             </a>
             <ul id="member-tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="list_member.jsp">
+                    <a href="getListUser">
                         <i class="bi bi-circle"></i><span>Danh sách thành viên</span>
                     </a>
                 </li>
@@ -41,12 +41,12 @@
             </a>
             <ul id="role-tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="list_shipper.jsp">
-                        <i class="bi bi-circle"></i><span>Danh sách tài khoản bên vận chuyển</span>
+                    <a href="manageshipper">
+                        <i class="bi bi-circle"></i><span>Quản lí tài khoản vận chuyển</span>
                     </a>
                 </li>
                 <li>
-                    <a href="seller_status.jsp">
+                    <a href="getRequestRole">
                         <i class="bi bi-circle"></i><span>Nâng cấp vai trò</span>
                     </a>
                 </li>
@@ -61,7 +61,7 @@
             </a>
             <ul id="category-tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="list_category.jsp">
+                    <a href="managecategory">
                         <i class="bi bi-circle"></i><span>Danh mục sản phẩm</span>
                     </a>
                 </li>
@@ -84,59 +84,27 @@
         </li>
         <!-- End Product Management Nav -->
 
+         <!-- Start Post Management Nav -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#post-management-nav" data-bs-toggle="collapse" href="#post-management-nav">
+                <i class="bi bi-newspaper"></i><span>Quản lý bài post</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="post-management-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="create_post.jsp">
+                        <i class="bi bi-circle"></i><span>Tạo bài post</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="allposts">
+                        <i class="bi bi-circle"></i><span>Danh sách bài post</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+       
+
         
-
-<!--        <li class="nav-heading">Pages</li>
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="users-profile.html">
-                <i class="bi bi-person"></i>
-                <span>Profile</span>
-            </a>
-        </li> End Profile Page Nav 
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-faq.html">
-                <i class="bi bi-question-circle"></i>
-                <span>F.A.Q</span>
-            </a>
-        </li> End F.A.Q Page Nav 
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-contact.html">
-                <i class="bi bi-envelope"></i>
-                <span>Contact</span>
-            </a>
-        </li> End Contact Page Nav 
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-register.html">
-                <i class="bi bi-card-list"></i>
-                <span>Register</span>
-            </a>
-        </li> End Register Page Nav 
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-login.html">
-                <i class="bi bi-box-arrow-in-right"></i>
-                <span>Login</span>
-            </a>
-        </li> End Login Page Nav 
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-error-404.html">
-                <i class="bi bi-dash-circle"></i>
-                <span>Error 404</span>
-            </a>
-        </li> End Error 404 Page Nav 
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-blank.html">
-                <i class="bi bi-file-earmark"></i>
-                <span>Blank</span>
-            </a>
-        </li> End Blank Page Nav 
-
-    </ul>-->
-
+        
+        
 </aside><!-- End Sidebar-->

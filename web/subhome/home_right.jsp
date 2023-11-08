@@ -1,23 +1,31 @@
-        <link rel="stylesheet" href="static/css/style.css">
+<%@page import="DAO.AdminDAO"%>
+<%@page import="DAO.UserDAO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Model.User"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<div class="home-right">
+<link rel="stylesheet" href="static/css/style.css">
+
+            <div class="home-right">
                 <div class="home-right-wrapper">
 
                     <div class="event-friend">
-                        
-
                         <hr>
                     
                         <div class="friend">
-                            <h3 class="heading">Suggested for you <span>see all</span></h3>
+                            <h3 class="heading">Đề xuất cho bạn<span>see all</span></h3>
+                            <%  AdminDAO manage = new AdminDAO();if(session.getAttribute("id") != null){
+                                for(User user : manage.getRandomUsers(session.getAttribute("id"))){%>
                             <ul>
-                                <li><img src="static/images/user4.jpg" alt="user"></li>
+                                <li><img src="<%= user.getImage() %>" alt="user"></li>
                                 <li>
-                                    <b>armanul islam</b>
-                                    <p>Follow you</p>
-                                    <button>Follow</button><button class="friend-remove">remove</button>
+                                    <b><%= user.getFullname() %></b>
+                                    <p>Theo dõi bạn</p>
+                                    <a href="UserProfileSocial?user_id=<%= user.getId() %>"><button>View Profile</button></a>
+                                    <a href=""><button class="friend-remove">remove</button></a>
                                 </li>
                             </ul>
+                            <% }} %>
                         </div>
 
                     </div>

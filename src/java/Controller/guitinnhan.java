@@ -74,6 +74,7 @@ public class guitinnhan extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
                 response.setContentType("text/html;charset=UTF-8");
+                   request.setCharacterEncoding("UTF-8");
 
         String content=request.getParameter("content");
         PrintWriter out = response.getWriter();
@@ -86,8 +87,7 @@ public class guitinnhan extends HttpServlet {
         request.setAttribute("id1", id1);
         request.setAttribute("nguoinhan", nguoinhan);
         request.getRequestDispatcher("getcontentchat").forward(request, response);
-                
-     
+
     }
 
     /** 

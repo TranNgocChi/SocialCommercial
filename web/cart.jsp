@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -65,10 +67,14 @@
         <!-- Hero Section End -->
         <!-- Shoping Cart Section Begin -->
         <section class="shoping-cart spad">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="shoping__cart__table">
+            <h4 style="color: red; margin-left: 30px;">${msgcart}</h4>
+
+            <c:set var="msgcart" value="${null}"></c:set>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="shoping__cart__table">
+                            <c:set var="currentShop" value="" />
                             <table>
                                 <thead>
                                     <tr>
@@ -81,92 +87,68 @@
 
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <c:set var="dem" value="${0}" />
+                                <form action="thanhtoan" method="post" id="cart-form">
+                                    <c:forEach var="item" items="${listitemincart}">
+                                        <c:set var="dem" value="${dem+1}" />
+                                        <c:if test="${!item.shopname.equals(currentShop)}">
+                                            <!-- Hiển thị tên cửa hàng nếu khác với cửa hàng trước đó -->
+                                            <tr>
+                                                <th class="shoping__product" colspan="5" style="text-align: left; padding-top: 10px">
+                                                    Shop: ${item.shopname}
+                                                </th>
+                                            </tr>
+                                            <!-- Lưu tên cửa hàng hiện tại để so sánh với các sản phẩm tiếp theo -->
+                                            <c:set var="currentShop" value="${item.shopname}" />
+                                        </c:if>
+                                        <tr>
+                                            <td class="shoping__cart__item">
+                                                <input type="checkbox" class="product-checkbox" value="${item.id}" name="item${dem}" data-price="<fmt:formatNumber value="${item.price}" type="currency" currencySymbol="" minFractionDigits="0"/>">
+                                                <input type="hidden" value="${item.productid}" name="productid${dem}">
+                                                <img src="${item.img}" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                                <h5>${item.productname}</h5>
+                                            </td>
+                                            <td class="shoping__cart__price">
+                                                <fmt:formatNumber value="${item.price}" type="currency" currencySymbol="" minFractionDigits="0"/>
 
-                                        <th class="shoping__product" colspan="5" style="text-align: left; padding-top: 10px">
-                                            <input type="checkbox" class="shop-checkbox" data-shop="ABC">
-                                            Shop: ABC
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <td class="shoping__cart__item">
-                                            <input type="checkbox" class="product-checkbox" data-shop="ABC">
-                                            <img src="setofshop/img/cart/cart-1.jpg" alt="">
-                                            <h5>Vegetable’s Package</h5>
-                                        </td>
-                                        <td class="shoping__cart__price">
-                                            $55.00
-                                        </td>
-                                        <td class="shoping__cart__quantity">
-                                            <div class="quantity">
-                                                <div class="pro-qty">
-                                                    <input type="text" value="2">
+                                            </td>
+                                            <td class="shoping__cart__quantity">
+                                                <div class="quantity">
+                                                    <div class="pro-qty">
+                                                        <input type="text" value="${item.quantity}" name="itemquantity${dem}">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td class="shoping__cart__total">
-                                            $110.00
-                                        </td>
-                                        <td class="shoping__cart__item__close">
-                                            <span class="icon_close"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="shoping__cart__item">
-                                            <input type="checkbox" class="product-checkbox" data-shop="ABC">
-                                            <img src="setofshop/img/cart/cart-2.jpg" alt="">
-                                            <h5>Fresh Garden Vegetable</h5>
-                                        </td>
-                                        <td class="shoping__cart__price">
-                                            $39.00
-                                        </td>
-                                        <td class="shoping__cart__quantity">
-                                            <div class="quantity">
-                                                <div class="pro-qty">
-                                                    <input type="text" value="1">
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="shoping__cart__total">
-                                            $39.99
-                                        </td>
-                                        <td class="shoping__cart__item__close">
-                                            <span class="icon_close"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="shoping__cart__item">
-                                            <input type="checkbox" class="product-checkbox" data-shop="ABC">
-                                            <img src="setofshop/img/cart/cart-3.jpg" alt="">
-                                            <h5>Organic Bananas</h5>
-                                        </td>
-                                        <td class="shoping__cart__price">
-                                            $69.00
-                                        </td>
-                                        <td class="shoping__cart__quantity">
-                                            <div class="quantity">
-                                                <div class="pro-qty">
-                                                    <input type="text" value="1">
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="shoping__cart__total">
-                                            $69.99
-                                        </td>
-                                        <td class="shoping__cart__item__close">
-                                            <span class="icon_close"></span>
-                                        </td>
-                                    </tr>
-                                </tbody>
+                                            </td>
+
+                                            <td class="shoping__cart__total">
+                                                <span class="item-total"><fmt:formatNumber value="${item.quantity * item.price}" type="currency" currencySymbol="" minFractionDigits="0"/></span>
+                                            </td>
+                                            <td class="shoping__cart__item__close">
+
+                                            <td class="shoping__cart__item__close">
+                                                <a class="btn btn-outline-danger" href="#" onclick="xoaSanPham('${item.id}')">XÓA</a>
+                                            </td>
+
+
+                                            </td>
+                                        </tr>
+
+                                        </tbody>
+                                    </c:forEach>
+                                    <input type="hidden" name="dem" value="${dem}">
+
+                                </form>
+
                             </table>
                         </div>
+
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="shoping__cart__btns">
-                            <a href="#" class="primary-btn cart-btn">Tiếp tục mua sắm</a>
-                            <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
+                            <a href="shopping" class="primary-btn cart-btn">Tiếp tục mua sắm</a>
+                            <a href="cart" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
                                 Cập nhật giỏ hàng</a>
                         </div>
                     </div>
@@ -185,32 +167,96 @@
                         <div class="shoping__checkout">
                             <h5>Tổng thanh toán</h5>
                             <ul>
-                                <li>Tổng tiền hàng <span>$454.98</span></li>
-                                <li>Giảm giá sản phẩm <span>-$154.98</span></li>
-                                <li>Tổng số tiền <span>$354.00</span></li>
+                                <li>Tổng tiền hàng <span id="totalPriceAllVNĐ">0</span></li>
+                                <!--                                <li>Giảm giá sản phẩm <span>-$154.98</span></li>-->
+                                <!--                                <li>Tổng số tiền <span>$354.00</span></li>-->
                             </ul>
-                            <a href="checkout.jsp" class="primary-btn">Mua ngay</a>
+                            <button type="submit" class="btn primary-btn" id="buyNowButton" style="background-color: #5c91c6; width: 100%">MUA NGAY</button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
     </body>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="setofshop/js/bootstrap.min.js"></script>
+    <script src="setofshop/js/jquery.nice-select.min.js"></script>
+    <script src="setofshop/js/jquery-ui.min.js"></script>
+    <script src="setofshop/js/jquery.slicknav.js"></script>
+    <script src="setofshop/js/mixitup.min.js"></script>
+    <script src="setofshop/js/owl.carousel.min.js"></script>
+    <script src="setofshop/js/main.js"></script>
     <script>
-        // Thêm JavaScript để xử lý chọn sản phẩm và chọn tất cả sản phẩm của shop
-        const shopCheckboxes = document.querySelectorAll('.shop-checkbox');
-        const productCheckboxes = document.querySelectorAll('.product-checkbox');
+        // Lấy tham chiếu đến form và nút "MUA NGAY"
+        const cartForm = document.getElementById('cart-form');
+        const buyButton = document.getElementById('buyNowButton');
 
-        shopCheckboxes.forEach(shopCheckbox => {
-            shopCheckbox.addEventListener('change', () => {
-                const shopName = shopCheckbox.getAttribute('data-shop');
-                const productsInShop = document.querySelectorAll(`.product-checkbox[data-shop='ABC']`);
-                productsInShop.forEach(productCheckbox => {
-                    productCheckbox.checked = shopCheckbox.checked;
-                });
-            });
-        });
+        // Gắn sự kiện click cho nút "MUA NGAY"
+        buyButton.addEventListener('click', function () {
+        // Gửi form khi nút "MUA NGAY" được nhấn
+        cartForm.submit();
+       });
     </script>
+    <script>
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND',
+                minimumFractionDigits: 3
+            }).format(amount);
+        }
+
+        // Lấy danh sách tất cả các checkbox
+        const checkboxes = document.querySelectorAll('.product-checkbox');
+
+// Lấy tham chiếu đến thẻ hiển thị tổng tiền hàng
+        const totalPriceAllElement = document.getElementById('totalPriceAllVNĐ');
+
+// Hàm để tính tổng tiền dựa trên các sản phẩm đã chọn
+        function calculateTotalPrice() {
+            let total = 0;
+
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    const itemTotal = checkbox.closest('tr').querySelector('.item-total');
+                    total += parseFloat(itemTotal.textContent);
+                }
+            });
+
+            // Cập nhật giá trị tổng tiền
+            totalPriceAllElement.textContent = formatCurrency(total);
+        }
+
+// Gắn sự kiện change cho tất cả các checkbox
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', calculateTotalPrice);
+        });
+
+    </script>
+    <script>
+        function xoaSanPham(itemId) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "removeitemincart", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            var data = "itemcanxoa=" + itemId;
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    console.log(xhr.responseText); // In kết quả lên console (để kiểm tra)
+                    // Cập nhật lại giao diện trang web nếu cần
+
+                    // Tự động làm mới trang web sau khi xóa sản phẩm
+                    location.reload(); // Làm mới trang web
+                }
+            };
+            xhr.send(data);
+        }
+
+
+
+    </script>
+
 
 
 </html>

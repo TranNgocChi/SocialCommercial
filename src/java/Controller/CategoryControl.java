@@ -30,7 +30,6 @@ public class CategoryControl extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -45,12 +44,31 @@ public class CategoryControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         Object cateID = request.getParameter("cid");
-        
-        ProductDAO dao = new ProductDAO(); 
-        List<Product> products = dao.getAllProducts();
-        List<Product> list = dao.getProductsbyCID(cateID);
-        request.setAttribute("listP", products);
-        request.setAttribute("listP", list);
+        ProductDAO dao = new ProductDAO();
+        int pageIndex = 1;
+        try {
+            pageIndex = Integer.parseInt(request.getParameter("pageIndex"));
+        } catch (NumberFormatException e) {
+        }
+        int pageSize = 3;
+        int totalProduct = dao.getTotalProductByTypeId(cateID);
+        int maxPage = 0;
+        if (totalProduct == 0) {
+            request.setAttribute("mess", "Hiện tại chưa có sản phẩm nào.");
+        } else {
+            maxPage = totalProduct / pageSize + (totalProduct % pageSize > 0 ? 1 : 0);
+            int nextPage = pageIndex + 1;
+            int backPage = pageIndex - 1;
+            List<Product> products = dao.getAllProductsPaging(cateID, pageIndex, pageSize);
+            request.setAttribute("listP", products);
+            request.setAttribute("maxPage", maxPage);
+            request.setAttribute("cateID", cateID);
+            request.setAttribute("nextPage", nextPage);
+            request.setAttribute("backPage", backPage);
+            request.setAttribute("pageIndex", pageIndex);
+
+        }
+
         request.getRequestDispatcher("categorytype.jsp").forward(request, response);
     }
 

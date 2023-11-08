@@ -11,7 +11,94 @@ public class User {
     String name,password,email,number,country,province,district,town,location,image;
     int roleid;
     String fullname,gender,statusNow,school,favour,bio;
+    String typerole;
+    
+    public User(String name, String image) {
+        this.name = name;
+        this.image = image;
+    }
+    
+    public User(Object id, String name, String password, int roleid, String typerole) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.roleid = roleid;
+        this.typerole = typerole;
+    }
 
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getTown() {
+        return town;
+    }
+
+    public void setTown(String town) {
+        this.town = town;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getTyperole() {
+        return typerole;
+    }
+
+    public void setTyperole(String typerole) {
+        this.typerole = typerole;
+    }
+   
+
+    public User(Object id, String name, String image, String fullname, String bio) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.fullname = fullname;
+        this.bio = bio;
+    }    
+    
+
+    public User(Object id, String name, String image) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+    }
+
+    public User(Object id, String name, String email, String number, String image, int roleid) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.number = number;
+        this.image = image;
+        this.roleid = roleid;
+    }
+        
     public User(Object id, String name, String email, int roleid) {
         this.id = id;
         this.name = name;

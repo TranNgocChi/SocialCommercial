@@ -18,18 +18,44 @@ public class Product {
     private double productPrice;
     private double productVoucher;
     private String productDescription;
+    private Object sellerid;
+    private String shopname;
 
+    public Product(Object sellerid, String shopname) {
+        this.sellerid = sellerid;
+        this.shopname = shopname;
+    }
+
+    public Object getSellerid() {
+        return sellerid;
+    }
+
+    public void setSellerid(Object sellerid) {
+        this.sellerid = sellerid;
+    }
+
+    public String getShopname() {
+        return shopname;
+    }
+
+    public void setShopname(String shopname) {
+        this.shopname = shopname;
+    }
+    
     public Product() {
     }
 
-    public Product(Object productId, String productName, String productImage, int productAvailable, double productPrice, String productDescription) {
+    public Product(Object productId, String productName, String productImage, int productAvailable, double productPrice, String productDescription,Object sellerid,String shopname) {
         this.productId = productId;
         this.productName = productName;
         this.productImage = productImage;
         this.productAvailable = productAvailable;
         this.productPrice = productPrice;
         this.productDescription = productDescription;
+        this.sellerid = sellerid;
+        this.shopname = shopname;
     }
+
 
     public Product(Object productId, String productName, String productImage, double productPrice, String productDescription) {
         this.productId = productId;
@@ -40,7 +66,7 @@ public class Product {
     }
     
     
-
+    
     public Product(Object productId, String productName, String productImage, int productAvailable, int productSales, double productPrice, double productVoucher, String productDescription) {
         this.productId = productId;
         this.productName = productName;
@@ -93,7 +119,16 @@ public class Product {
     }
 
     public double getProductPrice() {
-        return productPrice;
+        // Định dạng số double thành chuỗi
+    String formattedPrice = String.valueOf(productPrice);
+
+    // Kiểm tra xem chuỗi có phần thập phân ".0" không và loại bỏ nó nếu có
+    if (formattedPrice.endsWith(".0")) {
+        formattedPrice = formattedPrice.substring(0, formattedPrice.length() - 2);
+    }
+
+    // Chuyển lại thành double
+    return Double.parseDouble(formattedPrice);
     }
 
     public void setProductPrice(double productPrice) {
@@ -120,6 +155,8 @@ public class Product {
     public String toString() {
         return "Product{" + "productId=" + productId + ", productName=" + productName + ", productImage=" + productImage + ", productAvailable=" + productAvailable + ", productSales=" + productSales + ", productPrice=" + productPrice + ", productVoucher=" + productVoucher + ", productDescription=" + productDescription + '}';
     }
+
+    
     
     
     

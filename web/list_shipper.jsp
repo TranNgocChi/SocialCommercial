@@ -1,56 +1,45 @@
 <%-- 
-    Document   : listShipper
-    Created on : Oct 7, 2023, 9:29:27 PM
-    Author     : ADMIN
+    Document   : sellerstatusdemo
+    Created on : Oct 9, 2023, 4:05:56 PM
+    Author     : DELL
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
     <head>
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-        <title>Tables / Data - NiceAdmin Bootstrap Template</title>
-        <meta content="" name="description">
-        <meta content="" name="keywords">
-
-        <!-- Favicons -->
-        <link href="assets/img/favicon.png" rel="icon">
-        <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+        <title>Admin - Quản trị</title>
 
         <!-- Google Fonts -->
         <link href="https://fonts.gstatic.com" rel="preconnect">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+        <!-- fontawesome css link -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <!-- Vendor CSS Files -->
         <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="static/css/style.css">
         <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
         <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+
         <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
         <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
         <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
         <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <!-- Template Main CSS File -->
         <link href="assets/css/style.css" rel="stylesheet">
-
-        <!-- =======================================================
-        * Template Name: NiceAdmin
-        * Updated: Sep 18 2023 with Bootstrap v5.3.2
-        * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-        * Author: BootstrapMade.com
-        * License: https://bootstrapmade.com/license/
-        ======================================================== -->
     </head>
 
-    <body>
 
-        <%@ include file="subhome/header.jsp" %>
+    <body>
+        <%@ include file="../subhome/header.jsp" %>
         <!-- ======= Sidebar ======= -->
-        <%@ include file="admin/left_admin.jsp" %>
+        <%@ include file="../admin/left_admin.jsp" %>
         <!-- End Sidebar-->
 
         <main id="main" class="main">
@@ -61,67 +50,65 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="admin.jsp">Trang chủ</a></li>
                         <li class="breadcrumb-item">Quản lý vai trò</li>
-                        <li class="breadcrumb-item active"><a href="list_shipper.jsp">Danh sách tài khoản bên vận chuyển</a></li>
+                        <li class="breadcrumb-item active"><a href="getRequestRole">Nâng cấp vai trò</a></li>
                     </ol>
                 </nav>
             </div><!-- End Page Title -->
 
             <section class="section">
                 <div class="row">
+
                     <div class="col-lg-12">
 
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Datatables</h5>
-                                <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p>
+                                    <h5 style="color:red">${msg} </h5>
+    <c:set var="msg" value="${null}"></c:set>
+
+                                <h4>Thêm tài khoản vận chuyển</h4>
+                                  <form action="taotaikhoanshipper" method="post">
+        UserName:    <input name="name" type="text"  placeholder="Nhập tên tài khoản" required>
+        <br>
+        PassWord:   <input name="pass" type="text"  placeholder="Nhập mật khẩu"required>
+        <br>
+        Thành phố:     <select name="town" required>
+        <option value="" disabled selected>Chọn thành phố</option>
+        <option value="6">Hà Nội</option>
+        <option value="5">Hồ Chí Minh</option>
+        <option value="4">Đà Nẵng</option>
+        <option value="7">Gia Lai</option>
+        <option value="8">Vũng Tàu</option>
+        <!-- Thêm các thành phố khác bằng cách sao chép dòng trên và chỉnh sửa value và nội dung -->
+    </select>
+        <br>
+        <input type="submit" value="OK">
+        </form>
+                                <h5 class="card-title">Danh sách tài khoản vận chuyển</h5>
+                                
 
                                 <!-- Table with stripped rows -->
-                                <table class="table datatable">
+                                <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Position</th>
-                                            <th scope="col">Age</th>
-                                            <th scope="col">Start Date</th>
+                                            <th scope="col">Tài khoản</th>
+                                            <th scope="col">Mật khẩu</th>
+                                            <th scope="col">Vai trò</th>
+                               
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Brandon Jacob</td>
-                                            <td>Designer</td>
-                                            <td>28</td>
-                                            <td>2016-05-25</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Bridie Kessler</td>
-                                            <td>Developer</td>
-                                            <td>35</td>
-                                            <td>2014-12-05</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Ashleigh Langosh</td>
-                                            <td>Finance</td>
-                                            <td>45</td>
-                                            <td>2011-08-12</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">4</th>
-                                            <td>Angus Grady</td>
-                                            <td>HR</td>
-                                            <td>34</td>
-                                            <td>2012-06-11</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">5</th>
-                                            <td>Raheem Lehner</td>
-                                            <td>Dynamic Division Officer</td>
-                                            <td>47</td>
-                                            <td>2011-04-19</td>
-                                        </tr>
+                                        <c:forEach var="mem" items="${listcategory}">
+                                            <tr>
+                                                <th scope="row">${mem.name}</th>
+                                                <td>${mem.password}</td>
+ <td>${mem.typerole}</td>                                            
+                                              <td><form action="deleteshipper"  method="post" >
+                                                        <input type="hidden" name="shipperdele" value="${mem.id}">
+                                                        <input type="submit" value="X">
+                                                    </form></td>
+                                                    </tr>
+                                        </c:forEach>
+                                          
                                     </tbody>
                                 </table>
                                 <!-- End Table with stripped rows -->
@@ -133,11 +120,7 @@
                 </div>
             </section>
 
-        </main><!-- End #main -->
-
-
-        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
+        </main><!-- End #main --> 
         <!-- Vendor JS Files -->
         <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
         <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -150,7 +133,5 @@
 
         <!-- Template Main JS File -->
         <script src="assets/js/main.js"></script>
-
     </body>
-
 </html>

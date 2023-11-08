@@ -21,6 +21,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <!-- Vendor CSS Files -->
+
         <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="static/css/style.css">
         <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -36,6 +37,7 @@
     </head>
 
     <body>
+
 
         <!-- ======= Header ======= -->
         <%@ include file="subhome/header.jsp" %>
@@ -356,6 +358,7 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
+
                                                     <th scope="row"><a href="#"><img src="assets/img/product-1.jpg" alt=""></a></th>
                                                     <td><a href="#" class="text-primary fw-bold">Ut inventore ipsa voluptas nulla</a></td>
                                                     <td>$64</td>
@@ -363,6 +366,7 @@
                                                     <td>$5,828</td>
                                                 </tr>
                                                 <tr>
+
                                                     <th scope="row"><a href="#"><img src="assets/img/product-2.jpg" alt=""></a></th>
                                                     <td><a href="#" class="text-primary fw-bold">Exercitationem similique doloremque</a></td>
                                                     <td>$46</td>
@@ -370,20 +374,25 @@
                                                     <td>$4,508</td>
                                                 </tr>
                                                 <tr>
-                                                    <th scope="row"><a href="#"><img src="assets/img/product-3.jpg" alt=""></a></th>
+                                                    <th scope="row"><a href="#"><img src="assetsofadmin/img/product-3.jpg" alt=""></a></th>
                                                     <td><a href="#" class="text-primary fw-bold">Doloribus nisi exercitationem</a></td>
                                                     <td>$59</td>
                                                     <td class="fw-bold">74</td>
                                                     <td>$4,366</td>
                                                 </tr>
                                                 <tr>
+<<<<<<< HEAD
+                                                    <th scope="row"><a href="#"><img src="assetsofadmin/img/product-4.jpg" alt=""></a></th>
+=======
                                                     <th scope="row"><a href="#"><img src="assets/img/product-4.jpg" alt=""></a></th>
+>>>>>>> main
                                                     <td><a href="#" class="text-primary fw-bold">Officiis quaerat sint rerum error</a></td>
                                                     <td>$32</td>
                                                     <td class="fw-bold">63</td>
                                                     <td>$2,016</td>
                                                 </tr>
                                                 <tr>
+
                                                     <th scope="row"><a href="#"><img src="assets/img/product-5.jpg" alt=""></a></th>
                                                     <td><a href="#" class="text-primary fw-bold">Sit unde debitis delectus repellendus</a></td>
                                                     <td>$79</td>
@@ -649,6 +658,7 @@
 
                                 <div class="news">
                                     <div class="post-item clearfix">
+
                                         <img src="assets/img/news-1.jpg" alt="">
                                         <h4><a href="#">Nihil blanditiis at in nihil autem</a></h4>
                                         <p>Sit recusandae non aspernatur laboriosam. Quia enim eligendi sed ut harum...</p>
@@ -661,18 +671,21 @@
                                     </div>
 
                                     <div class="post-item clearfix">
+
                                         <img src="assets/img/news-3.jpg" alt="">
                                         <h4><a href="#">Id quia et et ut maxime similique occaecati ut</a></h4>
                                         <p>Fugiat voluptas vero eaque accusantium eos. Consequuntur sed ipsam et totam...</p>
                                     </div>
 
                                     <div class="post-item clearfix">
+
                                         <img src="assets/img/news-4.jpg" alt="">
                                         <h4><a href="#">Laborum corporis quo dara net para</a></h4>
                                         <p>Qui enim quia optio. Eligendi aut asperiores enim repellendusvel rerum cuder...</p>
                                     </div>
 
                                     <div class="post-item clearfix">
+
                                         <img src="assets/img/news-5.jpg" alt="">
                                         <h4><a href="#">Et dolores corrupti quae illo quod dolor</a></h4>
                                         <p>Odit ut eveniet modi reiciendis. Atque cupiditate libero beatae dignissimos eius...</p>
@@ -707,6 +720,7 @@
         <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
         <!-- Vendor JS Files -->
+
         <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
         <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="assets/vendor/chart.js/chart.umd.js"></script>

@@ -6,6 +6,7 @@
 package Controller;
 
 import DAO.ChatDAO;
+import DAO.UserDAO;
 import Model.Messenger;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -83,19 +84,24 @@ public class getcontentchat extends HttpServlet {
         ChatDAO chatdao = new ChatDAO();
         HttpSession session = request.getSession();
         Object id = session.getAttribute("id");
-
+        UserDAO userdao=new UserDAO();
+        String img1=userdao.getImgOfUserById(id1);
+//Trường hợp nhắn tin
         if (id1 != null) {
             ArrayList<Messenger> listcontent = chatdao.gettinnhan(id, id1);
+             request.setAttribute("img1", img1);
             request.setAttribute("id1", id1);
             request.setAttribute("listcontent", listcontent);
             request.getRequestDispatcher("chat").forward(request, response);
-
         }
+//Trường hợp nhấn đoạn chat        
         if(id1==null){
         Object nguoinhantin = request.getParameter("nguoinhantin");
         Object id2 = chatdao.getidbyname(nguoinhantin);
+        String img2=userdao.getImgOfUserById(id2);
         ArrayList<Messenger> listcontent = chatdao.gettinnhan(id, id2);
         request.setAttribute("nguoinhan", nguoinhantin);
+         request.setAttribute("img1", img2);
         request.setAttribute("id1", id2);
         request.setAttribute("listcontent", listcontent);
         request.getRequestDispatcher("chat").forward(request, response);

@@ -4,51 +4,48 @@
     Author     : ADMIN
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="Model.Category"%>
+<%@page import="Model.Category"%>
+<%@page import="DAO.AdminDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
 
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta charset="utf-8">
+        <meta name="description" content="Ogani Template">
+        <meta name="keywords" content="Ogani, unica, creative, html">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>SOCO - Seller</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>SOCO</title>
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
-        <!-- style css link -->
+        <!-- Css Styles -->
+
+        <link rel="stylesheet" href="setofshop/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="setofshop/css/styleonboarding.css">
-        <!-- fontawesome css link -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+        <link rel="stylesheet" href="setofshop/css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="setofshop/css/elegant-icons.css" type="text/css">
+        <link rel="stylesheet" href="setofshop/css/nice-select.css" type="text/css">
+        <link rel="stylesheet" href="setofshop/css/jquery-ui.min.css" type="text/css">
+        <link rel="stylesheet" href="setofshop/css/owl.carousel.min.css" type="text/css">
+        <link rel="stylesheet" href="setofshop/css/slicknav.min.css" type="text/css">
+        <link rel="stylesheet" href="setofshop/css/style.css" type="text/css">
     </head>
     <body>
 
         <header>
-            <div class="header-container">
-
-
-                <div class="header-wrapper">
-                    <div class="logoBox">
-                        <div class="logo-soco">
-                            <a href="shopping"><h2>SOCO</h2></a>
-                        </div>
-                        <div class="content">
-                            <h5>Đăng ký bán hàng trên SOCO</h5>
-                        </div>
-                    </div>
-                    <div class="iconBox2">
-                        <label><img src="https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg" alt="user"></label>
-                        <i class="fa-solid fa-caret-down"></i>
-                    </div>
-                </div>
-            </div>
+            <%@ include file="shop/header_shop.jsp" %>
         </header>
         <div class="home">
+
             <div class="containerr">
-                <form action="RequestSetRoleServlet" method="post">
+                <form action="RequestSetRole" method="post">
                     <div class="form-group row">
                         <label for="email" class="col">Email:</label>
-                        <input type="text" id="email" name="email" class="form-control col" placeholder="Email" required>
+                        <input type="text" value="${emailuser}" id="email" name="email" class="form-control col" placeholder="Email" readonly>
                     </div>
                     <div class="form-group row">
                         <label for="fullName" class="col">Full Name:</label>
@@ -61,18 +58,16 @@
                         <label for="shopName" class="col">Shop name:</label>
                         <input type="text" id="shop-name" name="shopName" class="form-control col" placeholder="Shop name" required>
                     </div>
-                    <div class="form-group row">
+                   <div class="form-group row">
                         <label for="commoditiesSector" class="col">Commodities sector:</label>
+                        <%AdminDAO admindao=new AdminDAO();%>
+                        <% ArrayList<Category> list =admindao.getAllCategory(); %>
                         <select name="commoditiesSector" id="sector" class="form-control col">
                             <option selected>Choose...</option>
-                            <option value="department">Bách hoá online</option>
-                            <option value="men">Men's Fashion</option>
-                            <option value="women">Women's Fashion</option>
-                            <option value="phone">Phone&Accessory</option>
-                            <option value="elec">Electronics</option>
-                            <option value="lap">Computer&Laptop</option>
-                            <option value="cos">Cosmetics</option>
-                            <option value="toy">Toy</option>
+                             <% for (Category item:list) { %>
+                            <option value="<%=item.getCid()%>"><%=item.getType()%></option>
+                            <% } %>
+                            
                         </select>
                     </div>
                     <div class="form-group row">

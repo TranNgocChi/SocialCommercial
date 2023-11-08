@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -75,8 +76,15 @@ public class deletecategory extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
              String catedelete=request.getParameter("catedelete");
+             HttpSession session=request.getSession();
      AdminDAO userdao=new AdminDAO();
-        userdao.deletecategory(catedelete);
+       boolean check= userdao.deletecategory(catedelete);
+        if(check==true){
+            session.setAttribute("msg", "Xóa danh mục thành công");
+        }
+        if(check==false){
+            session.setAttribute("msg", "Xóa danh mục thất bại vì nó liên quan tới nhiều dữ liệu !!! Liên hệ IT để được hỗ trợ xóa");
+        }
         response.sendRedirect("managecategory");
     }
 
